@@ -45,6 +45,10 @@ color: var(--main-background-color);
   padding-top: 50px;
 }
 
+.conceptPart {
+  padding-bottom: 40px;
+}
+
 .conceptP {
   width: 45%;
   color: var(--main-background-color);

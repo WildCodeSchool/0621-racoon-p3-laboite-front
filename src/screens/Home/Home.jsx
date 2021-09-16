@@ -1,11 +1,13 @@
 import React from 'react'
 
-import Duo from '../../assets/duo.jpeg'
-import AustinP from '../../assets/austin-powers.jpeg'
-import DrEvil from '../../assets/dr-evil.jpeg'
 import Austin from '../../assets/austin.jpeg'
+import AustinP from '../../assets/austin-powers.jpeg'
+import Duo from '../../assets/duo.jpeg'
+import DrEvil from '../../assets/dr-evil.jpeg'
 import Mini from '../../assets/mini-me.jpg'
-import Omar from '../../assets/omar.jpeg'
+import Mini2 from '../../assets/mini-2.jpeg'
+import Mustafa from '../../assets/mustafa.jpeg'
+import Number2 from '../../assets/number-2.jpeg'
 import Power from '../../assets/power.jpeg'
 import ruban from '../../assets/rubanHome.png'
 
@@ -71,9 +73,9 @@ const Home = () => {
             <div className='teamBorder'></div>
           </div>
           <div className='membersContainer'>
-            <img className='imgPoles' src={Power} alt='powers' />
-            <img className='imgPoles' src={Power} alt='powers' />
-            <img className='imgPoles' src={Power} alt='powers' />
+            <img className='imgPoles' src={Mustafa} alt='powers' />
+            <img className='imgPoles' src={Number2} alt='powers' />
+            <img className='imgPoles' src={Mini2} alt='powers' />
           </div>
         </div>
       </div>
