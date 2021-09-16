@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 
@@ -13,10 +13,13 @@ const Footer = () => {
           <FaInstagram />
         </div>
         <div className='footerLink'>
-          <Link to=''>Nous soutenir</Link>
-          <Link to=''>L’Association et ses partenaires</Link>
-          <Link to=''>Nous trouver</Link>
-          <Link to=''>On parle de nous</Link>
+          <a href='#'>Nous soutenir</a>
+          <div className='footerSeparator'></div>
+          <a href='#'>L’Association et ses partenaires</a>
+          <div className='footerSeparator'></div>
+          <a href='#'>Nous trouver</a>
+          <div className='footerSeparator'></div>
+          <a href='#'>On parle de nous</a>
         </div>
       </div>
     </footer>
