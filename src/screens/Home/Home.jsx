@@ -73,9 +73,21 @@ const Home = () => {
             <div className='teamBorder'></div>
           </div>
           <div className='membersContainer'>
-            <img className='imgPoles' src={Mustafa} alt='powers' />
-            <img className='imgPoles' src={Number2} alt='powers' />
-            <img className='imgPoles' src={Mini2} alt='powers' />
+            <div className='teamMember'>
+              <img className='imgTeam' src={Mustafa} alt='powers' />
+              <h1 className='memberName'>Nom</h1>
+              <h2 className='jobName'>Job</h2>
+            </div>
+            <div className='teamMember'>
+              <img className='imgTeam' src={Number2} alt='powers' />
+              <h1 className='memberName'>Nom</h1>
+              <h2 className='jobName'>Job</h2>
+            </div>
+            <div className='teamMember'>
+              <img className='imgTeam' src={Mini2} alt='powers' />
+              <h1 className='memberName'>Nom</h1>
+              <h2 className='jobName'>Job</h2>
+            </div>
           </div>
         </div>
       </div>
