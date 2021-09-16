@@ -132,6 +132,7 @@ color: var(--main-background-color);
 .teamMember {
   width: 30%;
   border: 1px solid #F7F8F2;
+  margin-top: 10px;
 }
 
 .memberName {
