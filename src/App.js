@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
+import Contact from './screens/Contact/Contact.jsx'
 import Header from './components/Header.jsx'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer/Footer.jsx'
@@ -12,7 +13,7 @@ function App() {
     <Router>
       <div className='main-container'>
         <Header />
-        <Home />
+        <Contact />
         <Footer />
         <Switch>
           <Route path='/'>

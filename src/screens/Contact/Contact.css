@@ -1,0 +1,82 @@
+/* --main-background-color: #F7F8F2;
+--red-background-color: #EB5160;
+--green-background-color: #52908B;
+--main-font-color: #EB5160;
+--title-color: #F7F8F2;
+--sections-txt-color: #F7F8F2;
+--nav-list-items-color: #F7F8F2; */
+
+/*
+
+#triangle-right {
+      width: 0;
+      height: 0;
+      border-top: 50px solid transparent;
+      border-left: 100px solid red;
+      border-bottom: 50px solid transparent;
+    }
+
+
+#triangle-left {
+      width: 0;
+      height: 0;
+      border-top: 50px solid transparent;
+      border-right: 100px solid red;
+      border-bottom: 50px solid transparent;
+    }
+
+
+    #parallelogram {
+      width: 150px;
+      height: 100px;
+      transform: skew(-20deg);
+      background: red;
+    }
+*/
+
+
+.contact {
+  background-color: var(--main-background-color);
+  height: 100vh;
+  z-index: 1;
+}
+
+.contactRubban {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.contactRubbanTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  padding: 12px 60px;
+  clip-path: polygon(0 0, 15% 50%, 0 100%, 100% 100%, 85% 50%, 100% 0);
+}
+
+.contactPicto {
+  height: 50px;
+  width: 50px;
+  background-color: var(--red-background-color);
+  clip-path: circle(40%);
+  transform: translateY(10px);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  clip-path: circle(50.0% at 50% 100%);
+  transform: translateY(23px);
+
+}
+
+.contactPicto svg {
+  height: 20px;
+  width: 20px;
+  color: var(--main-background-color);
+  z-index: 12;
+  transform: translateY(33px);
+}
