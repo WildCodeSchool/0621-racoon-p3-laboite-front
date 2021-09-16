@@ -8,3 +8,10 @@
   background-color: #F7F8F2;
   height: 160px;
 }
+
+.footerSocial svg {
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
