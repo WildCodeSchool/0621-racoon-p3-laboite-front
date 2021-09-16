@@ -1,23 +1,26 @@
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+import Header from './components/Header.jsx'
+import Home from './components/Home.jsx'
+import Footer from './components/Footer.jsx'
+
 import './App.css'
 import './Normalize.css'
 
 function App() {
   return (
-    <div className='main-container'>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-        vestibulum risus eu massa cursus molestie. Ut dolor elit, vehicula at
-        fermentum ut, volutpat et ligula. Sed libero velit, scelerisque tempus
-        facilisis facilisis, dictum vel dolor. Vestibulum a aliquam dolor. Nam
-        euismod convallis nisl, ac aliquet dui pretium quis. Donec porttitor
-        faucibus sapien nec euismod. Sed consequat consequat urna, sed
-        vestibulum lectus. Nullam molestie turpis vel erat semper, quis
-        efficitur justo interdum. Praesent ut venenatis enim. In mattis magna
-        sit amet tortor commodo, sed vehicula purus viverra. Maecenas urna arcu,
-        viverra quis molestie nec, fringilla quis odio. Pellentesque quis
-        viverra lectus.
-      </p>
-    </div>
+    <Router>
+      <div className='main-container'>
+        <Header />
+        <Home />
+        <Footer />
+        <Switch>
+          <Route path='/'>
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 
