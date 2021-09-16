@@ -1,9 +1,100 @@
-* {
+.homeContainer {
   background: var(--main-background-color);
+  width: 100%;
 }
 
 .conceptContainer {
   background: #52908B;
   width: 100%;
-  height: 1843px;
+  height: 100%;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.conceptBorder {
+  border-bottom: solid;
+  color: white;
+  width: 100%;
+
+}
+.conceptTitle {
+font-size: 30px;
+padding-left: 3%;
+padding-right: 3%;
+width: 50%;
+}
+
+.part1 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+.part2 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+.part3 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+
+.conceptP {
+  width: 45%;
+}
+
+.poles {
+  display: flex;
+  flex-direction: column;
+}
+
+.poleTitleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.polesContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.imgPoles {
+  width: 25%;
+  height: 400px;
+}
+
+.poleTitle {
+  color: var(--main-font-color);
+  font-size: 30px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 50%;
+}
+
+.poleBorder {
+  border-bottom: solid;
+  color: var(--main-font-color);
+  width: 100%;
+}
+
+@media screen and (max-width: 1500px) {
+  .conceptBorder {
+    border-bottom: solid;
+    color: white;
+    width: 100%;
+  }
+
+  .conceptTitle {
+    font-size: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
+    }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Power from '../../assets/power.jpeg'
 import ruban from '../../assets/rubanHome.png'
 
 import './Home.css'
@@ -10,19 +11,51 @@ const Home = () => {
       <div className='homeContainer'>
         <img src='' alt='' />
         <img src={ruban} alt='' />
-        <p></p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti <br/> ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero,<br/> at saepe? Veniam quaerat soluta animi eveniet facilis!<br/>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. <br/>Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa <br/>recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!</p>
         <div className='conceptContainer'>
-          <div className='part-1'>
-            <img src='' alt='' />
-            <p></p>
+          <div className='titleContainer'>
+            <div className='conceptBorder'></div>
+              <h2 className='conceptTitle'> Le Concept </h2>
+            <div className='conceptBorder'></div>
           </div>
-          <div className='part-2'>
-            <p></p>
-            <img src='' alt='' />
+          <div className='conceptPart'>
+            <div className='part1'>
+              <img src={Power} alt='powers' style={{width: '45%', height: '50vh'}} />
+              <p className='conceptP'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!</p>
+            </div>
+            <div className='part2'>
+              <p className='conceptP'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!</p>
+              <img src={Power} alt='powers' style={{width: '45%', height: '50vh'}} />
+            </div>
+            <div className='part3'>
+            <img src={Power} alt='powers' style={{width: '45%', height: '50vh'}} />
+              <p className='conceptP'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!</p>
+            </div>
           </div>
-          <div className='part-3'>
-            <img src='' alt='' />
-            <p></p>
+        </div>
+        <div className='poles'>
+          <div className='poleTitleContainer'>
+            <div className='poleBorder'></div>
+              <h2 className='poleTitle'> Les Pôles d'activité </h2>
+            <div className='poleBorder'></div>
+            </div>
+            <div className='polesContainer'>
+              <img className='imgPoles' src={Power} alt='powers' />
+              <img className='imgPoles' src={Power} alt='powers' />
+              <img className='imgPoles' src={Power} alt='powers' />
           </div>
         </div>
       </div>
