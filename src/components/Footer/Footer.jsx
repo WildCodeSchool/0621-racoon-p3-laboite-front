@@ -13,13 +13,13 @@ const Footer = () => {
           <FaInstagram />
         </div>
         <div className='footerLink'>
-          <a href='#'>Nous soutenir</a>
+          <Link to=''>Nous soutenir</Link>
           <div className='footerSeparator'></div>
-          <a href='#'>L’Association et ses partenaires</a>
+          <Link to=''>L’Association et ses partenaires</Link>
           <div className='footerSeparator'></div>
-          <a href='#'>Nous trouver</a>
+          <Link to=''>Nous trouver</Link>
           <div className='footerSeparator'></div>
-          <a href='#'>On parle de nous</a>
+          <Link to=''>On parle de nous</Link>
         </div>
       </div>
     </footer>
