@@ -1,14 +1,16 @@
-import './App.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Header from './components/Header.jsx'
-import Home from './/screens/Home/Home.jsx'
-import Footer from './components/Footer.jsx'
+import Home from './screens/Home/Home.jsx'
+import Footer from './components/Footer/Footer.jsx'
+
+import './App.css'
+import './Normalize.css'
 
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className='main-container'>
         <Header />
         <Footer />
         <Switch>

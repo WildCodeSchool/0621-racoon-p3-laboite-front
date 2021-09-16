@@ -1,42 +1,40 @@
-* {
-  background-color: #F7F8F2
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Pacifico&display=swap');
+
+:root {
+  --main-background-color: #F7F8F2;
+  --red-background-color: #EB5160;
+  --green-background-color: #52908B;
+  --main-font-color: #EB5160;
+  --title-color: #F7F8F2;
+  --sections-txt-color: #F7F8F2;
+  --nav-list-items-color: #F7F8F2;
 }
 
-.App {
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--main-background-color);
+  color: var(--main-font-color);
+  font-weight: 600;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0px 20% 0px 20%;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: var(--title-color);
+  background-color: var(--red-background-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+  font-family: 'Pacifico', cursive;
+  color: var(--title-color);
+}
+
+nav {
+  background-color: var(--red-background-color);
 }

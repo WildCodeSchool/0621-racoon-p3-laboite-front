@@ -1,3 +1,7 @@
+* {
+  background: var(--main-background-color);
+}
+
 .conceptContainer {
   background: #52908B;
   width: 100%;
