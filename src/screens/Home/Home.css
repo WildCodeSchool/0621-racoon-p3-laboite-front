@@ -26,6 +26,7 @@ font-size: 30px;
 padding-left: 3%;
 padding-right: 3%;
 width: 50%;
+color: var(--main-background-color);
 }
 
 .part1 {
@@ -46,11 +47,13 @@ width: 50%;
 
 .conceptP {
   width: 45%;
+  color: var(--main-background-color);
 }
 
 .poles {
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
 }
 
 .poleTitleContainer {
@@ -75,12 +78,50 @@ width: 50%;
   font-size: 30px;
   padding-left: 3%;
   padding-right: 3%;
-  width: 50%;
+  width: 70%;
 }
 
 .poleBorder {
   border-bottom: solid;
   color: var(--main-font-color);
+  width: 100%;
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  background: #52908B;
+}
+
+.teamTitleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.membersContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.imgPoles {
+  width: 25%;
+  height: 400px;
+}
+
+.teamTitle {
+  color: var(--main-background-color);
+  font-size: 30px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 50%;
+}
+
+.teamBorder {
+  border-bottom: solid;
+  color: white;
   width: 100%;
 }
 
