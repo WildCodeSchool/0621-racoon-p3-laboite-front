@@ -35,6 +35,11 @@ h2 {
   color: var(--title-color);
 }
 
+h3 {
+  font-family: 'Pacifico', cursive;
+  color: var(--red-background-color);
+}
+
 nav {
   background-color: var(--red-background-color);
 }

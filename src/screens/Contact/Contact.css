@@ -37,8 +37,6 @@
 
 .contact {
   background-color: var(--main-background-color);
-  height: 100vh;
-  z-index: 1;
 }
 
 .contactRubban {
@@ -82,17 +80,20 @@
 }
 
 .contactInfoWrapper {
-  height: 500px;
   width: 100%;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contactInfo {
-  height: 230px;
+  height: 150px;
   width: 100%;
   background-color: var(--red-background-color);
   display: flex;
+  justify-content: space-between;
+  margin: 100px 0 120px 0;
 }
 
 .contactInfoSocialLink {
@@ -112,4 +113,61 @@
 
 .contactInfoText {
   width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--main-background-color);
+  font-weight: 400;
+  text-align: left;
+}
+
+.contactInfoText h4 {
+  font-weight: bold;
+  margin: 0;
+}
+
+.contactInfoText p {
+  margin: 5px 0 0 0 ;
+}
+
+
+
+.contactInfoMap {
+  transform: translateY(-40%);
+  width: 400px;
+}
+
+.contactInfoMap iframe {
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px rgba(107, 107, 107, 0.9);
+  border: none;
+}
+
+.contactInfoSpace {
+  width: 5%;
+  height: 100%;
+}
+
+.contactMessage {
+  width: 100%;
+}
+
+.contactMessage h3 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid var(--red-background-color);
+  line-height: 0.1em;
+  margin: 0;
+}
+
+.contactMessage span {
+  background:var(--main-background-color);
+    padding:0 10px;
+}
+
+.contactFrom {
+  width: 100%;
+  height: 550px;
+  background-color: var(--green-background-color);
+  margin-top: 40px;
 }
