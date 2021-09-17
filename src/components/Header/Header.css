@@ -35,6 +35,7 @@
 .navlist div {
   height: 100%;
   display: flex;
+  align-items: center;
   border-left: 1px solid;
   border-top: 0;
   border-bottom: 0;
@@ -42,6 +43,7 @@
 }
 
 .navlist div p {
+  margin: 0 30px;
   transform: skew(30deg) rotate(0deg);
 }
 
