@@ -23,9 +23,7 @@ const Home = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. <br/>Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa <br/>recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!</p>
         <div className='conceptContainer'>
           <div className='titleContainer'>
-            <div className='conceptBorder'></div>
-              <h2 className='conceptTitle'> Le Concept </h2>
-            <div className='conceptBorder'></div>
+              <h2 className='conceptTitle'><span> Le Concept </span></h2>
           </div>
           <div className='conceptPart'>
             <div className='part1'>
@@ -56,9 +54,7 @@ const Home = () => {
         </div>
         <div className='poles'>
           <div className='poleTitleContainer'>
-            <div className='poleBorder'></div>
-              <h2 className='poleTitle'> Les Pôles d'activité </h2>
-            <div className='poleBorder'></div>
+            <h2 className='poleTitle'><span> Les pôles d'activité </span></h2>
             </div>
             <div className='polesContainer'>
               <img className='imgPoles' src={Austin} alt='powers' />
@@ -68,9 +64,7 @@ const Home = () => {
         </div>
         <div className='teamContainer'>
           <div className='teamTitleContainer'>
-            <div className='teamBorder'></div>
-              <h2 className='teamTitle'> L'équipe </h2>
-            <div className='teamBorder'></div>
+              <h2 className='teamTitle'><span> L'équipe </span></h2>
           </div>
           <div className='membersContainer'>
             <div className='teamMember'>
