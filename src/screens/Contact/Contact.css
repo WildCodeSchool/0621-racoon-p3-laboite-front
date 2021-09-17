@@ -1,0 +1,197 @@
+.contact {
+  background-color: var(--main-background-color);
+}
+
+.contactRubban {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.contactRubbanTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  padding: 12px 60px;
+  clip-path: polygon(0 0, 10% 50%, 0 100%, 100% 100%, 90% 50%, 100% 0);
+}
+
+.contactPicto {
+  height: 50px;
+  width: 50px;
+  background-color: var(--red-background-color);
+  clip-path: circle(40%);
+  transform: translateY(10px);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  clip-path: circle(50.0% at 50% 100%);
+  transform: translateY(23px);
+
+}
+
+.contactPicto svg {
+  height: 20px;
+  width: 20px;
+  color: var(--main-background-color);
+  z-index: 12;
+  transform: translateY(33px);
+}
+
+.contactInfoWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contactInfo {
+  height: 150px;
+  width: 100%;
+  background-color: var(--red-background-color);
+  display: flex;
+  justify-content: space-between;
+  margin: 100px 0 120px 0;
+}
+
+.contactInfoSocialLink {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contactInfoSocialLink svg {
+  color: var(--main-background-color);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.contactInfoSocialLink svg:hover {
+  transform: scale(1.1);
+}
+
+.contactInfoText {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--main-background-color);
+  font-weight: 400;
+  text-align: left;
+}
+
+.contactInfoText h4 {
+  font-weight: bold;
+  margin: 0;
+}
+
+.contactInfoText p {
+  margin: 5px 0 0 0 ;
+}
+
+.contactInfoText p:last-child {
+  margin-top: 15px;
+}
+
+
+
+.contactInfoMap {
+  transform: translate(15%, -40%);
+  width: 40%;
+}
+
+.contactInfoMap iframe {
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px rgba(107, 107, 107, 0.9);
+  border: none;
+}
+
+.contactInfoSpace {
+  width: 5%;
+  height: 100%;
+}
+
+.contactMessage {
+  width: 100%;
+}
+
+.contactMessage h3 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid var(--red-background-color);
+  line-height: 0.1em;
+  margin: 0;
+}
+
+.contactMessage span {
+  background:var(--main-background-color);
+    padding:0 10px;
+}
+
+.contactFrom {
+  width: 100%;
+  height: 550px;
+  background-color: var(--green-background-color);
+  color: var(--main-background-color);
+  margin-top: 40px;
+  padding-top: 10px;
+  text-align: left;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contactFromItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 60%;
+}
+
+.contactFromItems input {
+  height: 35px;
+  padding: 2px 10px;
+}
+
+.contactFromItems textarea {
+  height: 200px;
+}
+
+.contactFromItems input , .contactFromItems textarea {
+  border: none;
+  box-shadow: 1px 1px 2px rgba(107, 107, 107, 0.9);
+}
+
+.contactFromItems input:focus , .contactFromItems textarea:focus {
+  outline: 1px solid var(--red-background-color);
+}
+
+.contactFrom button {
+  width: 150px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  align-self: center;
+  box-shadow: 0 0 3px #c7525d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.contactFrom button:hover {
+  transform: scale(1.1);
+  color: #000;
+}
