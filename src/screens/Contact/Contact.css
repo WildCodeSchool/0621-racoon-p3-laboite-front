@@ -56,7 +56,7 @@
   background-color: var(--red-background-color);
   color: var(--main-background-color);
   padding: 12px 60px;
-  clip-path: polygon(0 0, 15% 50%, 0 100%, 100% 100%, 85% 50%, 100% 0);
+  clip-path: polygon(0 0, 10% 50%, 0 100%, 100% 100%, 90% 50%, 100% 0);
 }
 
 .contactPicto {
@@ -79,4 +79,37 @@
   color: var(--main-background-color);
   z-index: 12;
   transform: translateY(33px);
+}
+
+.contactInfoWrapper {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.contactInfo {
+  height: 230px;
+  width: 100%;
+  background-color: var(--red-background-color);
+  display: flex;
+}
+
+.contactInfoSocialLink {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contactInfoSocialLink svg {
+  color: var(--main-background-color);
+  width: 24px;
+  height: 24px;
+}
+
+.contactInfoText {
+  width: 260px;
 }
