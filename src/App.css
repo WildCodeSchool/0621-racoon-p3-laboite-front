@@ -21,7 +21,6 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  /* margin: 0px 20% 0px 20%; */
 }
 
 h1 {
@@ -33,6 +32,11 @@ h1 {
 h2 {
   font-family: 'Pacifico', cursive;
   color: var(--title-color);
+}
+
+h3 {
+  font-family: 'Pacifico', cursive;
+  color: var(--red-background-color);
 }
 
 nav {
