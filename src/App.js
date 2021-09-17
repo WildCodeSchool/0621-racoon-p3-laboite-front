@@ -1,11 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-<<<<<<< HEAD
 import Contact from './screens/Contact/Contact.jsx'
-import Header from './components/Header.jsx'
-=======
 import Header from './components/Header/Header.jsx'
->>>>>>> dev
 import Home from './screens/Home/Home.jsx'
 import Footer from './components/Footer/Footer.jsx'
 
