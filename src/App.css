@@ -21,7 +21,7 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  margin: 0px 20% 0px 20%;
+  /* margin: 0px 20% 0px 20%; */
 }
 
 h1 {

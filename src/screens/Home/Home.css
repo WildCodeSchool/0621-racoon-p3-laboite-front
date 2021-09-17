@@ -1,0 +1,156 @@
+.homeContainer {
+  background: var(--main-background-color);
+  width: 100%;
+}
+
+.conceptContainer {
+  background: #52908B;
+  width: 100%;
+  height: 100%;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.conceptBorder {
+  border-bottom: solid;
+  color: white;
+  width: 100%;
+
+}
+.conceptTitle {
+font-size: 30px;
+padding-left: 3%;
+padding-right: 3%;
+width: 50%;
+color: var(--main-background-color);
+}
+
+.part1 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+.part2 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+.part3 {
+  display: flex;
+  justify-content:space-around;
+  padding-top: 50px;
+}
+
+.conceptPart {
+  padding-bottom: 40px;
+}
+
+.conceptP {
+  width: 45%;
+  color: var(--main-background-color);
+}
+
+.poles {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.poleTitleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.polesContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.imgPoles {
+  width: 25%;
+  height: 400px;
+}
+
+.poleTitle {
+  color: var(--main-font-color);
+  font-size: 30px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 70%;
+}
+
+.poleBorder {
+  border-bottom: solid;
+  color: var(--main-font-color);
+  width: 100%;
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  background: #52908B;
+}
+
+.teamTitleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.membersContainer {
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.imgTeam {
+  width: 100%;
+  height: 400px;
+}
+
+.teamTitle {
+  color: var(--main-background-color);
+  font-size: 30px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 50%;
+}
+
+.teamBorder {
+  border-bottom: solid;
+  color: white;
+  width: 100%;
+}
+
+.teamMember {
+  width: 30%;
+  border: 1px solid #F7F8F2;
+  margin-top: 10px;
+}
+
+.memberName {
+  margin: 0;
+  background: transparent;
+}
+
+@media screen and (max-width: 1500px) {
+  .conceptBorder {
+    border-bottom: solid;
+    color: white;
+    width: 100%;
+  }
+
+  .conceptTitle {
+    font-size: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
+    }
+}
