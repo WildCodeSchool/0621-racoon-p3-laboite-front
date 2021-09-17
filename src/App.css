@@ -20,7 +20,7 @@ body {
 
 .main-container {
   display: flex;
-  margin: 0px 20% 0px 20%;
+  flex-direction: column;
 }
 
 h1 {
