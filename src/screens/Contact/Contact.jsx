@@ -21,6 +21,9 @@ const Contact = () => {
           <div className='contactInfoText'>
             <h4>Notre adresse:</h4>
             <p>1 rue du chemin, 37150 Bléré</p>
+            <p>
+              <FaPhoneAlt /> 06 54 50 50 50
+            </p>
           </div>
           <div className='contactInfoMap'>
             <iframe
