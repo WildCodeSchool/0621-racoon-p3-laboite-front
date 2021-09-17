@@ -38,7 +38,21 @@ const Contact = () => {
           <h3>
             <span>Laissez nous un message</span>
           </h3>
-          <form className='contactFrom'></form>
+          <form className='contactFrom'>
+            <div className='contactFromItems'>
+              <label htmlFor='name'>Nom:</label>
+              <input id='name' name='name' type='text' require='true' />
+            </div>
+            <div className='contactFromItems'>
+              <label htmlFor='email'>Email:</label>
+              <input id='email' name='email' type='email' require='true' />
+            </div>
+            <div className='contactFromItems'>
+              <label htmlFor='message'>Message:</label>
+              <textarea id='message' name='message' require='true'></textarea>
+            </div>
+            <button type='submit'>Envoyer</button>
+          </form>
         </div>
       </div>
     </div>
