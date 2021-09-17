@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+}
+
+.header {
+  flex-direction: column;
+  height: 600px;
+  background-color: #EB5160;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.logo-container {
+  height: 35%;
+}
+
+.header-logo {
+  width: 30%;
+}
+
+.header-text {
+  width: 70%;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.navbar {
+  height: 10%;
+}
+.navlist {
+  list-style: none;
+}
+
+.navlist li {
+  padding-left: 80px;
+}
+
+.blere-beach {
+  height: 55%;
+  background-image: url('../../assets/blere-beach.png');
+  background-size: 100% 100%;
+}
