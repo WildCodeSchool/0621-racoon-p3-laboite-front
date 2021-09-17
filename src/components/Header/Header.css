@@ -4,36 +4,61 @@
 
 .header {
   flex-direction: column;
-  height: 600px;
+  height: 650px;
   background-color: #EB5160;
   margin-bottom: 50px;
   color: white;
 }
 
 .logo-container {
-  height: 35%;
+  align-items: center;
+  height: 40%;
 }
 
 .header-logo {
+  padding-top: 30px;
   width: 30%;
 }
 
 .header-text {
   width: 70%;
-  padding-top: 20px;
   text-align: left;
+  font-size: 1.2em;
 }
 
-.navbar {
-  height: 10%;
-}
 .navlist {
-  list-style: none;
+  border-top: 1px solid;
+  height: 10%;
+  width: 100%;
 }
 
-.navlist li {
-  padding-left: 80px;
+.navlist div {
+  height: 100%;
+  display: flex;
+  border-left: 1px solid;
+  border-top: 0;
+  border-bottom: 0;
+  transform: skew(-30deg) rotate(0deg);
 }
+
+.navlist div p {
+  transform: skew(30deg) rotate(0deg);
+}
+
+.navlist :not(:first-child,:last-child) {
+  width: 15%;
+}
+
+.navlist :first-child {
+  width: 6%;
+  border-left: 0;
+}
+
+.navlist :last-child {
+  flex-grow: 1;
+  border-right: 0;
+}
+
 
 .blere-beach {
   height: 55%;
