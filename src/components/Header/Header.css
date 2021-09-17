@@ -1,0 +1,69 @@
+.flex {
+  display: flex;
+}
+
+.header {
+  flex-direction: column;
+  height: 650px;
+  background-color: #EB5160;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.logo-container {
+  align-items: center;
+  height: 40%;
+}
+
+.header-logo {
+  padding-top: 30px;
+  width: 30%;
+}
+
+.header-text {
+  width: 70%;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+.navlist {
+  border-top: 1px solid;
+  height: 10%;
+  width: 100%;
+}
+
+.navlist div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid;
+  border-top: 0;
+  border-bottom: 0;
+  transform: skew(-30deg) rotate(0deg);
+}
+
+.navlist div p {
+  margin: 0 30px;
+  transform: skew(30deg) rotate(0deg);
+}
+
+.navlist :not(:first-child,:last-child) {
+  width: 15%;
+}
+
+.navlist :first-child {
+  width: 6%;
+  border-left: 0;
+}
+
+.navlist :last-child {
+  flex-grow: 1;
+  border-right: 0;
+}
+
+
+.blere-beach {
+  height: 55%;
+  background-image: url('../../assets/blere-beach.png');
+  background-size: 100% 100%;
+}
