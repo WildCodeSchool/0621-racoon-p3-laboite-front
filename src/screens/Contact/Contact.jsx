@@ -1,8 +1,25 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { FaPhoneAlt, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 import './Contact.css'
 
 const Contact = () => {
+  // Infos de contact de la Boite d'acoté
+  const [contact, setContact] = useState({})
+
+  // Recupere les infos contact du back et bdd
+  useEffect(() => {
+    const getInfo = () => {
+      axios
+        .get('http://localhost:4000/contact')
+        .then(
+          response => console.table(response.data) || setContact(response.data)
+        )
+    }
+    getInfo()
+  }, [])
+
   return (
     <div className='contact'>
       <div className='contactRubban'>
@@ -16,14 +33,20 @@ const Contact = () => {
         <div className='contactInfo'>
           <div className='contactInfoContent'>
             <div className='contactInfoSocialLink'>
-              <FaFacebook />
+              <a
+                href={contact.contact_social_link}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaFacebook />
+              </a>
               <FaInstagram />
             </div>
             <div className='contactInfoText'>
               <h4>Notre adresse:</h4>
-              <p>1 rue du chemin, 37150 Bléré</p>
+              <p>{contact.contact_address}</p>
               <p>
-                <FaPhoneAlt /> 06 54 50 50 50
+                <FaPhoneAlt /> {contact.contact_phone}
               </p>
             </div>
             <div className='contactInfoMap'>
