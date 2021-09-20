@@ -1,5 +1,6 @@
 import './Header.css'
 import Logo from '../../assets/logo-bac-blanc-no-bg.png'
+import User from '../../assets/user-icon.png'
 
 const Header = () => {
   return (
@@ -26,16 +27,15 @@ const Header = () => {
           <p>Pôle Conciergerie</p>
         </div>
         <div>
-          <p>Pôle Recyclerie Créative</p>
+          <p>Pôle Recyclerie</p>
         </div>
         <div>
           <p>Pôle Végétal</p>
         </div>
         <div>
-          <p style={{ color: '#EB5160' }}>N</p>
+          <img className='user-icon' src={User} alt='user' />
         </div>
       </div>
-      <div className='blere-beach'></div>
     </div>
   )
 }
