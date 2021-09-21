@@ -129,19 +129,21 @@ const Home = () => {
         </div>
         <div className='poles'>
           <div className='poleTitleContainer'>
-
-            <h2 className='poleTitle'><span> Les pôles d'activité </span></h2>
-            </div>
-            <div className='polesContainer'>
-              <img className='imgPoles' src={Austin} alt='powers' />
-              <img className='imgPoles' src={DrEvil} alt='powers' />
-              <img className='imgPoles' src={Power} alt='powers' />
+            <h2 className='poleTitle'>
+              <span> Les pôles d'activité </span>
+            </h2>
+          </div>
+          <div className='polesContainer'>
+            <img className='imgPoles' src={Austin} alt='powers' />
+            <img className='imgPoles' src={DrEvil} alt='powers' />
+            <img className='imgPoles' src={Power} alt='powers' />
           </div>
         </div>
         <div className='teamContainer'>
           <div className='teamTitleContainer'>
-
-              <h2 className='teamTitle'><span> L'équipe </span></h2>
+            <h2 className='teamTitle'>
+              <span> L'équipe </span>
+            </h2>
           </div>
           <div className='membersContainer'>
             <div className='teamMember'>
