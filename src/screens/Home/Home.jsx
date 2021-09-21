@@ -38,9 +38,7 @@ const Home = () => {
         </p>
         <div className='conceptContainer'>
           <div className='titleContainer'>
-            <div className='conceptBorder'></div>
-            <h2 className='conceptTitle'> Le Concept </h2>
-            <div className='conceptBorder'></div>
+            <h2 className='conceptTitle'><span>Le Concept</span></h2>
           </div>
           <div className='conceptPart'>
             <div className='part1'>
