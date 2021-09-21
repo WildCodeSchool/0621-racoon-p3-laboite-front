@@ -10,7 +10,7 @@ const Header = () => {
           <img src={Logo} alt='logo' />
         </div>
         <div className='header-text'>
-          <h1>La boîte d'à côté...</h1>
+          <h1>La boîte d&apos;à côté...</h1>
           <h1 style={{ paddingLeft: '150px' }}>
             Une entreprise pas comme les autres !
           </h1>
