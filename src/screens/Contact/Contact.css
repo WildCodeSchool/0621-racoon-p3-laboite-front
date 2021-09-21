@@ -54,9 +54,15 @@
   height: 150px;
   width: 100%;
   background-color: var(--red-background-color);
+  margin: 100px 0 120px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.contactInfoContent {
+  width: 60%;
   display: flex;
   justify-content: space-between;
-  margin: 100px 0 120px 0;
 }
 
 .contactInfoSocialLink {
@@ -81,7 +87,6 @@
 }
 
 .contactInfoText {
-  width: 35%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,19 +111,13 @@
 
 
 .contactInfoMap {
-  transform: translate(15%, -40%);
-  width: 40%;
+  transform: translate(35%, -40%);
 }
 
 .contactInfoMap iframe {
   border-radius: 3px;
-  box-shadow: 1px 1px 4px rgba(107, 107, 107, 0.9);
+  box-shadow: 1px 1px 2px rgba(107, 107, 107, 0.9);
   border: none;
-}
-
-.contactInfoSpace {
-  width: 5%;
-  height: 100%;
 }
 
 .contactMessage {
