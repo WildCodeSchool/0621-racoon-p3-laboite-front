@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Map from './Map'
-import { FaPhoneAlt, FaFacebook, FaInstagram } from 'react-icons/fa'
+import Ruban from '../../components/Ruban/Ruban'
+import { FaPhoneAlt, FaFacebook } from 'react-icons/fa'
 
 import './Contact.css'
 
@@ -30,13 +31,7 @@ const Contact = () => {
 
   return (
     <div className='contact'>
-      <div className='contactRubban'>
-        <div className='contactPicto'>
-          <FaPhoneAlt />
-        </div>
-        <h2 className='contactRubbanTitle'>Contact</h2>
-      </div>
-
+      <Ruban picto={''} />
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
