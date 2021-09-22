@@ -20,6 +20,12 @@
   color: var(--red-background-color);
   width: 24px;
   height: 24px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.footerSocial svg:hover {
+  transform: scale(1.1);
 }
 
 .footerLink {
