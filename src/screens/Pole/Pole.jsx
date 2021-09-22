@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 
 import './Pole.css'
+import conciergerie from '../../assets/conciergerie.jpg'
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
@@ -20,7 +21,12 @@ const Pole = () => {
   console.log('poulet')
 
   return (
-    <div>{/* {typeOf(pole) !== undefined && {poleData[0].pole_desc}} */}</div>
+    <div className='pole-container'>
+      <div className='banner'>
+        <img src={conciergerie} alt='bannière' />
+      </div>
+      {poleData.pole_desc}
+    </div>
   )
 }
 
