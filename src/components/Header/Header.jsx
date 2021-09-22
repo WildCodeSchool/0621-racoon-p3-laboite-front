@@ -48,7 +48,7 @@ const Header = () => {
             <div key={e.id}>
               <p>
                 <NavLink to={`/pole/${e.id}`}>
-                  {e.pole_title.replace('Le', '').replace('La', '')}
+                  {e.pole_name.replace('Le', '').replace('La', '')}
                 </NavLink>
               </p>
             </div>
