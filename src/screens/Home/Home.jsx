@@ -38,10 +38,7 @@ const Home = () => {
         </p>
         <div className='conceptContainer'>
           <div className='titleContainer'>
-
-            <div className='conceptBorder'></div>
-            <h2 className='conceptTitle'> Le Concept </h2>
-            <div className='conceptBorder'></div>
+            <h2 className='conceptTitle'><span>Le Concept</span></h2>
           </div>
           <div className='conceptPart'>
             <div className='part1'>
@@ -132,19 +129,21 @@ const Home = () => {
         </div>
         <div className='poles'>
           <div className='poleTitleContainer'>
-
-            <h2 className='poleTitle'><span> Les pôles d'activité </span></h2>
-            </div>
-            <div className='polesContainer'>
-              <img className='imgPoles' src={Austin} alt='powers' />
-              <img className='imgPoles' src={DrEvil} alt='powers' />
-              <img className='imgPoles' src={Power} alt='powers' />
+            <h2 className='poleTitle'>
+              <span> Les pôles d'activité </span>
+            </h2>
+          </div>
+          <div className='polesContainer'>
+            <img className='imgPoles' src={Austin} alt='powers' />
+            <img className='imgPoles' src={DrEvil} alt='powers' />
+            <img className='imgPoles' src={Power} alt='powers' />
           </div>
         </div>
         <div className='teamContainer'>
           <div className='teamTitleContainer'>
-
-              <h2 className='teamTitle'><span> L'équipe </span></h2>
+            <h2 className='teamTitle'>
+              <span> L'équipe </span>
+            </h2>
           </div>
           <div className='membersContainer'>
             <div className='teamMember'>
