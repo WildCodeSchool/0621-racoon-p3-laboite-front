@@ -16,7 +16,7 @@ const Footer = () => {
         <div className='footerSeparator'></div>
         <Link to=''>L’Association et ses partenaires</Link>
         <div className='footerSeparator'></div>
-        <Link to=''>Nous trouver</Link>
+        <Link to='/contact'>Nous trouver</Link>
         <div className='footerSeparator'></div>
         <Link to=''>On parle de nous</Link>
       </div>
