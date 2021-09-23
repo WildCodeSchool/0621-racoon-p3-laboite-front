@@ -1,6 +1,7 @@
 .homeContainer {
-  background: var(--main-background-color);
-  width: 100%;
+  /* background: var(--main-background-color); */
+  width: 80%;
+  margin:auto;
 }
 
 .conceptContainer {

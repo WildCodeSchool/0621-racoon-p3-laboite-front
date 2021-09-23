@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Contact from './screens/Contact/Contact.jsx'
+import Pole from './screens/Pole/Pole.jsx'
 import Header from './components/Header/Header.jsx'
 import Home from './screens/Home/Home.jsx'
-import Pole from './components/Pole/Pole.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Concept from './screens/Concept/Concept.jsx'
 import Login from './screens/Login/Login.jsx'

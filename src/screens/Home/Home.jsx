@@ -17,12 +17,12 @@ import './Home.css'
 const Home = () => {
   return (
     <>
+      <img
+        style={{ width: '100%', height: '400px', marginBottom: '50px' }}
+        src={beach}
+        alt='blere-beach'
+      />
       <div className='homeContainer'>
-        <img
-          style={{ width: '100%', height: '400px', marginBottom: '50px' }}
-          src={beach}
-          alt='blere-beach'
-        />
         <img src={ruban} alt='' />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti{' '}
@@ -38,7 +38,9 @@ const Home = () => {
         </p>
         <div className='conceptContainer'>
           <div className='titleContainer'>
-            <h2 className='conceptTitle'><span>Le Concept</span></h2>
+            <h2 className='conceptTitle'>
+              <span>Le Concept</span>
+            </h2>
           </div>
           <div className='conceptPart'>
             <div className='part1'>
