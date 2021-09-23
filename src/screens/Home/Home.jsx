@@ -1,129 +1,122 @@
 import React from 'react'
 
-import Austin from '../../assets/austin.jpeg'
-import AustinP from '../../assets/austin-powers.jpeg'
-import Duo from '../../assets/duo.jpeg'
-import DrEvil from '../../assets/dr-evil.jpeg'
-import Mini from '../../assets/mini-me.jpg'
-import Mini2 from '../../assets/mini-2.jpeg'
-import Mustafa from '../../assets/mustafa.jpeg'
-import Number2 from '../../assets/number-2.jpeg'
-import Power from '../../assets/power.jpeg'
 import ruban from '../../assets/rubanHome.png'
-import beach from '../../assets/blere-beach.png'
 
 import './Home.css'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import MemberCard from '../../components/Card/MemberCard'
+import PoleCard from '../../components/Card/PoleCard'
 
 const Home = () => {
+  const [concept, setConcept] = useState([])
+  const [team, setTeam] = useState([])
+  const [poleMin, setPoleMin] = useState([])
+  useEffect(() => {
+    const getConcept = () => {
+      axios
+        .get('http://localhost:4000/concept')
+        .then(res => setConcept(res.data[0]))
+    }
+    getConcept()
+  }, [])
+
+  useEffect(() => {
+    const getTeam = () => {
+      axios.get('http://localhost:4000/team').then(res => setTeam(res.data))
+    }
+    getTeam()
+  }, [])
+
+  useEffect(() => {
+    const getPole = () => {
+      axios
+      .get('http://localhost:4000/pole')
+      .then(res => setPoleMin(res.data))
+    }
+    getPole()
+  }, [])
+
+  console.log(poleMin)
+
   return (
     <>
       <div className='homeContainer'>
         <img
           style={{ width: '100%', height: '400px', marginBottom: '50px' }}
-          src={beach}
+          src={concept.concept_banner}
           alt='blere-beach'
         />
-        <img src={ruban} alt='' />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti{' '}
-          <br /> ratione commodi unde consequuntur! Eaque, laudantium nobis aut
-          blanditiis culpa recusandae illum? Vero,
-          <br /> at saepe? Veniam quaerat soluta animi eveniet facilis!
-          <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
-          Corrupti ratione commodi unde consequuntur! Eaque, laudantium nobis
-          aut blanditiis culpa <br />
-          recusandae illum? Vero, at saepe? Veniam quaerat soluta animi eveniet
-          facilis!
-        </p>
+        <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} />
+        <div className='descContainer'>
+          <div>
+            <p className='ebeDesc'>{concept.pres_ebe_desc}</p>
+            <p className='ebeDesc'>{concept.pres_ebe_desc2}</p>
+          </div>
+          <div className='homeContactContainer'>
+            <p className='contactElements'>phone number</p>
+            <p className='contactElements'>adress</p>
+            <p className='contactElements'>mail</p>
+          </div>
+          <p>{concept.concept_openhours}</p>
+        </div>
+
         <div className='conceptContainer'>
           <div className='titleContainer'>
-            <h2 className='conceptTitle'><span>Le Concept</span></h2>
+            <h2 className='conceptTitle'>
+              <span>Le Concept</span>
+            </h2>
           </div>
           <div className='conceptPart'>
             <div className='part1'>
               <img
-                src={Duo}
-                alt='powers'
-                style={{ width: '45%', height: '50vh' }}
+                src={concept.concept_img1}
+                alt='jardinerie'
+                style={{ width: '50%', height: '50vh' }}
               />
-              <p className='conceptP'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Corrupti ratione commodi unde consequuntur!
-                Eaque, laudantium nobis aut blanditiis culpa recusandae illum?
-                Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis!
-              </p>
+              <div className='conceptP1'>
+                <p>{concept.concept_txt1_p1}</p>
+                <p style={{ textDecoration: 'underline', fontStyle: 'italic' }}>
+                  {concept.link_tzc}
+                </p>
+                <p>{concept.concept_txt1_p2}</p>
+                <div className='block-buster'>
+                  <div className='borderText'></div>
+                  <p className='borderP'>{concept.concept_txt1_p3}</p>
+                </div>
+              </div>
             </div>
             <div className='part2'>
-              <p className='conceptP'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Corrupti ratione commodi unde consequuntur!
-                Eaque, laudantium nobis aut blanditiis culpa recusandae illum?
-                Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis!
-              </p>
+              <div className='conceptP2'>
+                <div className='block-buster'>
+                  <div className='borderText'></div>
+                  <p className='borderP'>{concept.concept_txt2_p1}</p>
+                </div>
+                <div className='block-buster'>
+                  <div className='borderText'></div>
+                  <p className='borderP'>{concept.concept_txt2_p2}</p>
+                </div>
+                <p style={{ fontWeight: 'bold' }}>{concept.concept_txt2_p3}</p>
+              </div>
               <img
-                src={AustinP}
-                alt='powers'
-                style={{ width: '45%', height: '50vh' }}
+                src={concept.concept_img2}
+                alt='vendange'
+                style={{ width: '50%', height: '50vh' }}
               />
             </div>
             <div className='part3'>
               <img
-                src={Mini}
-                alt='powers'
-                style={{ width: '45%', height: '50vh' }}
+                src={concept.concept_img3}
+                alt='livraison'
+                style={{ width: '50%', height: '50vh' }}
               />
-              <p className='conceptP'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Corrupti ratione commodi unde consequuntur!
-                Eaque, laudantium nobis aut blanditiis culpa recusandae illum?
-                Vero, at saepe? Veniam quaerat soluta animi eveniet facilis!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti ratione commodi unde consequuntur! Eaque, laudantium
-                nobis aut blanditiis culpa recusandae illum? Vero, at saepe?
-                Veniam quaerat soluta animi eveniet facilis! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti ratione commodi
-                unde consequuntur! Eaque, laudantium nobis aut blanditiis culpa
-                recusandae illum? Vero, at saepe? Veniam quaerat soluta animi
-                eveniet facilis!
-              </p>
+              <div className='conceptP3'>
+                <p className='borderP'>{concept.concept_txt3_p1}</p>
+                <p style={{ fontStyle: 'italic' }} className='borderP'>
+                  {concept.concept_txt3_p3}
+                </p>
+                <p className='borderP'>{concept.concept_txt3_p2}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -134,9 +127,12 @@ const Home = () => {
             </h2>
           </div>
           <div className='polesContainer'>
-            <img className='imgPoles' src={Austin} alt='powers' />
+            {poleMin.map((card) => (
+              <PoleCard key={card.id} {...card} poleMin={poleMin} />
+            ))}
+            {/* <img className='imgPoles' src={Austin} alt='powers' />
             <img className='imgPoles' src={DrEvil} alt='powers' />
-            <img className='imgPoles' src={Power} alt='powers' />
+            <img className='imgPoles' src={Power} alt='powers' /> */}
           </div>
         </div>
         <div className='teamContainer'>
@@ -146,21 +142,9 @@ const Home = () => {
             </h2>
           </div>
           <div className='membersContainer'>
-            <div className='teamMember'>
-              <img className='imgTeam' src={Mustafa} alt='powers' />
-              <h1 className='memberName'>Nom</h1>
-              <h2 className='jobName'>Job</h2>
-            </div>
-            <div className='teamMember'>
-              <img className='imgTeam' src={Number2} alt='powers' />
-              <h1 className='memberName'>Nom</h1>
-              <h2 className='jobName'>Job</h2>
-            </div>
-            <div className='teamMember'>
-              <img className='imgTeam' src={Mini2} alt='powers' />
-              <h1 className='memberName'>Nom</h1>
-              <h2 className='jobName'>Job</h2>
-            </div>
+            {team.map((member) => (
+            <MemberCard key={member.id} {...member} team={team} />
+            ))}
           </div>
         </div>
       </div>
