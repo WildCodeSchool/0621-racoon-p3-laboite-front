@@ -1,8 +1,9 @@
 /* HEADER */
 
 .homeContainer {
-  background: var(--main-background-color);
-  width: 100%;
+  /* background: var(--main-background-color); */
+  width: 80%;
+  margin:auto;
 }
 
 .homeContactContainer {
@@ -87,7 +88,7 @@ color: var(--title-color);
 
 .borderP {
   padding-left: 20px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .part2 {
@@ -128,7 +129,7 @@ color: var(--title-color);
 .poles {
   display: flex;
   flex-direction: column;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .poleTitleContainer {

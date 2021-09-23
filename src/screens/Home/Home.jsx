@@ -1,12 +1,13 @@
+import axios from 'axios'
+import Concept from '../../components/Concept/Concept'
+import MemberCard from '../../components/Card/MemberCard'
+import PoleCard from '../../components/Card/PoleCard'
 import React from 'react'
+import { useState, useEffect } from 'react'
 
 import ruban from '../../assets/rubanHome.png'
 
 import './Home.css'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import MemberCard from '../../components/Card/MemberCard'
-import PoleCard from '../../components/Card/PoleCard'
 
 const Home = () => {
   const [concept, setConcept] = useState([])
@@ -30,14 +31,10 @@ const Home = () => {
 
   useEffect(() => {
     const getPole = () => {
-      axios
-      .get('http://localhost:4000/pole')
-      .then(res => setPoleMin(res.data))
+      axios.get('http://localhost:4000/pole').then(res => setPoleMin(res.data))
     }
     getPole()
   }, [])
-
-  console.log(poleMin)
 
   return (
     <>
@@ -61,65 +58,8 @@ const Home = () => {
           <p>{concept.concept_openhours}</p>
         </div>
 
-        <div className='conceptContainer'>
-          <div className='titleContainer'>
-            <h2 className='conceptTitle'>
-              <span>Le Concept</span>
-            </h2>
-          </div>
-          <div className='conceptPart'>
-            <div className='part1'>
-              <img
-                src={concept.concept_img1}
-                alt='jardinerie'
-                style={{ width: '50%', height: '50vh' }}
-              />
-              <div className='conceptP1'>
-                <p>{concept.concept_txt1_p1}</p>
-                <p style={{ textDecoration: 'underline', fontStyle: 'italic' }}>
-                  {concept.link_tzc}
-                </p>
-                <p>{concept.concept_txt1_p2}</p>
-                <div className='block-buster'>
-                  <div className='borderText'></div>
-                  <p className='borderP'>{concept.concept_txt1_p3}</p>
-                </div>
-              </div>
-            </div>
-            <div className='part2'>
-              <div className='conceptP2'>
-                <div className='block-buster'>
-                  <div className='borderText'></div>
-                  <p className='borderP'>{concept.concept_txt2_p1}</p>
-                </div>
-                <div className='block-buster'>
-                  <div className='borderText'></div>
-                  <p className='borderP'>{concept.concept_txt2_p2}</p>
-                </div>
-                <p style={{ fontWeight: 'bold' }}>{concept.concept_txt2_p3}</p>
-              </div>
-              <img
-                src={concept.concept_img2}
-                alt='vendange'
-                style={{ width: '50%', height: '50vh' }}
-              />
-            </div>
-            <div className='part3'>
-              <img
-                src={concept.concept_img3}
-                alt='livraison'
-                style={{ width: '50%', height: '50vh' }}
-              />
-              <div className='conceptP3'>
-                <p className='borderP'>{concept.concept_txt3_p1}</p>
-                <p style={{ fontStyle: 'italic' }} className='borderP'>
-                  {concept.concept_txt3_p3}
-                </p>
-                <p className='borderP'>{concept.concept_txt3_p2}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Concept concept={concept} />
+
         <div className='poles'>
           <div className='poleTitleContainer'>
             <h2 className='poleTitle'>
@@ -127,12 +67,9 @@ const Home = () => {
             </h2>
           </div>
           <div className='polesContainer'>
-            {poleMin.map((card) => (
-              <PoleCard key={card.id} {...card} poleMin={poleMin} />
+            {poleMin.map(card => (
+              <PoleCard key={card.id} {...card} />
             ))}
-            {/* <img className='imgPoles' src={Austin} alt='powers' />
-            <img className='imgPoles' src={DrEvil} alt='powers' />
-            <img className='imgPoles' src={Power} alt='powers' /> */}
           </div>
         </div>
         <div className='teamContainer'>
@@ -142,8 +79,8 @@ const Home = () => {
             </h2>
           </div>
           <div className='membersContainer'>
-            {team.map((member) => (
-            <MemberCard key={member.id} {...member} team={team} />
+            {team.map(member => (
+              <MemberCard key={member.id} {...member} />
             ))}
           </div>
         </div>

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
-import Pole from '../Pole/Pole.jsx'
-import Concept from '../../screens/Concept/Concept.jsx'
+import Pole from '../../screens/Pole/Pole.jsx'
+import Concept from '../Concept/Concept.jsx'
 import Logo from '../../assets/logo-bac-blanc-no-bg.png'
 import User from '../../assets/user-icon.png'
 
@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <div>
           <p>
-            <NavLink to='/concept'>Le Concept</NavLink>
+            <NavLink to='/'>Le Concept</NavLink>
           </p>
         </div>
         {data &&
@@ -48,7 +48,7 @@ const Header = () => {
             <div key={e.id}>
               <p>
                 <NavLink to={`/pole/${e.id}`}>
-                  {e.pole_title.replace('Le', '').replace('La', '')}
+                  {e.pole_name.replace('Le', '').replace('La', '')}
                 </NavLink>
               </p>
             </div>
