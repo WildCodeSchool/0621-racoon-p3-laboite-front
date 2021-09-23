@@ -16,7 +16,7 @@ const Pole = () => {
     }
     recupData()
   }, [])
-  console.log('duck', poleData[0])
+  console.log('duck', poleData)
 
   return (
     <div className='pole-container'>
