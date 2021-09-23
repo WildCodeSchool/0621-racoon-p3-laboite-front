@@ -6,6 +6,8 @@ import Home from './screens/Home/Home.jsx'
 import Pole from './components/Pole/Pole.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Concept from './screens/Concept/Concept.jsx'
+import Login from './screens/Login/Login.jsx'
+import Admin from './screens/Admin/Admin.jsx'
 
 import './App.css'
 import './Normalize.css'
@@ -27,6 +29,12 @@ function App() {
           </Route>
           <Route path='/concept'>
             <Concept />
+          </Route>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+          <Route>
+            <Admin />
           </Route>
         </Switch>
         <Footer />
