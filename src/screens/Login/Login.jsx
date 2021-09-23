@@ -8,13 +8,9 @@ const Login = () => {
 
   const onSubmit = e => {
     e.preventDefault()
-    fetch('http://localhost:4000/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      header: { 'Content-Type': 'application/json' }
-    })
-      .then(res => console.log('pouet', res) || res.json())
-      .then(json => console.log(json))
+    axios
+      .post('http://localhost:4000/login', { email: email, password: password })
+      .then(res => console.log(res))
   }
 
   return (
