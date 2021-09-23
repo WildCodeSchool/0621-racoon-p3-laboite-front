@@ -13,7 +13,7 @@ import './Normalize.css'
 function App() {
   return (
     <Router>
-      <div className='main-container'>
+      <div className='mainContainer'>
         <Header />
         <Switch>
           <Route exact path='/'>

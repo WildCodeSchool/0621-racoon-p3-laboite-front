@@ -12,6 +12,7 @@ import Power from '../../assets/power.jpeg'
 import ruban from '../../assets/rubanHome.png'
 import beach from '../../assets/blere-beach.png'
 
+import '../../App.css'
 import './Home.css'
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
         src={beach}
         alt='blere-beach'
       />
-      <div className='homeContainer'>
+      <div className='centerContainer'>
         <img src={ruban} alt='' />
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti{' '}

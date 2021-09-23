@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 
+import ActivitiesPole from '../../components/ActivitiesPole/ActivitiesPole'
+import BottomCenter from '../../components/BottomCenter/BottomCenter'
+import FuncPole from '../../components/FuncPole/FuncPole'
+import RubanPole from './../../components/RubanPole/RubanPole'
+import TopCenter from './../../components/TopCenter/TopCenter'
 import './Pole.css'
-import Ruban from './../../components/Ruban/Ruban';
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
@@ -23,11 +27,16 @@ const Pole = () => {
   return (
     <div className='pole-container'>
       <div className='banner'>
-        <img src={poleData.pole_banner} /></div>
-      <div>
-        <Ruban picto={poleData.pole_picto} title={poleData.pole_title}/>
+        <img src={poleData.pole_banner} />
       </div>
-      {poleData.pole_desc}
+      <div>
+        <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
+      </div>
+      <TopCenter {...poleData} />
+
+      <FuncPole {...poleData} />
+      <ActivitiesPole {...poleData.activities} />
+      <BottomCenter />
     </div>
   )
 }
