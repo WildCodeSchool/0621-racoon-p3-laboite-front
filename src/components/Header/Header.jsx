@@ -11,10 +11,7 @@ const Header = () => {
   const [data, setData] = useState()
 
   useEffect(async () => {
-    const result = await axios(
-      `http://localhost:4000/pole
-    `
-    )
+    const result = await axios.get(`http://localhost:4000/pole`)
     setData(result.data)
   }, [])
 
