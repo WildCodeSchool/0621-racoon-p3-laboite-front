@@ -15,6 +15,7 @@ const Header = () => {
     setData(result.data)
   }, [])
 
+  data && console.log(data)
   return (
     <div className='flex header'>
       <div className='flex logo-container'>
