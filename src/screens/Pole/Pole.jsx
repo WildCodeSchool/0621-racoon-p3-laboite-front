@@ -9,13 +9,14 @@ const Pole = () => {
   const { id } = useParams()
 
   useEffect(() => {
+    console.log(id)
     const recupData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
-      console.log(results.data)
+
       setPoleData(results.data)
     }
     recupData()
-  }, [])
+  }, [id])
   console.log('duck', poleData)
 
   return (
