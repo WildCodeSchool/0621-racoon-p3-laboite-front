@@ -21,11 +21,11 @@ const Pole = () => {
 
   return (
     <div className='pole-container'>
+      <div className='banner'>
+        <img src={poleData.pole_banner} /></div>
       <div>
         <Ruban picto={poleData.pole_picto} title={poleData.pole_title}/>
       </div>
-      <div className='banner'>
-        <img src={poleData.pole_banner} /></div>
       {poleData.pole_desc}
     </div>
   )
