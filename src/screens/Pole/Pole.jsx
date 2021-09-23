@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 
 import './Pole.css'
+import Ruban from './../../components/Ruban/Ruban';
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
@@ -15,12 +16,16 @@ const Pole = () => {
       setPoleData(results.data)
     }
     recupData()
-  }, [])
+  }, [id])
   console.log('duck', poleData)
 
   return (
     <div className='pole-container'>
-      <div className='banner'>{/* <img src={} alt='bannière' /> */}</div>
+      <div>
+        <Ruban picto={poleData.pole_picto} title={poleData.pole_title}/>
+      </div>
+      <div className='banner'>
+        <img src={poleData.pole_banner} /></div>
       {poleData.pole_desc}
     </div>
   )
