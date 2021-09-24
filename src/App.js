@@ -5,7 +5,6 @@ import Pole from './screens/Pole/Pole.jsx'
 import Header from './components/Header/Header.jsx'
 import Home from './screens/Home/Home.jsx'
 import Footer from './components/Footer/Footer.jsx'
-import Concept from './screens/Concept/Concept.jsx'
 import Login from './screens/Login/Login.jsx'
 import Admin from './screens/Admin/Admin.jsx'
 
@@ -26,9 +25,6 @@ function App() {
           </Route>
           <Route path='/contact'>
             <Contact />
-          </Route>
-          <Route path='/concept'>
-            <Concept />
           </Route>
           <Route exact path='/login'>
             <Login />
