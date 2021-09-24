@@ -1,0 +1,30 @@
+.card-container {
+  width: 400px;
+}
+
+.member-img {
+  width: 400px;
+  height: 350px;
+}
+
+.card-desc {
+  background: var(--main-background-color);
+  height: 76px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.member-title {
+
+}
+
+.card-desc h3 {
+  color: #52908B;
+  font-family: open sans, sans-serif;
+}
+
+.card-desc p {
+  color: #52908B;
+}
