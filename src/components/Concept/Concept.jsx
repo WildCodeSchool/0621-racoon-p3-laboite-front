@@ -1,3 +1,5 @@
+import '../../screens/Home/Home.css';
+
 const Concept = ({ concept }) => {
   return (
     <div className='conceptContainer'>
