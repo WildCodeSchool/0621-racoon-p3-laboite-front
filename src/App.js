@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import ScrollToTop from './components/ScroolToTop/ScrollToTop.jsx'
 import Contact from './screens/Contact/Contact.jsx'
 import Pole from './screens/Pole/Pole.jsx'
 import Header from './components/Header/Header.jsx'
@@ -14,6 +15,7 @@ import './Normalize.css'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className='mainContainer'>
         <Header />
         <Switch>
