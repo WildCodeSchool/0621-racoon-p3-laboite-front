@@ -11,6 +11,7 @@ import './Pole.css'
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
+  const [loading, setLoading] = useState(true)
   const { id } = useParams()
 
   useEffect(() => {
@@ -19,12 +20,14 @@ const Pole = () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
 
       setPoleData(results.data)
+      setLoading(false)
     }
     recupData()
   }, [id])
-  console.log('duck', poleData)
 
-  return (
+  return loading ? (
+    <div>...loading</div>
+  ) : (
     <div className='pole-container'>
       <div className='banner'>
         <img src={poleData.pole_banner} />
@@ -38,8 +41,13 @@ const Pole = () => {
       <FuncPole {...poleData} />
 
       <div>
+        <div className='titleCreamContainer'>
+          <div className='titleRedLigns'>
+            <h2 className='cream'>Services proposés</h2>
+          </div>
+        </div>
         {poleData.activities.map(activity => (
-          <ActivitiesPole key={id} {...activity} />
+          <ActivitiesPole key={activity.id} {...activity} />
         ))}
       </div>
 
