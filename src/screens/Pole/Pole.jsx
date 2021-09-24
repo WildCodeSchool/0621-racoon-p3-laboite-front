@@ -18,7 +18,6 @@ const Pole = () => {
     console.log(id)
     const recupData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
-
       setPoleData(results.data)
       setLoading(false)
     }
@@ -28,29 +27,26 @@ const Pole = () => {
   return loading ? (
     <div>...loading</div>
   ) : (
-    <div className='pole-container'>
+    <div className='centerContainer'>
       <div className='banner'>
         <img src={poleData.pole_banner} />
       </div>
-
       <div>
         <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
       </div>
-
       <TopCenter {...poleData} />
       <FuncPole {...poleData} />
-
-      <div>
-        <div className='titleCreamContainer'>
-          <div className='titleRedLigns'>
-            <h2 className='cream'>Services proposés</h2>
-          </div>
+      <div className='titleCreamContainer'>
+        <div className='titleRedLigns'>
+          <h2 className='cream'>Services proposés</h2>
         </div>
+      </div>
+      <div>
+        {/* pour acceder a un tableau de tableau faire un loading */}
         {poleData.activities.map(activity => (
           <ActivitiesPole key={activity.id} {...activity} />
         ))}
       </div>
-
       <BottomCenter />
     </div>
   )
