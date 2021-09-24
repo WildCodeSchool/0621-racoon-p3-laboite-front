@@ -1,0 +1,96 @@
+.dispFlex{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.width100{
+  width:100%;
+  min-height: 50vh;
+  height: auto;
+}
+
+.partners{
+  background-color: #F7F8F2;
+}
+
+/*------------------------------------------------*/
+
+.ribbon{
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mission h2{
+  color: blueviolet;
+}
+
+.missionWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: center
+}
+
+.blue{
+  width: 50%;
+  height: 150px;
+  margin: 20px;
+  background-color: blue;
+  color: #F7F8F2;
+}
+
+.partnersWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.pink{
+  background-color: pink;
+  width: 100px;
+  height: 100px;
+}
+.green{
+  background-color: green;
+  width: 100px;
+  height: 100px;
+}
+.orange{
+  background-color: orange;
+  width: 100px;
+  height: 100px;
+}
+.red{
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
+.yellow{
+  background-color: yellow;
+  width: 100px;
+  height: 100px;
+}
+
+.text{
+  width: 50%;
+  display: flex;
+  margin: 20px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: red;
+  color: #F7F8F2;
+  padding: 20px;
+}
+
+.function, .give{
+  color: #F7F8F2;
+  background-color: cadetblue;
+  height: 200px;
+}
+
+/* .services{} */
+
+.contactBlock, .services, .thanks{
+  background-color: #F7F8F2;
+  padding: 20px;
+}
