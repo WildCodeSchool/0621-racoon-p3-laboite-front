@@ -1,8 +1,31 @@
+/* HEADER */
+
 .homeContainer {
   /* background: var(--main-background-color); */
   width: 80%;
   margin:auto;
 }
+
+.homeContactContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.descContainer {
+  padding-bottom: 70px;
+}
+
+.ebeDesc {
+  font-weight: bold;
+}
+
+/* .contactElements {
+  width: 12%;
+} */
+
+/* CONCEPT */
 
 .conceptContainer {
   background: #52908B;
@@ -13,9 +36,9 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 30px;
 }
-
 
 .conceptTitle, .teamTitle {
 font-size: 30px;
@@ -37,27 +60,71 @@ color: var(--title-color);
 .part1 {
   display: flex;
   justify-content:space-around;
-  padding-top: 50px;
+  padding-top: 30px;
 }
+
+.conceptP1 {
+  text-align: left;
+  width: 50%;
+  color: var(--title-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px;
+  font-size: 18px;
+  padding-left: 25px;
+}
+
+.block-buster {
+  display: flex;
+  align-items: center;
+}
+
+.borderText {
+  border-left: solid #fff 10px;
+  height: 45px;
+  padding-top: 10px;
+}
+
+.borderP {
+  padding-left: 20px;
+  font-weight: 600;
+}
+
 .part2 {
   display: flex;
   justify-content:space-around;
-  padding-top: 50px;
 }
+
+.conceptP2 {
+  text-align: left;
+  width: 50%;
+  color: var(--title-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px;
+  font-size: 19px;
+  padding-left: 40px;
+}
+
+.conceptP3 {
+  text-align: left;
+  width: 50%;
+  color: var(--title-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 12px;
+  font-size: 16px;
+}
+
 .part3 {
   display: flex;
   justify-content:space-around;
-  padding-top: 50px;
 }
 
-.conceptPart {
-  padding-bottom: 40px;
-}
-
-.conceptP {
-  width: 45%;
-  color: var(--title-color);
-}
+/* POLES */
 
 .poles {
   display: flex;
@@ -68,14 +135,14 @@ color: var(--title-color);
 .poleTitleContainer {
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 30px;
 }
 
 .polesContainer {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin-top: 20px;
 }
 
 .imgPoles {
@@ -93,6 +160,8 @@ color: var(--title-color);
   border-bottom: 3px solid var(--main-font-color);
   line-height: 0.1em;
   margin: 10px 20px 20px;
+  padding-top: 40px;
+  margin-bottom: 50px;
 }
 
 .poleTitle span {
@@ -100,11 +169,8 @@ color: var(--title-color);
   padding: 0 10px;
 }
 
-.poleBorder {
-  border-bottom: solid;
-  color: var(--main-font-color);
-  width: 100%;
-}
+/* TEAM */
+
 
 .teamContainer {
   display: flex;
@@ -116,14 +182,15 @@ color: var(--title-color);
   display: flex;
   align-items: center;
   padding-top: 20px;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .membersContainer {
   display: flex;
   justify-content:space-around;
   flex-direction: row;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   margin-top: 20px;
 }
 
@@ -131,6 +198,7 @@ color: var(--title-color);
   width: 100%;
   height: 400px;
 }
+
 
 .teamTitle span {
   background: var(--green-background-color);

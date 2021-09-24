@@ -36,7 +36,7 @@ const Header = () => {
         </div>
         <div>
           <p>
-            <NavLink to='/concept'>Le Concept</NavLink>
+            <NavLink to='/'>Le Concept</NavLink>
           </p>
         </div>
         {data &&
