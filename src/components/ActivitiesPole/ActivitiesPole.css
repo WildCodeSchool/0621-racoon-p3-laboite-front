@@ -22,20 +22,18 @@
 .bothCreamContainer {
   display: flex;
   width: 100%;
-  background-color: grey;
 }
 
 .leftCreamContainer{
-  width: 50%;  
+  width: 50%; 
   display: flex;
-  align-items: center;
-  background-color: yellow;
+  align-items: center; 
 }
 
 .rightCreamContainer{
   width: 50%;
-  background-color: blue;
-
+  display: flex;
+  align-items: center;
 }
 
 img.creamSection {
@@ -45,7 +43,6 @@ img.creamSection {
 p.redLeftAlign {
 text-align: left;
 margin: 30px;
-color: var(--main-font-color);
 align-content: center;
 }
 

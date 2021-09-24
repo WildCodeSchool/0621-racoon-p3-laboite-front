@@ -15,7 +15,7 @@ const ActivitiesPole = ({ activity_desc, activity_img }) => {
             <img className='creamSection' src={activity_img} alt='services' />
           </div>
           <div className='rightCreamContainer'>
-            <p className='creamLeftAlign'>{activity_desc}</p>
+            <p className='redLeftAlign'>{activity_desc}</p>
           </div>
         </div>
       </section>

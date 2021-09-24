@@ -29,13 +29,20 @@ const Pole = () => {
       <div className='banner'>
         <img src={poleData.pole_banner} />
       </div>
+
       <div>
         <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
       </div>
-      <TopCenter {...poleData} />
 
+      <TopCenter {...poleData} />
       <FuncPole {...poleData} />
-      <ActivitiesPole {...poleData.activities} />
+
+      <div>
+        {poleData.activities.map(activity => (
+          <ActivitiesPole key={id} {...activity} />
+        ))}
+      </div>
+
       <BottomCenter />
     </div>
   )
