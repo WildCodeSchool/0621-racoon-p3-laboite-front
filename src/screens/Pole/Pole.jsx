@@ -2,30 +2,53 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 
+import ActivitiesPole from '../../components/ActivitiesPole/ActivitiesPole'
+import BottomCenter from '../../components/BottomCenter/BottomCenter'
+import FuncPole from '../../components/FuncPole/FuncPole'
+import RubanPole from './../../components/RubanPole/RubanPole'
+import TopCenter from './../../components/TopCenter/TopCenter'
 import './Pole.css'
-import conciergerie from '../../assets/conciergerie.jpg'
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const { id } = useParams()
 
   useEffect(() => {
+    console.log(id)
     const recupData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
-      console.log(results.data)
       setPoleData(results.data)
+      setLoading(false)
     }
     recupData()
-  }, [])
-  console.log('duck', poleData[0])
-  console.log('poulet')
+  }, [id])
 
-  return (
-    <div className='pole-container'>
+  return loading ? (
+    <div>...loading</div>
+  ) : (
+    <div className='centerContainer'>
       <div className='banner'>
-        <img src={conciergerie} alt='bannière' />
+        <img src={poleData.pole_banner} />
       </div>
-      {poleData.pole_desc}
+      <div>
+        <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
+      </div>
+      <TopCenter {...poleData} />
+      <FuncPole {...poleData} />
+      <div className='titleCreamContainer'>
+        <div className='titleRedLigns'>
+          <h2 className='cream'>Services proposés</h2>
+        </div>
+      </div>
+      <div>
+        {/* pour acceder a un tableau de tableau faire un loading */}
+        {poleData.activities.map(activity => (
+          <ActivitiesPole key={activity.id} {...activity} />
+        ))}
+      </div>
+      <BottomCenter />
     </div>
   )
 }
