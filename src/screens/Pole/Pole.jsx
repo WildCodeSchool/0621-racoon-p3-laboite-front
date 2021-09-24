@@ -26,30 +26,38 @@ const Pole = () => {
   }, [id])
 
   return loading ? (
-    <div>...loading</div>
+    <div className='loaderContainer'>
+      <div className='loader'>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   ) : (
-    <div className='centerContainer'>
+    <>
       <div className='banner'>
         <img src={poleData.pole_banner} />
       </div>
-      <div>
-        <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
-      </div>
-      <TopCenter {...poleData} />
-      <FuncPole {...poleData} />
-      <div className='titleCreamContainer'>
-        <div className='titleRedLigns'>
-          <h2 className='cream'>Services proposés</h2>
+      <div className='centerContainer'>
+        <div>
+          <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
         </div>
+        <TopCenter {...poleData} />
+        <FuncPole {...poleData} />
+        <div className='titleCreamContainer'>
+          <div className='titleRedLigns'>
+            <h2 className='cream'>Services proposés</h2>
+          </div>
+        </div>
+        <div>
+          {/* pour acceder a un tableau de tableau faire un loading */}
+          {poleData.activities.map(activity => (
+            <ActivitiesPole key={activity.id} {...activity} />
+          ))}
+        </div>
+        <BottomCenter />
       </div>
-      <div>
-        {/* pour acceder a un tableau de tableau faire un loading */}
-        {poleData.activities.map(activity => (
-          <ActivitiesPole key={activity.id} {...activity} />
-        ))}
-      </div>
-      <BottomCenter />
-    </div>
+    </>
   )
 }
 
