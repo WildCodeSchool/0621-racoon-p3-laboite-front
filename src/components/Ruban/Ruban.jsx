@@ -8,7 +8,7 @@ const Ruban = picto => {
       <div className='rubanPicto'>
         <FaPhoneAlt />
       </div>
-      <h2 className='rubanTitle'>Contact</h2>
+      <h1 className='rubanTitle'>Contact</h1>
     </div>
   )
 }

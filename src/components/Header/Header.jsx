@@ -43,9 +43,7 @@ const Header = () => {
           data.map(e => (
             <div key={e.id}>
               <p>
-                <NavLink to={`/pole/${e.id}`}>
-                  {e.pole_name.replace('Le', '').replace('La', '')}
-                </NavLink>
+                <NavLink to={`/pole/${e.id}`}>{e.pole_name}</NavLink>
               </p>
             </div>
           ))}

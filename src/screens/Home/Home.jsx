@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 
 import ruban from '../../assets/rubanHome.png'
 
+import '../../App.css'
 import './Home.css'
 
 const Home = () => {
