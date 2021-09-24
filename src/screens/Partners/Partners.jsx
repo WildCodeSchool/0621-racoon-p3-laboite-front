@@ -1,19 +1,21 @@
 import BlockFunction from './BlockFunction'
 import BlockMission from './BlockMission'
 import BlockPartners from './BlockPartners'
+import Ruban from '../../components/Ruban/Ruban'
 
 import './Partners.css'
 
 const Partners = () => {
+  const partnerTitle = "L'association et ses partenaires"
+  const partnerPicto = "hands-helping"
   return (
     <div className='partners dispFlex width100'>
-      <div className='ribbon'>L'association et ses partenaires</div>
+      <Ruban title={partnerTitle} picto={partnerPicto} />
       <BlockMission />
       <BlockFunction />
       {/* <div className='services'></div> */}
       <BlockPartners />
       <div className='give'>
-        S
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque
           quis consequuntur magnam corrupti quibusdam excepturi voluptatibus

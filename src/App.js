@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Contact from './screens/Contact/Contact.jsx'
+import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole.jsx'
 import Header from './components/Header/Header.jsx'
 import Home from './screens/Home/Home.jsx'
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path='/concept'>
             <Concept />
+          </Route>
+          <Route path='/partenaires'>
+            <Partners />
           </Route>
           <Route exact path='/login'>
             <Login />

@@ -12,7 +12,7 @@
   flex-direction: row;
   background-color: var(--red-background-color);
   color: var(--main-background-color);
-  padding: 12px 60px;
+  padding: 12px 90px;
   clip-path: polygon(0 0, 10% 50%, 0 100%, 100% 100%, 90% 50%, 100% 0);
 }
 
@@ -20,14 +20,12 @@
   height: 50px;
   width: 50px;
   background-color: var(--red-background-color);
-  clip-path: circle(40%);
   transform: translateY(10px);
   z-index: 20;
   display: flex;
   justify-content: center;
   clip-path: circle(50.0% at 50% 100%);
   transform: translateY(23px);
-
 }
 
 .rubanPicto svg {
