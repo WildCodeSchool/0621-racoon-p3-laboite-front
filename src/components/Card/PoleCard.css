@@ -2,8 +2,9 @@
   width: 401px;
   height: 350px;
   margin: 10px;
-  /* display: flex;
-  justify-content: space-around; */
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
@@ -23,8 +24,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
+
+.catchPhrase {
+display: none;
+}
+
 
 .polecard-banner:hover {
   background: var(--red-background-color);
@@ -35,16 +42,47 @@
   right: 0;
   width: 100%;
 }
+.polecard-banner:hover .catchPhrase {
+  background: var(--red-background-color);
+  color: var(--main-background-color);
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: block;
+  height: 50%;
+}
+
+.picto-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
 
 .polecard-picto {
-  border-radius: 50%;
-  /* background: var(--red-background-color); */
-  /* background: black; */
-  width: 50px;
   height: 50px;
-  color: white;
+  width: 50px;
+  background-color: var(--red-background-color);
+  clip-path: circle(40%);
+  transform: translateY(10px);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  clip-path: circle(50.0% at 50% 100%);
+  transform: translateY(23px);
+  position: absolute;
+  margin-bottom: 28px;
+}
 
-  position: relative;
+
+.polecard-picto svg {
+  height: 20px;
+  width: 20px;
+  color: var(--main-background-color);
+  z-index: 12;
+  transform: translateY(33px); 
 }
 
 .polecard-banner h3 {
@@ -52,4 +90,5 @@
   font-family: 'Open Sans', sans-serif;
   color: var(--main-background-color);
 }
+
 

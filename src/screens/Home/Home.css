@@ -104,8 +104,8 @@ color: var(--title-color);
   justify-content: center;
   flex-direction: column;
   padding: 12px;
-  font-size: 22px;
-  padding-left: 12px;
+  font-size: 19px;
+  padding-left: 40px;
 }
 
 .conceptP3 {
