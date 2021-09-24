@@ -9,7 +9,10 @@ const Login = () => {
   const onSubmit = e => {
     e.preventDefault()
     axios
-      .post('http://localhost:4000/login', { email: email, password: password })
+      .post('http://localhost:4000/login', {
+        email,
+        password
+      })
       .then(res => console.log(res))
   }
 
