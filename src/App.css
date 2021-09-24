@@ -54,6 +54,10 @@ nav {
   background-color: var(--red-background-color);
 }
 
+.banner img {
+  width: 100%;
+}
+
 /* CONCEPT ~ FONCTIONNEMENT */
 .greenContainer {
   width: 100%;

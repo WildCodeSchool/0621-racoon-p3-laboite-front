@@ -11,38 +11,43 @@ import './Pole.css'
 
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const { id } = useParams()
 
   useEffect(() => {
     console.log(id)
     const recupData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
-
       setPoleData(results.data)
+      setLoading(false)
     }
     recupData()
   }, [id])
-  console.log('duck', poleData)
 
-  return (
-    <div className='pole-container'>
+  return loading ? (
+    <div>...loading</div>
+  ) : (
+    <div className='centerContainer'>
       <div className='banner'>
         <img src={poleData.pole_banner} />
       </div>
-
       <div>
         <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
       </div>
-
       <TopCenter {...poleData} />
       <FuncPole {...poleData} />
-
+      <div className='titleCreamContainer'>
+        <div className='titleRedLigns'>
+          <h2 className='cream'>Services proposés</h2>
+        </div>
+      </div>
       <div>
+        {/* pour acceder a un tableau de tableau faire un loading */}
         {poleData.activities.map(activity => (
-          <ActivitiesPole key={id} {...activity} />
+          <ActivitiesPole key={activity.id} {...activity} />
         ))}
       </div>
-
       <BottomCenter />
     </div>
   )
