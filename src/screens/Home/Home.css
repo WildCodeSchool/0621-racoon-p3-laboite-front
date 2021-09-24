@@ -1,11 +1,5 @@
 /* HEADER */
 
-.homeContainer {
-  /* background: var(--main-background-color); */
-  width: 80%;
-  margin:auto;
-}
-
 .homeContactContainer {
   display: flex;
   justify-content: space-around;

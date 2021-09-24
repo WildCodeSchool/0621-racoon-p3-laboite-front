@@ -39,12 +39,11 @@ const Home = () => {
 
   return (
     <>
-      <div className='homeContainer'>
-        <img
-          style={{ width: '100%', height: '400px', marginBottom: '50px' }}
-          src={concept.concept_banner}
-          alt='blere-beach'
-        />
+      <div className='banner'>
+        <img src={concept.concept_banner} alt='blere-beach' />
+      </div>
+
+      <div className='centerContainer'>
         <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} />
         <div className='descContainer'>
           <div>
