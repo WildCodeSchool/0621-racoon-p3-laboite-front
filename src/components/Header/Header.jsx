@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
-import Pole from '../../screens/Pole/Pole.jsx'
-import Concept from '../../screens/Concept/Concept.jsx'
 import Logo from '../../assets/logo-bac-blanc-no-bg.png'
 import User from '../../assets/user-icon.png'
 
@@ -13,13 +11,11 @@ const Header = () => {
   const [data, setData] = useState()
 
   useEffect(async () => {
-    const result = await axios(
-      `http://localhost:4000/pole
-    `
-    )
+    const result = await axios.get(`http://localhost:4000/pole`)
     setData(result.data)
   }, [])
 
+  data && console.log(data)
   return (
     <div className='flex header'>
       <div className='flex logo-container'>
@@ -54,7 +50,9 @@ const Header = () => {
             </div>
           ))}
         <div>
-          <img className='user-icon' src={User} alt='user' />
+          <NavLink className='user-icon' to={'/login'}>
+            <img src={User} alt='user' />
+          </NavLink>
         </div>
       </div>
     </div>
