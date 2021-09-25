@@ -7,6 +7,8 @@ import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import FuncPole from '../../components/FuncPole/FuncPole'
 import RubanPole from './../../components/RubanPole/RubanPole'
 import TopCenter from './../../components/TopCenter/TopCenter'
+
+import '../../components/ActivitiesPole/ActivitiesPole.css'
 import './Pole.css'
 
 const Pole = () => {
@@ -50,10 +52,12 @@ const Pole = () => {
           </div>
         </div>
         <div>
-          {/* pour acceder a un tableau de tableau faire un loading */}
-          {poleData.activities.map(activity => (
-            <ActivitiesPole key={activity.id} {...activity} />
-          ))}
+          <div className='box'>
+            {/* pour acceder a un tableau de tableau faire un loading */}
+            {poleData.activities.map(activity => (
+              <ActivitiesPole key={activity.id} {...activity} />
+            ))}
+          </div>
         </div>
         <BottomCenter />
       </div>
