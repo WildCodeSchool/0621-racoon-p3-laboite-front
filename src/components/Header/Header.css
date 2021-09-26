@@ -4,9 +4,12 @@
 
 .header {
   flex-direction: column;
+  width: 100%;
   height: 280px;
-  background-color: #EB5160;
-  color: white;
+  background-color: var(--red-background-color);
+  color: var(--nav-list-items-color);
+  position: fixed;
+  z-index: 100;
 }
 
 .logo-container {
@@ -85,11 +88,10 @@
 }
 
 p a {
-  color: white;
+  color: var(--nav-list-items-color);
   text-decoration: none;
 }
 
 p a:hover {
-  font-size: 1.1em;
-  color: #52908B;
+  text-decoration:underline;
 }
