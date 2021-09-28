@@ -19,7 +19,7 @@ function App() {
     <Router>
       <div className='mainContainer'>
         <Header />
-        {/* <Navbar /> */}
+        <Navbar />
         <Switch>
           <Route exact path='/'>
             <Home />

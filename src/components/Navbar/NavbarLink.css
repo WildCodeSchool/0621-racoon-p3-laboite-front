@@ -1,0 +1,4 @@
+.skew-navlink a{
+    margin: 0 15px;
+    transform: skew(30deg) rotate(0deg);
+}
