@@ -3,93 +3,35 @@
 }
 
 .header {
-  flex-direction: column;
-  height: 280px;
+  flex-direction: row;
+  height: 80px;
   background-color: #EB5160;
   color: white;
 }
 
-.logo-container {
-  align-items: center;
-  height: 80%;
-}
-
 .header-logo {
-  padding-top: 30px;
-  width: 30%;
+  min-width: 25%;
+  align-items: center;
+  justify-content: start;
+}
+.header-logo-container{
+  height: 90%;
+  margin-left: 30px;
+}
+.header-logo-container img{
+  height: 100%;
 }
 
 .header-text {
-  width: 70%;
+  max-width: 75%;
+  flex-direction: column;
+  justify-content: space-evenly;
   text-align: left;
-  font-size: 1.2em;
 }
-
-.navlist {
-  border-top: 1px solid;
-  height: 20%;
-  width: 100%;
-  overflow: hidden;
-
+.header-text p{
+  margin:0px;
+  font-size: 20px;
 }
-
-.navlist div {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-left: 1px solid;
-  border-top: 0;
-  border-bottom: 0;
-  transform: skew(-30deg) rotate(0deg);
-}
-
-.navlist div p {
-  margin: 0 15px;
-  transform: skew(30deg) rotate(0deg);
-}
-
-.navlist div img {
-  transform: skew(30deg) rotate(0deg);
-}
-
-.navlist div:not(:first-child,:last-child) {
-  width: 45%;
-}
-
-.navlist div:first-child {
-  width: 6%;
-  border-left: 0;
-}
-
-.navlist div:last-child {
-  border-right: 0;
-}
-
-.blere-beach {
-  height: 55%;
-  background-image: url('../../assets/blere-beach.png');
-  background-size: 100% 100%;
-}
-
-.user-icon {
-  height: 75%;
-  margin-left: auto;
-  margin-right: 20px;
-}
-
-.user-icon:hover {
-  height: 85%;
-  margin-right: 30px;
-}
-
-p a {
-  color: white;
-  text-decoration: none;
-}
-
-p a:hover {
-  font-size: 1.1em;
-  color: #52908B;
+.offset-right{
+  padding-left: 10vw;
 }

@@ -1,14 +1,15 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import Admin from './screens/Admin/Admin.jsx'
+import Admin from './screens/Admin/Admin'
 import Concept from './components/Concept/Concept'
-import Contact from './screens/Contact/Contact.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import Header from './components/Header/Header.jsx'
-import Home from './screens/Home/Home.jsx'
-import Login from './screens/Login/Login.jsx'
+import Contact from './screens/Contact/Contact'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Home from './screens/Home/Home'
+import Login from './screens/Login/Login'
+import Navbar from './components/Navbar/Navbar'
 import Partners from './screens/Partners/Partners'
-import Pole from './screens/Pole/Pole.jsx'
+import Pole from './screens/Pole/Pole'
 
 import './App.css'
 import './Normalize.css'
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <div className='mainContainer'>
         <Header />
+        {/* <Navbar /> */}
         <Switch>
           <Route exact path='/'>
             <Home />
