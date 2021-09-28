@@ -92,3 +92,62 @@ display: none;
 }
 
 
+@media screen and (max-width: 600px) {
+
+  .polecard-container {
+    width: 100%;
+    height: 40vh;
+    margin: 10px;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poles {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+  
+  .poleTitleContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+    width: 100%;
+  }
+  
+  .polesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .imgPoles {
+    width: 25%;
+    height: 400px;
+  }
+
+  .poleTitle {
+    color: var(--main-font-color);
+    font-size: 22px;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+    border-bottom: 3px solid var(--main-font-color);
+    line-height: 0.1em;
+    margin: 10px 20px 20px;
+    padding-top: 40px;
+    margin-bottom: 50px;
+    font-family: 'Pacifico', cursive;
+  }
+  
+  .poleTitle span {
+    background: var(--main-background-color);
+    padding: 0 10px;
+  }
+  
+}
