@@ -4,7 +4,6 @@ import { useState } from 'react'
 const Login = () => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
-  const [token, setToken] = useState(null)
 
   const onSubmit = e => {
     e.preventDefault()
@@ -13,7 +12,9 @@ const Login = () => {
         email,
         password
       })
-      .then(res => console.log(res))
+      .then(res => {
+        localStorage.setItem('user_token', res.headers['x-access-token'])
+      })
   }
 
   return (
