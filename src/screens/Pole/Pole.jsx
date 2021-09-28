@@ -7,8 +7,9 @@ import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import FuncPole from '../../components/FuncPole/FuncPole'
 import RubanPole from './../../components/RubanPole/RubanPole'
 import TopCenter from './../../components/TopCenter/TopCenter'
-
 import '../../components/ActivitiesPole/ActivitiesPole.css'
+import Loader from './../../components/Loader/Loader'
+
 import './Pole.css'
 
 const Pole = () => {
@@ -27,13 +28,7 @@ const Pole = () => {
   }, [id])
 
   return loading ? (
-    <div className='loaderContainer'>
-      <div className='loader'>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    <Loader />
   ) : (
     <>
       <div className='banner'>

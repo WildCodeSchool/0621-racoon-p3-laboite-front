@@ -8,7 +8,6 @@
   height: 280px;
   background-color: var(--red-background-color);
   color: var(--nav-list-items-color);
-  position: fixed;
   z-index: 100;
 }
 
@@ -80,6 +79,7 @@
   height: 75%;
   margin-left: auto;
   margin-right: 20px;
+  transition: all 0.5s ease-in-out;
 }
 
 .user-icon:hover {
