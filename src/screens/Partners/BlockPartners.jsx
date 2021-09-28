@@ -12,7 +12,7 @@ const BlockPartners = () => {
       </p>
       <div className='partnersWrapper'>
         <div className='pink'></div>
-        <div className='green'></div>
+        <div className='purple'></div>
         <div className='orange'></div>
         <div className='red'></div>
         <div className='yellow'></div>

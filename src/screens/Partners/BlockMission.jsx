@@ -1,3 +1,4 @@
+import '../../App.css'
 const BlockMission = () => {
   return (
     <div className='mission'>

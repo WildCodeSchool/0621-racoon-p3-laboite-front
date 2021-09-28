@@ -7,7 +7,7 @@ import './Partners.css'
 
 const Partners = () => {
   const partnerTitle = "L'association et ses partenaires"
-  const partnerPicto = "hands-helping"
+  const partnerPicto = 'hands-helping'
   return (
     <div className='partners dispFlex width100'>
       <Ruban title={partnerTitle} picto={partnerPicto} />

@@ -47,6 +47,7 @@ const Header = () => {
               </p>
             </div>
           ))}
+        <NavLink to='/partenaires'>Partenaires</NavLink>
         <div>
           <NavLink className='user-icon' to={'/login'}>
             <img src={User} alt='user' />
