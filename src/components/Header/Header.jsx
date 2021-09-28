@@ -14,6 +14,7 @@ const Header = () => {
     axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
   }, [])
 
+  data && console.log(data)
   return (
     <div className='flex header'>
       <div className='flex logo-container'>
@@ -34,16 +35,14 @@ const Header = () => {
         </div>
         <div>
           <p>
-            <NavLink to='/concept'>Le Concept</NavLink>
+            <NavLink to='/'>Le Concept</NavLink>
           </p>
         </div>
         {data &&
           data.map(e => (
             <div key={e.id}>
               <p>
-                <NavLink to={`/pole/${e.id}`}>
-                  {e.pole_name.replace('Le', '').replace('La', '')}
-                </NavLink>
+                <NavLink to={`/pole/${e.id}`}>{e.pole_name}</NavLink>
               </p>
             </div>
           ))}
