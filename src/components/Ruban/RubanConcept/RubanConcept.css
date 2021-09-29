@@ -1,0 +1,64 @@
+.rubanHome{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  margin-top: 2vh;
+  margin-bottom: 5vh;
+}
+
+.rubanTitleHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  padding: 20px 150px;
+  clip-path: polygon(0 0, 10% 50%, 0 100%, 100% 100%, 90% 50%, 100% 0);
+}
+
+.rubanPictoHome {
+  height: 50px;
+  width: 110px;
+  background-color: var(--red-background-color);
+  clip-path: circle(40%);
+  transform: translateY(10px);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  clip-path: circle(50.0% at 50% 100%);
+  transform: translateY(23px);
+
+}
+
+.rubanPictoHome img {
+  height: 60px;
+  width: 60px;
+  color: var(--main-background-color);
+  z-index: 12;
+  transform: translateY(14px);
+}
+
+
+@media screen and (max-width: 750px) {
+  .rubanHome {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+  }
+
+  .rubanTitleHome {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: var(--red-background-color);
+    color: var(--main-background-color);
+    padding: 30px 30px ;
+    font-size: 25px;
+    clip-path: polygon(0 0, 10% 50%, 0 100%, 100% 100%, 90% 50%, 100% 0);
+  }
+}

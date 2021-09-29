@@ -5,6 +5,7 @@
   justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
+  
 }
 
 .descContainer {
@@ -30,8 +31,8 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  padding-top: 50px;
-  padding-bottom: 30px;
+  padding-top: 90px;
+  /* padding-bottom: 30px; */
 }
 
 .conceptTitle, .teamTitle {
@@ -49,6 +50,11 @@ color: var(--title-color);
 .conceptTitle span {
   background: var(--green-background-color);
   padding: 0 10px;
+}
+
+.conceptImage {
+  width: 50%;
+  height: 50vh;
 }
 
 .part1 {
@@ -90,6 +96,10 @@ color: var(--title-color);
   justify-content:space-around;
 }
 
+.imgGhost {
+  display: none;
+}
+
 .conceptP2 {
   text-align: left;
   width: 50%;
@@ -129,8 +139,7 @@ color: var(--title-color);
 .poleTitleContainer {
   display: flex;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 70px;
 }
 
 .polesContainer {
@@ -156,10 +165,11 @@ color: var(--title-color);
   margin: 10px 20px 20px;
   padding-top: 40px;
   margin-bottom: 50px;
+  font-family: 'Pacifico', cursive;
 }
 
 .poleTitle span {
-  background: var(--main-background-color);
+  background: var(--title-color);
   padding: 0 10px;
 }
 
@@ -169,6 +179,7 @@ color: var(--title-color);
 .teamContainer {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   background: #52908B;
 }
 
@@ -176,21 +187,16 @@ color: var(--title-color);
   display: flex;
   align-items: center;
   padding-top: 20px;
-  margin-top: 30px;
-  margin-bottom: 40px;
+  margin-top: 60px;
 }
 
 .membersContainer {
   display: flex;
   justify-content:space-around;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 80px;
   margin-top: 20px;
-}
-
-.imgTeam {
-  width: 100%;
-  height: 400px;
 }
 
 
@@ -199,34 +205,147 @@ color: var(--title-color);
   padding: 0 10px;
 }
 
-.teamBorder {
-  border-bottom: solid;
-  color: white;
-  width: 100%;
-}
+@media screen and (max-width: 600px) {
 
-.teamMember {
-  width: 30%;
-  border: 1px solid #F7F8F2;
-  margin-top: 10px;
-}
+    /* BANNER */
 
-.memberName {
-  margin: 0;
-  background: transparent;
-}
-
-@media screen and (max-width: 1500px) {
-  .conceptBorder {
-    border-bottom: solid;
-    color: white;
+  .blere-beach {
     width: 100%;
+    height: 200px;
+    margin-bottom: 50px;
   }
 
-  .conceptTitle {
-    font-size: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
+    /* CONCEPT */
     
+  .conceptContainer {
+    background: #52908B;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 30px;
+  }
+  
+  .conceptTitle, .teamTitle {
+  font-size: 25px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid var(--title-color);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--title-color);
+  }
+
+  .teamTitle {
+    font-size: 25px;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid var(--title-color);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: var(--title-color);
     }
+  
+  .conceptTitle span {
+    background: var(--green-background-color);
+    padding: 0 10px;
+  }
+
+  .conceptImage {
+    width: 100%;
+    height: 40vh;
+  }
+  
+  .part1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+  }
+  
+  .conceptP1 {
+    text-align: left;
+    width: 90%;
+    color: var(--title-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 18px;
+    padding-left: 25px;
+  }
+
+  .block-buster {
+    display: flex;
+    align-items: center;
+  }
+  
+  .borderText {
+    border-left: solid #fff 10px;
+    height: 45px;
+    padding-top: 10px;
+  }
+  
+  .borderP {
+    padding-left: 20px;
+    font-weight: 600;
+  }
+  
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imgGhost {
+    display: block;
+    width: 100%;
+    height: 40vh;
+  }
+
+  .conceptImageGhost {
+    display: none;
+  }
+  
+  .conceptP2 {
+    text-align: left;
+    width: 90%;
+    color: var(--title-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 19px;
+    padding-left: 40px;
+  }
+  
+  .conceptP3 {
+    text-align: left;
+    width: 90%;
+    color: var(--title-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .part3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 }
+
