@@ -1,4 +1,5 @@
 /* ACITIVITIES */
+
 .activitiesContainer {
   width: 100%;
   height: 100%;
@@ -66,10 +67,10 @@ align-content: center;
     margin: 5px;
   }
   /* autofills the space for the last row to keep it to the left and not in the center */
-  .box::after {
+  /* .box::after {
     content: "";
     flex: auto;
-  }
+  } */
   
   .bothCreamContainer {
     display: flex;
