@@ -43,13 +43,6 @@ const Pole = () => {
         <div className='titleRedLigns'>
           <h2 className='cream'>Services proposés</h2>
         </div>
-        <TopCenter {...poleData} />
-        <FuncPole {...poleData} />
-        <div className='titleCreamContainer'>
-          <div className='titleRedLigns'>
-            <h2 className='cream'>Services proposés</h2>
-          </div>
-        </div>
         <div>
           <div className='box'>
             {/* pour acceder a un tableau de tableau faire un loading */}
