@@ -4,18 +4,19 @@
   height: 100%;
   margin-top: 6%;
   margin-bottom: 6%;
-  padding-top: 20px;
-  padding-bottom: 10vh;
+  padding-top: 15px;
 }
+
 .titleCreamContainer {
   display: flex;
   flex-direction: column;
   justify-content: end;
   height: 10%;
 }
+
 .titleRedLigns {
   width: 100%;
-  height: 40px;
+  height: 20px;
   border-top:var(--red-background-color)solid 5px;
 }
 
@@ -49,4 +50,70 @@ align-content: center;
 .cream {
   background-color: var(--main-background-color);
   color: var(--main-font-color);
+}
+
+
+/* screen above 1024px */
+@media only screen and (min-width: 1024px) {
+
+  .box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  .activitiesContainer {
+    width: 30%;
+    margin: 5px;
+  }
+  /* autofills the space for the last row to keep it to the left and not in the center */
+  .box::after {
+    content: "";
+    flex: auto;
+  }
+  
+  .bothCreamContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--red-background-color);
+  }
+
+  .leftCreamContainer {
+    width: 100%;
+  }
+
+  .rightCreamContainer {
+    width: 100%;
+  }
+
+  p.redLeftAlign {
+    color: var(--sections-txt-color);
+  }
+
+}
+
+/* screen under 414px */
+@media only screen and (max-width: 414px) {
+
+  .bothCreamContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .leftCreamContainer {
+    width: 100%;
+  }
+
+  .rightCreamContainer {
+    width: 100%;
+  }
+
+  p.redLeftAlign {
+    text-align: center;
+  }
+
+  .titleCreamContainer {
+    margin-top: 40px;
+  }
+
 }
