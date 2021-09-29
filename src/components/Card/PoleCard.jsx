@@ -4,6 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { NavLink } from 'react-router-dom'
 
 import './PoleCard.css'
+import '../../screens/Home/Home.css'
 
 const PoleCard = ({ id, pole_title, pole_picto, pole_catchphrase, pole_miniature_img }) => {
 
@@ -24,7 +25,7 @@ const PoleCard = ({ id, pole_title, pole_picto, pole_catchphrase, pole_miniature
         <div className='polecard-banner'>
           <div className='picto-container'>
             <div className='polecard-picto'>
-              <FontAwesomeIcon icon='leaf' />
+              <FontAwesomeIcon icon={pole_picto} />
             </div>
           </div>
           <h3>{pole_title}</h3>
