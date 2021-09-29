@@ -5,9 +5,9 @@ const RubanConcept = () => {
   return (
     <div className='rubanHome'>
       <div className='rubanPictoHome'>
-        <img src={logoBac}/>
+        <img src={logoBac} />
       </div>
-      <h1 className='rubanTitleHome'>La Boîte d'à Côté</h1>
+      <h1 className='rubanTitleHome'>La Boîte d&apos;à Côté</h1>
     </div>
   )
 }

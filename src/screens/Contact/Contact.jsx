@@ -8,7 +8,7 @@ import './Contact.css'
 
 const Contact = () => {
   // Infos à mettre dans le back
-  const contactTitle = "Contact"
+  const contactTitle = 'Contact'
   const contactPicto = 'phone-alt'
   // Infos de contact de la Boite d'acoté
   const [contact, setContact] = useState('')
@@ -34,7 +34,7 @@ const Contact = () => {
 
   return (
     <div className='contact centerContainer'>
-      <RibbonTitle picto={contactPicto} title={contactTitle}/>
+      <RibbonTitle picto={contactPicto} title={contactTitle} />
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
