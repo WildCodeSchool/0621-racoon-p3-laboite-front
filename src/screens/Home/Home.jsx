@@ -39,11 +39,11 @@ const Home = () => {
 
   return (
     <>
-      <div className='homeContainer'>
-        <img className='blere-beach'
+        <img className='banner'
           src={concept.concept_banner}
           alt='blere-beach'
         />
+      <div className='centerContainer'>
         {/* <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} /> */}
         <RubanConcept />
         <div className='descContainer'>
