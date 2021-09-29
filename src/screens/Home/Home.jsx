@@ -38,10 +38,7 @@ const Home = () => {
 
   return (
     <>
-        <img className='banner'
-          src={concept.concept_banner}
-          alt='blere-beach'
-        />
+      <img className='banner' src={concept.concept_banner} alt='blere-beach' />
       <div className='centerContainer'>
         {/* <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} /> */}
         <RubanConcept />
@@ -63,7 +60,7 @@ const Home = () => {
         <div className='poles'>
           <div className='poleTitleContainer'>
             <h5 className='poleTitle'>
-              <span> Les pôles d'activité </span>
+              <span> Les pôles d&apos;activité </span>
             </h5>
           </div>
           <div className='polesContainer'>
@@ -75,7 +72,7 @@ const Home = () => {
         <div className='teamContainer'>
           <div className='teamTitleContainer'>
             <h2 className='teamTitle'>
-              <span> L'équipe </span>
+              <span> L&apos;équipe </span>
             </h2>
           </div>
           <div className='membersContainer'>
