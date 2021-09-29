@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react'
 import '../../App.css'
 import './Home.css'
 
-
 const Home = () => {
   const [concept, setConcept] = useState([])
   const [team, setTeam] = useState([])
