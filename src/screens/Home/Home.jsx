@@ -3,12 +3,12 @@ import Concept from '../../components/Concept/Concept'
 import MemberCard from '../../components/Card/MemberCard'
 import PoleCard from '../../components/Card/PoleCard'
 import React from 'react'
+import RubanConcept from '../../components/Ruban/RubanConcept/RubanConcept'
 import { useState, useEffect } from 'react'
-
-import ruban from '../../assets/rubanHome.png'
 
 import '../../App.css'
 import './Home.css'
+
 
 const Home = () => {
   const [concept, setConcept] = useState([])
@@ -39,13 +39,13 @@ const Home = () => {
 
   return (
     <>
-      <div className='homeContainer'>
-        <img
-          style={{ width: '100%', height: '400px', marginBottom: '50px' }}
+        <img className='banner'
           src={concept.concept_banner}
           alt='blere-beach'
         />
-        <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} />
+      <div className='centerContainer'>
+        {/* <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} /> */}
+        <RubanConcept />
         <div className='descContainer'>
           <div>
             <p className='ebeDesc'>{concept.pres_ebe_desc}</p>
@@ -63,9 +63,9 @@ const Home = () => {
 
         <div className='poles'>
           <div className='poleTitleContainer'>
-            <h2 className='poleTitle'>
+            <h5 className='poleTitle'>
               <span> Les pôles d'activité </span>
-            </h2>
+            </h5>
           </div>
           <div className='polesContainer'>
             {poleMin.map(card => (

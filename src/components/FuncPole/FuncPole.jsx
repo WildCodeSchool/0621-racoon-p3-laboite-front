@@ -1,7 +1,7 @@
 import '../../App.css'
 import './FuncPole.css'
 
-const FuncPole = ({ pole_desc, pole_func_img, pole_title }) => {
+const FuncPole = ({ pole_func, pole_func_img, pole_title }) => {
   return (
     <section className='greenContainer'>
       <div className='titleContainer'>
@@ -11,7 +11,7 @@ const FuncPole = ({ pole_desc, pole_func_img, pole_title }) => {
       </div>
       <div className='bothGreenContainer'>
         <div className='leftGreenContainer'>
-          <p className='creamLeftAlign'>{pole_desc}</p>
+          <p className='creamLeftAlign'>{pole_func}</p>
         </div>
         <div className='rightGreenContainer'>
           <img className='greenSection' src={pole_func_img} alt={pole_title} />
