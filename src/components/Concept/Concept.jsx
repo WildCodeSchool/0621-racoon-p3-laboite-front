@@ -10,7 +10,8 @@ const Concept = ({ concept }) => {
       </div>
       <div className='conceptPart'>
         <div className='part1'>
-          <img className='conceptImage'
+          <img
+            className='conceptImage'
             src={concept.concept_img1}
             alt='jardinerie'
           />
@@ -27,7 +28,7 @@ const Concept = ({ concept }) => {
           </div>
         </div>
         <div className='part2'>
-          <img src={concept.concept_img2} className='imgGhost' alt='champs'/>
+          <img src={concept.concept_img2} className='imgGhost' alt='champs' />
           <div className='conceptP2'>
             <div className='block-buster'>
               <div className='borderText'></div>
@@ -39,13 +40,15 @@ const Concept = ({ concept }) => {
             </div>
             <p style={{ fontWeight: '600' }}>{concept.concept_txt2_p3}</p>
           </div>
-          <img className='conceptImage conceptImageGhost'
+          <img
+            className='conceptImage conceptImageGhost'
             src={concept.concept_img2}
             alt='vendange'
           />
         </div>
         <div className='part3'>
-          <img className='conceptImage'
+          <img
+            className='conceptImage'
             src={concept.concept_img3}
             alt='livraison'
           />

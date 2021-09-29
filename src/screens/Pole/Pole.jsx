@@ -5,10 +5,10 @@ import axios from 'axios'
 import ActivitiesPole from '../../components/ActivitiesPole/ActivitiesPole'
 import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import FuncPole from '../../components/FuncPole/FuncPole'
+import Loader from './../../components/Loader/Loader'
 import RubanPole from './../../components/RubanPole/RubanPole'
 import TopCenter from './../../components/TopCenter/TopCenter'
 import '../../components/ActivitiesPole/ActivitiesPole.css'
-import Loader from './../../components/Loader/Loader'
 
 import './Pole.css'
 
