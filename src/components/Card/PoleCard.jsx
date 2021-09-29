@@ -6,8 +6,13 @@ import { NavLink } from 'react-router-dom'
 import './PoleCard.css'
 import '../../screens/Home/Home.css'
 
-const PoleCard = ({ id, pole_title, pole_picto, pole_catchphrase, pole_miniature_img }) => {
-
+const PoleCard = ({
+  id,
+  pole_title,
+  pole_picto,
+  pole_catchphrase,
+  pole_miniature_img
+}) => {
   const iconList = Object.keys(Icons)
     .filter(key => key !== 'fas' && key !== 'prefix')
     .map(icon => Icons[icon])
