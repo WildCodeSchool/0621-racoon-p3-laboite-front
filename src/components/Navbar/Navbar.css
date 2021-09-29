@@ -11,6 +11,12 @@
   overflow: hidden;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+}
+
 .navlist div {
   display: flex;
   align-items: center;
@@ -32,6 +38,7 @@
 .navlist div:last-child {
   border-right: 0;
   transform: skew(0deg) rotate(0deg);
+  
 }
 
 .user-icon {

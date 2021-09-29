@@ -18,7 +18,9 @@ const Concept = ({ concept }) => {
           <div className='conceptP1'>
             <p>{concept.concept_txt1_p1}</p>
             <p style={{ textDecoration: 'underline', fontStyle: 'italic' }}>
-              {concept.link_tzc}
+              <a href='https://tzcld.fr' target='_blank'>
+                {concept.link_tzc}
+              </a>
             </p>
             <p style={{ fontWeight: 'lighter' }}>{concept.concept_txt1_p2}</p>
             <div className='block-buster'>
