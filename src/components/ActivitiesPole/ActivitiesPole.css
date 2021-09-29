@@ -65,13 +65,15 @@ align-content: center;
   .activitiesContainer {
     width: 30%;
     margin: 5px;
+    height: 460px;
   }
-  
+
   .bothCreamContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: var(--red-background-color);
+
   }
 
   .leftCreamContainer {
@@ -80,10 +82,12 @@ align-content: center;
 
   .rightCreamContainer {
     width: 100%;
+    height: 240px;
   }
 
   p.redLeftAlign {
     color: var(--sections-txt-color);
+    vertical-align: middle;
   }
 
 }
