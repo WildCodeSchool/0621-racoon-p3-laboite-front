@@ -5,10 +5,16 @@
 .navlist {
   height: 54px;
   width: 100%;
-  background-color: #EB5160;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  background-color: var(--red-background-color);
+  border-top: 1px solid var(--nav-list-items-color);
+  border-bottom: 1px solid var(--nav-list-items-color);
   overflow: hidden;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 50;
 }
 
 .navlist div {
@@ -16,7 +22,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  border-right: 1px solid white;
+  border-right: 1px solid var(--nav-list-items-color);
   transform: skew(-30deg) rotate(0deg);
 }
   
@@ -26,13 +32,13 @@
 
 .navlist div:first-child {
   width: 6%;
-  color: #EB5160;
+  color: var(--red-background-color);
 }
 
 .navlist div:last-child {
   border-right: 0;
   transform: skew(0deg) rotate(0deg);
-  color:
+  
 }
 
 .user-icon {
@@ -46,11 +52,10 @@
 }
 
 a {
-  color: white;
+  color: var(--nav-list-items-color);
   text-decoration: none;
 }
 
 a:hover {
-  font-size: 1.1em;
-  color: #52908B;
+  text-decoration:underline;
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script');
 
 :root {
   --main-background-color: #F7F8F2;
@@ -30,13 +31,13 @@ body {
 }
 
 h1 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Dancing script', cursive;
   color: var(--title-color);
   background-color: var(--red-background-color);
 }
 
 h2 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Dancing script', cursive;
   color: var(--title-color);
   align-content: center;
   position: relative;
@@ -47,7 +48,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Dancing script', cursive;
   color: var(--red-background-color);
 }
 
@@ -75,7 +76,7 @@ a:hover {
 .titleContainer {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   height: 10%;
 }
 
@@ -110,7 +111,6 @@ a:hover {
 
 .rightGreenContainer{
   width: 50%;
-
 }
 
 img.greenSection {
@@ -133,12 +133,20 @@ align-content: center;
 
 /* screen above 1024px */
 @media only screen and (min-width: 1024px) {
-
+  .leftGreenContainer{
+    width: 30%;  
+    display: flex;
+    align-items: center;
+  }
+  
+  .rightGreenContainer{
+    width: 70%;
+  }
 
 }
 
-/* screen under 414px */
-@media only screen and (max-width: 414px) {
+/* screen under 700px */
+@media only screen and (max-width: 700px) {
 
   .mainContainer{
     width: 100%;
@@ -160,10 +168,6 @@ align-content: center;
 
   .leftGreenContainer {
     width: 100%;
-  }
-
-  p.creamLeftAlign {
-    text-align: center;
   }
 
   .rightGreenContainer {
