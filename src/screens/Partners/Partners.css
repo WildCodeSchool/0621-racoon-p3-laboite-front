@@ -1,0 +1,53 @@
+.flex{
+  display: flex;
+}
+.width100{
+  width:100%;
+  min-height: 50vh;
+  height: auto;
+}
+.partners{
+  flex-direction: column;
+  background-color: #F7F8F2;
+}
+/*------------------------------------------------*/
+.banner-top{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darkslateblue;
+  overflow: hidden;
+  background-size: cover;
+}
+.banner-top img{
+  width: 100%;
+  height: 15vh;
+  /* object-fit: cover; */
+}
+/*------------------------------------------------*/
+
+.paragraph {
+  color: var(--sections-txt-color);
+  padding: 20px 160px 20px 160px;
+  text-align: left;
+}
+
+.paragraph ul{
+  padding-left: 40px
+}
+
+.paragraph li{
+  padding-left: 15px;;
+}
+
+.function, .give{
+  color: #F7F8F2;
+  background-color: cadetblue;
+  height: 200px;
+}
+
+.contactBlock, .thanks{
+  background-color: #F7F8F2;
+  padding: 20px;
+}

@@ -1,0 +1,37 @@
+.titleCreamContainer{
+    padding: 80px 0px 40px 0px;
+}
+
+.creamWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.creamLeftBlock{
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 20px;
+    padding: 0 20px;
+}
+.creamLeftBlock img{
+    min-width: 50%;
+    max-width: 100%;
+    margin: 20px;
+}
+
+.creamRightBlock{
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    width: 50%;
+    margin: 20px;
+    padding: 20px;
+}
+.creamRightBlock p{
+    border-left: 6px solid var(--red-background-color: #EB5160);
+    color: var(--main-font-color: #EB5160);
+    padding-left: 20px;
+    font-size: 1.5vw;
+}

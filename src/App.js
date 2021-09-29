@@ -1,13 +1,16 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import Concept from './components/Concept/Concept'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import Admin from './screens/Admin/Admin'
+import Contact from './screens/Contact/Contact'
+import Home from './screens/Home/Home'
+import Login from './screens/Login/Login'
+import Partners from './screens/Partners/Partners'
+import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
-import Contact from './screens/Contact/Contact.jsx'
-import Pole from './screens/Pole/Pole.jsx'
-import Header from './components/Header/Header.jsx'
-import Home from './screens/Home/Home.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import Login from './screens/Login/Login.jsx'
-import Admin from './screens/Admin/Admin.jsx'
 
 import './App.css'
 import './Normalize.css'
@@ -18,6 +21,7 @@ function App() {
       <ScrollToTop />
       <div className='mainContainer'>
         <Header />
+        <Navbar />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -27,6 +31,12 @@ function App() {
           </Route>
           <Route path='/contact'>
             <Contact />
+          </Route>
+          <Route path='/concept'>
+            <Concept />
+          </Route>
+          <Route path='/partenaires'>
+            <Partners />
           </Route>
           <Route exact path='/login'>
             <Login />

@@ -5,10 +5,10 @@ import axios from 'axios'
 import ActivitiesPole from '../../components/ActivitiesPole/ActivitiesPole'
 import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import FuncPole from '../../components/FuncPole/FuncPole'
-import RubanPole from './../../components/RubanPole/RubanPole'
+import Loader from './../../components/Loader/Loader'
 import TopCenter from './../../components/TopCenter/TopCenter'
 import '../../components/ActivitiesPole/ActivitiesPole.css'
-import Loader from './../../components/Loader/Loader'
+import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 
 import './Pole.css'
 
@@ -36,7 +36,10 @@ const Pole = () => {
       </div>
       <div className='centerContainer'>
         <div>
-          <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
+          <RibbonTitle
+            picto={poleData.pole_picto}
+            title={poleData.pole_title}
+          />
         </div>
         <TopCenter {...poleData} />
         <FuncPole {...poleData} />
@@ -44,8 +47,6 @@ const Pole = () => {
           <div className='titleRedLigns'>
             <h2 className='cream'>Services proposés</h2>
           </div>
-        </div>
-        <div>
           <div className='box'>
             {/* pour acceder a un tableau de tableau faire un loading */}
             {poleData.activities.map(activity => (
