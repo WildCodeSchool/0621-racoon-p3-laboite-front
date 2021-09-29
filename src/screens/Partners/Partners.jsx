@@ -1,11 +1,11 @@
 // import { useState, useEffect } from 'react'
 // import axios from 'axios'
 
+import BlockPartners from '../../components/BlockPartners/BlockPartners'
 import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import CreamBox from '../../components/CreamBox/CreamBox'
 import GreenBox from '../../components/GreenBox/GreenBox'
 import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
-import BlockPartners from '../../components/BlockPartners/BlockPartners'
 
 // import homebanner from '../../assets/blere-beach.png'
 import fistbump from '../../assets/partners-fistbump.png'
