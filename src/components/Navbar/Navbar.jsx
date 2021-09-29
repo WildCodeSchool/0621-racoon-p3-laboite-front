@@ -7,30 +7,36 @@ import User from '../../assets/user-icon.png'
 
 import './Navbar.css'
 
-const Navbar = () =>{
-const [data, setData] = useState()
+const Navbar = () => {
+  const [data, setData] = useState()
 
-useEffect(() => {
-axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
-}, [])
+  useEffect(() => {
+    axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
+  }, [])
 
-data && console.log(data)
+  data && console.log(data)
 
-return (
-<div className='flex navlist'>
-    <div>N</div>
-    <NavbarLink navTo={'/'} NavTitle={'Le Concept'}/>
-    {data &&
-    data.map(e => (<NavbarLink key={e.id} navTo={`/pole/${e.id}`} NavTitle={e.pole_name}/>))}
-    <NavbarLink navTo={'/partenaires'} NavTitle={'Partenaires'}/>
-    <NavbarLink navTo={'/contact'} NavTitle={'Contact'}/>
-    <div>
+  return (
+    <div className='flex navlist'>
+      <div>N</div>
+      <NavbarLink navTo={'/'} NavTitle={'Le Concept'} />
+      {data &&
+        data.map(e => (
+          <NavbarLink
+            key={e.id}
+            navTo={`/pole/${e.id}`}
+            NavTitle={e.pole_name}
+          />
+        ))}
+      <NavbarLink navTo={'/partenaires'} NavTitle={'Partenaires'} />
+      <NavbarLink navTo={'/contact'} NavTitle={'Contact'} />
+      <div>
         <NavLink className='flex user-icon' to={'/login'}>
-            <img src={User} alt='user' />
+          <img src={User} alt='user' />
         </NavLink>
+      </div>
     </div>
-</div>
-)
+  )
 }
 
 export default Navbar
