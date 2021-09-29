@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Map from './Map'
 import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
-import { FaPhoneAlt, FaFacebook } from 'react-icons/fa'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 import './Contact.css'
 
 const Contact = () => {
-  // Infos à mettre dans le back
-  const contactTitle = 'Contact'
-  const contactPicto = 'phone-alt'
   // Infos de contact de la Boite d'acoté
   const [contact, setContact] = useState('')
   const [social, setSocial] = useState([])
@@ -35,30 +33,35 @@ const Contact = () => {
 
   return (
     <div className='contact centerContainer'>
-      <RibbonTitle picto={contactPicto} title={contactTitle} />
+      <RibbonTitle picto={'phone-alt'} title={'Contact'} />
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
-            <div className='contactInfoSocialLink'>
-              {social.map(link => (
-                <a
-                  href={link.social_link}
-                  target='_blank'
-                  rel='noreferrer'
-                  key={link.id}
-                >
-                  <FaFacebook />
-                </a>
-              ))}
+            <div className='contactInfoItems'>
+              <div className='contactInfoSocialLink'>
+                {social.map(link => (
+                  <a
+                    href={link.social_link}
+                    target='_blank'
+                    rel='noreferrer'
+                    key={link.id}
+                  >
+                    <img src={link.social_icon} alt='social icon' />
+                  </a>
+                ))}
+              </div>
+              <div className='contactInfoText'>
+                <h4>Notre adresse:</h4>
+                <p className='contactInfoTextAdress'>
+                  {contact.contact_address}
+                </p>
+                <div className='contactInfoTextPhone'>
+                  <FontAwesomeIcon icon={faPhoneAlt} />
+                  <p>{contact.contact_phone}</p>
+                </div>
+              </div>
             </div>
-            <div className='contactInfoText'>
-              <h4>Notre adresse:</h4>
-              <p>{contact.contact_address}</p>
-              <p>
-                <FaPhoneAlt /> {contact.contact_phone}
-              </p>
-            </div>
-            <div className='contactInfoMap'>
+            <div className='contactMap'>
               <Map />
             </div>
           </div>
