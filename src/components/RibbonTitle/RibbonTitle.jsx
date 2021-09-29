@@ -7,7 +7,7 @@ import * as BrandsIcons from '@fortawesome/free-brands-svg-icons'
 import './RibbonTitle.css'
 
 // Component
-const RibbonTitle = ({title, picto}) => {
+const RibbonTitle = ({ title, picto }) => {
   //const pictoList = [default, leaf, concierge-bell, leaf, box-open, hands-helping, phone-alt] //... cart-arrow-down || cart-shopping (shopping-cart), person-biking (biking), star-half-stroke, triangle-exclamation(exclamation-triangle)
 
   // Import any solid icon from Fontawesome

@@ -1,7 +1,7 @@
 import './GreenBox.css'
 import '../../App.css'
 
-const GreenBox = ({title, text, pictures}) => {
+const GreenBox = ({ title, text, pictures }) => {
   console.log(text)
   return (
     <div className='titleGreenContainer'>
@@ -9,10 +9,16 @@ const GreenBox = ({title, text, pictures}) => {
         <h2 className='green'>{title}</h2>
         <div className='greenWrapper'>
           <div className='flex greenLeftBlock'>
-            {pictures.map((img,index) => (<img key={index} src={img} alt='fistbump'/>))}
+            {pictures.map((img, index) => (
+              <img key={index} src={img} alt='fistbump' />
+            ))}
           </div>
           <div className='flex greenRightBlock'>
-            {text.map((txt,index) => (<p key={index} className='redQuote'>{txt}</p>))}
+            {text.map((txt, index) => (
+              <p key={index} className='redQuote'>
+                {txt}
+              </p>
+            ))}
           </div>
         </div>
       </div>
