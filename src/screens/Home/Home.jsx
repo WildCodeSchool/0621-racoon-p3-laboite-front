@@ -72,7 +72,7 @@ const Home = () => {
         <div className='teamContainer'>
           <div className='teamTitleContainer'>
             <h2 className='teamTitle'>
-              <span> L'équipe </span>
+              <span> L&apos;équipe </span>
             </h2>
           </div>
           <div className='membersContainer'>
