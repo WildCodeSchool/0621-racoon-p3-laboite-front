@@ -1,4 +1,4 @@
-import '../Ruban/Ruban.css'
+// import '../Ruban/Ruban.css'
 import './RubanPole.css'
 
 const RubanPole = ({ picto, title }) => {

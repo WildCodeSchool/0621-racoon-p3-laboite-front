@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Map from './Map'
-import Ruban from '../../components/Ruban/Ruban'
+import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import { FaPhoneAlt, FaFacebook } from 'react-icons/fa'
 
 import './Contact.css'
@@ -31,7 +31,7 @@ const Contact = () => {
 
   return (
     <div className='contact'>
-      <Ruban picto={''} />
+      <RibbonTitle picto={''} text={''}/>
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
