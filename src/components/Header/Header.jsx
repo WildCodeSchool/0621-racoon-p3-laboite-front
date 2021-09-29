@@ -11,8 +11,8 @@ const Header = () => {
         </div>
       </div>
       <div className='flex header-text'>
-        <p>La boîte d&apos;à côté...</p>
-        <p className='offset-right'>Une entreprise pas comme les autres !</p>
+        <h1>La boîte d&apos;à côté...</h1>
+        <h1 className='offset-right'>Une entreprise pas comme les autres !</h1>
       </div>
     </div>
   )
