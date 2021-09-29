@@ -1,22 +1,11 @@
 /* HEADER */
 
-.homeContainer {
-  /* background: var(--main-background-color); */
-  width: 80%;
-  margin:auto;
-}
-
-.blere-beach {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 50px;
-}
-
 .homeContactContainer {
   display: flex;
   justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
+  
 }
 
 .descContainer {
