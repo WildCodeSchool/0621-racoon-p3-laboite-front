@@ -1,0 +1,39 @@
+.titleGreenContainer{
+    padding: 80px 0px 40px 0px;
+    background: var(--green-background-color);
+}
+
+.greenWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: var(--green-background-color);
+}
+
+.greenLeftBlock{
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 20px;
+    padding: 0 20px;
+}
+.greenLeftBlock img{
+    min-width: 50%;
+    max-width: 100%;
+    margin: 20px;
+}
+
+.greenRightBlock{
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    width: 50%;
+    margin: 20px;
+    padding: 20px;
+}
+.greenRightBlock p{
+    /* border-left: 6px solid var(--main-background-color); */
+    color: var(--sections-txt-color);
+    padding-left: 20px;
+    font-size: 1.5vw;
+}
