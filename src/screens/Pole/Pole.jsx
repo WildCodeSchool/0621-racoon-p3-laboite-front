@@ -34,16 +34,16 @@ const Pole = () => {
       <div className='banner'>
         <img src={poleData.pole_banner} />
       </div>
-      <div>
-        <RibbonTitle picto={poleData.pole_picto} title={poleData.pole_title} />
-      </div>
-      <TopCenter {...poleData} />
-      <FuncPole {...poleData} />
-      <div className='titleCreamContainer'>
-        <div className='titleRedLigns'>
-          <h2 className='cream'>Services proposés</h2>
-        </div>
+      <div className='centerContainer'>
         <div>
+          <RibbonTitle picto={poleData.pole_picto} title={poleData.pole_title} />
+        </div>
+        <TopCenter {...poleData} />
+        <FuncPole {...poleData} />
+        <div className='titleCreamContainer'>
+          <div className='titleRedLigns'>
+            <h2 className='cream'>Services proposés</h2>
+          </div>
           <div className='box'>
             {/* pour acceder a un tableau de tableau faire un loading */}
             {poleData.activities.map(activity => (

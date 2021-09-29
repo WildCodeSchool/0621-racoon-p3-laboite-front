@@ -33,7 +33,7 @@ const Contact = () => {
   }, [])
 
   return (
-    <div className='contact'>
+    <div className='contact centerContainer'>
       <RibbonTitle picto={contactPicto} title={contactTitle}/>
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>

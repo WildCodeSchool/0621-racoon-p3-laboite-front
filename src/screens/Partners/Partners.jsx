@@ -35,29 +35,29 @@ const Partners = () => {
   // }, [])
 
   return (
-    <div className='mainContainer width100'>
-      {/* <div className='banner-top'>
-        <img src={homebanner} />
-      </div> */}
-      <RibbonTitle title={partnerTitle} picto={partnerPicto} />
-      <CreamBox title={creamTitle} text={creamText} pictures={creamPic}/>
-      <GreenBox title={greenTitle} text={greenText} pictures={greenPic}/>
-      <p className='cream paragraph'>
-      LA BOÎTE D’À CÔTÉ a pu voir le jour grâce à l’engagement de nombreux bénévoles et de partenaires locaux avec lesquels elle garde des relations privilégiées :<br/>Commune de Bléré / Communauté de Communes Bléré-Val de Cher / Département d’Indre et Loire / Région Centre – Val de Loire / CRI (Château Renault Insertion) / Association LA MAIN TENDUE (Bléré) / Pôle Emploi / Chambres consulaires/ Rotary club d’Amboise (IL Y EN AURA D’AUTRES)
-      </p>
-      <BlockPartners partners={partnersList} />
-      <div className='green paragraph'>
-        <p>Si vous aussi, entreprise ou particulier, vous souhaitez apporter votre aide à LA BOÎTE D’À CÔTÉ et participer à la réussite de cette expérimentation, vous pouvez :</p>
-        <ul>
-          <li>Offrir votre temps en qualité de bénévole</li>
-          <li>Faire une donation en numéraire ou en matériel</li>
-          <li>Proposer du mécénat de compétences</li>
-          <li>Parler de nous, nous aider à nous faire connaître</li>
-          <li>...</li>
-        </ul>
+    <div className='centerContainer'>
+      <div className='mainContainer width100'>
+        {/* <div className='banner-top'>
+          <img src={homebanner} />
+        </div> */}
+        <RibbonTitle title={partnerTitle} picto={partnerPicto} />
+        <CreamBox title={creamTitle} text={creamText} pictures={creamPic}/>
+        <GreenBox title={greenTitle} text={greenText} pictures={greenPic}/>
+        <p className='cream paragraph'>LA BOÎTE D’À CÔTÉ a pu voir le jour grâce à l’engagement de nombreux bénévoles et de partenaires locaux avec lesquels elle garde des relations privilégiées :<br/>Commune de Bléré / Communauté de Communes Bléré-Val de Cher / Département d’Indre et Loire / Région Centre – Val de Loire / CRI (Château Renault Insertion) / Association LA MAIN TENDUE (Bléré) / Pôle Emploi / Chambres consulaires/ Rotary club d’Amboise (IL Y EN AURA D’AUTRES)</p>
+        <BlockPartners partners={partnersList} />
+        <div className='green paragraph'>
+          <p>Si vous aussi, entreprise ou particulier, vous souhaitez apporter votre aide à LA BOÎTE D’À CÔTÉ et participer à la réussite de cette expérimentation, vous pouvez :</p>
+          <ul>
+            <li>Offrir votre temps en qualité de bénévole</li>
+            <li>Faire une donation en numéraire ou en matériel</li>
+            <li>Proposer du mécénat de compétences</li>
+            <li>Parler de nous, nous aider à nous faire connaître</li>
+            <li>...</li>
+          </ul>
+        </div>
+        <div className='thanks'>Merci, à bientôt !</div>
+        <BottomCenter />
       </div>
-      <div className='thanks'>Merci, à bientôt !</div>
-      <BottomCenter />
     </div>
   )
 }
