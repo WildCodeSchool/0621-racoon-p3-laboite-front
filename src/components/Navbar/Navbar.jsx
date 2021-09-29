@@ -23,6 +23,7 @@ return (
     {data &&
     data.map(e => (<NavbarLink key={e.id} navTo={`/pole/${e.id}`} NavTitle={e.pole_name}/>))}
     <NavbarLink navTo={'/partenaires'} NavTitle={'Partenaires'}/>
+    <NavbarLink navTo={'/contact'} NavTitle={'Contact'}/>
     <div>
         <NavLink className='flex user-icon' to={'/login'}>
             <img src={User} alt='user' />

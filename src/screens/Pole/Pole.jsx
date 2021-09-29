@@ -5,8 +5,9 @@ import axios from 'axios'
 import ActivitiesPole from '../../components/ActivitiesPole/ActivitiesPole'
 import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import FuncPole from '../../components/FuncPole/FuncPole'
-import RubanPole from './../../components/RubanPole/RubanPole'
+import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import TopCenter from './../../components/TopCenter/TopCenter'
+
 import './Pole.css'
 
 const Pole = () => {
@@ -33,7 +34,7 @@ const Pole = () => {
         <img src={poleData.pole_banner} />
       </div>
       <div>
-        <RubanPole picto={poleData.pole_picto} title={poleData.pole_title} />
+        <RibbonTitle picto={poleData.pole_picto} title={poleData.pole_title} />
       </div>
       <TopCenter {...poleData} />
       <FuncPole {...poleData} />
