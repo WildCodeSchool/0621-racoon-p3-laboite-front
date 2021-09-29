@@ -28,6 +28,7 @@
   justify-content: center;
   align-items: center;
   padding: 15px 90px;
+  margin-bottom: 0;
   background-color: var(--red-background-color);
   color: var(--main-background-color);
   clip-path: polygon(0 0, 6% 50%, 0 100%, 100% 100%, 94% 50%, 100% 0);

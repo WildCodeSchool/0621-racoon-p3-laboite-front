@@ -80,6 +80,12 @@ nav {
   height: 60%;
   border-top:var(--main-background-color)solid 5px;
 }
+.titleLine {
+  width: 100%;
+  height: 60%;
+  border-top:var(--main-background-color)solid 5px;
+  background-color:var(--green-background-color)solid 5px;
+}
 
 .titleRedLine {
   width: 100%;
