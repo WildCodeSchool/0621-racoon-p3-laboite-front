@@ -1,0 +1,35 @@
+.ribbon {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  margin-top: 3vh;
+}
+.ribbonPicto {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  background-color: var(--red-background-color);
+  clip-path: circle(50.0% at 50% 100%);
+  transform: translateY(-15px);
+  z-index: 20;
+}
+.ribbonPicto svg {
+  height: 20px;
+  width: 20px;
+  color: var(--main-background-color);
+  transform: translateY(32px);
+  z-index: 12;
+}
+.ribbonText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 90px;
+  margin-bottom: 0;
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  clip-path: polygon(0 0, 6% 50%, 0 100%, 100% 100%, 94% 50%, 100% 0);
+}
