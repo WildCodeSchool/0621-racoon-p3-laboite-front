@@ -1,4 +1,4 @@
-import '../../screens/Home/Home.css';
+import '../../screens/Home/Home.css'
 
 const Concept = ({ concept }) => {
   return (
@@ -10,10 +10,9 @@ const Concept = ({ concept }) => {
       </div>
       <div className='conceptPart'>
         <div className='part1'>
-          <img
+          <img className='conceptImage'
             src={concept.concept_img1}
             alt='jardinerie'
-            style={{ width: '50%', height: '50vh' }}
           />
           <div className='conceptP1'>
             <p>{concept.concept_txt1_p1}</p>
@@ -28,6 +27,7 @@ const Concept = ({ concept }) => {
           </div>
         </div>
         <div className='part2'>
+          <img src={concept.concept_img2} className='imgGhost' alt='champs'/>
           <div className='conceptP2'>
             <div className='block-buster'>
               <div className='borderText'></div>
@@ -39,17 +39,15 @@ const Concept = ({ concept }) => {
             </div>
             <p style={{ fontWeight: '600' }}>{concept.concept_txt2_p3}</p>
           </div>
-          <img
+          <img className='conceptImage conceptImageGhost'
             src={concept.concept_img2}
             alt='vendange'
-            style={{ width: '50%', height: '50vh' }}
           />
         </div>
         <div className='part3'>
-          <img
+          <img className='conceptImage'
             src={concept.concept_img3}
             alt='livraison'
-            style={{ width: '50%', height: '50vh' }}
           />
           <div className='conceptP3'>
             <p className='borderP'>{concept.concept_txt3_p1}</p>
