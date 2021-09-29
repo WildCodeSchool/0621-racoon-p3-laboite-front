@@ -10,9 +10,8 @@ import './Header.css'
 const Header = () => {
   const [data, setData] = useState()
 
-  useEffect(async () => {
-    const result = await axios.get(`http://localhost:4000/pole`)
-    setData(result.data)
+  useEffect(() => {
+    axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
   }, [])
 
   data && console.log(data)
