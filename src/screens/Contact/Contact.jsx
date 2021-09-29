@@ -8,7 +8,7 @@ import './Contact.css'
 
 const Contact = () => {
   // Infos à mettre dans le back
-  const contactTitle = "Contact"
+  const contactTitle = 'Contact'
   const contactPicto = 'phone-alt'
   // Infos de contact de la Boite d'acoté
   const [contact, setContact] = useState('')
@@ -17,14 +17,15 @@ const Contact = () => {
   // Recupere les infos contact du back et bdd
   useEffect(() => {
     const getInfo = () => {
+      console.log(`${process.env.REACT_APP_URL_API}/contact`)
       axios
-        .get('http://localhost:4000/contact')
+        .get(`${process.env.REACT_APP_URL_API}/contact`)
         .then(
           response => console.table(response.data) || setContact(response.data)
         )
 
       axios
-        .get('http://localhost:4000/social')
+        .get(`${process.env.REACT_APP_URL_API}/social`)
         .then(
           response => console.table(response.data) || setSocial(response.data)
         )
@@ -34,7 +35,7 @@ const Contact = () => {
 
   return (
     <div className='contact centerContainer'>
-      <RibbonTitle picto={contactPicto} title={contactTitle}/>
+      <RibbonTitle picto={contactPicto} title={contactTitle} />
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
