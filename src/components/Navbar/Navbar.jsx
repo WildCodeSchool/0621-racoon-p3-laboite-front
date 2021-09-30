@@ -9,15 +9,29 @@ import './Navbar.css'
 
 const Navbar = () => {
   const [data, setData] = useState()
+  const [fixNav, setFixNav] = useState(false)
 
   useEffect(() => {
     axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
   }, [])
 
+  const stickyNav = () => {
+    if (window.scrollY > 100) {
+      setFixNav(true)
+    } else {
+      setFixNav(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', stickyNav)
+    return () => window.removeEventListener('scroll', stickyNav)
+  }, [])
+
   data && console.log(data)
 
   return (
-    <div className='flex navlist'>
+    <div className={`flex navlist ${fixNav && 'flex sticky'}`}>
       <div>N</div>
       <NavbarLink navTo={'/'} NavTitle={'Le Concept'} />
       {data &&
