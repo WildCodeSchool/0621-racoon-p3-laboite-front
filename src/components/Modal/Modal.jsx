@@ -10,7 +10,12 @@ const Modal = ({ isShowing, hide, ...props }) =>
         <>
           <div className='modal-overlay'>
             <div className='modal-wrapper'>
-              <div className='modal'>
+              <div
+                className='modal'
+                onClick={e => {
+                  e.stopPropagation()
+                }}
+              >
                 <button
                   type='button'
                   className='modal-close-button'
