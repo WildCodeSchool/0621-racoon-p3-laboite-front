@@ -16,7 +16,7 @@ export default function FormTiny({ setData }) {
         initialValue='<p>This is the initial content of the editor.</p>'
         init={{
           height: 400,
-          width: 700,
+          width: '100%',
           menubar: false,
           margin: 10,
           plugins: [
@@ -33,11 +33,15 @@ export default function FormTiny({ setData }) {
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button 
-        style={{ 
-          marginTop: '20px', 
-          background: '#868E96'}} 
-        onClick={log}>Publier</button>
+      <button
+        style={{
+          marginTop: '20px',
+          background: '#868E96'
+        }}
+        onClick={log}
+      >
+        Publier
+      </button>
     </div>
   )
 }

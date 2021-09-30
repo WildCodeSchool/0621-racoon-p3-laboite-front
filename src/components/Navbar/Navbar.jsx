@@ -81,7 +81,11 @@ const Navbar = () => {
           onClick={toggleLoginForm}
         />
       </div>
-      <Modal isShowing={isLoginFormShowed} hide={toggleLoginForm}>
+      <Modal
+        isShowing={isLoginFormShowed}
+        hide={toggleLoginForm}
+        title={`Connexion Administrateur :`}
+      >
         {isConnected ? (
           <div>
             <button className='form-btn' onClick={logout}>
