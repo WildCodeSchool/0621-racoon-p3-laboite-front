@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import useModal from '../Modal/useModal'
+import useModal from '../../use/useModal'
 import Modal from '../Modal/Modal'
 import NavbarLink from './NavbarLink'
 import User from '../../assets/user-icon.png'
@@ -108,7 +108,13 @@ const Navbar = () => {
             </div>
             <div className='form-group'>
               <input type='submit' value='Login' />
-              <button className='form-btn' onClick={toggleLoginForm}>
+              <button
+                className='form-btn'
+                onClick={e => {
+                  e.stopPropagation()
+                  toggleLoginForm()
+                }}
+              >
                 Annuler
               </button>
             </div>
