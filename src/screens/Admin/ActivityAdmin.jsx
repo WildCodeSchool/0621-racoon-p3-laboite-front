@@ -1,10 +1,17 @@
+import * as Icons from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import FormTiny from '../../components/Form/FormTiny'
-import { Button, Dropdown, Icon, Input } from 'semantic-ui-react'
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 
-import 'semantic-ui-css/semantic.min.css'
 import './ActivityAdmin.css'
+
+const iconList = Object.keys(Icons)
+.filter(key => key !== 'fas' && key !== 'prefix')
+.map(icon => Icons[icon])
+
+library.add(...iconList)
 
 const ActivityAdmin = () => {
   const [activity, setActivity] = useState([])
@@ -44,7 +51,7 @@ const ActivityAdmin = () => {
     <div>
       <div className='activityDroplist'>
         <h3 className='activityTitle'>Activités mises en ligne</h3>
-        <Dropdown
+        <select
           placeholder='Activités'
           clearable
           options={activityOnline}
@@ -57,18 +64,18 @@ const ActivityAdmin = () => {
           }}
         />
         <div className='droplistButton'>
-          <Button class='ui button' style={{ background: '#868E96' }}>
+          <button style={{ background: '#868E96' }}>
             Modifier
-          </Button>
-          <Button class='ui button' style={{ background: '#868E96' }}>
+          </button>
+          <button style={{ background: '#868E96' }}>
             Supprimer
-          </Button>
+          </button>
         </div>
       </div>
       <div className='activityFormContainer'>
         <h3 className='activityTitleForm'>Nouvelle activité</h3>
         <div className='activityFormList'>
-          <Button
+          <button
             style={{
               width: '40px',
               height: '40px',
@@ -77,56 +84,73 @@ const ActivityAdmin = () => {
               border: 'solid 1px black'
             }}
           >
-            <Icon disabled name='add' style={{ color: 'black' }} />
-          </Button>
+            <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
+          </button>
           <div className='activityItems'>
-            <Dropdown
-              placeholder='Poles'
-              clearable
-              options={poleList}
-              selection
-              style={{
-                width: '25%',
-                margin: '15px',
-                border: 'solid 1px black',
-                background: '#CED4DA'
-              }}
-            />
-            <Input
+            <div className='activityCross'>
+              <select
+                placeholder='Poles'
+                clearable
+                options={poleList}
+                selection
+                style={{
+                  width: '25%',
+                  margin: '15px',
+                  border: 'solid 1px black',
+                  background: '#CED4DA'
+                }}
+              />
+              <button style={{ background: '#CED4DA'}}>
+                <FontAwesomeIcon icon='times' style={{ color: 'black'}} />
+              </button>
+            </div>
+            <input
               focus
               placeholder={`Titre de l'activité`}
-              style={{ margin: '10px', border: 'solid 1px black' }}
+              style={{ 
+                margin: '10px', 
+                border: 'solid 1px black', 
+                background: '#CED4DA' 
+              }}
               key='field2'
               name='field2'
               onChange={onChangeHandler}
               value={adminInput.field2}
             />
-            <Input
+            <input
               focus
               placeholder={`URL de l'image`}
-              style={{ margin: '10px', border: 'solid 1px black' }}
+              style={{ 
+                margin: '10px', 
+                border: 'solid 1px black', 
+                background: '#CED4DA' 
+              }}
               key='field3'
               name='field3'
               onChange={onChangeHandler}
               value={adminInput.field3}
             />
             <FormTiny setData={setData} />
-            <Input
+            <input
               focus
               placeholder={`Prix de l'activité`}
-              style={{ margin: '10px', border: 'solid 1px black' }}
+              style={{ 
+                margin: '10px', 
+                border: 'solid 1px black', 
+                background: '#CED4DA' 
+            }}
               key='field5'
               name='field5'
               onChange={onChangeHandler}
               value={adminInput.field5}
             />
             <div className='activityButton'>
-              <Button class='ui button' style={{ background: '#868E96' }}>
+              <button style={{ background: '#868E96' }}>
                 sauvegarder
-              </Button>
-              <Button class='ui button' style={{ background: '#868E96' }}>
+              </button>
+              <button style={{ background: '#868E96' }}>
                 publier
-              </Button>
+              </button>
             </div>
           </div>
         </div>
