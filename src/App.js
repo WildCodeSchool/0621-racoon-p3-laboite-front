@@ -38,11 +38,11 @@ function App() {
           <Route path='/partenaires'>
             <Partners />
           </Route>
-          <Route path='/admin'>
-            <Admin />
-          </Route>
           <Route exact path='/login'>
             <Login />
+          </Route>
+          <Route path='/admin'>
+            {localStorage.getItem('user_token') ? <Admin /> : <Home />}
           </Route>
         </Switch>
         <Footer />
