@@ -36,12 +36,7 @@ const TeamAdmin = () => {
           placeholder='Activités'
           clearable
           selection
-          style={{
-            width: '50%',
-            margin: '20px',
-            border: 'solid 1px black',
-            background: '#CED4DA'
-          }}
+          className='formSelect'
         >
           {team.map(member => (
             <option value={member.id}>{member.member_name}</option>
@@ -80,8 +75,8 @@ const TeamAdmin = () => {
             />
             <FormTiny setData={setData} />
             <div className='formButton'>
-              <button class='ui button'>sauvegarder</button>
-              <button class='ui button'>publier</button>
+              <button>sauvegarder</button>
+              <button>publier</button>
             </div>
           </div>
         </div>
