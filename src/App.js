@@ -13,6 +13,7 @@ import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import ActivityAdmin from './screens/Admin/ActivityAdmin'
+import TeamAdmin from './screens/Admin/TeamAdmin'
 import PoleForm from './components/PoleForm/PoleForm'
 
 import './App.css'
@@ -23,7 +24,6 @@ function App() {
 
   return (
     <Router>
-      
       <ScrollToTop />
       <div className='mainContainer'>
         {!isLogged && <Header />}
@@ -49,6 +49,9 @@ function App() {
           </Route>
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
+          </Route>
+          <Route exact path='/admin/team'>
+            <TeamAdmin />
           </Route>
           <Route path='/admin'>
             {localStorage.getItem('user_token') ? <Admin /> : <Home />}
