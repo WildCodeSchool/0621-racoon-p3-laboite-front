@@ -64,17 +64,25 @@ const ActivityAdmin = () => {
           }}
         />
         <div className='droplistButton'>
-          <button style={{ background: '#868E96' }}>
+          <button style={{ 
+            background: '#868E96', 
+            border: 'solid 1px black', 
+            margin: '10px'
+            }}>
             Modifier
           </button>
-          <button style={{ background: '#868E96' }}>
+          <button style={{ 
+            background: '#868E96', 
+            border: 'solid 1px black', 
+            margin: '10px'
+            }}>
             Supprimer
           </button>
         </div>
       </div>
-      <div className='activityFormContainer'>
+      <div className='activityContainer'>
         <h3 className='activityTitleForm'>Nouvelle activité</h3>
-        <div className='activityFormList'>
+        <div className='activityFormWrapper'>
           <button
             style={{
               width: '40px',
@@ -86,7 +94,7 @@ const ActivityAdmin = () => {
           >
             <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
           </button>
-          <div className='activityItems'>
+          <div className='activityForm'>
             <div className='activityCross'>
               <select
                 placeholder='Poles'
@@ -100,7 +108,10 @@ const ActivityAdmin = () => {
                   background: '#CED4DA'
                 }}
               />
-              <button style={{ background: '#CED4DA'}}>
+              <button style={{ 
+                background: '#CED4DA', 
+                border: 'solid 1px black'
+                }}>
                 <FontAwesomeIcon icon='times' style={{ color: 'black'}} />
               </button>
             </div>
@@ -145,10 +156,16 @@ const ActivityAdmin = () => {
               value={adminInput.field5}
             />
             <div className='activityButton'>
-              <button style={{ background: '#868E96' }}>
+              <button style={{ 
+                background: '#868E96', 
+                border: 'solid 1px black'
+                }}>
                 sauvegarder
               </button>
-              <button style={{ background: '#868E96' }}>
+              <button style={{ 
+                background: '#868E96', 
+                border: 'solid 1px black' 
+                }}>
                 publier
               </button>
             </div>

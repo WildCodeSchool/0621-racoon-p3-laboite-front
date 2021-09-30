@@ -36,7 +36,8 @@ export default function FormTiny({ setData }) {
       <button
         style={{
           marginTop: '20px',
-          background: '#868E96'
+          background: '#868E96',
+          border: '1px solid black'
         }}
         onClick={log}
       >
