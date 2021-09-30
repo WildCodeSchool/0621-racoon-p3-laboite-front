@@ -38,11 +38,11 @@ function App() {
           <Route path='/partenaires'>
             <Partners />
           </Route>
+          <Route path='/admin'>
+            <Admin />
+          </Route>
           <Route exact path='/login'>
             <Login />
-          </Route>
-          <Route>
-            <Admin />
           </Route>
         </Switch>
         <Footer />
