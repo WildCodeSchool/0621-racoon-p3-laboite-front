@@ -5,12 +5,36 @@ import axios from 'axios'
 import './PoleAdmin.css'
 
 const PoleAdmin = () => {
+  const [pole, setPole] = useState([])
+  const [adminInput, setAdminInput] = useState({})
+
+  useEffect(() => {
+    const recupData = async () => {
+      const results = await axios.post(`http://localhost:4000/pole`)
+      console.log(results.data)
+      setPole(results.data)
+    }
+    recupData()
+  }, [])
+  console.log(pole)
+
+  const onChangeHandler = useCallback(({ target: { name, value } }) =>
+    setAdminInput(state => ({ ...state, [name]: value }), [])
+  )
+  const setData = texte => {
+    setAdminInput({ ...adminInput, tiny: texte })
+  }
+
   return (
     <div className='new-pole-container'>
       <h3>Nouvelle page pôle</h3>
       <form className='new-pole-form'>
         <label>Nom de l'onglet</label>
-        <input placeholder="Nom de l'onglet" />
+        <input
+          placeholder={"Nom de l'onglet"}
+          onChange={onChangeHandler}
+          value={adminInput.pole_name}
+        />
 
         <label>Bannière</label>
         <input placeholder='url' />
