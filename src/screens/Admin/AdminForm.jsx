@@ -16,8 +16,8 @@ const AdminForm = () => {
       <input className='boxInput' />
       <input className='boxInput' />
       <div className='btnContainer flex row aic'>
-        <button>Modifier</button>
-        <button>Sauvegarder</button>
+        <div className='btnForm'>Modifier</div>
+        <div className='btnForm'>Sauvegarder</div>
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Admin from './screens/Admin/Admin'
+import AdminField from './screens/Admin/AdminField'
 import Contact from './screens/Contact/Contact'
 import Home from './screens/Home/Home'
 import Login from './screens/Login/Login'
@@ -37,6 +38,10 @@ function App() {
           </Route>
           <Route path='/partenaires'>
             <Partners />
+          </Route>
+          <Route exact path='/admin/:field' component={Admin} />
+          <Route>
+            <Admin />
           </Route>
           <Route path='/admin'>
             <Admin />

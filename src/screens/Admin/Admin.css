@@ -18,6 +18,9 @@
 	/* height: 100vh; */
 	color: white
 }
+.blacktxt{
+	background-color: black;
+}
 
 /*---------- Left Menu ----------*/
 .adminMenuLeft{
@@ -103,13 +106,30 @@
 	border-radius: 0px 0px 20px 20px;
 	overflow-x: scroll;
 }
+.noCard{
+	color: black;
+	padding: 20px;
+}
 .card{
+	position: relative;
 	min-height: 200px;
 	min-width: 200px;
 	margin: 20px;
 }
 .card:hover{
 	cursor: pointer;
+}
+.btnDeleteCard{
+	position: absolute;
+	font-size: 16px;
+	top: 15px;
+	right: 15px;
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
 }
 
 /*----- Bottom Div -----*/
@@ -136,7 +156,6 @@
 	height: 20px;
 	width: 20px;
 	margin-left:15px;
-	font-size: large;
 	background-color: snow;
 	border-radius: 5px;
 	color: var(--main-font-color)
@@ -156,7 +175,7 @@
 	padding:20px;
 	justify-content: space-evenly;
 }
-button{
+.btnForm{
 	padding: 10px 20px;
 	border-radius: 20px;
 	color: white;

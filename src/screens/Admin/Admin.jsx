@@ -1,26 +1,54 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
 
+import AdminCard from './AdminCard'
 import AdminForm from './AdminForm'
 import AdminLinkBtn from './AdminLinkBtn'
 import './Admin.css'
 
 const Admin = () => {
-  const adminLinkButtonList = [
+  // List of fields from backEnd
+  const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'A', route: 'poles' },
-    { id: 2, name: 'Activities', picto: 'B', route: 'activites' },
+    { id: 2, name: 'Activités', picto: 'B', route: 'activites' },
     { id: 3, name: 'Membres', picto: 'C', route: 'membres' }
   ]
-  const [elementList, setElementList] = useState([
-    'Conciergerie',
-    'Végétal',
-    'Recyclerie'
-  ])
+  // Recover the field from url
+  let { field } = useParams()
+  // Find the field.name from field
+  let fieldName = adminFieldList.find(x => x.route === field).name.toLowerCase()
+  let fieldId = adminFieldList.find(x => x.route === field).id
+  // List of poles from backEnd
+  let poles = ['Conciergerie', 'Végétal', 'Recyclerie']
+  let activities = []
+  let members = ['Sylvie Vannier', 'Thierry Petonnet', 'Hélène Ferreira']
+  const [elementList, setElementList] = useState([])
+  useEffect(() => {
+    // console.log(fieldId)
+    if (fieldId === 1) {
+      setElementList(poles)
+    } else if (fieldId === 2) {
+      setElementList(activities)
+    } else if (fieldId === 3) {
+      setElementList(members)
+    }
+  }, [field])
+  // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
 
+  // Function to add a new element to list
   const addElement = () => {
     setElementList(elementList.concat('Nouveau'))
     // console.log(elementList)
   }
+  // Function to remove an element from list
+  const removeElement = () => {
+    setElementList(elementList.pop())
+    console.log(elementList)
+    // console.log(elementList)
+  }
+
+  // Function to display form
   const displayForm = () => {
     setIsOpenForm(true)
     localStorage.setItem('IsOpenForm', true)
@@ -32,7 +60,7 @@ const Admin = () => {
     <div className='adminContainer flex row'>
       <div className='adminMenuLeft flex col'>
         <div className='dashboard'>Dashboard</div>
-        {adminLinkButtonList.map((btn, index) => (
+        {adminFieldList.map((btn, index) => (
           <AdminLinkBtn
             key={index}
             name={btn.name}
@@ -48,7 +76,7 @@ const Admin = () => {
         </div>
         <div className='topDiv'>
           <div className='topDivTitle'>
-            <p>Listes des pôles déjà en ligne</p>
+            <p>Listes des {fieldName} déjà en ligne</p>
             <div className='addButton flex row jcc aic' onClick={addElement}>
               <div>Nouvel élément</div>
               <div className='plusBtn flex jcc aic'>+</div>
@@ -56,15 +84,21 @@ const Admin = () => {
           </div>
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {elementList.map((elmt, index) => (
-                <div
-                  key={index}
-                  className={`card id${index + 1} colorme`}
-                  onClick={displayForm}
-                >
-                  {elmt}
+              {elementList.length === 0 ? (
+                <div className='noCard'>
+                  Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
+                  créer un nouvel élément !
                 </div>
-              ))}
+              ) : (
+                elementList.map((elmt, index) => (
+                  <AdminCard
+                    key={index}
+                    elmt={elmt}
+                    displayForm={displayForm}
+                    removeElement={removeElement}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
