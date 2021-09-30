@@ -33,7 +33,7 @@ export default function FormTiny({ setData }) {
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button style={{ marginTop: '15px' }} onClick={log}>Publier</button>
+      <button style={{ marginTop: '15px' }} onClick={log}>Sauvegarder</button>
     </div>
   )
 }
