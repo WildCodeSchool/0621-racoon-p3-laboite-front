@@ -5,6 +5,12 @@ const Login = () => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
+  const loadAdmin = () => {
+    localStorage.getItem('user_token')
+      ? console.log('admin connected') || window.location.replace('/admin')
+      : alert("Erreur d'authentification")
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     axios
@@ -16,13 +22,6 @@ const Login = () => {
         localStorage.setItem('user_token', res.headers['x-access-token'])
       })
     setTimeout(() => loadAdmin(), 1000)
-  }
-
-  const loadAdmin = () => {
-    localStorage.getItem('user_token')
-      ? console.log('admin connected') &&
-        window.location.replace('http://localhost:3000/admin')
-      : alert("Erreur d'authentification")
   }
 
   return (
