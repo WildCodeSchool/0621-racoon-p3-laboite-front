@@ -5,7 +5,7 @@ const Login = () => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const onSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault()
     axios
       .post('http://localhost:4000/login', {
@@ -15,11 +15,19 @@ const Login = () => {
       .then(res => {
         localStorage.setItem('user_token', res.headers['x-access-token'])
       })
+    setTimeout(() => loadAdmin(), 1000)
+  }
+
+  const loadAdmin = () => {
+    localStorage.getItem('user_token')
+      ? console.log('admin connected') &&
+        window.location.replace('http://localhost:3000/admin')
+      : alert("Erreur d'authentification")
   }
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input
           type='text'
