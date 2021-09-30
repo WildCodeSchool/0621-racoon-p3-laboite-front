@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
 import useModal from '../Modal/useModal'
@@ -44,12 +43,14 @@ const Navbar = () => {
         password
       })
       .then(res => {
+        console.log(res.status)
         localStorage.setItem('user_token', res.headers['x-access-token'])
         if (res.headers['x-access-token']) {
           window.location.replace('/admin')
           setIsConnected(true)
         }
       })
+      .catch(err => alert(err))
   }
   console.log(isConnected)
   const logout = () => {
