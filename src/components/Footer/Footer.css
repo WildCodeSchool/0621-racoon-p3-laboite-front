@@ -16,15 +16,14 @@
   margin-bottom: 20px;
 }
 
-.footerSocial svg {
-  color: var(--red-background-color);
+.footerSocial img {
   width: 24px;
   height: 24px;
   cursor: pointer;
   transition: 0.1s;
 }
 
-.footerSocial svg:hover {
+.footerSocial img:hover {
   transform: scale(1.1);
 }
 
@@ -47,4 +46,25 @@
     border-left: 2px solid var(--red-background-color);
     height: 70%;
     margin-top: 0.75%;
+}
+
+
+@media screen and (max-width: 700px) {
+  .footerLink {
+    width: 90%;
+    font-size: 0.75rem;
+  }
+  .footerSeparator {
+    margin-top: 0.5%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footerLink {
+    flex-direction:column;
+    gap: 10px;
+  }
+  .footerSeparator {
+    display:none;
+  }
 }
