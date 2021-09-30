@@ -5,8 +5,8 @@
 .header {
   flex-direction: row;
   height: 150px;
-  background-color: #EB5160;
-  color: white;
+  background-color: var(--red-background-color);
+  color: var(--title-color);
 }
 
 .header-logo {
