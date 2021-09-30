@@ -13,7 +13,7 @@ import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import ActivityAdmin from './screens/Admin/ActivityAdmin'
-import PoleForm from './components/PoleForm/PoleForm'
+import PoleAdmin from './screens/Admin/PoleAdmin'
 
 import './App.css'
 import './Normalize.css'
@@ -48,6 +48,9 @@ function App() {
           </Route>
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
+          </Route>
+          <Route exact path='/admin/pole'>
+            <PoleAdmin />
           </Route>
           <Route path='/admin'>
             {localStorage.getItem('user_token') ? <Admin /> : <Home />}
