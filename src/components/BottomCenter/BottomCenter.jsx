@@ -1,13 +1,13 @@
 import '../../App.css'
 import './BottomCenter.css'
 
-const BottomCenter = () => {
+const BottomCenter = ({ pole_num, pole_email }) => {
   return (
     <div className='centerContainer'>
       <section className='bottomCenter'>
         <h4>LA BOÎTE D’À CÔTÉ, Y A QU’À DEMANDER !</h4>
-        <p>02 00 70 07 00</p>
-        <p>bonjour@laboitedacote.fr</p>
+        <p>{pole_num}</p>
+        <p>{pole_email}</p>
       </section>
     </div>
   )
