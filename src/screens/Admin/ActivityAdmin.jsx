@@ -72,9 +72,9 @@ const ActivityAdmin = () => {
           </button>
         </div>
       </div>
-      <div className='activityFormContainer'>
+      <div className='activityContainer'>
         <h3 className='activityTitleForm'>Nouvelle activité</h3>
-        <div className='activityFormList'>
+        <div className='activityFormWrapper'>
           <button
             style={{
               width: '40px',
@@ -86,7 +86,7 @@ const ActivityAdmin = () => {
           >
             <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
           </button>
-          <div className='activityItems'>
+          <div className='activityForm'>
             <div className='activityCross'>
               <select
                 placeholder='Poles'
