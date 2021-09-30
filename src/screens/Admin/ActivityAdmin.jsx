@@ -3,7 +3,7 @@ import { Button, Dropdown, Icon, Input } from 'semantic-ui-react'
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.css'
 import './ActivityAdmin.css'
 
 const ActivityAdmin = () => {
