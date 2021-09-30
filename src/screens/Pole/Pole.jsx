@@ -55,7 +55,7 @@ const Pole = () => {
             ))}
           </div>
         </div>
-        <BottomCenter />
+        <BottomCenter {...poleData} />
       </div>
     </>
   )
