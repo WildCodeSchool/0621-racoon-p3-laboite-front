@@ -10,7 +10,8 @@ import Home from './screens/Home/Home'
 import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
-import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
+import PoleForm from './components/PoleForm/PoleForm'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 import './App.css'
 import './Normalize.css'
@@ -18,6 +19,7 @@ import './Normalize.css'
 function App() {
   return (
     <Router>
+      <PoleForm />
       <ScrollToTop />
       <div className='mainContainer'>
         <Header />
