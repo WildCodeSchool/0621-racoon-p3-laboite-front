@@ -46,6 +46,13 @@
   background: #E64980;
 }
 
+.activityCross {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
 .activityButton {
   display: flex;
   justify-content: space-around;
