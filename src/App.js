@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Router>
-      <PoleForm />
+      
       <ScrollToTop />
       <div className='mainContainer'>
         {!isLogged && <Header />}
