@@ -19,7 +19,7 @@ const Modal = ({ isShowing, hide, ...props }) =>
                   <span>&times;</span>
                 </button>
                 <div className='modal-header'>
-                  <h4>Espace de connexion :</h4>
+                  <h4>Connexion Administrateur :</h4>
                 </div>
                 <div className='modal-body'>{props.children}</div>
               </div>

@@ -13,9 +13,16 @@ const Navbar = () => {
   const [data, setData] = useState()
   const [fixNav, setFixNav] = useState(false)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
 
   useEffect(() => {
     axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', stickyNav)
+    return () => window.removeEventListener('scroll', stickyNav)
   }, [])
 
   const stickyNav = () => {
@@ -26,10 +33,18 @@ const Navbar = () => {
     }
   }
 
-  useEffect(() => {
-    window.addEventListener('scroll', stickyNav)
-    return () => window.removeEventListener('scroll', stickyNav)
-  }, [])
+  const onSubmit = e => {
+    e.preventDefault()
+    axios
+      .post(`${process.env.REACT_APP_URL_API}/login`, {
+        email,
+        password
+      })
+      .then(res => {
+        localStorage.setItem('user_token', res.headers['x-access-token'])
+        res.headers['x-access-token'] && window.location.replace('/admin')
+      })
+  }
 
   data && console.log(data)
 
@@ -56,12 +71,22 @@ const Navbar = () => {
         />
       </div>
       <Modal isShowing={isLoginFormShowed} hide={toggleLoginForm}>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className='form-group'>
-            <input type='text' placeholder='Email' />
+            <input
+              type='email'
+              placeholder='Email'
+              name='email'
+              onChange={e => setEmail(e.target.value)}
+            />
           </div>
           <div className='form-group'>
-            <input type='text' placeholder='Password' />
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              onChange={e => setPassword(e.target.value)}
+            />
           </div>
           <div className='form-group'>
             <input type='submit' value='Login' />

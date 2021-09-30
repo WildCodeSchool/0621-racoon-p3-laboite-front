@@ -82,12 +82,15 @@ button.modal-toggle,input[type="submit"],.form-btn {
 margin-top: 10px;
 }
 
-input[type="text"],
 input[type="password"],
 input[type="email"] {
 box-sizing: border-box;
-width: 100%;
-padding: 0.5rem 0.7rem;
+width: 70%;
+padding: 0.2rem;
+outline: none;
+border: none;
+border-bottom: 2px solid var(--red-background-color);
+margin-bottom: 10px;
 }
 
 @media screen and (max-width:400px){
