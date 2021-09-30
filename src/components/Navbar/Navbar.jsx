@@ -15,9 +15,12 @@ const Navbar = () => {
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [isConnected, setIsConnected] = useState(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/pole`).then(res => setData(res.data))
+    axios
+      .get(`${process.env.REACT_APP_URL_API}/pole`)
+      .then(res => setData(res.data))
   }, [])
 
   useEffect(() => {
@@ -42,11 +45,18 @@ const Navbar = () => {
       })
       .then(res => {
         localStorage.setItem('user_token', res.headers['x-access-token'])
-        res.headers['x-access-token'] && window.location.replace('/admin')
+        if (res.headers['x-access-token']) {
+          window.location.replace('/admin')
+          setIsConnected(true)
+        }
       })
   }
-
-  data && console.log(data)
+  console.log(isConnected)
+  const logout = () => {
+    setIsConnected(false)
+    localStorage.removeItem('user_token')
+    window.location.replace('/')
+  }
 
   return (
     <div className={`flex navlist ${fixNav && 'flex sticky'}`}>
@@ -71,30 +81,38 @@ const Navbar = () => {
         />
       </div>
       <Modal isShowing={isLoginFormShowed} hide={toggleLoginForm}>
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='email'
-              placeholder='Email'
-              name='email'
-              onChange={e => setEmail(e.target.value)}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              placeholder='Password'
-              name='password'
-              onChange={e => setPassword(e.target.value)}
-            />
-          </div>
-          <div className='form-group'>
-            <input type='submit' value='Login' />
-            <button className='form-btn' onClick={toggleLoginForm}>
-              Annuler
+        {isConnected ? (
+          <div>
+            <button className='form-btn' onClick={logout}>
+              Se déconnecté
             </button>
           </div>
-        </form>
+        ) : (
+          <form onSubmit={onSubmit}>
+            <div className='form-group'>
+              <input
+                type='email'
+                placeholder='Email'
+                name='email'
+                onChange={e => setEmail(e.target.value)}
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                type='password'
+                placeholder='Password'
+                name='password'
+                onChange={e => setPassword(e.target.value)}
+              />
+            </div>
+            <div className='form-group'>
+              <input type='submit' value='Login' />
+              <button className='form-btn' onClick={toggleLoginForm}>
+                Annuler
+              </button>
+            </div>
+          </form>
+        )}
       </Modal>
     </div>
   )

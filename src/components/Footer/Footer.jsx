@@ -10,9 +10,7 @@ const Footer = () => {
     const getInfo = () => {
       axios
         .get(`${process.env.REACT_APP_URL_API}/social`)
-        .then(
-          response => console.table(response.data) || setSocial(response.data)
-        )
+        .then(response => setSocial(response.data))
     }
     getInfo()
   }, [])
