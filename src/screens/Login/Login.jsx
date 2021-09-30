@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const Login = () => {
+const Login = props => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
@@ -15,6 +15,7 @@ const Login = () => {
       .then(res => {
         localStorage.setItem('user_token', res.headers['x-access-token'])
       })
+    props.setisLogged(!props.isLogged)
   }
 
   return (

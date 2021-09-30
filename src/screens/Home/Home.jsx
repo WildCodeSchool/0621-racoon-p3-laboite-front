@@ -40,7 +40,6 @@ const Home = () => {
     <>
       <img className='banner' src={concept.concept_banner} alt='blere-beach' />
       <div className='centerContainer'>
-        {/* <img src={ruban} alt='ruban' style={{ paddingBottom: '50px' }} /> */}
         <RubanConcept />
         <div className='descContainer'>
           <div>
