@@ -4,7 +4,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-import './TeamAdmin.css'
+import './form.css'
 
 const TeamAdmin = () => {
   const [team, setTeam] = useState([])
@@ -15,7 +15,6 @@ const TeamAdmin = () => {
       const results = await axios.get(`http://localhost:4000/team`)
       console.log(results.data)
       setTeam(results.data)
-      // setLoading(false)
     }
     recupData()
   }, [])
@@ -31,8 +30,8 @@ const TeamAdmin = () => {
 
   return (
     <div>
-      <div className='teamDroplist'>
-        <h3 className='teamTitle'>Membres mises en ligne</h3>
+      <div className='formDroplist'>
+        <h3 className='formTitle'>Membres mises en ligne</h3>
         <select
           placeholder='Activités'
           clearable
@@ -54,21 +53,13 @@ const TeamAdmin = () => {
           <button>Supprimer</button>
         </div>
       </div>
-      <div className='teamFormContainer'>
-        <h3 className='teamTitleForm'>Nouveau membres</h3>
-        <div className='teamFormList'>
-          <button
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: '#E64980',
-              border: 'solid 1px black'
-            }}
-          >
+      <div className='FormContainer'>
+        <h3 className='formTitleForm'>Nouveau membres</h3>
+        <div className='FormList'>
+          <button className='formAddUserBtn'>
             <FontAwesomeIcon icon={faUserPlus} />
           </button>
-          <div className='teamItems'>
+          <div className='formItems'>
             <input
               focus
               placeholder={'Nom du membre'}
@@ -88,13 +79,9 @@ const TeamAdmin = () => {
               value={adminInput.field3}
             />
             <FormTiny setData={setData} />
-            <div className='teamButton'>
-              <button class='ui button' style={{ background: '#868E96' }}>
-                sauvegarder
-              </button>
-              <button class='ui button' style={{ background: '#868E96' }}>
-                publier
-              </button>
+            <div className='formButton'>
+              <button class='ui button'>sauvegarder</button>
+              <button class='ui button'>publier</button>
             </div>
           </div>
         </div>
