@@ -119,6 +119,10 @@
 .card:hover{
 	cursor: pointer;
 }
+.cardContent{
+	min-height: 200px;
+	min-width: 200px;
+}
 .btnDeleteCard{
 	position: absolute;
 	font-size: 16px;

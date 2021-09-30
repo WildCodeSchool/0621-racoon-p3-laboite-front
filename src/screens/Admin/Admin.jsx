@@ -49,10 +49,21 @@ const Admin = () => {
   }
 
   // Function to display form
-  const displayForm = () => {
+  const displayForm = e => {
+    let myClass = e.target.className
+    console.log('class', myClass)
+
+    if (myClass.includes('id')) {
+      let charIdStart = myClass.indexOf('id')
+      let myClassTrunc = myClass.slice(0, charIdStart)
+      let charIdEnd = myClassTrunc.indexOf(' ')
+
+      console.log('hey', myClassTrunc)
+    }
+
     setIsOpenForm(true)
     localStorage.setItem('IsOpenForm', true)
-    console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
+    // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
     // console.log('Form visible: ', isVisibleForm)
   }
 
@@ -94,6 +105,7 @@ const Admin = () => {
                   <AdminCard
                     key={index}
                     elmt={elmt}
+                    id={index + 31}
                     displayForm={displayForm}
                     removeElement={removeElement}
                   />
