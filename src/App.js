@@ -19,7 +19,6 @@ import './Normalize.css'
 function App() {
   return (
     <Router>
-      <PoleForm />
       <ScrollToTop />
       <div className='mainContainer'>
         <Header />
