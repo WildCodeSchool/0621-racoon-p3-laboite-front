@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
@@ -11,17 +12,22 @@ import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
+import ActivityAdmin from './screens/Admin/ActivityAdmin'
+import PoleForm from './components/PoleForm/PoleForm'
 
 import './App.css'
 import './Normalize.css'
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false)
+
   return (
     <Router>
+      <PoleForm />
       <ScrollToTop />
       <div className='mainContainer'>
-        <Header />
-        <Navbar />
+        {!isLogged && <Header />}
+        {!isLogged && <Navbar />}
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -39,13 +45,16 @@ function App() {
             <Partners />
           </Route>
           <Route exact path='/login'>
-            <Login />
+            <Login isLogged={isLogged} setIsLogged={setIsLogged} />
           </Route>
-          <Route>
-            <Admin />
+          <Route exact path='/admin/activity'>
+            <ActivityAdmin />
+          </Route>
+          <Route path='/admin'>
+            {localStorage.getItem('user_token') ? <Admin /> : <Home />}
           </Route>
         </Switch>
-        <Footer />
+        {!isLogged && <Footer />}
       </div>
     </Router>
   )

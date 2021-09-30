@@ -8,9 +8,6 @@ import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import './Contact.css'
 
 const Contact = () => {
-  // Infos à mettre dans le back
-  const contactTitle = 'Contact'
-  const contactPicto = 'phone-alt'
   // Infos de contact de la Boite d'acoté
   const [contact, setContact] = useState('')
   const [social, setSocial] = useState([])
@@ -36,7 +33,7 @@ const Contact = () => {
 
   return (
     <div className='contact centerContainer'>
-      <RibbonTitle picto={contactPicto} title={contactTitle} />
+      <RibbonTitle picto={'phone-alt'} title={'Contact'} />
       <div className='contactInfoWrapper'>
         <div className='contactInfo'>
           <div className='contactInfoContent'>
