@@ -10,6 +10,7 @@ import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import TopCenter from './../../components/TopCenter/TopCenter'
 
 import '../../components/ActivitiesPole/ActivitiesPole.css'
+
 import './Pole.css'
 
 const Pole = () => {

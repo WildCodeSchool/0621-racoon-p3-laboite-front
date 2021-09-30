@@ -56,7 +56,6 @@ const Home = () => {
         </div>
 
         <Concept concept={concept} />
-
         <div className='poles'>
           <div className='poleTitleContainer'>
             <h5 className='poleTitle'>
