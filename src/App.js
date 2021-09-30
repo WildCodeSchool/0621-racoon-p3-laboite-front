@@ -43,8 +43,8 @@ function App() {
           <Route exact path='/login'>
             <Login />
           </Route>
-          <Route>
-            <Admin />
+          <Route path='/admin'>
+            {localStorage.getItem('user_token') ? <Admin /> : <Home />}
           </Route>
         </Switch>
         <Footer />
