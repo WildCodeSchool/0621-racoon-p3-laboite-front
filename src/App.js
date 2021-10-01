@@ -15,9 +15,6 @@ import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
-import ActivityAdmin from './screens/Admin/ActivityAdmin'
-import TeamAdmin from './screens/Admin/TeamAdmin'
-// import PoleForm from './components/PoleForm/PoleForm'
 
 import './App.css'
 import './Normalize.css'
@@ -51,21 +48,16 @@ function App() {
             <Login isLogged={isLogged} setIsLogged={setIsLogged} />
           </Route>
           <Route exact path='/admin/activity'>
-            <div>AdminActivity</div>
-            <AdminActivity />
+            {localStorage.getItem('user_token') ? <AdminActivity /> : <Home />}
           </Route>
           <Route exact path='/admin/pole'>
-            <div>AdminPole</div>
-            <AdminPole />
+            {localStorage.getItem('user_token') ? <AdminPole /> : <Home />}
           </Route>
           <Route exact path='/admin/team'>
-            <div>AdminTeam</div>
-            <AdminTeam />
+            {localStorage.getItem('user_token') ? <AdminTeam /> : <Home />}
           </Route>
           <Route path='/admin'>
             {localStorage.getItem('user_token') ? <AdminHome /> : <Home />}
-            {/* <div>AdminHome</div>
-            <AdminHome /> */}
           </Route>
         </Switch>
         {!isLogged && <Footer />}

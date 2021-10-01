@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function FormTiny({ setData }) {
+export default function FormTiny({ setData, setConfirmTiny }) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
       setData(text)
+      setConfirmTiny(true)
     }
   }
   return (
@@ -35,13 +36,14 @@ export default function FormTiny({ setData }) {
       />
       <button
         style={{
+          cursor: 'pointer',
           marginTop: '20px',
           background: '#868E96',
           border: '1px solid black'
         }}
         onClick={log}
       >
-        Publier
+        Confirmer
       </button>
     </div>
   )
