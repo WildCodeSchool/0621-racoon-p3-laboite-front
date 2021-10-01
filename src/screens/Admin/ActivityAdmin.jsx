@@ -8,8 +8,8 @@ import axios from 'axios'
 import './ActivityAdmin.css'
 
 const iconList = Object.keys(Icons)
-.filter(key => key !== 'fas' && key !== 'prefix')
-.map(icon => Icons[icon])
+  .filter(key => key !== 'fas' && key !== 'prefix')
+  .map(icon => Icons[icon])
 
 library.add(...iconList)
 
@@ -64,18 +64,22 @@ const ActivityAdmin = () => {
           }}
         />
         <div className='droplistButton'>
-          <button style={{ 
-            background: '#868E96', 
-            border: 'solid 1px black', 
-            margin: '10px'
-            }}>
+          <button
+            style={{
+              background: '#868E96',
+              border: 'solid 1px black',
+              margin: '10px'
+            }}
+          >
             Modifier
           </button>
-          <button style={{ 
-            background: '#868E96', 
-            border: 'solid 1px black', 
-            margin: '10px'
-            }}>
+          <button
+            style={{
+              background: '#868E96',
+              border: 'solid 1px black',
+              margin: '10px'
+            }}
+          >
             Supprimer
           </button>
         </div>
@@ -108,20 +112,22 @@ const ActivityAdmin = () => {
                   background: '#CED4DA'
                 }}
               />
-              <button style={{ 
-                background: '#CED4DA', 
-                border: 'solid 1px black'
-                }}>
-                <FontAwesomeIcon icon='times' style={{ color: 'black'}} />
+              <button
+                style={{
+                  background: '#CED4DA',
+                  border: 'solid 1px black'
+                }}
+              >
+                <FontAwesomeIcon icon='times' style={{ color: 'black' }} />
               </button>
             </div>
             <input
               focus
               placeholder={`Titre de l'activité`}
-              style={{ 
-                margin: '10px', 
-                border: 'solid 1px black', 
-                background: '#CED4DA' 
+              style={{
+                margin: '10px',
+                border: 'solid 1px black',
+                background: '#CED4DA'
               }}
               key='field2'
               name='field2'
@@ -131,10 +137,10 @@ const ActivityAdmin = () => {
             <input
               focus
               placeholder={`URL de l'image`}
-              style={{ 
-                margin: '10px', 
-                border: 'solid 1px black', 
-                background: '#CED4DA' 
+              style={{
+                margin: '10px',
+                border: 'solid 1px black',
+                background: '#CED4DA'
               }}
               key='field3'
               name='field3'
@@ -145,27 +151,31 @@ const ActivityAdmin = () => {
             <input
               focus
               placeholder={`Prix de l'activité`}
-              style={{ 
-                margin: '10px', 
-                border: 'solid 1px black', 
-                background: '#CED4DA' 
-            }}
+              style={{
+                margin: '10px',
+                border: 'solid 1px black',
+                background: '#CED4DA'
+              }}
               key='field5'
               name='field5'
               onChange={onChangeHandler}
               value={adminInput.field5}
             />
             <div className='activityButton'>
-              <button style={{ 
-                background: '#868E96', 
-                border: 'solid 1px black'
-                }}>
+              <button
+                style={{
+                  background: '#868E96',
+                  border: 'solid 1px black'
+                }}
+              >
                 sauvegarder
               </button>
-              <button style={{ 
-                background: '#868E96', 
-                border: 'solid 1px black' 
-                }}>
+              <button
+                style={{
+                  background: '#868E96',
+                  border: 'solid 1px black'
+                }}
+              >
                 publier
               </button>
             </div>
