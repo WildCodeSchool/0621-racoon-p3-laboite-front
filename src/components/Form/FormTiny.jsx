@@ -41,7 +41,7 @@ export default function FormTiny({ setData }) {
         }}
         onClick={log}
       >
-        Publier
+        Sauvegarder
       </button>
     </div>
   )
