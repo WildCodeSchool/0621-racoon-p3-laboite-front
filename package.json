@@ -23,6 +23,7 @@
     "react-scripts": "^4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
+    "tinymce": "^5.9.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
