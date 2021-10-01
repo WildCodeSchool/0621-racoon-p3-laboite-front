@@ -23,7 +23,7 @@
 }
 
 .modal {
-  z-index: 100;
+  z-index: 300;
   background: #fff;
   position: relative;
   margin: auto;

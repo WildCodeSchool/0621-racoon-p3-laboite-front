@@ -22,20 +22,20 @@
   color: #E64980;
 }
 
-.activityFormContainer {
+.activityContainer {
   width: 100%;
   background: #CED4DA;
   padding: 40px;
 } 
 
-.activityFormList {
+.activityFormWrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 20px;
 }
 
-.activityItems {
+.activityForm {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

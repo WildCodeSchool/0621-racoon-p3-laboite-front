@@ -4,13 +4,18 @@ import PropTypes from 'prop-types'
 
 import './Modal.css'
 
-const Modal = ({ isShowing, hide, ...props }) =>
+const Modal = ({ isShowing, hide, title, ...props }) =>
   isShowing
     ? ReactDOM.createPortal(
         <>
           <div className='modal-overlay'>
             <div className='modal-wrapper'>
-              <div className='modal'>
+              <div
+                className='modal'
+                onClick={e => {
+                  e.stopPropagation()
+                }}
+              >
                 <button
                   type='button'
                   className='modal-close-button'
@@ -19,7 +24,7 @@ const Modal = ({ isShowing, hide, ...props }) =>
                   <span>&times;</span>
                 </button>
                 <div className='modal-header'>
-                  <h4>Connexion Administrateur :</h4>
+                  <h4>{title}</h4>
                 </div>
                 <div className='modal-body'>{props.children}</div>
               </div>
