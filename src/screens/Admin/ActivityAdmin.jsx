@@ -17,41 +17,70 @@ const ActivityAdmin = () => {
   const [activities, setActivities] = useState([])
   const [pole, setPole] = useState([])
   const [adminInput, setAdminInput] = useState({ pole: '1' })
+  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [selectActivity, setSelectActivity] = useState('1')
+
+  const recupData = async () => {
+    const results = await axios.get(`http://localhost:4000/activities`)
+    setActivities(results.data)
+    // setLoading(false)
+  }
 
   useEffect(() => {
-    const recupData = async () => {
-      const results = await axios.get(`http://localhost:4000/activities`)
-      setActivities(results.data)
-      // setLoading(false)
-    }
     recupData()
   }, [])
 
   useEffect(() => {
-    const recupData = async () => {
+    const getPole = async () => {
       const results = await axios.get(`http://localhost:4000/pole`)
       setPole(results.data)
       // setLoading(false)
     }
-    recupData()
+    getPole()
   }, [])
 
   const submitData = e => {
     e.preventDefault()
     console.log(adminInput)
+    if (confirmTiny === true) {
+      axios
+        .post('http://localhost:4000/activities', adminInput)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      setConfirmTiny(false)
+    } else {
+      alert('Confirmer avant de publier')
+    }
+  }
+
+  const deleteActivity = async selectActivity => {
+    console.log(('id', selectActivity))
+    const id = selectActivity
     axios
-      .post('http://localhost:4000/activities', adminInput)
-      .then(response => {
-        console.log(response)
+      .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
+      .then(resToBack => {
+        recupData()
+        console.log('res delete', resToBack)
+        alert('Activité supprimé')
       })
       .catch(error => {
-        console.log(error)
+        if (error) {
+          console.log('logErrDelet', error.response)
+          alert(error.response.data.message)
+        }
       })
   }
 
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setAdminInput(state => ({ ...state, [name]: value }), [])
   )
+  // const onChangeHandler2 = (e) => {
+  //     setAdminInput({...adminInput, [e.target.name]: e.target.value })
+  // }
 
   const setData = texte => {
     setAdminInput({ ...adminInput, activity_desc: texte })
@@ -59,14 +88,13 @@ const ActivityAdmin = () => {
 
   return (
     <div>
-      {console.log('poulet02', adminInput)}
+      {/* ------------ drop menu activies Start------------------ */}
       <div className='activityDroplist'>
         <h3 className='activityTitle'>Activités mises en ligne</h3>
         <select
-          // value={activities}
-          // onChange = {(e) =>  {
-          // const selectedActivity = e.target.value;
-          // setActivities(selectedActivity)}}
+          onChange={e =>
+            console.log(e.target.value) || setSelectActivity(e.target.value)
+          }
           placeholder='Activités mises en ligne'
           style={{
             width: '50%',
@@ -90,6 +118,7 @@ const ActivityAdmin = () => {
             Modifier
           </button>
           <button
+            onClick={() => deleteActivity(selectActivity)}
             style={{
               background: '#868E96',
               border: 'solid 1px black',
@@ -100,29 +129,22 @@ const ActivityAdmin = () => {
           </button>
         </div>
       </div>
+      {/* ------------ drop menu activies End------------------ */}
+      {/* ------------ form add activies Start------------------ */}
       <div className='activityContainer'>
         <h3 className='activityTitleForm'>Nouvelle activité</h3>
         <div className='activityFormWrapper'>
-          {/* <button
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: '#E64980',
-              border: 'solid 1px black'
-            }}
-          ></button> */}
           <div className='activityItems'>
             <div className='activityCross'>
               <button>
                 <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
               </button>
+              {/* -----select Pole Start-----  */}
               <div className='activityForm'>
                 <div className='activityCross'>
                   <select
                     placeholder='Les poles'
                     onChange={e =>
-                      console.log('poulet01', e.target.value) ||
                       setAdminInput({ ...adminInput, pole: e.target.value })
                     }
                     style={{
@@ -138,18 +160,7 @@ const ActivityAdmin = () => {
                       </option>
                     ))}
                   </select>
-                  {/* <select
-                    placeholder='Poles'
-                    clearable
-                    options={pole_title}
-                    selection
-                    style={{
-                      width: '25%',
-                      margin: '15px',
-                      border: 'solid 1px black',
-                      background: '#CED4DA'
-                    }}
-                  /> */}
+                  {/* -----select Pole End-----  */}
                   <button
                     style={{
                       background: '#CED4DA',
@@ -186,7 +197,7 @@ const ActivityAdmin = () => {
                   onChange={onChangeHandler}
                   value={adminInput.activity_img}
                 />
-                <FormTiny setData={setData} />
+                <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
                 <input
                   focus
                   placeholder={`Prix de l'activité`}
@@ -201,9 +212,14 @@ const ActivityAdmin = () => {
                   value={adminInput.field5}
                 />
                 <div className='activityButton'>
+                  <p style={{ color: 'white' }}>
+                    Penser à confirmer avant de publier
+                  </p>
                   <button
+                    disabled={!confirmTiny}
                     onClick={submitData}
                     style={{
+                      cursor: 'pointer',
                       background: '#868E96',
                       border: 'solid 1px black'
                     }}
