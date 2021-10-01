@@ -33,6 +33,9 @@
   width: 100%;
   background: #CED4DA;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .FormList {
@@ -63,14 +66,19 @@
   background: #E64980;
 }
 
-.formItems input {
+.formItems > * {
+  margin: 10px;
+}
+
+.formItems input, .formItems textarea {
   padding: 7px;
   outline: none;
   border: none !important;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-.formItems input:focus {
+
+.formItems input:focus, .formItems textarea:focus {
   border-left: 2px solid black !important;
 }
 
@@ -99,4 +107,37 @@
 .tox-tinymce {
   margin: 20px 0;
   border: none !important;
+}
+
+.formTeam {
+  width: 40%;
+  transform: translateX(-40px);
+}
+
+.formItemsTeam {
+  width: 100%;
+}
+
+.formError {
+  color: #000;
+}
+
+@media screen and (max-width: 1000px){
+  .formTeam {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .formTeam {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 800px){
+  .formTeam {
+    width: 100%;
+  }
+  .formItemsTeam {
+    width: 75%;
+  }
 }

@@ -1,4 +1,3 @@
-import FormTiny from '../../components/Form/FormTiny'
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +9,7 @@ const TeamAdmin = () => {
   const [team, setTeam] = useState([])
   const [adminInput, setAdminInput] = useState({ member_id: '1' })
   const [refresh, setRefresh] = useState(false)
+  const [resMessage, setMessage] = useState('')
 
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setAdminInput(state => ({ ...state, [name]: value }), [])
@@ -28,24 +28,41 @@ const TeamAdmin = () => {
     recupData()
   }, [refresh])
 
-  const postData = async () => {
-    console.log(adminInput)
-    const results = await axios.post(`${process.env.REACT_APP_URL_API}/team`, [
-      adminInput
-    ])
-    console.log('res post', results)
+  const postData = () => {
+    axios
+      .post(`${process.env.REACT_APP_URL_API}/team`, [adminInput])
+      .then(resToBack => {
+        console.log('res post', resToBack)
+        setMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrPost', error.response)
+          setMessage(error.response.data.message)
+        }
+      })
   }
 
   const deleteMember = async () => {
     console.log(('menberId', adminInput.member_id))
     const member_id = adminInput.member_id
-    const results = await axios.delete(
-      `${process.env.REACT_APP_URL_API}/team/${member_id}`
-    )
-    console.log('res delete', results)
-    setRefresh(!refresh)
+    axios
+      .delete(`${process.env.REACT_APP_URL_API}/team/${member_id}`)
+      .then(resToBack => {
+        console.log('res delete', resToBack)
+        setMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrDelet', error.response)
+          setMessage(error.response.data.message)
+        }
+      })
   }
 
+  console.log('message', resMessage)
   console.log(adminInput)
   return (
     <div>
@@ -74,30 +91,37 @@ const TeamAdmin = () => {
       </div>
       <div className='FormContainer'>
         <h3 className='formTitleForm'>Nouveau membres</h3>
-        <div className='FormList'>
+        <div className='FormList formTeam'>
           <button className='formAddUserBtn'>
             <FontAwesomeIcon icon={faUserPlus} />
           </button>
-          <div className='formItems'>
+          <div className='formItems formItemsTeam'>
             <input
               focus
               placeholder={'Nom du membre'}
-              style={{ margin: '10px', border: 'solid 1px black' }}
               key='member_name'
               name='member_name'
               onChange={onChangeHandler}
-              value={adminInput.field2}
+              value={adminInput.member_name}
             />
             <input
               focus
               placeholder={'URL de la photo'}
-              style={{ margin: '10px', border: 'solid 1px black' }}
               key='member_img'
               name='member_img'
               onChange={onChangeHandler}
-              value={adminInput.field3}
+              value={adminInput.member_img}
             />
-            <FormTiny setData={setData} />
+            <textarea
+              focus
+              placeholder={'Role du membre'}
+              key='member_role'
+              name='member_role'
+              rows='4'
+              onChange={onChangeHandler}
+              value={adminInput.member_role}
+            ></textarea>
+            <span className='formError'>{resMessage && resMessage}</span>
             <div className='formButton'>
               <button onClick={postData}>publier</button>
             </div>

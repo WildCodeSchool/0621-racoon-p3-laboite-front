@@ -33,7 +33,16 @@ export default function FormTiny({ setData }) {
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button onClick={log}>Save</button>
+      <button
+        style={{
+          marginTop: '20px',
+          background: '#868E96',
+          border: '1px solid black'
+        }}
+        onClick={log}
+      >
+        Sauvegarder
+      </button>
     </div>
   )
 }
