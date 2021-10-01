@@ -39,7 +39,9 @@ const TeamAdmin = () => {
           className='formSelect'
         >
           {team.map(member => (
-            <option value={member.id}>{member.member_name}</option>
+            <option key={member.id} value={member.id}>
+              {member.member_name}
+            </option>
           ))}
         </select>
         <div className='droplistButton'>

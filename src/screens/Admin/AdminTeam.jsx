@@ -1,36 +1,46 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 import AdminCard from '../../components/Admin/AdminCard'
 import AdminForm from '../../components/Admin/AdminForm'
 import AdminLinkBtn from '../../components/Admin/AdminLinkBtn'
+import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 import TeamAdmin from './TeamAdmin'
 
 import './Admin.css'
 
-const AdminPole = () => {
-  // List of fields from backEnd
+const AdminTeam = () => {
+  // List of fields from backEnd (to do)
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'A', route: 'pole' },
     { id: 2, name: 'Activités', picto: 'B', route: 'activity' },
     { id: 3, name: 'Membres', picto: 'C', route: 'team' }
   ]
-  // List of poles from backEnd
-  let team = ['Sylvie Vannier', 'Thierry Petonnet', 'Hélène Ferreira']
-  const [elementList, setElementList] = useState(team)
+  // List of team members NOT from backEnd
+  // let notbackteam = ['Sylvie Vannier', 'Thierry Petonnet', 'Hélène Ferreira']
+  // const [team, setTeam] = useState(notbackteam)
+
+  // List of team members NOT from backEnd
+  const [team, setTeam] = useState([])
+  useEffect(() => {
+    const getTeam = async () => {
+      const results = await axios.get(`http://localhost:4000/team`)
+      // console.log(results.data)
+      setTeam(results.data)
+    }
+    getTeam()
+  }, [])
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
 
   // Function to add a new element to list
   const addElement = () => {
-    setElementList(elementList.concat('Nouveau'))
-    // console.log(elementList)
+    // setTeam(team.concat('Nouveau'))
   }
   // Function to remove an element from list
   const removeElement = () => {
-    setElementList(elementList.pop())
-    console.log(elementList)
-    // console.log(elementList)
+    // setTeam(team.pop())
   }
 
   // Function to display form
@@ -38,18 +48,9 @@ const AdminPole = () => {
     let myClass = e.target.className
     console.log('class', myClass)
 
-    // if (myClass.includes('id')) {
-    //   let charIdStart = myClass.indexOf('id')
-    //   let myClassTrunc = myClass.slice(0, charIdStart)
-    //   let charIdEnd = myClassTrunc.indexOf(' ')
-
-    //   console.log('hey', myClassTrunc)
-    // }
-
     setIsOpenForm(true)
     localStorage.setItem('IsOpenForm', true)
     // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
-    // console.log('Form visible: ', isVisibleForm)
   }
 
   return (
@@ -71,26 +72,20 @@ const AdminPole = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <div className='topDivTitle'>
-            <p>Listes des membres déjà en ligne</p>
-            <div className='addButton flex row jcc aic' onClick={addElement}>
-              <div>Nouvel élément</div>
-              <div className='plusBtn flex jcc aic'>+</div>
-            </div>
-          </div>
+          <AdminTopDiv elmt={'membres'} addElement={addElement} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {elementList.length === 0 ? (
+              {team.length === 0 ? (
                 <div className='noCard'>
                   Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
                   créer un nouvel élément !
                 </div>
               ) : (
-                elementList.map((elmt, index) => (
+                team.map((elmt, index) => (
                   <AdminCard
                     key={index}
-                    elmt={elmt}
-                    id={index + 1}
+                    elmt={elmt.member_name}
+                    id={elmt.id}
                     displayForm={displayForm}
                     removeElement={removeElement}
                   />
@@ -112,4 +107,4 @@ const AdminPole = () => {
   )
 }
 
-export default AdminPole
+export default AdminTeam
