@@ -1,4 +1,3 @@
-import FormTiny from '../../components/Form/FormTiny'
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,18 +7,10 @@ import './form.css'
 
 const TeamAdmin = () => {
   const [team, setTeam] = useState([])
-  const [adminInput, setAdminInput] = useState({})
+  const [adminInput, setAdminInput] = useState({ member_id: '1' })
+  const [refresh, setRefresh] = useState(false)
+  const [resMessage, setMessage] = useState('')
 
-  useEffect(() => {
-    const recupData = async () => {
-      const results = await axios.get(`http://localhost:4000/team`)
-      console.log(results.data)
-      setTeam(results.data)
-    }
-    recupData()
-  }, [])
-
-  console.log(team)
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setAdminInput(state => ({ ...state, [name]: value }), [])
   )
@@ -28,6 +19,51 @@ const TeamAdmin = () => {
     setAdminInput({ ...adminInput, tiny: texte })
   }
 
+  useEffect(() => {
+    const recupData = async () => {
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/team`)
+      console.log('res get', results.data)
+      setTeam(results.data)
+    }
+    recupData()
+  }, [refresh])
+
+  const postData = () => {
+    axios
+      .post(`${process.env.REACT_APP_URL_API}/team`, [adminInput])
+      .then(resToBack => {
+        console.log('res post', resToBack)
+        setMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrPost', error.response)
+          setMessage(error.response.data.message)
+        }
+      })
+  }
+
+  const deleteMember = async () => {
+    console.log(('menberId', adminInput.member_id))
+    const member_id = adminInput.member_id
+    axios
+      .delete(`${process.env.REACT_APP_URL_API}/team/${member_id}`)
+      .then(resToBack => {
+        console.log('res delete', resToBack)
+        setMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrDelet', error.response)
+          setMessage(error.response.data.message)
+        }
+      })
+  }
+
+  console.log('message', resMessage)
+  console.log(adminInput)
   return (
     <div>
       <div className='formDroplist'>
@@ -37,46 +73,57 @@ const TeamAdmin = () => {
           clearable
           selection
           className='formSelect'
+          onChange={e =>
+            setAdminInput({ ...adminInput, member_id: e.target.value })
+          }
         >
           {team.map(member => (
-            <option value={member.id}>{member.member_name}</option>
+            <option key={member.id} value={member.id} name={member.member_name}>
+              {member.member_name}
+            </option>
           ))}
         </select>
         <div className='droplistButton'>
           <button>Modifier</button>
 
-          <button>Supprimer</button>
+          <button onClick={deleteMember}>Supprimer</button>
         </div>
       </div>
       <div className='FormContainer'>
         <h3 className='formTitleForm'>Nouveau membres</h3>
-        <div className='FormList'>
+        <div className='FormList formTeam'>
           <button className='formAddUserBtn'>
             <FontAwesomeIcon icon={faUserPlus} />
           </button>
-          <div className='formItems'>
+          <div className='formItems formItemsTeam'>
             <input
               focus
               placeholder={'Nom du membre'}
-              style={{ margin: '10px', border: 'solid 1px black' }}
-              key='field2'
-              name='field2'
+              key='member_name'
+              name='member_name'
               onChange={onChangeHandler}
-              value={adminInput.field2}
+              value={adminInput.member_name}
             />
             <input
               focus
               placeholder={'URL de la photo'}
-              style={{ margin: '10px', border: 'solid 1px black' }}
-              key='field3'
-              name='field3'
+              key='member_img'
+              name='member_img'
               onChange={onChangeHandler}
-              value={adminInput.field3}
+              value={adminInput.member_img}
             />
-            <FormTiny setData={setData} />
+            <textarea
+              focus
+              placeholder={'Role du membre'}
+              key='member_role'
+              name='member_role'
+              rows='4'
+              onChange={onChangeHandler}
+              value={adminInput.member_role}
+            ></textarea>
+            <span className='formError'>{resMessage && resMessage}</span>
             <div className='formButton'>
-              <button>sauvegarder</button>
-              <button>publier</button>
+              <button onClick={postData}>publier</button>
             </div>
           </div>
         </div>
