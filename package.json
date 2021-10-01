@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.8.3",
     "@tinymce/tinymce-react": "^3.12.6",
     "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
     "install": "^0.13.0",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
@@ -23,6 +24,7 @@
     "react-scripts": "^4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
+    "tinymce": "^5.9.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
