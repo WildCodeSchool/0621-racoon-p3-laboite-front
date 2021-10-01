@@ -1,5 +1,3 @@
-import './Admin.css'
-
 const AdminForm = () => {
   const handleCloseClick = () => {
     console.log('click to close')

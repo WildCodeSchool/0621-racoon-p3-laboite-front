@@ -5,8 +5,10 @@ import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
-import Admin from './screens/Admin/Admin'
-// import AdminField from './screens/Admin/AdminField'
+import AdminHome from './screens/Admin/AdminHome'
+import AdminActivity from './screens/Admin/AdminActivity'
+import AdminPole from './screens/Admin/AdminPole'
+import AdminTeam from './screens/Admin/AdminTeam'
 import Contact from './screens/Contact/Contact'
 import Home from './screens/Home/Home'
 import Login from './screens/Login/Login'
@@ -49,13 +51,21 @@ function App() {
             <Login isLogged={isLogged} setIsLogged={setIsLogged} />
           </Route>
           <Route exact path='/admin/activity'>
-            <ActivityAdmin />
+            <div>AdminActivity</div>
+            <AdminActivity />
+          </Route>
+          <Route exact path='/admin/pole'>
+            <div>AdminPole</div>
+            <AdminPole />
           </Route>
           <Route exact path='/admin/team'>
-            <TeamAdmin />
+            <div>AdminTeam</div>
+            <AdminTeam />
           </Route>
           <Route path='/admin'>
-            {localStorage.getItem('user_token') ? <Admin /> : <Home />}
+            {localStorage.getItem('user_token') ? <AdminHome /> : <Home />}
+            {/* <div>AdminHome</div>
+            <AdminHome /> */}
           </Route>
         </Switch>
         {!isLogged && <Footer />}

@@ -1,5 +1,3 @@
-import './Admin.css'
-
 const AdminCard = ({ elmt, id, displayForm, removeElement }) => {
   return (
     <div className={`card flex jcc aic colorme`}>

@@ -1,38 +1,22 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useState } from 'react'
 
-import AdminCard from './AdminCard'
+// import PoleAdmin from './PoleAdmin'
+import AdminCard from '../../components/Admin/AdminCard'
 import AdminForm from '../../components/Admin/AdminForm'
-import AdminLinkBtn from './AdminLinkBtn'
+import AdminLinkBtn from '../../components/Admin/AdminLinkBtn'
 import './Admin.css'
 
-const Admin = () => {
+const AdminPole = () => {
   // List of fields from backEnd
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'A', route: 'pole' },
     { id: 2, name: 'Activités', picto: 'B', route: 'activity' },
     { id: 3, name: 'Membres', picto: 'C', route: 'team' }
   ]
-  // Recover the field from url
-  let { field } = useParams()
-  // Find the field.name from field
-  let fieldName = adminFieldList.find(x => x.route === field).name.toLowerCase()
-  let fieldId = adminFieldList.find(x => x.route === field).id
   // List of poles from backEnd
-  let poles = ['Conciergerie', 'Végétal', 'Recyclerie']
-  let activities = []
-  let members = ['Sylvie Vannier', 'Thierry Petonnet', 'Hélène Ferreira']
-  const [elementList, setElementList] = useState([])
-  useEffect(() => {
-    // console.log(fieldId)
-    if (fieldId === 1) {
-      setElementList(poles)
-    } else if (fieldId === 2) {
-      setElementList(activities)
-    } else if (fieldId === 3) {
-      setElementList(members)
-    }
-  }, [field])
+  let pole = ['Conciergerie', 'Végétal', 'Recyclerie']
+  const [elementList, setElementList] = useState(pole)
+
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
 
@@ -53,13 +37,13 @@ const Admin = () => {
     let myClass = e.target.className
     console.log('class', myClass)
 
-    if (myClass.includes('id')) {
-      let charIdStart = myClass.indexOf('id')
-      let myClassTrunc = myClass.slice(0, charIdStart)
-      let charIdEnd = myClassTrunc.indexOf(' ')
+    // if (myClass.includes('id')) {
+    //   let charIdStart = myClass.indexOf('id')
+    //   let myClassTrunc = myClass.slice(0, charIdStart)
+    //   let charIdEnd = myClassTrunc.indexOf(' ')
 
-      console.log('hey', myClassTrunc)
-    }
+    //   console.log('hey', myClassTrunc)
+    // }
 
     setIsOpenForm(true)
     localStorage.setItem('IsOpenForm', true)
@@ -87,7 +71,7 @@ const Admin = () => {
         </div>
         <div className='topDiv'>
           <div className='topDivTitle'>
-            <p>Listes des {fieldName} déjà en ligne</p>
+            <p>Listes des pôles déjà en ligne</p>
             <div className='addButton flex row jcc aic' onClick={addElement}>
               <div>Nouvel élément</div>
               <div className='plusBtn flex jcc aic'>+</div>
@@ -105,7 +89,7 @@ const Admin = () => {
                   <AdminCard
                     key={index}
                     elmt={elmt}
-                    id={index + 31}
+                    id={index + 1}
                     displayForm={displayForm}
                     removeElement={removeElement}
                   />
@@ -114,12 +98,17 @@ const Admin = () => {
             </div>
           </div>
         </div>
-        <div className='bottomDiv flex jcc'>
-          {isOpenForm && <AdminForm displayForm={displayForm} />}
+        <div className='bottomDiv flex col jcc aic'>
+          {isOpenForm && (
+            <>
+              <AdminForm displayForm={displayForm} />
+              <div>PoleAdmin</div>
+            </>
+          )}
         </div>
       </div>
     </div>
   )
 }
 
-export default Admin
+export default AdminPole
