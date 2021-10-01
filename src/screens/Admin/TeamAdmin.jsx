@@ -8,18 +8,9 @@ import './form.css'
 
 const TeamAdmin = () => {
   const [team, setTeam] = useState([])
-  const [adminInput, setAdminInput] = useState({})
+  const [adminInput, setAdminInput] = useState({ member_id: '1' })
+  const [refresh, setRefresh] = useState(false)
 
-  useEffect(() => {
-    const recupData = async () => {
-      const results = await axios.get(`http://localhost:4000/team`)
-      console.log(results.data)
-      setTeam(results.data)
-    }
-    recupData()
-  }, [])
-
-  console.log(team)
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setAdminInput(state => ({ ...state, [name]: value }), [])
   )
@@ -28,6 +19,34 @@ const TeamAdmin = () => {
     setAdminInput({ ...adminInput, tiny: texte })
   }
 
+  useEffect(() => {
+    const recupData = async () => {
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/team`)
+      console.log('res get', results.data)
+      setTeam(results.data)
+    }
+    recupData()
+  }, [refresh])
+
+  const postData = async () => {
+    console.log(adminInput)
+    const results = await axios.post(`${process.env.REACT_APP_URL_API}/team`, [
+      adminInput
+    ])
+    console.log('res post', results)
+  }
+
+  const deleteMember = async () => {
+    console.log(('menberId', adminInput.member_id))
+    const member_id = adminInput.member_id
+    const results = await axios.delete(
+      `${process.env.REACT_APP_URL_API}/team/${member_id}`
+    )
+    console.log('res delete', results)
+    setRefresh(!refresh)
+  }
+
+  console.log(adminInput)
   return (
     <div>
       <div className='formDroplist'>
@@ -37,15 +56,20 @@ const TeamAdmin = () => {
           clearable
           selection
           className='formSelect'
+          onChange={e =>
+            setAdminInput({ ...adminInput, member_id: e.target.value })
+          }
         >
           {team.map(member => (
-            <option value={member.id}>{member.member_name}</option>
+            <option key={member.id} value={member.id} name={member.member_name}>
+              {member.member_name}
+            </option>
           ))}
         </select>
         <div className='droplistButton'>
           <button>Modifier</button>
 
-          <button>Supprimer</button>
+          <button onClick={deleteMember}>Supprimer</button>
         </div>
       </div>
       <div className='FormContainer'>
@@ -59,8 +83,8 @@ const TeamAdmin = () => {
               focus
               placeholder={'Nom du membre'}
               style={{ margin: '10px', border: 'solid 1px black' }}
-              key='field2'
-              name='field2'
+              key='member_name'
+              name='member_name'
               onChange={onChangeHandler}
               value={adminInput.field2}
             />
@@ -68,15 +92,14 @@ const TeamAdmin = () => {
               focus
               placeholder={'URL de la photo'}
               style={{ margin: '10px', border: 'solid 1px black' }}
-              key='field3'
-              name='field3'
+              key='member_img'
+              name='member_img'
               onChange={onChangeHandler}
               value={adminInput.field3}
             />
             <FormTiny setData={setData} />
             <div className='formButton'>
-              <button>sauvegarder</button>
-              <button>publier</button>
+              <button onClick={postData}>publier</button>
             </div>
           </div>
         </div>

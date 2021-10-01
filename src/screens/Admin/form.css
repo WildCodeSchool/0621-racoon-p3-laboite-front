@@ -53,10 +53,6 @@
   cursor: pointer;
 }
 
-.formAddUserBtn svg {
-  transform: translateX(-45%);
-}
-
 .formItems {
   display: flex;
   flex-direction: column;
@@ -85,7 +81,7 @@
   align-items: center;
 }
 
-.formButton button {
+.formButton button, button {
   padding: 10px;
   border-radius: 3px;
   background-color: var(--green-background-color);
@@ -93,13 +89,14 @@
   border: none;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  margin-bottom: 5px;
+  margin: 5px !important;
 }
 
-.formButton button:hover {
+.formButton button:hover , button:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 .tox-tinymce {
   margin: 20px 0;
+  border: none !important;
 }
