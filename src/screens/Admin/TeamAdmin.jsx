@@ -6,19 +6,24 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import './form.css'
 
 const TeamAdmin = () => {
+  // List des membres
   const [team, setTeam] = useState([])
+
+  // Données du formulaire
   const [adminInput, setAdminInput] = useState({ member_id: '1' })
+
+  // Rafraichi la list des membres
   const [refresh, setRefresh] = useState(false)
+
+  // Message d'info du back
   const [resMessage, setMessage] = useState('')
 
+  // Mets a jour l'objet state adminInput
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
-  const setData = texte => {
-    setAdminInput({ ...adminInput, tiny: texte })
-  }
-
+  // Recupere les données des membres
   useEffect(() => {
     const recupData = async () => {
       const results = await axios.get(`${process.env.REACT_APP_URL_API}/team`)
@@ -28,13 +33,21 @@ const TeamAdmin = () => {
     recupData()
   }, [refresh])
 
-  const postData = () => {
+  // Envois les donnée du formulaire
+  const postData = e => {
+    e.preventDefault()
     axios
       .post(`${process.env.REACT_APP_URL_API}/team`, [adminInput])
       .then(resToBack => {
         console.log('res post', resToBack)
         setMessage(resToBack.data.message)
         setRefresh(!refresh)
+        setAdminInput({
+          member_img: null,
+          member_name: null,
+          member_role: null,
+          member_id: 1
+        })
       })
       .catch(error => {
         if (error) {
@@ -44,26 +57,53 @@ const TeamAdmin = () => {
       })
   }
 
-  const deleteMember = async () => {
+  // Supprime un membre
+  const deleteMember = () => {
     console.log(('menberId', adminInput.member_id))
     const member_id = adminInput.member_id
     axios
-      .delete(`${process.env.REACT_APP_URL_API}/team/${member_id}`)
+      .get(`${process.env.REACT_APP_URL_API}/team/${member_id}`)
       .then(resToBack => {
-        console.log('res delete', resToBack)
-        setMessage(resToBack.data.message)
-        setRefresh(!refresh)
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrDelet', error.response)
-          setMessage(error.response.data.message)
+        const member_name = resToBack.data.member_name
+        let inputPrompt = prompt(
+          `Veuillez ecrire ${member_name} pour le Supprimer.`
+        )
+        while (inputPrompt !== member_name) {
+          inputPrompt = prompt(
+            `Veuillez ecrire ${member_name} pour le Supprimer.`
+          )
+          if (inputPrompt === null) {
+            break
+          }
+        }
+        if (inputPrompt === member_name) {
+          // Code à éxécuter si le l'utilisateur clique sur "OK"
+          axios
+            .delete(`${process.env.REACT_APP_URL_API}/team/${member_id}`)
+            .then(resToBack => {
+              console.log('res delete', resToBack)
+              alert(`${member_name} a etait Supprimer !`)
+              setMessage(resToBack.data.message)
+              setRefresh(!refresh)
+              setAdminInput({
+                member_img: null,
+                member_name: null,
+                member_role: null,
+                member_id: 1
+              })
+            })
+            .catch(error => {
+              if (error) {
+                console.log('logErrDelet', error.response)
+                setMessage(error.response.data.message)
+              }
+            })
         }
       })
   }
 
   console.log('message', resMessage)
-  console.log(adminInput)
+  console.log('stateData', adminInput)
   return (
     <div>
       <div className='formDroplist'>
@@ -95,7 +135,7 @@ const TeamAdmin = () => {
           <button className='formAddUserBtn'>
             <FontAwesomeIcon icon={faUserPlus} />
           </button>
-          <div className='formItems formItemsTeam'>
+          <form className='formItems formItemsTeam' onSubmit={postData}>
             <input
               focus
               placeholder={'Nom du membre'}
@@ -123,9 +163,9 @@ const TeamAdmin = () => {
             ></textarea>
             <span className='formError'>{resMessage && resMessage}</span>
             <div className='formButton'>
-              <button onClick={postData}>publier</button>
+              <button type='submit'>publier</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
