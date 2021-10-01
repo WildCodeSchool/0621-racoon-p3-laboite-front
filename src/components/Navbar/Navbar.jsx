@@ -85,7 +85,7 @@ const Navbar = () => {
         {isConnected ? (
           <div>
             <button className='form-btn' onClick={logout}>
-              Se déconnecté
+              Se déconnecter
             </button>
           </div>
         ) : (
