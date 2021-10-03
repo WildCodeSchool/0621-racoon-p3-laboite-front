@@ -22,7 +22,7 @@ const AdminTeam = () => {
       setTeam(results.data)
     }
     getTeam()
-  }, [team])
+  }, [])
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)

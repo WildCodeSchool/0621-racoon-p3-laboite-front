@@ -124,6 +124,12 @@
 	cursor: pointer;
 }
 .cardContent{
+	position: relative;
+	min-height: 200px;
+	min-width: 200px;
+}
+.cardContent img{
+	position: absolute;
 	min-height: 200px;
 	min-width: 200px;
 }

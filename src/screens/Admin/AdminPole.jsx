@@ -23,7 +23,7 @@ const AdminPole = () => {
       setPoles(results.data)
     }
     getPoles()
-  }, [poles])
+  }, [])
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
@@ -66,6 +66,7 @@ const AdminPole = () => {
                     key={index}
                     elmt={elmt.pole_name}
                     id={elmt.id}
+                    img={elmt.pole_miniature_img}
                     displayForm={displayForm}
                     removeElement={removeElement}
                   />
