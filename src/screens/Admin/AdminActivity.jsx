@@ -23,7 +23,7 @@ const AdminActivity = () => {
       setActivities(results.data)
     }
     getActivities()
-  }, [])
+  }, [activities])
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)

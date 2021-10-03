@@ -23,7 +23,7 @@ const AdminPole = () => {
       setPoles(results.data)
     }
     getPoles()
-  }, [])
+  }, [poles])
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
