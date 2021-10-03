@@ -64,7 +64,7 @@ const AdminActivity = () => {
                 activities.map((elmt, index) => (
                   <AdminCard
                     key={index}
-                    elmt={elmt.activity_desc}
+                    elmt={elmt.activity_title}
                     id={elmt.id}
                     displayForm={displayForm}
                     removeElement={removeElement}
