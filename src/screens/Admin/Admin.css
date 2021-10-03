@@ -35,6 +35,9 @@
 	border-bottom: solid 1px #616161;
 	background-color: #212121;
 }
+.dashboardTitle{
+	margin-left: 10px;
+}
 .adminLinkButton{
 	background-color: #414141;
 	padding: 20px;
@@ -43,6 +46,7 @@
 }
 .adminLinkButton:hover{
 	cursor: pointer;
+	/* background-color: var(--main-font-color); */
 	background-color: #515151;
 }
 .logoContainer{
@@ -104,7 +108,7 @@
 .cardContainer{
 	background-color: lightgray;
 	border-radius: 0px 0px 20px 20px;
-	overflow-x: scroll;
+	overflow-x: auto;
 }
 .noCard{
 	color: black;
@@ -173,6 +177,11 @@
 	margin: 10px;
 	background-color: #616161;
 	color: white;
+}
+.teamFormContainer{
+	background-color: aqua;
+	width: 90%;
+	margin: auto;
 }
 .btnContainer{
 	width:100%;

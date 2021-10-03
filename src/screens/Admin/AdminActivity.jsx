@@ -4,19 +4,13 @@ import { useState, useEffect } from 'react'
 import ActivityAdmin from './ActivityAdmin'
 import AdminCard from '../../components/Admin/AdminCard'
 import AdminForm from '../../components/Admin/AdminForm'
-import AdminLinkBtn from '../../components/Admin/AdminLinkBtn'
+import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
 
 const AdminActivity = () => {
-  // List of fields from backEnd (to do)
-  const adminFieldList = [
-    { id: 1, name: 'Pôles', picto: 'A', route: 'pole' },
-    { id: 2, name: 'Activités', picto: 'B', route: 'activity' },
-    { id: 3, name: 'Membres', picto: 'C', route: 'team' }
-  ]
-  // List of activities NOT from backEnd
+  // List of activities NOT from backEnd (test only)
   // let notbackactivities = ['Bricolage', 'Electricité']
   // const [activities, setActivities] = useState(notbackactivities)
 
@@ -33,7 +27,6 @@ const AdminActivity = () => {
 
   // Variable to check if form is open
   const [isOpenForm, setIsOpenForm] = useState(false)
-
   // Function to add a new element to list
   const addElement = () => {
     setActivities(activities.concat('Nouveau'))
@@ -42,12 +35,10 @@ const AdminActivity = () => {
   const removeElement = () => {
     setActivities(activities.pop())
   }
-
   // Function to display form
   const displayForm = e => {
     let myClass = e.target.className
     console.log('class', myClass)
-
     setIsOpenForm(true)
     localStorage.setItem('IsOpenForm', true)
     // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
@@ -55,18 +46,7 @@ const AdminActivity = () => {
 
   return (
     <div className='adminContainer flex row'>
-      <div className='adminMenuLeft flex col'>
-        <div className='dashboard'>Dashboard</div>
-        {adminFieldList.map((btn, index) => (
-          <AdminLinkBtn
-            key={index}
-            name={btn.name}
-            picto={btn.picto}
-            id={btn.id}
-            route={btn.route}
-          />
-        ))}
-      </div>
+      <AdminLeftMenu />
       <div className='adminMenuRight flex col'>
         <div className='adminHeader'>
           Bienvenue dans l&apos;espace administration !
