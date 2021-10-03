@@ -1,26 +1,30 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import PoleCard from './PoleCard'
+import { useEffect, useState } from 'react'
+import PoleCardAdmin from './PoleCardAdmin'
 
 const PoleCardList = () => {
-  const [poleOnline, setPoleOnline] = useState([])
+  const [poleCards, setPoleCards] = useState([])
 
   useEffect(() => {
-    const recupData = async () => {
-      const results = await axios.post(`http://localhost:4000/pole`)
-      console.log(results.data)
-      setPoleOnline(results.data)
+    const PoleData = async () => {
+      const results = await axios.get(`http://localhost:4000/pole`)
+      setPoleCards(results.data)
     }
-    recupData()
+    PoleData()
   }, [])
 
-  console.log(poleOnline)
+  const clickCard = id => {
+    const DeleteData = async () => {
+      const results = await axios.delete(`http://localhost:4000/pole/${id}`)
+      setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
+    }
+    DeleteData()
+  }
 
   return (
     <>
-      {poleOnline.map(card => (
-        <PoleCard key={card.id} {...card} />
+      {poleCards.map(card => (
+        <PoleCardAdmin key={card.id} {...card} deleteCard={clickCard} />
       ))}
     </>
   )

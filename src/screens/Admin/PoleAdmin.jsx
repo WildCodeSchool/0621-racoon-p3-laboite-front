@@ -1,18 +1,21 @@
+import { useState } from 'react'
 import PoleCardList from './PoleCardList'
-import PoleFormPut from './PoleFormPut'
+import PoleFormPost from './PoleFormPost'
 
 const PoleAdmin = () => {
+  const [showForm, setShowForm] = useState(false)
   return (
     <div className='admin-container'>
       <div className='admin-header'>
+        <PoleCardList />
         {/* close admin button */}
-        <button> close </button>
+        <button> X </button>
       </div>
-      <PoleCardList />
+
       <h3>Nouvelle page pôle</h3>
       {/* show or hide form button */}
       <button> + </button>
-      <PoleFormPut />
+      <PoleFormPost />
     </div>
   )
 }
