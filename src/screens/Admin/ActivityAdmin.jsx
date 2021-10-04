@@ -19,6 +19,7 @@ const ActivityAdmin = () => {
   const [adminInput, setAdminInput] = useState({ pole: '1' })
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
+  const [image, setImage] = useState('')
 
   const recupData = async () => {
     const results = await axios.get(`http://localhost:4000/activities`)
@@ -41,12 +42,18 @@ const ActivityAdmin = () => {
 
   const submitData = e => {
     e.preventDefault()
-    console.log(adminInput)
+    const fd = new FormData()
+    fd.append('activity_img', adminInput.activity_img)
+    const config = {headers: {
+      'Content-Type': 'multipart/form-data'
+    }}
+    // console.log('chouette', {...adminInput, fd})
     if (confirmTiny === true) {
       axios
-        .post('http://localhost:4000/activities', adminInput)
+        .post('http://localhost:4000/activities',fd , config)
         .then(response => {
           console.log(response)
+          alert('Activité créée')
         })
         .catch(error => {
           console.log(error)
@@ -65,7 +72,7 @@ const ActivityAdmin = () => {
       .then(resToBack => {
         recupData()
         console.log('res delete', resToBack)
-        alert('Activité supprimé')
+        alert('Activité supprimée')
       })
       .catch(error => {
         if (error) {
@@ -184,19 +191,21 @@ const ActivityAdmin = () => {
                   onChange={onChangeHandler}
                   value={adminInput.activity_title}
                 />
-                <input
-                  focus
-                  placeholder={`URL de l'image`}
-                  key='activity_img'
-                  name='activity_img'
-                  style={{
-                    margin: '10px',
-                    border: 'solid 1px black',
-                    background: '#CED4DA'
-                  }}
-                  onChange={onChangeHandler}
-                  value={adminInput.activity_img}
-                />
+                
+                  <input
+                    type='file'
+                    focus
+                    placeholder={`URL de l'image`}
+                    key='activity_img'
+                    name='activity_img'
+                    style={{
+                      margin: '10px',
+                      border: 'solid 1px black',
+                      background: '#CED4DA'
+                    }}
+                    onChange={onChangeHandler}
+                    value={adminInput.activity_img}
+                  />
                 <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
                 <input
                   focus
@@ -210,7 +219,7 @@ const ActivityAdmin = () => {
                   name='field5'
                   onChange={onChangeHandler}
                   value={adminInput.field5}
-                />
+                  />
                 <div className='activityButton'>
                   <p style={{ color: 'white' }}>
                     Penser à confirmer avant de publier
@@ -223,16 +232,18 @@ const ActivityAdmin = () => {
                       background: '#868E96',
                       border: 'solid 1px black'
                     }}
-                  >
+                    >
                     Publier
                   </button>
                 </div>
               </div>
+                
             </div>
           </div>
         </div>
       </div>
     </div>
+                   
   )
 }
 
