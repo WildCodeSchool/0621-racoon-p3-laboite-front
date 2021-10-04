@@ -1,4 +1,10 @@
-const PoleCardAdmin = ({ id, pole_name, pole_miniature_img, deleteCard }) => {
+const PoleCardAdmin = ({
+  id,
+  pole_name,
+  pole_miniature_img,
+  deleteCard,
+  modifyCard
+}) => {
   return (
     <>
       <figure>
@@ -8,6 +14,7 @@ const PoleCardAdmin = ({ id, pole_name, pole_miniature_img, deleteCard }) => {
         </figcaption>
       </figure>
       <button onClick={() => deleteCard(id)}>Supprimer</button>
+      <button onClick={() => modifyCard(id)}>Modifier</button>
     </>
   )
 }
