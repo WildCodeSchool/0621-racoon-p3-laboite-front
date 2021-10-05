@@ -52,7 +52,7 @@ const Navbar = () => {
       })
       .catch(err => alert(err))
   }
-  console.log(isConnected)
+  console.log('isConnected', isConnected)
   const logout = () => {
     setIsConnected(false)
     localStorage.removeItem('user_token')
