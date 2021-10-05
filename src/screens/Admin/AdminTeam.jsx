@@ -2,45 +2,65 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormTeam from '../../components/Admin/AdminFormTeam'
+import AdminFormTeamCreate from '../../components/Admin/AdminFormTeamCreate'
+import AdminFormTeamUpdate from '../../components/Admin/AdminFormTeamUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
 
 const AdminTeam = () => {
-  // List of team members NOT from backEnd (test only)
-  // let notbackteam = ['Sylvie Vannier', 'Thierry Petonnet', 'Hélène Ferreira']
-  // const [team, setTeam] = useState(notbackteam)
-
+  // List of states
+  const [refresh, setRefresh] = useState(false)
+  const [newForm, setNewForm] = useState(false)
+  const [form, setForm] = useState(false)
+  const [memberToUpdate, setMemberToUpdate] = useState('')
+  const [resMessage, setResMessage] = useState('')
   // List of team members NOT from backEnd
   const [team, setTeam] = useState([])
   useEffect(() => {
     const getTeam = async () => {
-      const results = await axios.get(`http://localhost:4000/team`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/team`)
       // console.log(results.data)
       setTeam(results.data)
     }
     getTeam()
-  }, [])
+  }, [refresh])
 
-  // Variable to check if form is open
-  const [isOpenForm, setIsOpenForm] = useState(false)
-  // Function to add a new element to list
-  const addElement = () => {
-    // setTeam(team.concat('Nouveau'))
+  const deleteMember = async () => {
+    axios
+      .delete(`${process.env.REACT_APP_URL_API}/team/${memberToUpdate}`)
+      .then(resToBack => {
+        console.log('res delete', resToBack)
+        // setResMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrDelet', error.response)
+          // setResMessage(error.response.data.message)
+        }
+      })
+    setTimeout(closeForm, 2000)
   }
-  // Function to remove an element from list
-  const removeElement = () => {
-    // setTeam(team.pop())
+  console.log(resMessage)
+
+  // Functions to display forms
+  const dispCreateForm = () => {
+    setNewForm(true)
+    setForm(false)
+    // console.log('create')
   }
-  // Function to display form
-  const displayForm = e => {
-    let myClass = e.target.className
-    console.log('class', myClass)
-    setIsOpenForm(true)
-    localStorage.setItem('IsOpenForm', true)
-    // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
+  const dispUpdateForm = e => {
+    setNewForm(false)
+    setForm(true)
+    setMemberToUpdate(e.target.id)
+    // console.log('update', e.target.id)
+  }
+  const closeForm = () => {
+    setNewForm(false)
+    setForm(false)
+    // console.log('close')
   }
 
   return (
@@ -51,7 +71,7 @@ const AdminTeam = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'membres'} addElement={addElement} />
+          <AdminTopDiv elmt={'membres'} addElement={dispCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
               {team.length === 0 ? (
@@ -60,13 +80,12 @@ const AdminTeam = () => {
                   créer un nouvel élément !
                 </div>
               ) : (
-                team.map((elmt, index) => (
+                team.map(elmt => (
                   <AdminCard
-                    key={index}
-                    elmt={elmt.member_name}
+                    key={elmt.id}
                     id={elmt.id}
-                    displayForm={displayForm}
-                    removeElement={removeElement}
+                    name={elmt.member_name}
+                    updateElement={dispUpdateForm}
                   />
                 ))
               )}
@@ -74,9 +93,21 @@ const AdminTeam = () => {
           </div>
         </div>
         <div className='bottomDiv flex col jcc aic'>
-          {isOpenForm && (
+          {newForm && (
             <>
-              <AdminFormTeam />
+              <AdminFormTeamCreate
+                setRefresh={setRefresh}
+                closeForm={closeForm}
+              />
+            </>
+          )}
+          {form && (
+            <>
+              <AdminFormTeamUpdate
+                setRefresh={setRefresh}
+                closeForm={closeForm}
+                deleteMember={deleteMember}
+              />
             </>
           )}
         </div>

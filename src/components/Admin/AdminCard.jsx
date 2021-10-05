@@ -1,12 +1,14 @@
-const AdminCard = ({ elmt, id, img, displayForm, removeElement }) => {
+const AdminCard = ({ id, name, updateElement }) => {
   return (
-    <div className={`card flex jcc aic colorme`}>
-      <div className='btnDeleteCard flex jcc aic' onClick={removeElement}>
-        x
-      </div>
-      <div className={`cardContent id${id} flex jcc aic`} onClick={displayForm}>
+    <div
+      className={`card flex jcc aic colorme`}
+      id={id}
+      onClick={updateElement}
+    >
+      <div className='btnDeleteCard flex jcc aic'>x</div>
+      <div className={`cardContent flex jcc aic`}>
         {/* {img && <img src={img} />} */}
-        <div className={`id${id}`}>{elmt}</div>
+        <div className='cardName'>{name}</div>
       </div>
     </div>
   )
