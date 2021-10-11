@@ -46,7 +46,7 @@ const Contact = () => {
                     rel='noreferrer'
                     key={link.id}
                   >
-                    <img src={link.social_icon} alt='social icon' />
+                    <img src={`${process.env.REACT_APP_URL_API}/static/images/${link.social_icon}`} alt='social icon' />
                   </a>
                 ))}
               </div>
