@@ -118,7 +118,9 @@ const ActivityAdmin = () => {
           }}
         >
           {activities.map(activity => (
-            <option value={activity.id}>{activity.activity_title}</option>
+            <option key={activity.id} value={activity.id}>
+              {activity.activity_title}
+            </option>
           ))}
         </select>
         <div className='droplistButton'>
