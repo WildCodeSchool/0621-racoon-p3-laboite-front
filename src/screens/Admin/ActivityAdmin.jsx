@@ -20,6 +20,7 @@ const ActivityAdmin = () => {
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
   const [image, setImage] = useState()
+  const [file, setFile] = useState()
 
   const recupData = async () => {
     const results = await axios.get(`http://localhost:4000/activities`)
@@ -40,30 +41,43 @@ const ActivityAdmin = () => {
     getPole()
   }, [])
 
-  const submitData = e => {
+  const submitData = async e => {
     e.preventDefault()
-    const fd = new FormData()
-    fd.append('activity_img', image)
-    fd.append('activity_desc', adminInput)
-    fd.append('activity_title', adminInput)
-    // const config = {headers: {
-    //   'Content-Type': 'multipart/form-data'
-    // }}
-    // console.log('chouette', {...adminInput, fd})
-    if (confirmTiny === true) {
-      axios
-        .post('http://localhost:4000/activities', fd)
-        .then(response => {
-          console.log(response)
-          alert('Activité créée')
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      setConfirmTiny(false)
-    } else {
-      alert('Confirmer avant de publier')
+    const newPost = { ...adminInput }
+    if (image) {
+      const fd = new FormData()
+      const filename = Date.now() + image.name
+      fd.append('activity_img', image, filename)
+
+      console.log('coucou filename', filename, fd)
+      newPost.activity_img = filename
+      try {
+        await axios.post('http://localhost:4000/upload', fd)
+      } catch (err) {
+        console.log(err)
+      }
     }
+    try {
+      const res = await axios.post('http://localhost:4000/activities', newPost)
+      // window.location.replace('http://localhost:4000/activities' + res.data._id)
+    } catch (err) {
+      console.log(err)
+    }
+
+    // if (confirmTiny === true) {
+    //   axios
+    //     .post('http://localhost:4000/activities', adminInput)
+    //     .then(response => {
+    //       console.log(response)
+    //       alert('Activité créée')
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    //   setConfirmTiny(false)
+    // } else {
+    //   alert('Confirmer avant de publier')
+    // }
   }
 
   const deleteActivity = async selectActivity => {
@@ -95,8 +109,8 @@ const ActivityAdmin = () => {
     setAdminInput({ ...adminInput, activity_desc: texte })
   }
 
-  console.log(adminInput)
-  console.log(image)
+  console.log('coucou admininput', adminInput)
+  console.log('coucou image', image)
 
   return (
     <div>
@@ -175,14 +189,14 @@ const ActivityAdmin = () => {
                   ))}
                 </select>
                 {/* -----select Pole End-----  */}
-                <button
+                {/* <button
                   style={{
                     background: '#CED4DA',
                     border: 'solid 1px black'
                   }}
                 >
                   <FontAwesomeIcon icon='times' style={{ color: 'black' }} />
-                </button>
+                </button> */}
                 {/* </div> */}
                 <input
                   focus
@@ -212,8 +226,7 @@ const ActivityAdmin = () => {
                     background: '#CED4DA'
                   }}
                   onChange={e => {
-                    const file = e.target.files[0]
-                    setImage(file)
+                    setImage(e.target.files[0])
                   }}
                 />
               </form>
