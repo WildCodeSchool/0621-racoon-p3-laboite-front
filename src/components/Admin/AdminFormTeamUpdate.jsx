@@ -1,15 +1,20 @@
+import React, { useState, useCallback } from 'react'
+import axios from 'axios'
+
 import TeamAdmin from '../../screens/Admin/TeamAdmin'
 
 const AdminFormTeamUpdate = ({
-  member,
-  refresh,
-  setRefresh,
-  resMessage,
-  setResMessage,
-  deleteMember,
+  adminInput,
   closeForm,
+  deleteMember,
+  member,
   onChangeHandler,
-  adminInput
+
+  refresh,
+  resMessage,
+  setAdminInput,
+  setRefresh,
+  setResMessage
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -20,12 +25,14 @@ const AdminFormTeamUpdate = ({
       <div className='teamFormContainer'>
         <TeamAdmin
           member={member}
-          refresh={refresh}
-          setRefresh={setRefresh}
-          resMessage={resMessage}
-          setResMessage={setResMessage}
-          onChangeHandler={onChangeHandler}
           adminInput={adminInput}
+          deleteMember={deleteMember}
+          onChangeHandler={onChangeHandler}
+          refresh={refresh}
+          resMessage={resMessage}
+          setAdminInput={setAdminInput}
+          setRefresh={setRefresh}
+          setResMessage={setResMessage}
         />
       </div>
       <div className='btnContainer flex jcc'>

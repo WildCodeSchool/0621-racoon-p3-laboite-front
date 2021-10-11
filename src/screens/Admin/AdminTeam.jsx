@@ -18,13 +18,7 @@ const AdminTeam = () => {
   const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
   const [member, setMember] = useState('')
   const [resMessage, setResMessage] = useState('')
-  const [adminInput, setAdminInput] = useState()
-
-  // const onChangeHandler = useCallback(
-  //   ({ target: { keyName, value } }) =>
-  //     console.log('input', adminInput) ||
-  //     setAdminInput(state => ({ ...state, [keyName]: value }), [])
-  // )
+  const [adminInput, setAdminInput] = useState({})
 
   // List of team members from backEnd
   useEffect(() => {
@@ -45,10 +39,12 @@ const AdminTeam = () => {
         .then(results => setMember(results.data))
     }
     getMember()
-    console.log('update_member', idMemberToUpdate)
+    console.log('update_member', idMemberToUpdate, member)
   }, [idMemberToUpdate])
 
+  // Post a new member
   const postMember = () => {
+    console.log('adminInput', adminInput)
     axios
       .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
       .then(resToBack => {
@@ -62,8 +58,10 @@ const AdminTeam = () => {
           setResMessage(error.response.data.message)
         }
       })
+    setTimeout(closeForm, 2000)
   }
 
+  // Delete a member
   const deleteMember = () => {
     axios
       .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
@@ -80,25 +78,27 @@ const AdminTeam = () => {
       })
     setTimeout(closeForm, 2000)
   }
-  // console.log(resMessage)
 
   // Functions to display forms
   const dispCreateForm = () => {
     setNewForm(true)
     setForm(false)
-    // console.log('create')
   }
   const dispUpdateForm = e => {
     setNewForm(false)
     setForm(true)
     setIdMemberToUpdate(e.target.id)
-    // console.log('update_member', idMemberToUpdate)
   }
   const closeForm = () => {
     setNewForm(false)
     setForm(false)
-    // console.log('close')
   }
+
+  const onChangeHandler = useCallback(
+    ({ target: { name, value } }) =>
+      console.log('change') ||
+      setAdminInput(state => ({ ...state, [name]: value }), [])
+  )
 
   return (
     <div className='adminContainer flex row'>
@@ -133,12 +133,12 @@ const AdminTeam = () => {
           {newForm && (
             <>
               <AdminFormTeamCreate
-                postMember={postMember}
                 setRefresh={setRefresh}
                 setResMessage={setResMessage}
                 closeForm={closeForm}
-                // onChangeHandler={onChangeHandler}
+                onChangeHandler={onChangeHandler}
                 adminInput={adminInput}
+                postMember={postMember}
               />
             </>
           )}
@@ -150,7 +150,7 @@ const AdminTeam = () => {
                 setResMessage={setResMessage}
                 closeForm={closeForm}
                 deleteMember={deleteMember}
-                // onChangeHandler={onChangeHandler}
+                onChangeHandler={onChangeHandler}
                 adminInput={adminInput}
               />
             </>

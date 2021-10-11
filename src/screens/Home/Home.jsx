@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     const getTeam = () => {
-      axios.get('http://localhost:4000/team').then(res => setTeam(res.data))
+      axios.get('http://localhost:4000/members').then(res => setTeam(res.data))
     }
     getTeam()
   }, [])

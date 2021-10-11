@@ -1,36 +1,8 @@
-import React, { useState, useCallback } from 'react'
-import axios from 'axios'
+import React from 'react'
 
 import './form.css'
 
-const TeamAdmin = ({ refresh, setRefresh }) => {
-  const [adminInput, setAdminInput] = useState({ member_id: '1' })
-  const [resMessage, setMessage] = useState('')
-
-  const onChangeHandler = useCallback(({ target: { name, value } }) =>
-    setAdminInput(state => ({ ...state, [name]: value }), [])
-  )
-
-  // const setData = texte => {
-  //   setAdminInput({ ...adminInput, tiny: texte })
-  // }
-
-  const postData = () => {
-    axios
-      .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
-      .then(resToBack => {
-        console.log('res post', resToBack)
-        setMessage(resToBack.data.message)
-        setRefresh(!refresh)
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrPost', error.response)
-          setMessage(error.response.data.message)
-        }
-      })
-  }
-
+const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
   return (
     <div className='FormContainer'>
       <div className='FormList formTeam'>
@@ -41,7 +13,7 @@ const TeamAdmin = ({ refresh, setRefresh }) => {
             key='member_name'
             name='member_name'
             onChange={onChangeHandler}
-            value={adminInput.member_name}
+            value={member && member.member_name}
           />
           <input
             focus
@@ -49,7 +21,7 @@ const TeamAdmin = ({ refresh, setRefresh }) => {
             key='member_img'
             name='member_img'
             onChange={onChangeHandler}
-            value={adminInput.member_img}
+            value={member && member.member_img}
           />
           <textarea
             focus
@@ -58,12 +30,9 @@ const TeamAdmin = ({ refresh, setRefresh }) => {
             name='member_role'
             rows='4'
             onChange={onChangeHandler}
-            value={adminInput.member_role}
+            value={member && member.member_role}
           ></textarea>
           <span className='formError'>{resMessage && resMessage}</span>
-          <div className='formButton'>
-            <button onClick={postData}>publier</button>
-          </div>
         </div>
       </div>
     </div>
