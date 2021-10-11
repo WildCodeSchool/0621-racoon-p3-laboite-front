@@ -9,47 +9,52 @@ const PoleCardList = () => {
   const [showFormPost, setShowFormPost] = useState(false)
   const [showFormPut, setShowFormPut] = useState(false)
   const [poleCardUpdate, setPoleCardUpdate] = useState({})
+  // const [testId, setTestId] = useState({})
 
   const showFormOnClick = () => {
     setShowFormPost(true)
   }
 
-  //--- update the cardList with new datas ---//
-  const updatePoleCard = poleInfo => {
-    poleCards.push(poleInfo)
-    setPoleCards(poleCards)
-  }
-
   //--- get API data in cardList ---//
+  const poleData = async () => {
+    const results = await axios.get(`http://localhost:4000/pole`)
+    setPoleCards(results.data)
+  }
   useEffect(() => {
-    const PoleData = async () => {
-      const results = await axios.get(`http://localhost:4000/pole`)
-      setPoleCards(results.data)
-    }
-    PoleData()
+    poleData()
   }, [])
 
   //--- return cards in cardList if polecard does not have the id deleted ---//
   const deleteCard = id => {
     const DeleteData = async () => {
-      const results = await axios.delete(`http://localhost:4000/pole/${id}`)
+      await axios.delete(`http://localhost:4000/pole/${id}`)
       setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
     }
     DeleteData()
   }
 
   const modifyCard = id => {
-    console.log(id)
+    console.log('id :', id)
     const modifyData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/${id}`)
       setPoleCardUpdate(results.data)
+      console.log('coucou', results.data)
       setShowFormPut(true)
+      // setTestId(id)
     }
     modifyData()
   }
 
+  const modifyValue = (name, value) => {
+    setPoleCardUpdate({
+      ...poleCardUpdate,
+      [name]: value
+    })
+  }
+
   return (
     <>
+      {console.log('-----------------ICI------------------', poleCards)}
       {poleCards.map(card => (
         <PoleCardAdmin
           key={card.id}
@@ -61,8 +66,10 @@ const PoleCardList = () => {
       <h3>Nouvelle page pôle</h3>
       {/* show or hide form button */}
       <button onClick={showFormOnClick}>+ </button>
-      {showFormPost ? <PoleFormPost updatePoleCards={updatePoleCard} /> : null}
-      {showFormPut ? <PoleFormPut poleCard={poleCardUpdate} /> : null}
+      {showFormPost ? <PoleFormPost poleData={poleData} /> : null}
+      {showFormPut ? (
+        <PoleFormPut {...poleCardUpdate} modifyValue={modifyValue} />
+      ) : null}
     </>
   )
 }

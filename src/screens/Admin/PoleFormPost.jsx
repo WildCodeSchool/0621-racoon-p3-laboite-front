@@ -2,7 +2,7 @@ import FormTiny from '../../components/Form/FormTiny'
 import axios from 'axios'
 import { useState } from 'react'
 
-const PoleFormPost = updatePoleCards => {
+const PoleFormPost = ({ poleData }) => {
   // const [confirmTiny, setConfirmTiny] = useState(false)
   // const [newActivity, setNewActivity] = useState({
   //   activity_desc: '',
@@ -41,13 +41,14 @@ const PoleFormPost = updatePoleCards => {
       `${process.env.REACT_APP_URL_API}/pole`,
       poleInfo
     )
-    console.log('results :', results)
-    updatePoleCards(results)
+    console.log('results :', results.data)
+    poleData()
   }
 
   return (
     <div>
-      <div classsName='form-container'>
+      {console.log(poleData)}
+      <div className='form-container'>
         <form className='new-pole-form'>
           <label>Nom de l&apos;onglet</label>
           <input
@@ -86,7 +87,7 @@ const PoleFormPost = updatePoleCards => {
             name='pole_num'
             onChange={handlePoleChange}
             placeholder={`Numéro de téléphone`}
-          />{' '}
+          />
           <label>E-mail</label>
           <input
             name='pole_email'
