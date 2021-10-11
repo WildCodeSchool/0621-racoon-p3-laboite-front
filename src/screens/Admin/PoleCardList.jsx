@@ -36,9 +36,9 @@ const PoleCardList = () => {
   const modifyCard = id => {
     console.log('id :', id)
     const modifyData = async () => {
-      const results = await axios.get(`http://localhost:4000/pole/${id}`)
-      setPoleCardUpdate(results.data)
-      console.log('coucou', results.data)
+      const results = await axios.get(`http://localhost:4000/pole/admin/${id}`)
+      setPoleCardUpdate(results.data[0])
+      console.log('-----------------ICI02------------------', results.data[0])
       setShowFormPut(true)
       // setTestId(id)
     }
@@ -54,7 +54,7 @@ const PoleCardList = () => {
 
   return (
     <>
-      {console.log('-----------------ICI------------------', poleCards)}
+      {console.log('-----------------ICI------------------', poleCardUpdate)}
       {poleCards.map(card => (
         <PoleCardAdmin
           key={card.id}
@@ -68,7 +68,11 @@ const PoleCardList = () => {
       <button onClick={showFormOnClick}>+ </button>
       {showFormPost ? <PoleFormPost poleData={poleData} /> : null}
       {showFormPut ? (
-        <PoleFormPut {...poleCardUpdate} modifyValue={modifyValue} />
+        <PoleFormPut
+          {...poleCardUpdate}
+          modifyValue={modifyValue}
+          poleData={poleData}
+        />
       ) : null}
     </>
   )

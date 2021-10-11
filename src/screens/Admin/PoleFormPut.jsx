@@ -5,9 +5,9 @@ import './form.css'
 
 const PoleFormPut = poleCard => {
   const [poleToModify, setPoleToModify] = useState({})
-  const { modifyValue } = poleCard
+  const { modifyValue, poleData } = poleCard
   console.log(modifyValue)
-  console.log('poulet', poleCard)
+  console.log('-----------------ICI01------------------', poleCard)
   //--- get the correct field to update input ---//
 
   // useEffect(() => {
@@ -27,7 +27,7 @@ const PoleFormPut = poleCard => {
       poleCard
     )
     console.log('results :', results)
-    // poleCard()
+    poleData()
     // updatePoleCards(results)
   }
 
