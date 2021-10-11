@@ -13,7 +13,7 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             key='member_name'
             name='member_name'
             onChange={onChangeHandler}
-            value={member && member.member_name}
+            value={member && member.member_name && member.member_name}
           />
           <input
             focus
@@ -21,7 +21,7 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             key='member_img'
             name='member_img'
             onChange={onChangeHandler}
-            value={member && member.member_img}
+            value={member && member.member_img && member.member_img}
           />
           <textarea
             focus
@@ -30,7 +30,7 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             name='member_role'
             rows='4'
             onChange={onChangeHandler}
-            value={member && member.member_role}
+            value={member && member.member_role && member.member_role}
           ></textarea>
           <span className='formError'>{resMessage && resMessage}</span>
         </div>

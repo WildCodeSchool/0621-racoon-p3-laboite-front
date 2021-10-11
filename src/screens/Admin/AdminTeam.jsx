@@ -15,12 +15,12 @@ const AdminTeam = () => {
   const [newForm, setNewForm] = useState(false)
   const [form, setForm] = useState(false)
   const [team, setTeam] = useState([])
+  const [adminInput, setAdminInput] = useState({})
   const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
   const [member, setMember] = useState('')
   const [resMessage, setResMessage] = useState('')
-  const [adminInput, setAdminInput] = useState({})
 
-  // List of team members from backEnd
+  // READ all team members from backEnd
   useEffect(() => {
     const getTeam = async () => {
       const results = await axios.get(
@@ -31,52 +31,56 @@ const AdminTeam = () => {
     getTeam()
   }, [refresh])
 
-  // Get a member data from idMemberToUpdate
+  // READ a member data from idMemberToUpdate
   useEffect(() => {
+    console.log('update_member', idMemberToUpdate)
+    setMember('')
+    setResMessage('')
     const getMember = () => {
       axios
         .get(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
         .then(results => setMember(results.data))
     }
     getMember()
-    console.log('update_member', idMemberToUpdate, member)
   }, [idMemberToUpdate])
 
-  // Post a new member
+  // CREATE a new member
   const postMember = () => {
-    console.log('adminInput', adminInput)
+    // console.log('adminInput', adminInput)
     axios
       .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
       .then(resToBack => {
-        console.log('res post', resToBack)
+        // console.log('res post', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
       })
       .catch(error => {
         if (error) {
-          console.log('logErrPost', error.response)
+          // console.log('logErrPost', error.response)
           setResMessage(error.response.data.message)
         }
       })
-    // setTimeout(closeForm, 5000)
+    // setTimeout(closeForm, 3000)
   }
 
-  // Delete a member
+  // UPDATE a member
+
+  // DELETE a member
   const deleteMember = () => {
     axios
       .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
       .then(resToBack => {
-        console.log('res delete', resToBack)
-        // setResMessage(resToBack.data.message)
+        // console.log('res delete', resToBack)
+        setResMessage(resToBack.data.message)
         setRefresh(!refresh)
       })
       .catch(error => {
         if (error) {
-          console.log('logErrDelet', error.response)
-          // setResMessage(error.response.data.message)
+          // console.log('logErrDelet', error.response)
+          setResMessage(error.response.data.message)
         }
       })
-    // setTimeout(closeForm, 2000)
+    setTimeout(closeForm, 3000)
   }
 
   // Functions to display forms
@@ -98,7 +102,7 @@ const AdminTeam = () => {
 
   const onChangeHandler = useCallback(
     ({ target: { name, value } }) =>
-      console.log('change') ||
+      console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
@@ -135,27 +139,27 @@ const AdminTeam = () => {
           {newForm && (
             <>
               <AdminFormTeamCreate
-                setRefresh={setRefresh}
-                resMessage={resMessage}
-                setResMessage={setResMessage}
+                adminInput={adminInput}
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
-                adminInput={adminInput}
                 postMember={postMember}
+                resMessage={resMessage}
+                setRefresh={setRefresh}
+                setResMessage={setResMessage}
               />
             </>
           )}
           {form && (
             <>
               <AdminFormTeamUpdate
-                member={member}
-                setRefresh={setRefresh}
-                resMessage={resMessage}
-                setResMessage={setResMessage}
+                adminInput={adminInput}
                 closeForm={closeForm}
                 deleteMember={deleteMember}
+                member={member}
                 onChangeHandler={onChangeHandler}
-                adminInput={adminInput}
+                resMessage={resMessage}
+                setRefresh={setRefresh}
+                setResMessage={setResMessage}
               />
             </>
           )}
