@@ -18,6 +18,9 @@
 	/* height: 100vh; */
 	color: white
 }
+.blacktxt{
+	background-color: black;
+}
 
 /*---------- Left Menu ----------*/
 .adminMenuLeft{
@@ -32,14 +35,18 @@
 	border-bottom: solid 1px #616161;
 	background-color: #212121;
 }
-.adminLeftButton{
+.dashboardTitle{
+	margin-left: 10px;
+}
+.adminLinkButton{
 	background-color: #414141;
 	padding: 20px;
 	margin: 10px;
 	border-radius: 5px;
 }
-.adminLeftButton:hover{
+.adminLinkButton:hover{
 	cursor: pointer;
+	/* background-color: var(--main-font-color); */
 	background-color: #515151;
 }
 .logoContainer{
@@ -74,24 +81,69 @@
 	margin: 20px;
 }
 .topDivTitle{
+	position: relative;
 	font-size: larger;
 	padding: 10px;
 	background-color: var(--main-font-color);
 	border-radius: 20px 20px 0px 0px;
 }
-.cardContainer{
-	padding: 20px;
-	background-color: lightgray;
-		border-radius: 0px 0px 20px 20px;
+.addButton{
+	position: absolute;
+	font-size: 16px;
+	top: calc(50% - 8px);
+	right: 50px;
 }
-
+.addButton:hover{
+	cursor: pointer;
+}
+.plusBtn{
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	font-size: large;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
+}
+.cardContainer{
+	background-color: lightgray;
+	border-radius: 0px 0px 20px 20px;
+	overflow-x: auto;
+}
+.noCard{
+	color: black;
+	padding: 20px;
+}
 .card{
-	height: 200px;
-	width: 200px;
+	position: relative;
+	min-height: 200px;
+	min-width: 200px;
 	margin: 20px;
 }
 .card:hover{
 	cursor: pointer;
+}
+.cardContent{
+	position: relative;
+	min-height: 200px;
+	min-width: 200px;
+}
+.cardContent img{
+	position: absolute;
+	min-height: 200px;
+	min-width: 200px;
+}
+.btnDeleteCard{
+	position: absolute;
+	font-size: 16px;
+	top: 15px;
+	right: 15px;
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
 }
 
 /*----- Bottom Div -----*/
@@ -99,16 +151,31 @@
 .bottomDiv{
 	margin: 20px;
 }
-
 .form{
+	position: relative;
 	width: 80%;
 	padding: 20px;
 	border-radius: 20px;
 	background-color: #313131
 }
 .bottomDivTitle{
-	padding: 10px;
 	font-size: larger;
+	padding: 10px;
+}
+.closeBtn{
+	position: absolute;
+	font-size: 16px;
+	top: 25px;
+	right: 25px;
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
+}
+.closeBtn:hover{
+	cursor: pointer;
 }
 .boxInput{
 	width: 80%;
@@ -117,12 +184,17 @@
 	background-color: #616161;
 	color: white;
 }
+.teamFormContainer{
+	background-color: aqua;
+	width: 90%;
+	margin: auto;
+}
 .btnContainer{
 	width:100%;
 	padding:20px;
 	justify-content: space-evenly;
 }
-button{
+.btnForm{
 	padding: 10px 20px;
 	border-radius: 20px;
 	color: white;
@@ -130,4 +202,11 @@ button{
 }
 .colorme{
 	background-color: darkseagreen;
+	border-radius: 10px;
+}
+
+.bg{
+	padding: 20px;
+		background-color: lightgray;
+	border-radius: 0px 0px 20px 20px;
 }
