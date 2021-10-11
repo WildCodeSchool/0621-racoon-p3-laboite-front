@@ -18,7 +18,7 @@ const AdminPole = () => {
   const [poles, setPoles] = useState([])
   useEffect(() => {
     const getPoles = async () => {
-      const results = await axios.get(`http://localhost:4000/pole`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/pole`)
       // console.log(results.data)
       setPoles(results.data)
     }
@@ -64,8 +64,8 @@ const AdminPole = () => {
                 poles.map((elmt, index) => (
                   <AdminCard
                     key={index}
-                    name={elmt.pole_name}
                     id={elmt.id}
+                    name={elmt.pole_name}
                     img={elmt.pole_miniature_img}
                     displayForm={displayForm}
                     removeElement={removeElement}

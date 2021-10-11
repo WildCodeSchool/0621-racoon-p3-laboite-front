@@ -1,10 +1,15 @@
 import TeamAdmin from '../../screens/Admin/TeamAdmin'
 
 const AdminFormTeamUpdate = ({
+  member,
   refresh,
   setRefresh,
+  resMessage,
+  setResMessage,
   deleteMember,
-  closeForm
+  closeForm,
+  onChangeHandler,
+  adminInput
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -13,7 +18,15 @@ const AdminFormTeamUpdate = ({
       </div>
       <div className='bottomDivTitle'>Mettre à jour le membre</div>
       <div className='teamFormContainer'>
-        <TeamAdmin refresh={refresh} setRefresh={setRefresh} />
+        <TeamAdmin
+          member={member}
+          refresh={refresh}
+          setRefresh={setRefresh}
+          resMessage={resMessage}
+          setResMessage={setResMessage}
+          onChangeHandler={onChangeHandler}
+          adminInput={adminInput}
+        />
       </div>
       <div className='btnContainer flex jcc'>
         <div

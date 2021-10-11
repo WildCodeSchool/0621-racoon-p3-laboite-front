@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import AdminCard from '../../components/Admin/AdminCard'
 import AdminFormTeamCreate from '../../components/Admin/AdminFormTeamCreate'
@@ -14,24 +14,59 @@ const AdminTeam = () => {
   const [refresh, setRefresh] = useState(false)
   const [newForm, setNewForm] = useState(false)
   const [form, setForm] = useState(false)
-  const [memberToUpdate, setMemberToUpdate] = useState('')
-  const [resMessage, setResMessage] = useState('')
-  // List of team members NOT from backEnd
   const [team, setTeam] = useState([])
+  const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
+  const [member, setMember] = useState('')
+  const [resMessage, setResMessage] = useState('')
+  const [adminInput, setAdminInput] = useState()
+
+  // const onChangeHandler = useCallback(
+  //   ({ target: { keyName, value } }) =>
+  //     console.log('input', adminInput) ||
+  //     setAdminInput(state => ({ ...state, [keyName]: value }), [])
+  // )
+
+  // List of team members from backEnd
   useEffect(() => {
     const getTeam = async () => {
       const results = await axios.get(
         `${process.env.REACT_APP_URL_API}/members`
       )
-      // console.log(results.data)
       setTeam(results.data)
     }
     getTeam()
   }, [refresh])
 
-  const deleteMember = async () => {
+  // Get a member data from idMemberToUpdate
+  useEffect(() => {
+    const getMember = () => {
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
+        .then(results => setMember(results.data))
+    }
+    getMember()
+    console.log('update_member', idMemberToUpdate)
+  }, [idMemberToUpdate])
+
+  const postMember = () => {
     axios
-      .delete(`${process.env.REACT_APP_URL_API}/members/${memberToUpdate}`)
+      .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
+      .then(resToBack => {
+        console.log('res post', resToBack)
+        setResMessage(resToBack.data.message)
+        setRefresh(!refresh)
+      })
+      .catch(error => {
+        if (error) {
+          console.log('logErrPost', error.response)
+          setResMessage(error.response.data.message)
+        }
+      })
+  }
+
+  const deleteMember = () => {
+    axios
+      .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
       .then(resToBack => {
         console.log('res delete', resToBack)
         // setResMessage(resToBack.data.message)
@@ -45,7 +80,7 @@ const AdminTeam = () => {
       })
     setTimeout(closeForm, 2000)
   }
-  console.log(resMessage)
+  // console.log(resMessage)
 
   // Functions to display forms
   const dispCreateForm = () => {
@@ -56,8 +91,8 @@ const AdminTeam = () => {
   const dispUpdateForm = e => {
     setNewForm(false)
     setForm(true)
-    setMemberToUpdate(e.target.id)
-    // console.log('update', e.target.id)
+    setIdMemberToUpdate(e.target.id)
+    // console.log('update_member', idMemberToUpdate)
   }
   const closeForm = () => {
     setNewForm(false)
@@ -84,8 +119,8 @@ const AdminTeam = () => {
               ) : (
                 team.map(elmt => (
                   <AdminCard
-                    key={elmt.id}
-                    id={elmt.id}
+                    key={elmt.member_id}
+                    id={elmt.member_id}
                     name={elmt.member_name}
                     updateElement={dispUpdateForm}
                   />
@@ -98,17 +133,25 @@ const AdminTeam = () => {
           {newForm && (
             <>
               <AdminFormTeamCreate
+                postMember={postMember}
                 setRefresh={setRefresh}
+                setResMessage={setResMessage}
                 closeForm={closeForm}
+                // onChangeHandler={onChangeHandler}
+                adminInput={adminInput}
               />
             </>
           )}
           {form && (
             <>
               <AdminFormTeamUpdate
+                member={member}
                 setRefresh={setRefresh}
+                setResMessage={setResMessage}
                 closeForm={closeForm}
                 deleteMember={deleteMember}
+                // onChangeHandler={onChangeHandler}
+                adminInput={adminInput}
               />
             </>
           )}

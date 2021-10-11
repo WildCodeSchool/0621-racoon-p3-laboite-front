@@ -11,9 +11,9 @@ const TeamAdmin = ({ refresh, setRefresh }) => {
     setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
-  const setData = texte => {
-    setAdminInput({ ...adminInput, tiny: texte })
-  }
+  // const setData = texte => {
+  //   setAdminInput({ ...adminInput, tiny: texte })
+  // }
 
   const postData = () => {
     axios

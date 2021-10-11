@@ -9,7 +9,7 @@ const AdminLeftMenu = () => {
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'building', route: 'pole' },
     { id: 2, name: 'Activités', picto: 'network-wired', route: 'activity' },
-    { id: 3, name: 'Membres', picto: 'users', route: 'team' }
+    { id: 3, name: 'Membres', picto: 'users', route: 'members' }
   ]
 
   return (

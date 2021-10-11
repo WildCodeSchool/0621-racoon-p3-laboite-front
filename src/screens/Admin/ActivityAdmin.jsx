@@ -21,7 +21,9 @@ const ActivityAdmin = () => {
   const [selectActivity, setSelectActivity] = useState('1')
 
   const recupData = async () => {
-    const results = await axios.get(`http://localhost:4000/activities`)
+    const results = await axios.get(
+      `${process.env.REACT_APP_URL_API}/activities`
+    )
     setActivities(results.data)
     // setLoading(false)
   }
@@ -32,7 +34,7 @@ const ActivityAdmin = () => {
 
   useEffect(() => {
     const getPole = async () => {
-      const results = await axios.get(`http://localhost:4000/pole`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/pole`)
       setPole(results.data)
       // setLoading(false)
     }
@@ -44,7 +46,7 @@ const ActivityAdmin = () => {
     console.log(adminInput)
     if (confirmTiny === true) {
       axios
-        .post('http://localhost:4000/activities', adminInput)
+        .post(`${process.env.REACT_APP_URL_API}/activities`, adminInput)
         .then(response => {
           console.log(response)
         })
