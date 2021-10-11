@@ -58,7 +58,7 @@ const AdminTeam = () => {
           setResMessage(error.response.data.message)
         }
       })
-    setTimeout(closeForm, 2000)
+    // setTimeout(closeForm, 5000)
   }
 
   // Delete a member
@@ -76,7 +76,7 @@ const AdminTeam = () => {
           // setResMessage(error.response.data.message)
         }
       })
-    setTimeout(closeForm, 2000)
+    // setTimeout(closeForm, 2000)
   }
 
   // Functions to display forms
@@ -92,6 +92,8 @@ const AdminTeam = () => {
   const closeForm = () => {
     setNewForm(false)
     setForm(false)
+    setAdminInput({})
+    setResMessage()
   }
 
   const onChangeHandler = useCallback(
@@ -134,6 +136,7 @@ const AdminTeam = () => {
             <>
               <AdminFormTeamCreate
                 setRefresh={setRefresh}
+                resMessage={resMessage}
                 setResMessage={setResMessage}
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
@@ -147,6 +150,7 @@ const AdminTeam = () => {
               <AdminFormTeamUpdate
                 member={member}
                 setRefresh={setRefresh}
+                resMessage={resMessage}
                 setResMessage={setResMessage}
                 closeForm={closeForm}
                 deleteMember={deleteMember}

@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react'
-import axios from 'axios'
+import React from 'react'
 
 import TeamAdmin from '../../screens/Admin/TeamAdmin'
 
@@ -9,7 +8,6 @@ const AdminFormTeamUpdate = ({
   deleteMember,
   member,
   onChangeHandler,
-
   refresh,
   resMessage,
   setAdminInput,
@@ -25,14 +23,8 @@ const AdminFormTeamUpdate = ({
       <div className='teamFormContainer'>
         <TeamAdmin
           member={member}
-          adminInput={adminInput}
-          deleteMember={deleteMember}
           onChangeHandler={onChangeHandler}
-          refresh={refresh}
           resMessage={resMessage}
-          setAdminInput={setAdminInput}
-          setRefresh={setRefresh}
-          setResMessage={setResMessage}
         />
       </div>
       <div className='btnContainer flex jcc'>
@@ -49,7 +41,7 @@ const AdminFormTeamUpdate = ({
         >
           Supprimer
         </div>
-        <div className='btnForm blue'>Sauvegarder</div>
+        <div className='btnForm blue'>Publier</div>
       </div>
     </div>
   )
