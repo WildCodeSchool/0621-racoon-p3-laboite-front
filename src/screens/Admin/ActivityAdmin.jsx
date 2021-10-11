@@ -19,7 +19,7 @@ const ActivityAdmin = () => {
   const [adminInput, setAdminInput] = useState({ pole: '1' })
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState()
 
   const recupData = async () => {
     const results = await axios.get(`http://localhost:4000/activities`)
@@ -43,14 +43,16 @@ const ActivityAdmin = () => {
   const submitData = e => {
     e.preventDefault()
     const fd = new FormData()
-    fd.append('activity_img', adminInput.activity_img)
-    const config = {headers: {
-      'Content-Type': 'multipart/form-data'
-    }}
+    fd.append('activity_img', image)
+    fd.append('activity_desc', adminInput)
+    fd.append('activity_title', adminInput)
+    // const config = {headers: {
+    //   'Content-Type': 'multipart/form-data'
+    // }}
     // console.log('chouette', {...adminInput, fd})
     if (confirmTiny === true) {
       axios
-        .post('http://localhost:4000/activities',fd , config)
+        .post('http://localhost:4000/activities', fd)
         .then(response => {
           console.log(response)
           alert('Activité créée')
@@ -92,6 +94,9 @@ const ActivityAdmin = () => {
   const setData = texte => {
     setAdminInput({ ...adminInput, activity_desc: texte })
   }
+
+  console.log(adminInput)
+  console.log(image)
 
   return (
     <div>
@@ -147,36 +152,38 @@ const ActivityAdmin = () => {
                 <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
               </button>
               {/* -----select Pole Start-----  */}
-              <div className='activityForm'>
-                <div className='activityCross'>
-                  <select
-                    placeholder='Les poles'
-                    onChange={e =>
-                      setAdminInput({ ...adminInput, pole: e.target.value })
-                    }
-                    style={{
-                      width: '25%',
-                      margin: '15px',
-                      border: 'solid 1px black',
-                      background: '#CED4DA'
-                    }}
-                  >
-                    {pole.map(pole => (
-                      <option name={pole.pole_title} value={pole.id}>
-                        {pole.pole_title}
-                      </option>
-                    ))}
-                  </select>
-                  {/* -----select Pole End-----  */}
-                  <button
-                    style={{
-                      background: '#CED4DA',
-                      border: 'solid 1px black'
-                    }}
-                  >
-                    <FontAwesomeIcon icon='times' style={{ color: 'black' }} />
-                  </button>
-                </div>
+              {/* -------------------FORM---------------------  */}
+              <form encType='multipart/form-data'>
+                {/* <div className='activityForm'> */}
+                {/* <div className='activityCross'> */}
+                <select
+                  placeholder='Les poles'
+                  onChange={e =>
+                    setAdminInput({ ...adminInput, pole: e.target.value })
+                  }
+                  style={{
+                    width: '25%',
+                    margin: '15px',
+                    border: 'solid 1px black',
+                    background: '#CED4DA'
+                  }}
+                >
+                  {pole.map(pole => (
+                    <option name={pole.pole_title} value={pole.id}>
+                      {pole.pole_title}
+                    </option>
+                  ))}
+                </select>
+                {/* -----select Pole End-----  */}
+                <button
+                  style={{
+                    background: '#CED4DA',
+                    border: 'solid 1px black'
+                  }}
+                >
+                  <FontAwesomeIcon icon='times' style={{ color: 'black' }} />
+                </button>
+                {/* </div> */}
                 <input
                   focus
                   type='text'
@@ -191,59 +198,62 @@ const ActivityAdmin = () => {
                   onChange={onChangeHandler}
                   value={adminInput.activity_title}
                 />
-                
-                  <input
-                    type='file'
-                    focus
-                    placeholder={`URL de l'image`}
-                    key='activity_img'
-                    name='activity_img'
-                    style={{
-                      margin: '10px',
-                      border: 'solid 1px black',
-                      background: '#CED4DA'
-                    }}
-                    onChange={onChangeHandler}
-                    value={adminInput.activity_img}
-                  />
-                <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+                {/* ------------------------------------------FILE----------------------------------------------  */}
                 <input
+                  type='file'
                   focus
-                  placeholder={`Prix de l'activité`}
+                  placeholder={`URL de l'image`}
+                  key='activity_img'
+                  name='activity_img'
+                  accept='jpg'
                   style={{
                     margin: '10px',
                     border: 'solid 1px black',
                     background: '#CED4DA'
                   }}
-                  key='field5'
-                  name='field5'
-                  onChange={onChangeHandler}
-                  value={adminInput.field5}
-                  />
-                <div className='activityButton'>
-                  <p style={{ color: 'white' }}>
-                    Penser à confirmer avant de publier
-                  </p>
-                  <button
-                    disabled={!confirmTiny}
-                    onClick={submitData}
-                    style={{
-                      cursor: 'pointer',
-                      background: '#868E96',
-                      border: 'solid 1px black'
-                    }}
-                    >
-                    Publier
-                  </button>
-                </div>
-              </div>
-                
+                  onChange={e => {
+                    const file = e.target.files[0]
+                    setImage(file)
+                  }}
+                />
+              </form>
+              <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+              <input
+                focus
+                placeholder={`Prix de l'activité`}
+                style={{
+                  margin: '10px',
+                  border: 'solid 1px black',
+                  background: '#CED4DA'
+                }}
+                key='field5'
+                name='field5'
+                onChange={onChangeHandler}
+                value={adminInput.field5}
+              />
+              {/* <div className='activityButton'> */}
+              <p style={{ color: 'white' }}>
+                Penser à confirmer avant de publier
+              </p>
+              <button
+                // type='submit'
+                disabled={!confirmTiny}
+                onClick={submitData}
+                style={{
+                  cursor: 'pointer',
+                  background: '#868E96',
+                  border: 'solid 1px black'
+                }}
+              >
+                Publier
+              </button>
+              {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
       </div>
     </div>
-                   
   )
 }
 
