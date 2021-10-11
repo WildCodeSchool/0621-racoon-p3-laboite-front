@@ -17,7 +17,7 @@ const TeamAdmin = ({ refresh, setRefresh }) => {
 
   const postData = () => {
     axios
-      .post(`${process.env.REACT_APP_URL_API}/team`, [adminInput])
+      .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
       .then(resToBack => {
         console.log('res post', resToBack)
         setMessage(resToBack.data.message)

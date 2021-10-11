@@ -11,7 +11,7 @@ const Admin = () => {
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'A', route: 'pole' },
     { id: 2, name: 'Activités', picto: 'B', route: 'activity' },
-    { id: 3, name: 'Membres', picto: 'C', route: 'team' }
+    { id: 3, name: 'Membres', picto: 'C', route: 'members' }
   ]
   // Recover the field from url
   let { field } = useParams()

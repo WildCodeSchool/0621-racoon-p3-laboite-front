@@ -64,7 +64,7 @@ const AdminPole = () => {
                 poles.map((elmt, index) => (
                   <AdminCard
                     key={index}
-                    elmt={elmt.pole_name}
+                    name={elmt.pole_name}
                     id={elmt.id}
                     img={elmt.pole_miniature_img}
                     displayForm={displayForm}

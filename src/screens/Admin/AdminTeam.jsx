@@ -20,7 +20,9 @@ const AdminTeam = () => {
   const [team, setTeam] = useState([])
   useEffect(() => {
     const getTeam = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/team`)
+      const results = await axios.get(
+        `${process.env.REACT_APP_URL_API}/members`
+      )
       // console.log(results.data)
       setTeam(results.data)
     }
@@ -29,7 +31,7 @@ const AdminTeam = () => {
 
   const deleteMember = async () => {
     axios
-      .delete(`${process.env.REACT_APP_URL_API}/team/${memberToUpdate}`)
+      .delete(`${process.env.REACT_APP_URL_API}/members/${memberToUpdate}`)
       .then(resToBack => {
         console.log('res delete', resToBack)
         // setResMessage(resToBack.data.message)
