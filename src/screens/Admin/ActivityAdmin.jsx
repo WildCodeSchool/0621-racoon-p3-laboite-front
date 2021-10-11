@@ -1,9 +1,10 @@
 import * as Icons from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import FormTiny from '../../components/Form/FormTiny'
+import FormActivity from './../../components/Form/FormActivity'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import FormTiny from '../../components/Form/FormTiny'
 import React, { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
 
 import './ActivityAdmin.css'
 
@@ -19,9 +20,12 @@ const ActivityAdmin = () => {
   const [adminInput, setAdminInput] = useState({ pole: '1' })
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
+  const [image, setImage] = useState()
 
   const recupData = async () => {
-    const results = await axios.get(`http://localhost:4000/activities`)
+    const results = await axios.get(
+      `${process.env.REACT_APP_URL_API}/activities`
+    )
     setActivities(results.data)
     // setLoading(false)
   }
@@ -32,47 +36,58 @@ const ActivityAdmin = () => {
 
   useEffect(() => {
     const getPole = async () => {
-      const results = await axios.get(`http://localhost:4000/pole`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/pole`)
       setPole(results.data)
       // setLoading(false)
     }
     getPole()
   }, [])
 
-  const submitData = e => {
+  const submitData = async e => {
     e.preventDefault()
-    console.log(adminInput)
-    if (confirmTiny === true) {
-      axios
-        .post('http://localhost:4000/activities', adminInput)
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      setConfirmTiny(false)
-    } else {
-      alert('Confirmer avant de publier')
+    // if (confirmTiny === true) {
+    const newPost = { ...adminInput }
+    if (image) {
+      const fd = new FormData()
+      const filename = Date.now() + image.name
+      fd.append('activity_img', image, filename)
+
+      console.log('coucou filename', filename, fd)
+      newPost.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_API}/activities`,
+        newPost
+      )
+    } catch (err) {
+      console.log(err)
     }
   }
 
   const deleteActivity = async selectActivity => {
     console.log(('id', selectActivity))
     const id = selectActivity
-    axios
-      .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
-      .then(resToBack => {
-        recupData()
-        console.log('res delete', resToBack)
-        alert('Activité supprimé')
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrDelet', error.response)
-          alert(error.response.data.message)
-        }
-      })
+    const confirmation = confirm(' Voulez vousActivité supprimée')
+    if (confirmation) {
+      axios
+        .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
+        .then(resToBack => {
+          recupData()
+          console.log('res delete', resToBack)
+        })
+        .catch(error => {
+          if (error) {
+            console.log('logErrDelet', error.response)
+            alert(error.response.data.message)
+          }
+        })
+    }
   }
 
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
@@ -87,8 +102,7 @@ const ActivityAdmin = () => {
   }
 
   return (
-    <div>
-      {/* ------------ drop menu activies Start------------------ */}
+    <>
       <div className='activityDroplist'>
         <h3 className='activityTitle'>Activités mises en ligne</h3>
         <select
@@ -131,114 +145,19 @@ const ActivityAdmin = () => {
           </button>
         </div>
       </div>
-      {/* ------------ drop menu activies End------------------ */}
-      {/* ------------ form add activies Start------------------ */}
-      <div className='activityContainer'>
-        <h3 className='activityTitleForm'>Nouvelle activité</h3>
-        <div className='activityFormWrapper'>
-          <div className='activityItems'>
-            <div className='activityCross'>
-              <button>
-                <FontAwesomeIcon icon='plus' style={{ color: 'black' }} />
-              </button>
-              {/* -----select Pole Start-----  */}
-              <div className='activityForm'>
-                <div className='activityCross'>
-                  <select
-                    placeholder='Les poles'
-                    onChange={e =>
-                      setAdminInput({ ...adminInput, pole: e.target.value })
-                    }
-                    style={{
-                      width: '25%',
-                      margin: '15px',
-                      border: 'solid 1px black',
-                      background: '#CED4DA'
-                    }}
-                  >
-                    {pole.map(pole => (
-                      <option
-                        key={pole.id}
-                        name={pole.pole_title}
-                        value={pole.id}
-                      >
-                        {pole.pole_title}
-                      </option>
-                    ))}
-                  </select>
-                  {/* -----select Pole End-----  */}
-                  <button
-                    style={{
-                      background: '#CED4DA',
-                      border: 'solid 1px black'
-                    }}
-                  >
-                    <FontAwesomeIcon icon='times' style={{ color: 'black' }} />
-                  </button>
-                </div>
-                <input
-                  focus
-                  type='text'
-                  placeholder={`Titre de l'activité`}
-                  key='activity_title'
-                  name='activity_title'
-                  style={{
-                    margin: '10px',
-                    border: 'solid 1px black',
-                    background: '#CED4DA'
-                  }}
-                  onChange={onChangeHandler}
-                  value={adminInput.activity_title}
-                />
-                <input
-                  focus
-                  placeholder={`URL de l'image`}
-                  key='activity_img'
-                  name='activity_img'
-                  style={{
-                    margin: '10px',
-                    border: 'solid 1px black',
-                    background: '#CED4DA'
-                  }}
-                  onChange={onChangeHandler}
-                  value={adminInput.activity_img}
-                />
-                <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
-                <input
-                  focus
-                  placeholder={`Prix de l'activité`}
-                  style={{
-                    margin: '10px',
-                    border: 'solid 1px black',
-                    background: '#CED4DA'
-                  }}
-                  key='field5'
-                  name='field5'
-                  onChange={onChangeHandler}
-                  value={adminInput.field5}
-                />
-                <div className='activityButton'>
-                  <p style={{ color: 'white' }}>
-                    Penser à confirmer avant de publier
-                  </p>
-                  <button
-                    disabled={!confirmTiny}
-                    onClick={submitData}
-                    style={{
-                      cursor: 'pointer',
-                      background: '#868E96',
-                      border: 'solid 1px black'
-                    }}
-                  >
-                    Publier
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <FormActivity
+        setAdminInput={setAdminInput}
+        adminInput={adminInput}
+        onChangeHandler={onChangeHandler}
+        setImage={setImage}
+        image={image}
+        pole={pole}
+        setData={setData}
+        setConfirmTiny={setConfirmTiny}
+        confirmTiny={confirmTiny}
+        submitData={submitData}
+      />
+    </>
   )
 }
 

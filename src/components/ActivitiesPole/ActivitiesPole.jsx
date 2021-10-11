@@ -8,7 +8,11 @@ const ActivitiesPole = ({ activity_desc, activity_img }) => {
     <section className='activitiesContainer'>
       <div className='bothCreamContainer'>
         <div className='leftCreamContainer'>
-          <img className='creamSection' src={activity_img} alt='services' />
+          <img
+            className='creamSection'
+            src={`${process.env.REACT_APP_URL_API}/static/images/${activity_img}`}
+            alt='services'
+          />
         </div>
         <div className='rightCreamContainer'>
           <p className='redLeftAlign'>{parse(activity_desc)}</p>

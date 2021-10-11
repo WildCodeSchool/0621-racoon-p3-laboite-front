@@ -12,7 +12,7 @@ const Concept = ({ concept }) => {
         <div className='part1'>
           <img
             className='conceptImage'
-            src={concept.concept_img1}
+            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img1}`}
             alt='jardinerie'
           />
           <div className='conceptP1'>
@@ -30,7 +30,11 @@ const Concept = ({ concept }) => {
           </div>
         </div>
         <div className='part2'>
-          <img src={concept.concept_img2} className='imgGhost' alt='champs' />
+          <img
+            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img2}`}
+            className='imgGhost'
+            alt='champs'
+          />
           <div className='conceptP2'>
             <div className='block-buster'>
               <div className='borderText'></div>
@@ -44,14 +48,14 @@ const Concept = ({ concept }) => {
           </div>
           <img
             className='conceptImage conceptImageGhost'
-            src={concept.concept_img2}
+            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img2}`}
             alt='vendange'
           />
         </div>
         <div className='part3'>
           <img
             className='conceptImage'
-            src={concept.concept_img3}
+            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img3}`}
             alt='livraison'
           />
           <div className='conceptP3'>
