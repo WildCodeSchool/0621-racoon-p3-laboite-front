@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
+
 export default function FormTiny({ setData, setConfirmTiny }) {
   const editorRef = useRef(null)
   const log = () => {

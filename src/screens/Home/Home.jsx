@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const getConcept = () => {
       axios
-        .get('http://localhost:4000/concept')
+        .get(`${process.env.REACT_APP_URL_API}/concept`)
         .then(res => setConcept(res.data[0]))
     }
     getConcept()
@@ -24,21 +24,29 @@ const Home = () => {
 
   useEffect(() => {
     const getTeam = () => {
-      axios.get('http://localhost:4000/members').then(res => setTeam(res.data))
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/team`)
+        .then(res => setTeam(res.data))
     }
     getTeam()
   }, [])
 
   useEffect(() => {
     const getPole = () => {
-      axios.get('http://localhost:4000/pole').then(res => setPoleMin(res.data))
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/pole`)
+        .then(res => setPoleMin(res.data))
     }
     getPole()
   }, [])
 
   return (
     <>
-      <img className='banner' src={concept.concept_banner} alt='blere-beach' />
+      <img
+        className='banner'
+        src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_banner}`}
+        alt='blere-beach'
+      />
       <div className='centerContainer'>
         <RubanConcept />
         <div className='descContainer'>

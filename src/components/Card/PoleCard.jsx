@@ -23,7 +23,7 @@ const PoleCard = ({
     <div className='polecard-container'>
       <img
         className='polecard-image'
-        src={pole_miniature_img}
+        src={`${process.env.REACT_APP_URL_API}/static/images/${pole_miniature_img}`}
         alt={pole_title}
       />
       <NavLink to={`/pole/${id}`}>

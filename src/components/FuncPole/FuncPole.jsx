@@ -14,7 +14,7 @@ const FuncPole = ({ pole_func, pole_func_img, pole_title }) => {
           <p className='creamLeftAlign'>{pole_func}</p>
         </div>
         <div className='rightGreenContainer'>
-          <img className='greenSection' src={pole_func_img} alt={pole_title} />
+          <img className='greenSection' src={`${process.env.REACT_APP_URL_API}/static/images/${pole_func_img}`} alt={pole_title} />
         </div>
       </div>
     </section>
