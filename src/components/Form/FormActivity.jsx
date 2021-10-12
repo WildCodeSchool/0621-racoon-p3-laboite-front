@@ -35,7 +35,11 @@ const FormActivity = ({
                     }}
                   >
                     {pole.map(pole => (
-                      <option name={pole.pole_title} value={pole.id}>
+                      <option
+                        key={pole.id}
+                        name={pole.pole_title}
+                        value={pole.id}
+                      >
                         {pole.pole_title}
                       </option>
                     ))}
@@ -75,7 +79,11 @@ const FormActivity = ({
                 />
               </div>
             </form>
-            <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} syle={{}} />
+            <FormTiny
+              setData={setData}
+              setConfirmTiny={setConfirmTiny}
+              syle={{}}
+            />
             {/* <input
               focus
               placeholder={`Prix de l'activité`}
