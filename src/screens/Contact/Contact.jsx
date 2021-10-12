@@ -14,6 +14,7 @@ const Contact = () => {
 
   // Donnée formulaire
   const [formData, setFormData] = useState({})
+  const [message, setMessage] = useState('')
 
   // Recupere les infos contact du back et bdd
   useEffect(() => {
@@ -31,7 +32,9 @@ const Contact = () => {
 
   const sendMail = () => {
     console.log('formData', formData)
-    axios.post(`${process.env.REACT_APP_URL_API}/contact/sendmail`, [formData])
+    axios
+      .post(`${process.env.REACT_APP_URL_API}/contact/sendmail`, formData)
+      .then(response => setMessage(response.data))
   }
 
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
@@ -78,7 +81,7 @@ const Contact = () => {
         </div>
         <div className='contactMessage'>
           <h3>
-            <span>Laissez nous un message</span>
+            <span className='contactMessageTitle'>Laissez nous un message</span>
           </h3>
           <form
             className='contactFrom'
@@ -116,6 +119,7 @@ const Contact = () => {
                 onChange={onChangeHandler}
               ></textarea>
             </div>
+            <span className='formMessage'>{message && message}</span>
             <button type='submit'>Envoyer</button>
           </form>
         </div>
