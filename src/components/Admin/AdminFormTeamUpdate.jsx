@@ -6,9 +6,9 @@ const AdminFormTeamUpdate = ({
   adminInput,
   closeForm,
   deleteMember,
-  member,
   onChangeHandler,
-  resMessage
+  resMessage,
+  updateMember
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -19,7 +19,6 @@ const AdminFormTeamUpdate = ({
       <div className='teamFormContainer'>
         <TeamAdmin
           adminInput={adminInput}
-          member={member}
           onChangeHandler={onChangeHandler}
           resMessage={resMessage}
         />
@@ -38,7 +37,9 @@ const AdminFormTeamUpdate = ({
         >
           Supprimer
         </div>
-        <div className='btnForm blue'>Publier</div>
+        <div className='btnForm blue' onClick={updateMember}>
+          Publier
+        </div>
       </div>
     </div>
   )

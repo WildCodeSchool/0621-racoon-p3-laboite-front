@@ -2,7 +2,7 @@ import React from 'react'
 
 import './form.css'
 
-const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
+const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
   return (
     <div className='FormContainer'>
       <div className='FormList formTeam'>
@@ -13,7 +13,9 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             key='member_name'
             name='member_name'
             onChange={onChangeHandler}
-            value={member && member.member_name && member.member_name}
+            value={
+              adminInput && adminInput.member_name && adminInput.member_name
+            }
           />
           <input
             focus
@@ -21,7 +23,7 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             key='member_img'
             name='member_img'
             onChange={onChangeHandler}
-            value={member && member.member_img && member.member_img}
+            value={adminInput && adminInput.member_img && adminInput.member_img}
           />
           <textarea
             focus
@@ -30,7 +32,9 @@ const TeamAdmin = ({ member, onChangeHandler, resMessage }) => {
             name='member_role'
             rows='4'
             onChange={onChangeHandler}
-            value={member && member.member_role && member.member_role}
+            value={
+              adminInput && adminInput.member_role && adminInput.member_role
+            }
           ></textarea>
           <span className='formError'>{resMessage && resMessage}</span>
         </div>
