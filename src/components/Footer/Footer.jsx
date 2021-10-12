@@ -25,7 +25,10 @@ const Footer = () => {
             rel='noreferrer'
             key={link.id}
           >
-            <img src={`${process.env.REACT_APP_URL_API}/static/images/${link.social_icon_alt}`} alt='social icon' />
+            <img
+              src={`${process.env.REACT_APP_URL_API}/static/images/${link.social_icon_alt}`}
+              alt='social icon'
+            />
           </a>
         ))}
       </div>

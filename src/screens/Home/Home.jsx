@@ -24,21 +24,29 @@ const Home = () => {
 
   useEffect(() => {
     const getTeam = () => {
-      axios.get(`${process.env.REACT_APP_URL_API}/team`).then(res => setTeam(res.data))
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/team`)
+        .then(res => setTeam(res.data))
     }
     getTeam()
   }, [])
 
   useEffect(() => {
     const getPole = () => {
-      axios.get(`${process.env.REACT_APP_URL_API}/pole`).then(res => setPoleMin(res.data))
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/pole`)
+        .then(res => setPoleMin(res.data))
     }
     getPole()
   }, [])
 
   return (
     <>
-      <img className='banner' src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_banner}`} alt='blere-beach' />
+      <img
+        className='banner'
+        src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_banner}`}
+        alt='blere-beach'
+      />
       <div className='centerContainer'>
         <RubanConcept />
         <div className='descContainer'>
