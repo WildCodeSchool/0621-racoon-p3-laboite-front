@@ -1,9 +1,9 @@
-// import FormTiny from '../../components/Form/FormTiny'
+import FormTiny from '../../components/Form/FormTiny'
 import axios from 'axios'
 import { useState } from 'react'
 
 const PoleFormPost = ({ poleData }) => {
-  // const [confirmTiny, setConfirmTiny] = useState(false)
+  const [confirmTiny, setConfirmTiny] = useState(false)
   // const [newActivity, setNewActivity] = useState({
   //   activity_desc: '',
   //   activity_img: '',
@@ -27,15 +27,10 @@ const PoleFormPost = ({ poleData }) => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
   }
 
-  // const handleActivityChange = event => {
-  //   setNewActivity({ ...newActivity, [event.target.name]: event.target.value })
-  // }
-
   // const setData = texte => {
   //   setAdminInput({ ...adminInput, activity_desc: texte })
   // }
   const submitPoleData = async event => {
-    console.log('poleinfo :', poleInfo)
     event.preventDefault()
     const results = await axios.post(
       `${process.env.REACT_APP_URL_API}/pole`,
@@ -43,6 +38,11 @@ const PoleFormPost = ({ poleData }) => {
     )
     console.log('results :', results.data)
     poleData()
+  }
+
+  // setData pertmet de transmettre l'info stockée ds tiny
+  const setData = texte => {
+    setPoleInfo({ ...poleInfo, pole_desc: texte })
   }
 
   return (
@@ -74,7 +74,16 @@ const PoleFormPost = ({ poleData }) => {
             onChange={handlePoleChange}
             placeholder={`Pôle picto`}
           />
-          {/* <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} /> */}
+          <label>Pôle description</label>
+          <FormActivity
+            setPoleInfo={setPoleInfo}
+            poleInfo={poleInfo}
+            onChangeHandler={handlePoleChange}
+            setData={setData}
+            setConfirmTiny={setConfirmTiny}
+            confirmTiny={confirmTiny}
+            // submitData={submitData}
+          />
           <label>Photo de Fonctionnement</label>
           <input
             name='pole_func_img'
