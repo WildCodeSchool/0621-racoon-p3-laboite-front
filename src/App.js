@@ -35,7 +35,7 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route exact path='/pole/:id'>
+          <Route exact path='/poles/:id'>
             <Pole />
           </Route>
           <Route path='/contact'>
