@@ -9,7 +9,6 @@ const PoleCardList = () => {
   const [showFormPost, setShowFormPost] = useState(false)
   const [showFormPut, setShowFormPut] = useState(false)
   const [poleCardUpdate, setPoleCardUpdate] = useState({})
-  // const [testId, setTestId] = useState({})
 
   const showFormOnClick = () => {
     setShowFormPost(true)
@@ -38,9 +37,7 @@ const PoleCardList = () => {
     const modifyData = async () => {
       const results = await axios.get(`http://localhost:4000/pole/admin/${id}`)
       setPoleCardUpdate(results.data[0])
-      console.log('-----------------ICI02------------------', results.data[0])
       setShowFormPut(true)
-      // setTestId(id)
     }
     modifyData()
   }
@@ -54,7 +51,6 @@ const PoleCardList = () => {
 
   return (
     <>
-      {console.log('-----------------ICI------------------', poleCardUpdate)}
       {poleCards.map(card => (
         <PoleCardAdmin
           key={card.id}

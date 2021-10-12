@@ -1,4 +1,4 @@
-import FormTiny from '../../components/Form/FormTiny'
+// import FormTiny from '../../components/Form/FormTiny'
 import axios from 'axios'
 import { useState } from 'react'
 

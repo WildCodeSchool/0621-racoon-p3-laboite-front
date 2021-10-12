@@ -1,26 +1,13 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import './form.css'
 
 const PoleFormPut = poleCard => {
-  const [poleToModify, setPoleToModify] = useState({})
   const { modifyValue, poleData } = poleCard
-  console.log(modifyValue)
-  console.log('-----------------ICI01------------------', poleCard)
-  //--- get the correct field to update input ---//
-
-  // useEffect(() => {
-  //   console.log('pole card : ', poleCard)
-  //   setPoleToModify({
-  //     ...poleToModify,
-  //     [event.target.name]: event.target.value
-  //   })
-  // }, [])
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
-    console.log('poleToModify : -----------------------------', poleCard)
     event.preventDefault()
     const results = await axios.put(
       `${process.env.REACT_APP_URL_API}/pole/${poleCard.id}`,
@@ -28,7 +15,6 @@ const PoleFormPut = poleCard => {
     )
     console.log('results :', results)
     poleData()
-    // updatePoleCards(results)
   }
 
   return (
