@@ -37,11 +37,28 @@ const PoleFormPost = ({ poleData }) => {
   const submitPoleData = async event => {
     event.preventDefault()
     const newPost = { ...poleInfo }
-    const results = await axios.post(
-      `${process.env.REACT_APP_URL_API}/poles`,
-      poleInfo
-    )
-    console.log('results :', results.data)
+    if (poleImage) {
+      const fd = new FormData()
+      const filename = Date.now() + poleImage.name
+      fd.append('pole_banner', poleImage, filename)
+      fd.append('pole_func_img', poleImage, filename)
+      fd.append('pole_miniature_img', poleImage, filename)
+      newPost.pole_banner = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const results = await axios.post(
+        `${process.env.REACT_APP_URL_API}/poles`,
+        newPost
+      )
+      console.log(results)
+    } catch (err) {
+      console.log(err)
+    }
     poleData()
   }
 
