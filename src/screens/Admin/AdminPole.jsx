@@ -18,7 +18,7 @@ const AdminPole = () => {
   const [poles, setPoles] = useState([])
   useEffect(() => {
     const getPoles = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/pole`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
       // console.log(results.data)
       setPoles(results.data)
     }

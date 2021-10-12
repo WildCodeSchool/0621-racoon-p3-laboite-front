@@ -36,7 +36,7 @@ const ActivityAdmin = () => {
 
   useEffect(() => {
     const getPole = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/pole`)
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
       setPole(results.data)
       // setLoading(false)
     }
