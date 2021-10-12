@@ -1,4 +1,6 @@
 import FormTiny from '../../components/Form/FormTiny'
+import FormTinyFunc from '../../components/Form/FormTinyFunc'
+
 import axios from 'axios'
 import { useState } from 'react'
 
@@ -23,6 +25,8 @@ const PoleFormPost = ({ poleData }) => {
     pole_catchphrase: ''
   })
 
+  const [poleImage, setPoleImage] = useState()
+
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
   }
@@ -32,8 +36,9 @@ const PoleFormPost = ({ poleData }) => {
   // }
   const submitPoleData = async event => {
     event.preventDefault()
+    const newPost = { ...poleInfo }
     const results = await axios.post(
-      `${process.env.REACT_APP_URL_API}/pole`,
+      `${process.env.REACT_APP_URL_API}/poles`,
       poleInfo
     )
     console.log('results :', results.data)
@@ -41,15 +46,18 @@ const PoleFormPost = ({ poleData }) => {
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
-  const setData = texte => {
-    setPoleInfo({ ...poleInfo, pole_desc: texte })
+  const setData = text => {
+    setPoleInfo({ ...poleInfo, pole_desc: text })
   }
-
+  const setDataFunc = text => {
+    setPoleInfo({ ...poleInfo, pole_func: text })
+  }
+  console.log(poleInfo)
   return (
     <div>
       {console.log(poleData)}
       <div className='form-container'>
-        <form className='new-pole-form'>
+        <form className='new-pole-form' encType='multipart/form-data'>
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -58,9 +66,14 @@ const PoleFormPost = ({ poleData }) => {
           />
           <label>Bannière</label>
           <input
+            type='file'
             name='pole_banner'
+            key='pole_banner'
             onChange={handlePoleChange}
             placeholder={`Bannière`}
+            onChange={e => {
+              setPoleImage(e.target.files[0])
+            }}
           />
           <label>Titre de page pôle</label>
           <input
@@ -74,23 +87,22 @@ const PoleFormPost = ({ poleData }) => {
             onChange={handlePoleChange}
             placeholder={`Pôle picto`}
           />
-          <label>Pôle description</label>
-          <FormActivity
-            setPoleInfo={setPoleInfo}
-            poleInfo={poleInfo}
-            onChangeHandler={handlePoleChange}
-            setData={setData}
-            setConfirmTiny={setConfirmTiny}
-            confirmTiny={confirmTiny}
-            // submitData={submitData}
-          />
+        </form>
+        {/* <label>Pôle description</label> */}
+        <FormTiny setData={setData} />
+        <form>
           <label>Photo de Fonctionnement</label>
           <input
+            type='file'
             name='pole_func_img'
+            key='pole_func_img'
             onChange={handlePoleChange}
             placeholder={`Photo de Fonctionnement`}
           />
-          {/* <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} /> */}
+        </form>
+        {/* <label>Pôle Fonctionnement</label> */}
+        <FormTinyFunc setDataFunc={setDataFunc} />
+        <form>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -105,7 +117,9 @@ const PoleFormPost = ({ poleData }) => {
           />
           <label>Vignette</label>
           <input
+            type='file'
             name='pole_miniature_img'
+            key='pole_miniature_img'
             onChange={handlePoleChange}
             placeholder={`Vignette`}
           />
