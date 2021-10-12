@@ -33,7 +33,9 @@ const Pole = () => {
   ) : (
     <>
       <div className='banner'>
-        <img src={`${process.env.REACT_APP_URL_API}/static/images/${poleData.pole_banner}`} />
+        <img
+          src={`${process.env.REACT_APP_URL_API}/static/images/${poleData.pole_banner}`}
+        />
       </div>
       <div className='centerContainer'>
         <div>
