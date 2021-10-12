@@ -18,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_URL_API}/pole`)
+      .get(`${process.env.REACT_APP_URL_API}/poles`)
       .then(res => setData(res.data))
   }, [])
 
@@ -67,7 +67,7 @@ const Navbar = () => {
         data.map(e => (
           <NavbarLink
             key={e.id}
-            navTo={`/pole/${e.id}`}
+            navTo={`/poles/${e.id}`}
             NavTitle={e.pole_name}
           />
         ))}
