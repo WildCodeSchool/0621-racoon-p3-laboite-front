@@ -60,7 +60,7 @@ const AdminTeam = () => {
           setResMessage(error.response.data.message)
         }
       })
-    // setTimeout(closeForm, 3000)
+    setTimeout(closeForm, 2500)
   }
 
   // UPDATE a member
@@ -80,7 +80,7 @@ const AdminTeam = () => {
           setResMessage(error.response.data.message)
         }
       })
-    setTimeout(closeForm, 3000)
+    setTimeout(closeForm, 2500)
   }
 
   // Functions to display forms
@@ -97,7 +97,7 @@ const AdminTeam = () => {
     setNewForm(false)
     setForm(false)
     setAdminInput({})
-    setResMessage()
+    setResMessage('')
   }
 
   const onChangeHandler = useCallback(

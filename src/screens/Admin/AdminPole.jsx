@@ -52,7 +52,7 @@ const AdminPole = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'poles'} addElement={addElement} />
+          <AdminTopDiv elmt={'pôles'} addElement={addElement} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
               {poles.length === 0 ? (
