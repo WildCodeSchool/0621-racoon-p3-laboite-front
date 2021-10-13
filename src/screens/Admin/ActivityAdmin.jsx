@@ -68,7 +68,7 @@ const ActivityAdmin = () => {
   const deleteActivity = async selectActivity => {
     console.log(('id', selectActivity))
     const id = selectActivity
-     const confirmation = confirm('Voulez-vous supprimer cette activité ?')
+    const confirmation = confirm('Voulez-vous supprimer cette activité ?')
     if (confirmation) {
       axios
         .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)

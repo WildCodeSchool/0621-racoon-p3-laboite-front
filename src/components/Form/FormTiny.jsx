@@ -7,7 +7,7 @@ export default function FormTiny({ setData, setConfirmTiny }) {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
       setData(text)
-      // setConfirmTiny(true)
+      setConfirmTiny(true)
     }
   }
 

@@ -26,6 +26,8 @@ const PoleFormPost = ({ poleData }) => {
   })
 
   const [poleImage, setPoleImage] = useState()
+  const [poleFunc, setPoleFunc] = useState()
+  const [poleMiniature, setPoleMiniature] = useState()
 
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
@@ -37,13 +39,17 @@ const PoleFormPost = ({ poleData }) => {
   const submitPoleData = async event => {
     event.preventDefault()
     const newPost = { ...poleInfo }
-    if (poleImage) {
+    if (poleImage && poleFunc && poleMiniature) {
       const fd = new FormData()
       const filename = Date.now() + poleImage.name
       fd.append('pole_banner', poleImage, filename)
-      fd.append('pole_func_img', poleImage, filename)
-      fd.append('pole_miniature_img', poleImage, filename)
       newPost.pole_banner = filename
+      const filen = Date.now() + poleFunc.name
+      fd.append('pole_func_img', poleFunc, filen)
+      newPost.pole_func_img = filen
+      const filena = Date.now() + poleMiniature.name
+      fd.append('pole_miniature_img', poleMiniature, filena)
+      newPost.pole_miniature_img = filena
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -69,7 +75,10 @@ const PoleFormPost = ({ poleData }) => {
   const setDataFunc = text => {
     setPoleInfo({ ...poleInfo, pole_func: text })
   }
-  console.log(poleInfo)
+  // console.log('coucou les infos', poleInfo)
+  console.log('stylé les images', poleImage)
+  console.log('stylé les func', poleFunc)
+  console.log('stylé les Miniature', poleMiniature)
   return (
     <div>
       {console.log(poleData)}
@@ -106,19 +115,21 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} />
+        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny}/>
         <form>
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
             name='pole_func_img'
             key='pole_func_img'
-            onChange={handlePoleChange}
+            onChange={e => {
+              setPoleFunc(e.target.files[0])
+            }}
             placeholder={`Photo de Fonctionnement`}
           />
         </form>
         {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc} />
+        <FormTinyFunc setDataFunc={setDataFunc}/>
         <form>
           <label>Numéro de téléphone</label>
           <input
@@ -137,7 +148,9 @@ const PoleFormPost = ({ poleData }) => {
             type='file'
             name='pole_miniature_img'
             key='pole_miniature_img'
-            onChange={handlePoleChange}
+            onChange={e => {
+              setPoleMiniature(e.target.files[0])
+            }}
             placeholder={`Vignette`}
           />
           <label>Sous-titre</label>
