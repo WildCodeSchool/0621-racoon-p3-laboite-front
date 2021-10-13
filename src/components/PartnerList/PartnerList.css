@@ -3,35 +3,39 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: stretch;
-    padding: 0px 20px 40px 20px;
 }
 .pink{
     background-color: pink;
-    width: 150px;
-    height: 150px;
-    margin: 10px 0;
 }
 .purple{
     background-color: purple;
-    width: 150px;
-    height: 150px;
-    margin: 10px 0;
 }
 .orange{
     background-color: orange;
-    width: 150px;
-    height: 150px;
-    margin: 10px 0;
 }
 .cyan{
     background-color: cyan;
-    width: 150px;
-    height: 150px;
-    margin: 10px 0;
 }
 .yellow{
     background-color: yellow;
-    width: 150px;
-    height: 150px;
+}
+
+.box{
+    width: calc(19vw - 10px);
+    height: calc(19vw - 20px);
     margin: 10px 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .box{
+		width: calc(15vw - 20px);
+		height: calc(20vw - 100px);
+	}
+}
+
+@media only screen and (max-width: 700px) {
+  .box{
+		width: calc(40vw - 20px);
+		height: calc(40vw - 20px);
+	}
 }
