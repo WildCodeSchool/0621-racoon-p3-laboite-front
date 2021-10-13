@@ -2,7 +2,6 @@ import axios from 'axios'
 import Concept from '../../components/Concept/Concept'
 import MemberCard from '../../components/Card/MemberCard'
 import PoleCard from '../../components/Card/PoleCard'
-import React from 'react'
 import RubanConcept from '../../components/Ruban/RubanConcept/RubanConcept'
 import { useState, useEffect } from 'react'
 
