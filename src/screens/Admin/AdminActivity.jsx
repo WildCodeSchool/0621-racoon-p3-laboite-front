@@ -18,7 +18,9 @@ const AdminActivity = () => {
   const [activities, setActivities] = useState([])
   useEffect(() => {
     const getActivities = async () => {
-      const results = await axios.get(`http://localhost:4000/activities`)
+      const results = await axios.get(
+        `${process.env.REACT_APP_URL_API}/activities`
+      )
       // console.log(results.data)
       setActivities(results.data)
     }
@@ -64,8 +66,8 @@ const AdminActivity = () => {
                 activities.map((elmt, index) => (
                   <AdminCard
                     key={index}
-                    elmt={elmt.activity_title}
                     id={elmt.id}
+                    name={elmt.activity_title}
                     displayForm={displayForm}
                     removeElement={removeElement}
                   />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import Map from './Map'
 import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
@@ -12,24 +12,34 @@ const Contact = () => {
   const [contact, setContact] = useState('')
   const [social, setSocial] = useState([])
 
+  // Donnée formulaire
+  const [formData, setFormData] = useState({})
+  const [message, setMessage] = useState('')
+
   // Recupere les infos contact du back et bdd
   useEffect(() => {
     const getInfo = () => {
-      console.log(`${process.env.REACT_APP_URL_API}/contact`)
       axios
         .get(`${process.env.REACT_APP_URL_API}/contact`)
-        .then(
-          response => console.table(response.data) || setContact(response.data)
-        )
+        .then(response => setContact(response.data))
 
       axios
         .get(`${process.env.REACT_APP_URL_API}/social`)
-        .then(
-          response => console.table(response.data) || setSocial(response.data)
-        )
+        .then(response => setSocial(response.data))
     }
     getInfo()
   }, [])
+
+  const sendMail = () => {
+    console.log('formData', formData)
+    axios
+      .post(`${process.env.REACT_APP_URL_API}/contact/sendmail`, formData)
+      .then(response => setMessage(response.data))
+  }
+
+  const onChangeHandler = useCallback(({ target: { name, value } }) =>
+    setFormData(state => ({ ...state, [name]: value }), [])
+  )
 
   return (
     <div className='contact centerContainer'>
@@ -46,7 +56,10 @@ const Contact = () => {
                     rel='noreferrer'
                     key={link.id}
                   >
-                    <img src={`${process.env.REACT_APP_URL_API}/static/images/${link.social_icon}`} alt='social icon' />
+                    <img
+                      src={`${process.env.REACT_APP_URL_API}/static/images/${link.social_icon}`}
+                      alt='social icon'
+                    />
                   </a>
                 ))}
               </div>
@@ -68,21 +81,45 @@ const Contact = () => {
         </div>
         <div className='contactMessage'>
           <h3>
-            <span>Laissez nous un message</span>
+            <span className='contactMessageTitle'>Laissez nous un message</span>
           </h3>
-          <form className='contactFrom'>
+          <form
+            className='contactFrom'
+            onSubmit={e => {
+              e.preventDefault()
+              sendMail()
+            }}
+          >
             <div className='contactFromItems'>
               <label htmlFor='name'>Nom:</label>
-              <input id='name' name='name' type='text' require='true' />
+              <input
+                id='name'
+                name='name'
+                type='text'
+                require='true'
+                onChange={onChangeHandler}
+              />
             </div>
             <div className='contactFromItems'>
               <label htmlFor='email'>Email:</label>
-              <input id='email' name='email' type='email' require='true' />
+              <input
+                id='email'
+                name='email'
+                type='email'
+                require='true'
+                onChange={onChangeHandler}
+              />
             </div>
             <div className='contactFromItems'>
               <label htmlFor='message'>Message:</label>
-              <textarea id='message' name='message' require='true'></textarea>
+              <textarea
+                id='message'
+                name='message'
+                require='true'
+                onChange={onChangeHandler}
+              ></textarea>
             </div>
+            <span className='formMessage'>{message && message}</span>
             <button type='submit'>Envoyer</button>
           </form>
         </div>

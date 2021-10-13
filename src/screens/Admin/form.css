@@ -1,88 +1,24 @@
-.formDroplist {
-  width: 100%;
-  height: 300px;
-  background: #E64980;
-  border: solid 1px black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.formSelect {
-  width: 50%;
-  margin:20px;
-  border: solid 1px black;
-  background: #CED4DA;
-}
-
-.formTitle {
-  color: #CED4DA;
-}
-
-.droplistButton {
-  display: flex;
-  justify-content: space-around;
-}
-
-.formTitleForm {
-  color: #E64980;
-}
-
-.FormContainer {
-  width: 100%;
-  background: #CED4DA;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.FormList {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-
-.formAddUserBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  background: #E64980;
-  border: none;
-  cursor: pointer;
-}
 
 .formItems {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 20px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 7px rgba(0, 0, 0, 0.3); */
   padding: 10px 0;
   background: #E64980;
 }
-
 .formItems > * {
   margin: 10px;
 }
-
 .formItems input, .formItems textarea {
   padding: 7px;
   outline: none;
   border: none !important;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
 }
-
-
 .formItems input:focus, .formItems textarea:focus {
   border-left: 2px solid black !important;
 }
-
-
 .formButton {
   display: flex;
   justify-content: space-around;
@@ -109,35 +45,6 @@
   border: none !important;
 }
 
-.formTeam {
-  width: 40%;
-  transform: translateX(-40px);
-}
-
-.formItemsTeam {
-  width: 100%;
-}
-
 .formError {
   color: #000;
-}
-
-@media screen and (max-width: 1000px){
-  .formTeam {
-    width: 60%;
-  }
-}
-
-@media screen and (max-width: 800px){
-  .formTeam {
-    width: 80%;
-  }
-}
-@media screen and (max-width: 800px){
-  .formTeam {
-    width: 100%;
-  }
-  .formItemsTeam {
-    width: 75%;
-  }
 }
