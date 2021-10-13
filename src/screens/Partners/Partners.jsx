@@ -63,10 +63,10 @@ const Partners = () => {
   const midPic = []
   partnership.partnership_mid_pic1 &&
     midPic.push(partnership.partnership_mid_pic1)
-  partnership.partnership_mid_pic2 &&
-    midPic.push(partnership.partnership_mid_pic2)
-  partnership.partnership_mid_pic3 &&
-    midPic.push(partnership.partnership_mid_pic3)
+  partnership.partnership_mid_pic1 &&
+    midPic.push(partnership.partnership_mid_pic1)
+  partnership.partnership_mid_pic1 &&
+    midPic.push(partnership.partnership_mid_pic1)
   partnership.partnership_mid_pic4 &&
     midPic.push(partnership.partnership_mid_pic4)
   partnership.partnership_mid_pic5 &&
