@@ -1,6 +1,6 @@
 import FormTiny from './FormTiny'
 
-const FormActivity = ({
+const FormPole = ({
   setAdminInput,
   adminInput,
   setImage,
@@ -35,11 +35,7 @@ const FormActivity = ({
                     }}
                   >
                     {pole.map(pole => (
-                      <option
-                        key={pole.id}
-                        name={pole.pole_title}
-                        value={pole.id}
-                      >
+                      <option name={pole.pole_title} value={pole.id}>
                         {pole.pole_title}
                       </option>
                     ))}
@@ -122,5 +118,4 @@ const FormActivity = ({
   )
 }
 
-export default FormActivity
-
+export default FormPole

@@ -1,5 +1,7 @@
 // import { useState, useEffect } from 'react'
 import axios from 'axios'
+import PutTinyDesc from '../../components/Form/PutTinyDesc'
+import PutTinyFunc from '../../components/Form/PutTinyFunc'
 
 import './form.css'
 
@@ -16,6 +18,11 @@ const PoleFormPut = poleCard => {
     console.log('results :', results)
     poleData()
   }
+  // setData pertmet de transmettre l'info stockée ds tiny
+  const setData = text => {
+    modifyValue({ ...modifyValue, pole_desc: text })
+  }
+  console.log(setData)
 
   return (
     <div>
@@ -54,7 +61,7 @@ const PoleFormPut = poleCard => {
             }
             value={poleCard.pole_picto}
           />
-          {/* <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} /> */}
+          <label>Pôle description</label>
           <label>Photo de Fonctionnement</label>
           <input
             name='pole_func_img'
@@ -63,7 +70,7 @@ const PoleFormPut = poleCard => {
             }
             value={poleCard.pole_func_img}
           />
-          {/* <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} /> */}
+          <label>Pôle fonctionnement</label>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -97,6 +104,16 @@ const PoleFormPut = poleCard => {
             value={poleCard.pole_catchphrase}
           />
         </form>
+        <PutTinyDesc
+          setData={setData}
+          modifyValue={modifyValue}
+          poleCard={poleCard}
+        />
+        <PutTinyFunc
+          setData={setData}
+          modifyValue={modifyValue}
+          poleCard={poleCard}
+        />
         <button onClick={submitPoleData}>Publier</button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import parse from 'html-react-parser'
 import '../../App.css'
 import './FuncPole.css'
 
@@ -11,10 +12,14 @@ const FuncPole = ({ pole_func, pole_func_img, pole_title }) => {
       </div>
       <div className='bothGreenContainer'>
         <div className='leftGreenContainer'>
-          <p className='creamLeftAlign'>{pole_func}</p>
+          <p className='creamLeftAlign'>{parse(pole_func)}</p>
         </div>
         <div className='rightGreenContainer'>
-          <img className='greenSection' src={`${process.env.REACT_APP_URL_API}/static/images/${pole_func_img}`} alt={pole_title} />
+          <img
+            className='greenSection'
+            src={`${process.env.REACT_APP_URL_API}/static/images/${pole_func_img}`}
+            alt={pole_title}
+          />
         </div>
       </div>
     </section>
