@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function FormTiny({ setData, setConfirmTiny }) {
+export default function PutTinyDesc({ setData, modifyValue, poleCard }) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
@@ -15,7 +15,10 @@ export default function FormTiny({ setData, setConfirmTiny }) {
     <div>
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue='<p>This is the initial content of the editor.</p>'
+        // initialValue=''
+        onChange={e => modifyValue(event.target.name)}
+        value={poleCard.pole_desc}
+        name='pole_desc'
         init={{
           height: 400,
           width: '100%',

@@ -16,7 +16,7 @@ const PoleCardList = () => {
 
   //--- get API data in cardList ---//
   const poleData = async () => {
-    const results = await axios.get(`http://localhost:4000/pole`)
+    const results = await axios.get(`http://localhost:4000/poles`)
     setPoleCards(results.data)
   }
   useEffect(() => {
@@ -26,7 +26,7 @@ const PoleCardList = () => {
   //--- return cards in cardList if polecard does not have the id deleted ---//
   const deleteCard = id => {
     const DeleteData = async () => {
-      await axios.delete(`http://localhost:4000/pole/${id}`)
+      await axios.delete(`http://localhost:4000/poles/${id}`)
       setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
     }
     DeleteData()
@@ -35,7 +35,7 @@ const PoleCardList = () => {
   const modifyCard = id => {
     console.log('id :', id)
     const modifyData = async () => {
-      const results = await axios.get(`http://localhost:4000/pole/admin/${id}`)
+      const results = await axios.get(`http://localhost:4000/poles/admin/${id}`)
       setPoleCardUpdate(results.data[0])
       setShowFormPut(true)
     }

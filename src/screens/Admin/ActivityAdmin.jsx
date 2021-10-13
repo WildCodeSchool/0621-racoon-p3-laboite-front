@@ -96,7 +96,7 @@ const ActivityAdmin = () => {
   // const onChangeHandler2 = (e) => {
   //     setAdminInput({...adminInput, [e.target.name]: e.target.value })
   // }
-
+ 
   const setData = texte => {
     setAdminInput({ ...adminInput, activity_desc: texte })
   }
@@ -162,3 +162,4 @@ const ActivityAdmin = () => {
 }
 
 export default ActivityAdmin
+
