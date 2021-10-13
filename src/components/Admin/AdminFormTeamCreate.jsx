@@ -6,7 +6,8 @@ const AdminFormTeamCreate = ({
   closeForm,
   onChangeHandler,
   postMember,
-  resMessage
+  resMessage,
+  setMemberImage
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -15,7 +16,7 @@ const AdminFormTeamCreate = ({
       </div>
       <div className='bottomDivTitle'>Nouveau membre</div>
       <div className='teamFormContainer'>
-        <TeamAdmin onChangeHandler={onChangeHandler} resMessage={resMessage} />
+        <TeamAdmin onChangeHandler={onChangeHandler} resMessage={resMessage} setMemberImage={setMemberImage} />
       </div>
       <div className='btnContainer flex jcc'>
         <div className='btnForm' onClick={postMember}>

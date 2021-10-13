@@ -18,6 +18,7 @@ const AdminTeam = () => {
   const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
+  const [memberImage, setMemberImage] = useState()
 
   // READ all team members from backEnd
   useEffect(() => {
@@ -44,22 +45,37 @@ const AdminTeam = () => {
   }, [idMemberToUpdate])
 
   // CREATE a new member
-  const postMember = () => {
-    axios
-      .post(`${process.env.REACT_APP_URL_API}/members`, [adminInput])
-      .then(resToBack => {
-        console.log('res post', resToBack)
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrPost', error.response)
-          setResMessage(error.response.data.message)
+  const postMember = async e => {
+    e.preventDefault()
+    const newPost = { ...adminInput }
+    if (memberImage) {
+      const fd = new FormData()
+      const filename = Date.now() + memberImage.name
+      fd.append('member_img', memberImage, filename)
+      newPost.member_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios
+        .post(`${process.env.REACT_APP_URL_API}/members`, newPost)
+        // if (res){
+          console.log('res post', res)
+          setResMessage(res.data.message)
+          setRefresh(!refresh)
         }
-      })
-    setTimeout(closeForm, 2500)
+      catch (err) {
+          // if (err) {
+            console.log('logErrPost', err.response)
+            setResMessage(err.response.data.message)
+          // }
+        }
+      setTimeout(closeForm, 2500)
   }
+  
 
   // UPDATE a member
   const updateMember = () => {
@@ -82,6 +98,7 @@ const AdminTeam = () => {
       })
     setTimeout(closeForm, 2500)
   }
+  
 
   // DELETE a member
   const deleteMember = () => {
@@ -126,6 +143,8 @@ const AdminTeam = () => {
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
+
+  console.log(memberImage)
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
@@ -163,6 +182,7 @@ const AdminTeam = () => {
                 onChangeHandler={onChangeHandler}
                 postMember={postMember}
                 resMessage={resMessage}
+                setMemberImage={setMemberImage}
               />
             </>
           )}
