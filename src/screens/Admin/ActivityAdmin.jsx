@@ -1,8 +1,6 @@
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
-import FormTiny from '../../components/Form/FormTiny'
 import FormActivity from './../../components/Form/FormActivity'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import React, { useState, useEffect, useCallback } from 'react'
 
@@ -45,14 +43,11 @@ const ActivityAdmin = () => {
 
   const submitData = async e => {
     e.preventDefault()
-    // if (confirmTiny === true) {
     const newPost = { ...adminInput }
     if (image) {
       const fd = new FormData()
       const filename = Date.now() + image.name
       fd.append('activity_img', image, filename)
-
-      console.log('coucou filename', filename, fd)
       newPost.activity_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
@@ -73,7 +68,7 @@ const ActivityAdmin = () => {
   const deleteActivity = async selectActivity => {
     console.log(('id', selectActivity))
     const id = selectActivity
-    const confirmation = confirm(' Voulez vousActivité supprimée')
+     const confirmation = confirm('Voulez-vous supprimer cette activité ?')
     if (confirmation) {
       axios
         .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
