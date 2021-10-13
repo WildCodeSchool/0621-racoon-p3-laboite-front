@@ -2,11 +2,11 @@ import React from 'react'
 
 import './form.css'
 
-const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
+const TeamAdmin = ({ adminInput, onChangeHandler, resMessage, setMemberImage }) => {
   return (
     <div className='FormContainer'>
       <div className='FormList formTeam'>
-        <div className='formItems formItemsTeam'>
+        <form encType='multipart/form-data' className='formItems formItemsTeam'>
           <input
             focus
             placeholder={'Nom du membre'}
@@ -18,11 +18,14 @@ const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
             }
           />
           <input
+            type='file'
             focus
             placeholder={'URL de la photo'}
             key='member_img'
             name='member_img'
-            onChange={onChangeHandler}
+            onChange={e => {
+              setMemberImage(e.target.files[0])
+            }}
             value={adminInput && adminInput.member_img && adminInput.member_img}
           />
           <textarea
@@ -37,7 +40,7 @@ const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
             }
           ></textarea>
           <span className='formError'>{resMessage && resMessage}</span>
-        </div>
+        </form>
       </div>
     </div>
   )
