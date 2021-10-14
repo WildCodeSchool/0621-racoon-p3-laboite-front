@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <div className={`flex navlist ${fixNav && 'flex sticky'}`}>
-      <div>N</div>
+      <div></div>
       <NavbarLink navTo={'/'} NavTitle={'Le Concept'} />
       {data &&
         data.map(e => (

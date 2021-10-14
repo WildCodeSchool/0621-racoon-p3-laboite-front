@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const getTeam = () => {
       axios
-        .get(`${process.env.REACT_APP_URL_API}/team`)
+        .get(`${process.env.REACT_APP_URL_API}/members`)
         .then(res => setTeam(res.data))
     }
     getTeam()
@@ -33,12 +33,12 @@ const Home = () => {
   useEffect(() => {
     const getPole = () => {
       axios
-        .get(`${process.env.REACT_APP_URL_API}/pole`)
+        .get(`${process.env.REACT_APP_URL_API}/poles`)
         .then(res => setPoleMin(res.data))
     }
     getPole()
   }, [])
-
+  console.log(concept)
   return (
     <>
       <img

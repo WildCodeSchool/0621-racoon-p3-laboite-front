@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
@@ -18,19 +19,20 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import ActivityAdmin from './screens/Admin/ActivityAdmin'
 import TeamAdmin from './screens/Admin/TeamAdmin'
 import PoleAdmin from './screens/Admin/PoleAdmin'
+import MobileNavBar from './components/Navbar/MobileNavBar'
 
 import './App.css'
 import './Normalize.css'
 
 function App() {
   const [isLogged, setIsLogged] = useState(false)
-
+  const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
   return (
     <Router>
       <ScrollToTop />
       <div className='mainContainer'>
         {!isLogged && <Header />}
-        {!isLogged && <Navbar />}
+        {!isLogged && isDesktop && <Navbar />}
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -67,6 +69,7 @@ function App() {
           </Route>
         </Switch>
         {!isLogged && <Footer />}
+        {!isDesktop && <MobileNavBar />}
       </div>
     </Router>
   )

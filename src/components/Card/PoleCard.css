@@ -68,7 +68,7 @@ display: none;
   background-color: var(--red-background-color);
   clip-path: circle(40%);
   transform: translateY(10px);
-  z-index: 20;
+  z-index: 5;
   display: flex;
   justify-content: center;
   clip-path: circle(50.0% at 50% 100%);
