@@ -48,74 +48,26 @@ const Partners = () => {
     getPartners()
   }, [])
 
-  const topPic = []
-  partnership.partnership_top_pic1 &&
-    topPic.push(partnership.partnership_top_pic1)
-  partnership.partnership_top_pic2 &&
-    topPic.push(partnership.partnership_top_pic2)
-  partnership.partnership_top_pic3 &&
-    topPic.push(partnership.partnership_top_pic3)
-  partnership.partnership_top_pic4 &&
-    topPic.push(partnership.partnership_top_pic4)
-  partnership.partnership_top_pic5 &&
-    topPic.push(partnership.partnership_top_pic5)
-
-  const midPic = []
-  partnership.partnership_mid_pic1 &&
-    midPic.push(partnership.partnership_mid_pic1)
-  partnership.partnership_mid_pic1 &&
-    midPic.push(partnership.partnership_mid_pic1)
-  partnership.partnership_mid_pic1 &&
-    midPic.push(partnership.partnership_mid_pic1)
-  partnership.partnership_mid_pic4 &&
-    midPic.push(partnership.partnership_mid_pic4)
-  partnership.partnership_mid_pic5 &&
-    midPic.push(partnership.partnership_mid_pic5)
-  const botPic = []
-  partnership.partnership_bot_pic1 &&
-    botPic.push(partnership.partnership_bot_pic1)
-  partnership.partnership_bot_pic2 &&
-    botPic.push(partnership.partnership_bot_pic2)
-  partnership.partnership_bot_pic3 &&
-    botPic.push(partnership.partnership_bot_pic3)
-  partnership.partnership_bot_pic4 &&
-    botPic.push(partnership.partnership_bot_pic4)
-  partnership.partnership_bot_pic5 &&
-    botPic.push(partnership.partnership_bot_pic5)
-
-  const topText = []
-  partnership.partnership_top_txt1 &&
-    topText.push(partnership.partnership_top_txt1)
-  partnership.partnership_top_txt2 &&
-    topText.push(partnership.partnership_top_txt2)
-  partnership.partnership_top_txt3 &&
-    topText.push(partnership.partnership_top_txt3)
-  partnership.partnership_top_txt4 &&
-    topText.push(partnership.partnership_top_txt4)
-  partnership.partnership_top_txt5 &&
-    topText.push(partnership.partnership_top_txt5)
-  const midText = []
-  partnership.partnership_mid_txt1 &&
-    midText.push(partnership.partnership_mid_txt1)
-  partnership.partnership_mid_txt2 &&
-    midText.push(partnership.partnership_mid_txt2)
-  partnership.partnership_mid_txt3 &&
-    midText.push(partnership.partnership_mid_txt3)
-  partnership.partnership_mid_txt4 &&
-    midText.push(partnership.partnership_mid_txt4)
-  partnership.partnership_mid_txt5 &&
-    midText.push(partnership.partnership_mid_txt5)
-  const botText = []
-  partnership.partnership_bot_txt1 &&
-    botText.push(partnership.partnership_bot_txt1)
-  partnership.partnership_bot_txt2 &&
-    botText.push(partnership.partnership_bot_txt2)
-  partnership.partnership_bot_txt3 &&
-    botText.push(partnership.partnership_bot_txt3)
-  partnership.partnership_bot_txt4 &&
-    botText.push(partnership.partnership_bot_txt4)
-  partnership.partnership_bot_txt5 &&
-    botText.push(partnership.partnership_bot_txt5)
+  let topPic = []
+  let midPic = []
+  let botPic = []
+  let topText = []
+  let midText = []
+  let botText = []
+  for (let i = 1; i <= 5; i++) {
+    partnership[`partnership_top_pic` + i] &&
+      topPic.push(partnership[`partnership_top_pic` + i])
+    partnership[`partnership_mid_pic` + i] &&
+      midPic.push(partnership[`partnership_mid_pic` + i])
+    partnership[`partnership_bot_pic` + i] &&
+      botPic.push(partnership[`partnership_bot_pic` + i])
+    partnership[`partnership_top_txt` + i] &&
+      topText.push(partnership[`partnership_top_txt` + i])
+    partnership[`partnership_mid_txt` + i] &&
+      midText.push(partnership[`partnership_mid_txt` + i])
+    partnership[`partnership_bot_txt` + i] &&
+      botText.push(partnership[`partnership_bot_txt` + i])
+  }
 
   return (
     <div className='centerContainer'>
