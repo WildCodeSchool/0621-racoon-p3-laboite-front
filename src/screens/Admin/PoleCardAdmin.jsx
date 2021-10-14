@@ -8,7 +8,7 @@ const PoleCardAdmin = ({
   return (
     <>
       <figure>
-        <img src={pole_miniature_img} alt={pole_name} />
+        <img src={`${process.env.REACT_APP_URL_API}/static/images/${pole_miniature_img}`} alt={pole_name} />
         <figcaption>
           <p>{pole_name}</p>
         </figcaption>
