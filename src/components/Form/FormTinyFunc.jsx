@@ -1,14 +1,13 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-
-export default function FormTiny({ setData, setConfirmTiny }) {
+export default function FormTinyFunc ({ setDataFunc }) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
-      setData(text)
-      setConfirmTiny(true)
+      setDataFunc(text)
+      // setConfirmTiny(true)
     }
   }
 
