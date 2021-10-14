@@ -1,23 +1,24 @@
 import './GreenBox.css'
 import '../../App.css'
 
-const GreenBox = ({ title, text, pictures }) => {
-  console.log(text)
+const GreenBox = ({ greenTitle, greenText, greenPic }) => {
   return (
     <div className='titleGreenContainer'>
       <div className='titleLine'>
-        <h2 className='green'>{title}</h2>
+        <h2 className='green'>{greenTitle}</h2>
         <div className='greenWrapper'>
           <div className='flex greenLeftBlock'>
-            {pictures.map((img, index) => (
-              <img key={index} src={img} alt='fistbump' />
+            {greenPic.map((pic, index) => (
+              <img
+                key={index}
+                src={`${process.env.REACT_APP_URL_API}/static/images/${pic}`}
+                alt={pic}
+              />
             ))}
           </div>
           <div className='flex greenRightBlock'>
-            {text.map((txt, index) => (
-              <p key={index} className='redQuote'>
-                {txt}
-              </p>
+            {greenText.map((txt, index) => (
+              <p key={index}>{txt}</p>
             ))}
           </div>
         </div>
