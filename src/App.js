@@ -54,7 +54,7 @@ function App() {
           </Route> */}
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
-            </Route>
+          </Route>
           {/* <Route exact path='/admin/pole'>
             {localStorage.getItem('user_token') ? <AdminPole /> : <Home />}
           </Route> */}
