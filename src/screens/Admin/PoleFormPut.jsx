@@ -5,24 +5,28 @@ import PutTinyFunc from '../../components/Form/PutTinyFunc'
 
 import './form.css'
 
-const PoleFormPut = poleCard => {
+const PoleFormPut =  (poleCard, poleCardUpdate, setPoleCardUpdate)   => {
   const { modifyValue, poleData } = poleCard
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
     event.preventDefault()
     const results = await axios.put(
-      `${process.env.REACT_APP_URL_API}/pole/${poleCard.id}`,
+      `${process.env.REACT_APP_URL_API}/poles/${poleCard.id}`,
       poleCard
     )
     console.log('results :', results)
     poleData()
   }
   // setData pertmet de transmettre l'info stockée ds tiny
-  const setData = text => {
-    modifyValue({ ...modifyValue, pole_desc: text })
+  const setDataDesc = text => {
+    modifyValue('pole_desc', text)
   }
-  console.log(setData)
+
+  const setDataFunc = text => {
+    modifyValue('pole_func', text)
+  }
+
 
   return (
     <div>
@@ -39,11 +43,12 @@ const PoleFormPut = poleCard => {
           />
           <label>Bannière</label>
           <input
+          // type='file'
             name='pole_banner'
             onChange={event =>
-              modifyValue(event.target.name, event.target.value)
+              modifyValue(event.target.name, event.target.file)
             }
-            value={poleCard.pole_banner}
+            // value={`${process.env.REACT_APP_URL_API}/static/images/${poleCard.pole_banner}`}
           />
           <label>Titre de page pôle</label>
           <input
@@ -64,11 +69,12 @@ const PoleFormPut = poleCard => {
           <label>Pôle description</label>
           <label>Photo de Fonctionnement</label>
           <input
+            // type='file'
             name='pole_func_img'
             onChange={event =>
-              modifyValue(event.target.name, event.target.value)
+              modifyValue(event.target.name, event.target.file)
             }
-            value={poleCard.pole_func_img}
+            // value={`${process.env.REACT_APP_URL_API}/static/images/${poleCard.pole_func_img}`}
           />
           <label>Pôle fonctionnement</label>
           <label>Numéro de téléphone</label>
@@ -89,12 +95,13 @@ const PoleFormPut = poleCard => {
           />
           <label>Vignette</label>
           <input
+            // type='file'
             name='pole_miniature_img'
             onChange={event =>
-              modifyValue(event.target.name, event.target.value)
+              modifyValue(event.target.name, event.target.file)
             }
-            value={poleCard.pole_miniature_img}
-          />
+            // value={`${process.env.REACT_APP_URL_API}/static/images/${poleCard.pole_miniature_img}`}          
+            />
           <label>Sous-titre</label>
           <input
             name='pole_catchphrase'
@@ -105,14 +112,25 @@ const PoleFormPut = poleCard => {
           />
         </form>
         <PutTinyDesc
-          setData={setData}
+          setDataDesc={setDataDesc}
           modifyValue={modifyValue}
           poleCard={poleCard}
+          name='pole_desc'
+          key='pole_desc'
+          value={poleCard.pole_desc}
+            // onChange={event =>
+            //   setPoleCardUpdate(event.target.name, event.target.value)
+            // }
         />
         <PutTinyFunc
-          setData={setData}
+          setDataFunc={setDataFunc}
           modifyValue={modifyValue}
           poleCard={poleCard}
+          name='pole_func'
+          key='pole_func'
+            onChange={event =>
+              modifyValue(event.target.value)
+            }
         />
         <button onClick={submitPoleData}>Publier</button>
       </div>
