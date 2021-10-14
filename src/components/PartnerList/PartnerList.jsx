@@ -5,7 +5,7 @@ const PartnerList = ({ partners }) => {
     <div className='partners'>
       <div className='partnersWrapper'>
         {partners.map((partner, index) => (
-          <div key={index} className={`${partner} box`}>
+          <div key={index} className={`${partner} partnerbox`}>
             150 x 150 px
           </div>
         ))}

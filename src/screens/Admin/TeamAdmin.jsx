@@ -2,7 +2,13 @@ import React from 'react'
 
 import './form.css'
 
-const TeamAdmin = ({ adminInput, onChangeHandler, resMessage, setMemberImage }) => {
+const TeamAdmin = ({
+  adminInput,
+  onChangeHandler,
+  resMessage,
+  setMemberImage,
+  setAdminInput
+}) => {
   return (
     <div className='FormContainer'>
       <div className='FormList formTeam'>
@@ -20,12 +26,23 @@ const TeamAdmin = ({ adminInput, onChangeHandler, resMessage, setMemberImage }) 
           <input
             type='file'
             focus
-            placeholder={'URL de la photo'}
+            placeholder={'Uploader une photo'}
             key='member_img'
             name='member_img'
             onChange={e => {
-              setMemberImage(e.target.files[0])
+              setMemberImage(e.target.files[0]) ||
+                setAdminInput(state => ({
+                  ...state,
+                  ['member_img']: e.target.files[0].name
+                }))
             }}
+          />
+          <input
+            focus
+            placeholder={'Fichier image'}
+            key='member_img'
+            name='member_img'
+            onChange={onChangeHandler} // removed to prevent manual modification
             value={adminInput && adminInput.member_img && adminInput.member_img}
           />
           <textarea

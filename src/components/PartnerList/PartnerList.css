@@ -20,21 +20,21 @@
     background-color: yellow;
 }
 
-.box{
+.partnerbox{
     width: calc(19vw - 10px);
     height: calc(19vw - 20px);
     margin: 10px 0;
 }
 
 @media only screen and (min-width: 1024px) {
-  .box{
+  .partnerbox{
 		width: calc(15vw - 20px);
 		height: calc(20vw - 100px);
 	}
 }
 
 @media only screen and (max-width: 700px) {
-  .box{
+  .partnerbox{
 		width: calc(40vw - 20px);
 		height: calc(40vw - 20px);
 	}
