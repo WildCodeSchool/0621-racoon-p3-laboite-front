@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const AdminLeftMenu = () => {
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'building', route: 'poles' },
-    { id: 2, name: 'Activités', picto: 'network-wired', route: 'activity' },
+    { id: 2, name: 'Activités', picto: 'network-wired', route: 'activities' },
     { id: 3, name: 'Membres', picto: 'users', route: 'members' },
     { id: 4, name: 'Partenaires', picto: 'hands-helping', route: 'partners' }
   ]
