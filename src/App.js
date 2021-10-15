@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
@@ -8,6 +9,7 @@ import Navbar from './components/Navbar/Navbar'
 import AdminHome from './screens/Admin/AdminHome'
 import AdminActivity from './screens/Admin/AdminActivity'
 import AdminPole from './screens/Admin/AdminPole'
+import AdminPartner from './screens/Admin/AdminPartner'
 import AdminTeam from './screens/Admin/AdminTeam'
 import Contact from './screens/Contact/Contact'
 import Home from './screens/Home/Home'
@@ -17,19 +19,20 @@ import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import ActivityAdmin from './screens/Admin/ActivityAdmin'
 import PoleAdmin from './screens/Admin/PoleAdmin'
+import MobileNavBar from './components/Navbar/MobileNavBar'
 
 import './App.css'
 import './Normalize.css'
 
 function App() {
   const [isLogged, setIsLogged] = useState(false)
-
+  const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
   return (
     <Router>
       <ScrollToTop />
       <div className='mainContainer'>
         {!isLogged && <Header />}
-        {!isLogged && <Navbar />}
+        {!isLogged && isDesktop && <Navbar />}
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -67,11 +70,15 @@ function App() {
           <Route exact path='/admin/members'>
             {localStorage.getItem('user_token') ? <AdminTeam /> : <Home />}
           </Route>
+          <Route exact path='/admin/partners'>
+            {localStorage.getItem('user_token') ? <AdminPartner /> : <Home />}
+          </Route>
           <Route path='/admin'>
             {localStorage.getItem('user_token') ? <AdminHome /> : <Home />}
           </Route>
         </Switch>
         {!isLogged && <Footer />}
+        {!isDesktop && <MobileNavBar />}
       </div>
     </Router>
   )

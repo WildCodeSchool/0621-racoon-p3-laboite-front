@@ -1,59 +1,58 @@
 import axios from 'axios'
-
 import { useState, useEffect, useCallback } from 'react'
 
 import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormTeamCreate from '../../components/Admin/AdminFormTeamCreate'
-import AdminFormTeamUpdate from '../../components/Admin/AdminFormTeamUpdate'
+import AdminFormPartnerCreate from '../../components/Admin/AdminFormPartnerCreate'
+import AdminFormPartnerUpdate from '../../components/Admin/AdminFormPartnerUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
 
-const AdminTeam = () => {
+const AdminPartner = () => {
   // List of states
   const [refresh, setRefresh] = useState(false)
   const [createForm, setCreateForm] = useState(false)
   const [updateForm, setUpdateForm] = useState(false)
-  const [team, setTeam] = useState([])
-  const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
+  const [partners, setPartners] = useState([])
+  const [idPartnerToUpdate, setIdPartnerToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
-  const [memberImage, setMemberImage] = useState()
+  const [partnerImage, setPartnerImage] = useState()
 
-  // READ all team members from backEnd
+  // READ all partners from backEnd
   useEffect(() => {
-    const getTeam = async () => {
+    const getPartners = async () => {
       const results = await axios.get(
-        `${process.env.REACT_APP_URL_API}/members`
+        `${process.env.REACT_APP_URL_API}/partners`
       )
-      setTeam(results.data)
+      setPartners(results.data)
     }
-    getTeam()
+    getPartners()
   }, [refresh])
 
-  // READ a member data from idMemberToUpdate
+  // READ a partner data from idPartnerToUpdate
   useEffect(() => {
-    console.log('update_member', idMemberToUpdate)
+    console.log('update_partner', idPartnerToUpdate)
     setAdminInput('')
     setResMessage('')
-    const getMember = () => {
+    const getPartner = () => {
       axios
-        .get(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
+        .get(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
         .then(results => setAdminInput(results.data))
     }
-    getMember()
-  }, [idMemberToUpdate])
+    getPartner()
+  }, [idPartnerToUpdate])
 
-  // CREATE a new member
-  const postMember = async e => {
+  // CREATE a new partner
+  const postPartner = async e => {
     e.preventDefault()
     const newPost = { ...adminInput }
-    if (memberImage) {
+    if (partnerImage) {
       const fd = new FormData()
-      const filename = Date.now() + memberImage.name
-      fd.append('member_img', memberImage, filename)
-      newPost.member_img = filename
+      const filename = Date.now() + partnerImage.name
+      fd.append('partner_img', partnerImage, filename)
+      newPost.partner_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -62,7 +61,7 @@ const AdminTeam = () => {
     }
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_URL_API}/members`,
+        `${process.env.REACT_APP_URL_API}/partners`,
         newPost
       )
       // if (res){
@@ -78,16 +77,16 @@ const AdminTeam = () => {
     }
   }
 
-  // UPDATE a member
-  const updateMember = async e => {
-    // console.log(idMemberToUpdate, adminInput)
+  // UPDATE a partner
+  const updatePartner = async e => {
+    // console.log(idPartnerToUpdate, adminInput)
     e.preventDefault()
-    const newPut = { ...adminInput }
-    if (memberImage) {
+    const newPartnerPut = { ...adminInput }
+    if (partnerImage) {
       const fd = new FormData()
-      const filename = Date.now() + memberImage.name
-      fd.append('member_img', memberImage, filename)
-      newPut.member_img = filename
+      const filename = Date.now() + partnerImage.name
+      fd.append('partner_img', partnerImage, filename)
+      newPartnerPut.partner_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -96,8 +95,8 @@ const AdminTeam = () => {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`,
-        newPut
+        `${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`,
+        newPartnerPut
       )
       // if (res){
       console.log('res update', res)
@@ -112,10 +111,10 @@ const AdminTeam = () => {
     }
   }
 
-  // DELETE a member
-  const deleteMember = () => {
+  // DELETE a partner
+  const deletePartner = () => {
     axios
-      .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
+      .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
       .then(resToBack => {
         // console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
@@ -139,13 +138,13 @@ const AdminTeam = () => {
   const showUpdateForm = e => {
     setCreateForm(false) // close createForm
     setUpdateForm(true) // open updateForm
-    setIdMemberToUpdate(e.target.id) // auto-trigger getMember
+    setIdPartnerToUpdate(e.target.id) // auto-trigger getPartner
   }
   const closeForm = () => {
     setCreateForm(false) // close createForm
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
-    setIdMemberToUpdate('') // clear selected member
+    setIdPartnerToUpdate('') // clear selected partner
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -155,7 +154,7 @@ const AdminTeam = () => {
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
-  // console.log(memberImage)
+  // console.log(partnerImage)
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
@@ -164,20 +163,20 @@ const AdminTeam = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'membres'} addElement={showCreateForm} />
+          <AdminTopDiv elmt={'partenaires'} addElement={showCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {team.length === 0 ? (
+              {partners.length === 0 ? (
                 <div className='noCard'>
                   Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
                   créer un nouvel élément !
                 </div>
               ) : (
-                team.map(elmt => (
+                partners.map(elmt => (
                   <AdminCard
-                    key={elmt.member_id}
-                    id={elmt.member_id}
-                    name={elmt.member_name}
+                    key={elmt.partner_id}
+                    id={elmt.partner_id}
+                    name={elmt.partner_name}
                     updateElement={showUpdateForm}
                   />
                 ))
@@ -188,27 +187,27 @@ const AdminTeam = () => {
         <div className='bottomDiv flex col jcc aic'>
           {createForm && (
             <>
-              <AdminFormTeamCreate
+              <AdminFormPartnerCreate
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
-                postMember={postMember}
+                postPartner={postPartner}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setMemberImage={setMemberImage}
+                setPartnerImage={setPartnerImage}
               />
             </>
           )}
           {updateForm && (
             <>
-              <AdminFormTeamUpdate
+              <AdminFormPartnerUpdate
                 adminInput={adminInput}
                 closeForm={closeForm}
-                deleteMember={deleteMember}
+                deletePartner={deletePartner}
                 onChangeHandler={onChangeHandler}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setMemberImage={setMemberImage}
-                updateMember={updateMember}
+                setPartnerImage={setPartnerImage}
+                updatePartner={updatePartner}
               />
             </>
           )}
@@ -218,4 +217,4 @@ const AdminTeam = () => {
   )
 }
 
-export default AdminTeam
+export default AdminPartner

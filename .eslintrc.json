@@ -6,7 +6,7 @@
   "rules": {
     "prettier/prettier": "warn",
         "no-unused-vars": 1,
-        "react/react-in-jsx-scope": 0,
+        "react/react-in-jsx-scope":"off",
         "react/display-name":1,
         "react/jsx-key":1,
         "react/jsx-no-comment-textnodes":1,
