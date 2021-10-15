@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar'
 import AdminHome from './screens/Admin/AdminHome'
 import AdminActivity from './screens/Admin/AdminActivity'
 import AdminPole from './screens/Admin/AdminPole'
+import AdminPartner from './screens/Admin/AdminPartner'
 import AdminTeam from './screens/Admin/AdminTeam'
 import Contact from './screens/Contact/Contact'
 import Home from './screens/Home/Home'
@@ -63,6 +64,9 @@ function App() {
           </Route>
           <Route exact path='/admin/members'>
             {localStorage.getItem('user_token') ? <AdminTeam /> : <Home />}
+          </Route>
+          <Route exact path='/admin/partners'>
+            {localStorage.getItem('user_token') ? <AdminPartner /> : <Home />}
           </Route>
           <Route path='/admin'>
             {localStorage.getItem('user_token') ? <AdminHome /> : <Home />}
