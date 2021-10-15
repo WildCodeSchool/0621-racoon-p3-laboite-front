@@ -6,11 +6,6 @@ import { useState } from 'react'
 
 const PoleFormPost = ({ poleData }) => {
   const [confirmTiny, setConfirmTiny] = useState(false)
-  // const [newActivity, setNewActivity] = useState({
-  //   activity_desc: '',
-  //   activity_img: '',
-  //   activity_title: ''
-  // })
   const [poleInfo, setPoleInfo] = useState({
     pole_name: '',
     pole_title: '',
@@ -33,9 +28,6 @@ const PoleFormPost = ({ poleData }) => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
   }
 
-  // const setData = texte => {
-  //   setAdminInput({ ...adminInput, activity_desc: texte })
-  // }
   const submitPoleData = async event => {
     event.preventDefault()
     const newPost = { ...poleInfo }
@@ -76,13 +68,9 @@ const PoleFormPost = ({ poleData }) => {
   const setDataFunc = text => {
     setPoleInfo({ ...poleInfo, pole_func: text })
   }
-  // console.log('coucou les infos', poleInfo)
-  console.log('stylé les images', poleImage)
-  console.log('stylé les func', poleFunc)
-  console.log('stylé les Miniature', poleMiniature)
+
   return (
     <div>
-      {console.log(poleData)}
       <div className='form-container'>
         <form className='new-pole-form' encType='multipart/form-data'>
           <label>Nom de l&apos;onglet</label>
@@ -116,7 +104,7 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny}/>
+        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
         <form>
           <label>Photo de Fonctionnement</label>
           <input
@@ -130,7 +118,7 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc}/>
+        <FormTinyFunc setDataFunc={setDataFunc} />
         <form>
           <label>Numéro de téléphone</label>
           <input
