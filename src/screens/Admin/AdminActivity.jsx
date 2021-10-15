@@ -1,50 +1,176 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
 
-import ActivityAdmin from './ActivityAdmin'
+import { useState, useEffect, useCallback } from 'react'
+
 import AdminCard from '../../components/Admin/AdminCard'
-import AdminForm from '../../components/Admin/AdminForm'
+import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCreate'
+import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
 
 const AdminActivity = () => {
-  // List of activities NOT from backEnd (test only)
-  // let notbackactivities = ['Bricolage', 'Electricité']
-  // const [activities, setActivities] = useState(notbackactivities)
-
-  // List of activities from backEnd
+  // List of states
+  const [refresh, setRefresh] = useState(false)
+  const [createForm, setCreateForm] = useState(false)
+  const [updateForm, setUpdateForm] = useState(false)
   const [activities, setActivities] = useState([])
+  const [poles, setPoles] = useState([])
+  const [idActivityToUpdate, setIdActivityToUpdate] = useState('')
+  const [adminInput, setAdminInput] = useState({})
+  const [resMessage, setResMessage] = useState('')
+  const [activityImage, setActivityImage] = useState()
+
+  // READ all activities from backEnd
   useEffect(() => {
     const getActivities = async () => {
       const results = await axios.get(
         `${process.env.REACT_APP_URL_API}/activities`
       )
-      // console.log(results.data)
       setActivities(results.data)
+      // setLoading(false)
     }
     getActivities()
+  }, [refresh])
+
+  useEffect(() => {
+    const getPoles = async () => {
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
+      setPoles(results.data)
+      // setLoading(false)
+    }
+    getPoles()
   }, [])
 
-  // Variable to check if form is open
-  const [isOpenForm, setIsOpenForm] = useState(false)
-  // Function to add a new element to list
-  const addElement = () => {
-    setActivities(activities.concat('Nouveau'))
+  //----------------------------------------------------------------------------
+  // READ an activity data from idActivityToUpdate
+  useEffect(() => {
+    console.log('update_activity', idActivityToUpdate)
+    setAdminInput('')
+    setResMessage('')
+    const getActivity = () => {
+      axios
+        .get(
+          `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
+        )
+        .then(results => setAdminInput(results.data))
+    }
+    getActivity()
+  }, [idActivityToUpdate])
+
+  // CREATE a new activity
+  const postActivity = async e => {
+    e.preventDefault()
+    const newPost = { ...adminInput }
+    if (activityImage) {
+      const fd = new FormData()
+      const filename = Date.now() + activityImage.name
+      fd.append('activity_img', activityImage, filename)
+      newPost.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_API}/activitys`,
+        newPost
+      )
+      // if (res){
+      console.log('res post', res)
+      setResMessage(res.data.message)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
+    } catch (err) {
+      // if (err) {
+      console.log('logErrPost', err.response)
+      setResMessage(err.response.data.message)
+      // }
+    }
   }
-  // Function to remove an element from list
-  const removeElement = () => {
-    setActivities(activities.pop())
+
+  // UPDATE a activity
+  const updateActivity = async e => {
+    // console.log(idActivityToUpdate, adminInput)
+    e.preventDefault()
+    const newPut = { ...adminInput }
+    if (activityImage) {
+      const fd = new FormData()
+      const filename = Date.now() + activityImage.name
+      fd.append('activity_img', activityImage, filename)
+      newPut.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
+        newPut
+      )
+      // if (res){
+      console.log('res update', res)
+      setResMessage(res.data.message)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
+    } catch (error) {
+      // if(error) {
+      console.log('logErrUpdate', error.response)
+      setResMessage(error.response.data.message)
+      // }
+    }
   }
-  // Function to display form
-  const displayForm = e => {
-    let myClass = e.target.className
-    console.log('class', myClass)
-    setIsOpenForm(true)
-    localStorage.setItem('IsOpenForm', true)
-    // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
+
+  // DELETE aa activity
+  const deleteActivity = () => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
+      )
+      .then(resToBack => {
+        // console.log('res delete', resToBack)
+        setResMessage(resToBack.data.message)
+        setRefresh(!refresh)
+        setTimeout(closeForm, 2500)
+      })
+      .catch(error => {
+        if (error) {
+          // console.log('logErrDelete', error.response)
+          setResMessage(error.response.data.message)
+        }
+      })
   }
+  //----------------------------------------------------------------------------
+
+  // Functions to display forms
+  const showCreateForm = () => {
+    setAdminInput({}) // clear inputs
+    setCreateForm(true) // open createForm
+    setUpdateForm(false) // close updateForm
+  }
+  const showUpdateForm = e => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(true) // open updateForm
+    setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
+  }
+  const closeForm = () => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(false) // close updateForm
+    setAdminInput({}) // clear inputs
+    setIdActivityToUpdate('') // clear selected activity
+    setResMessage('') // clear message
+  }
+  //Function to update inputs
+  const onChangeHandler = useCallback(
+    ({ target: { name, value } }) =>
+      console.log('inputChange') ||
+      setAdminInput(state => ({ ...state, [name]: value }), [])
+  )
 
   return (
     <div className='adminContainer flex row'>
@@ -54,7 +180,7 @@ const AdminActivity = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'activités'} addElement={addElement} />
+          <AdminTopDiv elmt={'activités'} addElement={showCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
               {activities.length === 0 ? (
@@ -63,13 +189,15 @@ const AdminActivity = () => {
                   créer un nouvel élément !
                 </div>
               ) : (
-                activities.map((elmt, index) => (
+                activities.map(elmt => (
                   <AdminCard
-                    key={index}
+                    // key={elmt.activity_id}
+                    // id={elmt.activity_id}
+                    // name={elmt.activity_name}
+                    key={elmt.id}
                     id={elmt.id}
                     name={elmt.activity_title}
-                    displayForm={displayForm}
-                    removeElement={removeElement}
+                    updateElement={showUpdateForm}
                   />
                 ))
               )}
@@ -77,10 +205,30 @@ const AdminActivity = () => {
           </div>
         </div>
         <div className='bottomDiv flex col jcc aic'>
-          {isOpenForm && (
+          {createForm && (
             <>
-              <AdminForm displayForm={displayForm} />
-              <ActivityAdmin />
+              <AdminFormActivityCreate
+                closeForm={closeForm}
+                onChangeHandler={onChangeHandler}
+                postActivity={postActivity}
+                resMessage={resMessage}
+                setAdminInput={setAdminInput}
+                setActivityImage={setActivityImage}
+              />
+            </>
+          )}
+          {updateForm && (
+            <>
+              <AdminFormActivityUpdate
+                adminInput={adminInput}
+                closeForm={closeForm}
+                deleteActivity={deleteActivity}
+                onChangeHandler={onChangeHandler}
+                resMessage={resMessage}
+                setAdminInput={setAdminInput}
+                setActivityImage={setActivityImage}
+                updateActivity={updateActivity}
+              />
             </>
           )}
         </div>
