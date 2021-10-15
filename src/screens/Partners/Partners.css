@@ -9,36 +9,13 @@
 .partners{
   flex-direction: column;
   background-color: #F7F8F2;
+	padding: 20px;
 }
-/*------------------------------------------------*/
-.banner-top{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: darkslateblue;
-  overflow: hidden;
-  background-size: cover;
-}
-.banner-top img{
-  width: 100%;
-  height: 15vh;
-  /* object-fit: cover; */
-}
-/*------------------------------------------------*/
 
 .paragraph {
   color: var(--sections-txt-color);
-  padding: 20px 160px 20px 160px;
+  /* padding: 0px 20px; */
   text-align: left;
-}
-
-.paragraph ul{
-  padding-left: 40px
-}
-
-.paragraph li{
-  padding-left: 15px;;
 }
 
 .function, .give{
@@ -51,3 +28,4 @@
   background-color: #F7F8F2;
   padding: 20px;
 }
+
