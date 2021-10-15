@@ -1,12 +1,11 @@
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
-import FormTiny from '../../components/Form/FormTiny'
 import FormActivity from './../../components/Form/FormActivity'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import React, { useState, useEffect, useCallback } from 'react'
 
 import './ActivityAdmin.css'
+import FormModifyActivity from '../../components/Form/FormModifyActivity'
 
 const iconList = Object.keys(Icons)
   .filter(key => key !== 'fas' && key !== 'prefix')
@@ -21,6 +20,11 @@ const ActivityAdmin = () => {
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
   const [image, setImage] = useState()
+  const [putImage, setPutImage] = useState()
+  const [activityUpdate, setActivityUpdate] = useState({})
+
+  const [showFormActivity, setShowFormActivity] = useState(false)
+  const [showFormModifyActivity, setShowFormModifyActivity] = useState(false)
 
   const recupData = async () => {
     const results = await axios.get(
@@ -45,14 +49,11 @@ const ActivityAdmin = () => {
 
   const submitData = async e => {
     e.preventDefault()
-    // if (confirmTiny === true) {
-    const newPost = { ...adminInput }
+    const newPost = { ...adminInput, ...activityUpdate }
     if (image) {
       const fd = new FormData()
       const filename = Date.now() + image.name
       fd.append('activity_img', image, filename)
-
-      console.log('coucou filename', filename, fd)
       newPost.activity_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
@@ -65,15 +66,59 @@ const ActivityAdmin = () => {
         `${process.env.REACT_APP_URL_API}/activities`,
         newPost
       )
+      alert('Activité ajoutée avec succès')
     } catch (err) {
       console.log(err)
     }
   }
 
+  // select an activity by id to modify
+  const modifyActivity = selectActivity => {
+    const modifyData = async () => {
+      const id = selectActivity
+      const result = await axios.get(`http://localhost:4000/activities/${id}`)
+      setActivityUpdate(result.data)
+    }
+    modifyData()
+  }
+
+  const modifyData = async e => {
+    e.preventDefault()
+    const newPost = { ...activityUpdate }
+    if (putImage) {
+      const fd = new FormData()
+      const filename = Date.now() + putImage.name
+      fd.append('activity_img', putImage, filename)
+      newPost.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_URL_API}/activities/${selectActivity}`,
+        newPost
+      )
+      alert('Activité modifiée avec succès')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // stock in a function all the key:value of an object that I want do modify from setActivityUpdate
+  const modifyValue = (name, value) => {
+    setActivityUpdate({
+      ...activityUpdate,
+      [name]: value
+    })
+  }
+
   const deleteActivity = async selectActivity => {
     console.log(('id', selectActivity))
     const id = selectActivity
-    const confirmation = confirm(' Voulez vousActivité supprimée')
+    const confirmation = confirm('Voulez-vous supprimer cette activité ?')
     if (confirmation) {
       axios
         .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
@@ -101,14 +146,21 @@ const ActivityAdmin = () => {
     setAdminInput({ ...adminInput, activity_desc: texte })
   }
 
+  const setDataPut = texte => {
+    setActivityUpdate({ ...activityUpdate, activity_desc: texte })
+  }
+
+  const handleModifyClick = () => {
+    modifyActivity(selectActivity)
+    setShowFormModifyActivity(!showFormModifyActivity)
+  }
+
   return (
     <>
       <div className='activityDroplist'>
         <h3 className='activityTitle'>Activités mises en ligne</h3>
         <select
-          onChange={e =>
-            console.log(e.target.value) || setSelectActivity(e.target.value)
-          }
+          onChange={e => setSelectActivity(e.target.value)}
           placeholder='Activités mises en ligne'
           style={{
             width: '50%',
@@ -124,7 +176,11 @@ const ActivityAdmin = () => {
           ))}
         </select>
         <div className='droplistButton'>
+          <button onClick={e => setShowFormActivity(!showFormActivity)}>
+            Ajouter
+          </button>
           <button
+            onClick={handleModifyClick}
             style={{
               background: '#868E96',
               border: 'solid 1px black',
@@ -145,18 +201,31 @@ const ActivityAdmin = () => {
           </button>
         </div>
       </div>
-      <FormActivity
-        setAdminInput={setAdminInput}
-        adminInput={adminInput}
-        onChangeHandler={onChangeHandler}
-        setImage={setImage}
-        image={image}
-        pole={pole}
-        setData={setData}
-        setConfirmTiny={setConfirmTiny}
-        confirmTiny={confirmTiny}
-        submitData={submitData}
-      />
+      {showFormActivity && (
+        <FormActivity
+          setAdminInput={setAdminInput}
+          adminInput={adminInput}
+          onChangeHandler={onChangeHandler}
+          setImage={setImage}
+          image={image}
+          pole={pole}
+          setData={setData}
+          setConfirmTiny={setConfirmTiny}
+          confirmTiny={confirmTiny}
+          submitData={submitData}
+        />
+      )}
+      {showFormModifyActivity && (
+        <FormModifyActivity
+          setDataPut={setDataPut}
+          setConfirmTiny={setConfirmTiny}
+          confirmTiny={confirmTiny}
+          setPutImage={setPutImage}
+          modifyData={modifyData}
+          activityUpdate={activityUpdate}
+          modifyValue={modifyValue}
+        />
+      )}
     </>
   )
 }

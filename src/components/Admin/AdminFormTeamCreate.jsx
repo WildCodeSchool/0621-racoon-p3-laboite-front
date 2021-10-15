@@ -3,10 +3,13 @@ import React from 'react'
 import TeamAdmin from '../../screens/Admin/TeamAdmin'
 
 const AdminFormTeamCreate = ({
+  adminInput,
   closeForm,
   onChangeHandler,
   postMember,
-  resMessage
+  resMessage,
+  setAdminInput,
+  setMemberImage
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -15,7 +18,13 @@ const AdminFormTeamCreate = ({
       </div>
       <div className='bottomDivTitle'>Nouveau membre</div>
       <div className='teamFormContainer'>
-        <TeamAdmin onChangeHandler={onChangeHandler} resMessage={resMessage} />
+        <TeamAdmin
+          adminInput={adminInput}
+          onChangeHandler={onChangeHandler}
+          resMessage={resMessage}
+          setAdminInput={setAdminInput}
+          setMemberImage={setMemberImage}
+        />
       </div>
       <div className='btnContainer flex jcc'>
         <div className='btnForm' onClick={postMember}>

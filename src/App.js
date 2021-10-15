@@ -17,7 +17,6 @@ import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 import ActivityAdmin from './screens/Admin/ActivityAdmin'
-import TeamAdmin from './screens/Admin/TeamAdmin'
 import PoleAdmin from './screens/Admin/PoleAdmin'
 import MobileNavBar from './components/Navbar/MobileNavBar'
 
@@ -52,10 +51,13 @@ function App() {
           <Route exact path='/login'>
             <Login isLogged={isLogged} setIsLogged={setIsLogged} />
           </Route>
-          <Route exact path='/admin/activity'>
+          {/* <Route exact path='/admin/activity'>
             {localStorage.getItem('user_token') ? <AdminActivity /> : <Home />}
+          </Route> */}
+          <Route exact path='/admin/activity'>
+            <ActivityAdmin />
           </Route>
-          {/* <Route exact path='/admin/poles'>
+          {/* <Route exact path='/admin/pole'>
             {localStorage.getItem('user_token') ? <AdminPole /> : <Home />}
           </Route> */}
           <Route exact path='/admin/poles'>

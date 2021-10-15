@@ -1,10 +1,16 @@
 import './form.css'
 
-const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
+const TeamAdmin = ({
+  adminInput,
+  onChangeHandler,
+  resMessage,
+  setMemberImage,
+  setAdminInput
+}) => {
   return (
     <div className='FormContainer'>
       <div className='FormList formTeam'>
-        <div className='formItems formItemsTeam'>
+        <form encType='multipart/form-data' className='formItems formItemsTeam'>
           <input
             focus
             placeholder={'Nom du membre'}
@@ -16,11 +22,25 @@ const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
             }
           />
           <input
+            type='file'
             focus
-            placeholder={'URL de la photo'}
+            placeholder={'Uploader une photo'}
             key='member_img'
             name='member_img'
-            onChange={onChangeHandler}
+            onChange={e => {
+              setMemberImage(e.target.files[0]) ||
+                setAdminInput(state => ({
+                  ...state,
+                  ['member_img']: e.target.files[0].name
+                }))
+            }}
+          />
+          <input
+            focus
+            placeholder={'Fichier image'}
+            key='member_img'
+            name='member_img'
+            onChange={onChangeHandler} // removed to prevent manual modification
             value={adminInput && adminInput.member_img && adminInput.member_img}
           />
           <textarea
@@ -35,7 +55,7 @@ const TeamAdmin = ({ adminInput, onChangeHandler, resMessage }) => {
             }
           ></textarea>
           <span className='formError'>{resMessage && resMessage}</span>
-        </div>
+        </form>
       </div>
     </div>
   )
