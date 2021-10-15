@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TeamAdmin from '../../screens/Admin/TeamAdmin'
+import ActivAdmin from '../../screens/Admin/ActivAdmin'
 
 const AdminFormActivityUpdate = ({
   adminInput,
@@ -19,7 +19,7 @@ const AdminFormActivityUpdate = ({
       </div>
       <div className='bottomDivTitle'>Mettre à jour l&apos;activité</div>
       <div className='activityFormContainer'>
-        <TeamAdmin
+        <ActivAdmin
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
           resMessage={resMessage}
