@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TeamAdmin from '../../screens/Admin/TeamAdmin'
+import PartnerAdmin from '../../screens/Admin/PartnerAdmin'
 
 const AdminFormPartnerUpdate = ({
   adminInput,
@@ -18,8 +18,8 @@ const AdminFormPartnerUpdate = ({
         x
       </div>
       <div className='bottomDivTitle'>Mettre à jour le partenaire</div>
-      <div className='teamFormContainer'>
-        <TeamAdmin
+      <div className='partnerFormContainer'>
+        <PartnerAdmin
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
           resMessage={resMessage}

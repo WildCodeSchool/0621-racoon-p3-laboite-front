@@ -5,7 +5,7 @@ import PutTinyFunc from '../../components/Form/PutTinyFunc'
 
 import './form.css'
 
-const PoleFormPut =  ( poleCard )   => {
+const PoleFormPut = poleCard => {
   const { modifyValue, poleData } = poleCard
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
@@ -33,16 +33,16 @@ const PoleFormPut =  ( poleCard )   => {
       }
     }
     try {
-    const results = await axios.put(
-      `${process.env.REACT_APP_URL_API}/poles/${poleCard.id}`,
-      newPost
-    )
-    console.log('results :', results)
-  } catch (err) {
-    console.log(err)
-  }
-  poleData()
-  alert('Pole modifié avec succès')
+      const results = await axios.put(
+        `${process.env.REACT_APP_URL_API}/poles/${poleCard.id}`,
+        newPost
+      )
+      console.log('results :', results)
+    } catch (err) {
+      console.log(err)
+    }
+    poleData()
+    alert('Pole modifié avec succès')
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -68,11 +68,9 @@ const PoleFormPut =  ( poleCard )   => {
             value={poleCard.pole_name}
           />
           <label>Bannière</label>
+          <input value={poleCard.pole_banner} />
           <input
-          value={poleCard.pole_banner}
-          />
-          <input
-          type='file'
+            type='file'
             name='pole_banner'
             onChange={e => {
               setPutImage(e.target.files[0])
@@ -96,7 +94,7 @@ const PoleFormPut =  ( poleCard )   => {
           />
           <label>Pôle description</label>
           <label>Photo de Fonctionnement</label>
-          <input value={poleCard.pole_func_img}/>
+          <input value={poleCard.pole_func_img} />
           <input
             type='file'
             name='pole_func_img'
@@ -122,16 +120,14 @@ const PoleFormPut =  ( poleCard )   => {
             value={poleCard.pole_email}
           />
           <label>Vignette</label>
-          <input
-          value={poleCard.pole_miniature_img}
-          />
+          <input value={poleCard.pole_miniature_img} />
           <input
             type='file'
             name='pole_miniature_img'
             onChange={e => {
               setPutMiniature(e.target.files[0])
             }}
-            />
+          />
           <label>Sous-titre</label>
           <input
             name='pole_catchphrase'

@@ -27,13 +27,13 @@ const PoleCardList = () => {
   const deleteCard = id => {
     const confirmation = confirm('Voulez-vous supprimer ce pôle ?')
     if (confirmation) {
-    const DeleteData = async () => {
-      await axios.delete(`http://localhost:4000/poles/${id}`)
-      setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
+      const DeleteData = async () => {
+        await axios.delete(`http://localhost:4000/poles/${id}`)
+        setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
+      }
+      DeleteData()
     }
-    DeleteData()
   }
-}
 
   const modifyCard = id => {
     console.log('id :', id)

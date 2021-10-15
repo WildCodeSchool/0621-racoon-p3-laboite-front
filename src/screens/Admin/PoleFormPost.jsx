@@ -116,7 +116,7 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny}/>
+        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
         <form>
           <label>Photo de Fonctionnement</label>
           <input
@@ -130,7 +130,7 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc}/>
+        <FormTinyFunc setDataFunc={setDataFunc} />
         <form>
           <label>Numéro de téléphone</label>
           <input
