@@ -6,7 +6,10 @@ const PartnerList = ({ partners }) => {
       <div className='partnersWrapper'>
         {partners.map((partner, index) => (
           <div key={index} className={`${partner} partnerbox`}>
-            150 x 150 px
+            <img
+              src={`${process.env.REACT_APP_URL_API}/${partner}`}
+              alt={partner}
+            />
           </div>
         ))}
       </div>
