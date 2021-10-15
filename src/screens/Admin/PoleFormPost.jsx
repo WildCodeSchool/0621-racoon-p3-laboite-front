@@ -66,6 +66,7 @@ const PoleFormPost = ({ poleData }) => {
       console.log(err)
     }
     poleData()
+    alert('Pole ajouté avec succès')
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
