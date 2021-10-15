@@ -7,16 +7,17 @@ import './form.css'
 
 const PoleFormPut = props => {
   // props stocks two functions (parameters) from PoleCardList
-  const { modifyValue, poleData } = props
+  const { modifyValue, poleData ,pcu} = props
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
+     console.log('------------tolooo 01-------');
     event.preventDefault()
     // newPost retrieve all the pole cards of PoleCardList
-    const newPost = { ...poleData }
+    const newPost = { ...pcu}
     if (putImage && putFunc && putMiniature) {
       const fd = new FormData()
       const filename = Date.now() + putImage.name
@@ -36,8 +37,9 @@ const PoleFormPut = props => {
     }
     try {
       //modify the card with the id stocked in modifyValue
+      console.log('------------tolooo-------',pcu.id,newPost);
       const results = await axios.put(
-        `${process.env.REACT_APP_URL_API}/poles/${props.id}`,
+        `${process.env.REACT_APP_URL_API}/poles/${pcu.id}`,
         newPost
       )
       console.log('results :', results)
@@ -68,10 +70,10 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_name}
+            value={pcu.pole_name}
           />
           <label>Bannière</label>
-          <input value={props.pole_banner} />
+          <input value={pcu.pole_banner} />
           <input
             type='file'
             name='pole_banner'
@@ -85,7 +87,7 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_title}
+            value={pcu.pole_title}
           />
           <label>Pôle picto</label>
           <input
@@ -93,11 +95,11 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_picto}
+            value={pcu.pole_picto}
           />
           <label>Pôle description</label>
           <label>Photo de Fonctionnement</label>
-          <input value={props.pole_func_img} />
+          <input value={pcu.pole_func_img} />
           <input
             type='file'
             name='pole_func_img'
@@ -112,7 +114,7 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_num}
+            value={pcu.pole_num}
           />
           <label>E-mail</label>
           <input
@@ -120,10 +122,10 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_email}
+            value={pcu.pole_email}
           />
           <label>Vignette</label>
-          <input value={props.pole_miniature_img} />
+          <input value={pcu.pole_miniature_img} />
           <input
             type='file'
             name='pole_miniature_img'
@@ -137,10 +139,10 @@ const PoleFormPut = props => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={props.pole_catchphrase}
+            value={pcu.pole_catchphrase}
           />
         </form>
-        <PutTinyDesc
+        {/* <PutTinyDesc
           setDataDesc={setDataDesc}
           modifyValue={modifyValue}
           props={props}
@@ -154,7 +156,8 @@ const PoleFormPut = props => {
           props={props}
           name='pole_func'
           key='pole_func'
-        />
+          // value={props.pole_func}
+        /> */}
         <button onClick={submitPoleData}>Publier</button>
       </div>
     </div>

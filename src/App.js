@@ -52,9 +52,9 @@ function App() {
           <Route exact path='/login'>
             <Login isLogged={isLogged} setIsLogged={setIsLogged} />
           </Route>
-          {/* <Route exact path='/admin/activity'>
+          <Route exact path='/admin/activity'>
             {localStorage.getItem('user_token') ? <AdminActivity /> : <Home />}
-          </Route> */}
+          </Route>
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
           </Route>
@@ -64,9 +64,9 @@ function App() {
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
           </Route>
-          {/* <Route exact path='/admin/poles'>
+          <Route exact path='/admin/poles'>
             <PoleAdmin />
-          </Route> */}
+          </Route>
           <Route exact path='/admin/members'>
             {localStorage.getItem('user_token') ? <AdminTeam /> : <Home />}
           </Route>

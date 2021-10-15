@@ -1,9 +1,10 @@
-const AdminCard = ({ id, name, updateElement }) => {
+const AdminCard = ({ id, name, updateElement,  deleteCard,
+  modifyCard }) => {
   return (
     <div
       className={`card flex jcc aic colorme`}
       id={id}
-      onClick={updateElement}
+      onClick={()=>modifyCard(id)}
     >
       <div className='btnDeleteCard flex jcc aic'>x</div>
       <div className={`cardContent flex jcc aic`}>
