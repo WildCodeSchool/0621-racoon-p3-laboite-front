@@ -13,8 +13,9 @@ import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import './Partners.css'
 
 const Partners = () => {
-  const partnersList = ['pink', 'purple', 'orange', 'cyan', 'yellow']
-  const partnersFront = [
+  // Données front à extraire depuis le back
+  const partnersLogo = ['pink', 'purple', 'orange', 'cyan', 'yellow']
+  const partnersName = [
     'Commune de Bléré, ',
     'Communauté de Communes Bléré-Val de Cher, ',
     `Département d'Indre-et-Loire, `,
@@ -92,8 +93,8 @@ const Partners = () => {
             bénévoles et de partenaires locaux avec lesquels elle garde des
             relations privilégiées:
           </p>
-          <p className='cream paragraph'>{partnersFront}</p>
-          <PartnerList partners={partnersList} />
+          <p className='cream paragraph'>{partnersName}</p>
+          <PartnerList partners={partnersLogo} />
         </div>
         <GreenBoxText
           greenTitle={partnership.partnership_bot_title}
