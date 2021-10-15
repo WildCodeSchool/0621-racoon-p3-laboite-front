@@ -1,48 +1,86 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const Login = props => {
+const Login = ({ toggleLoginForm }) => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const loadAdmin = () => {
-    localStorage.getItem('user_token')
-      ? console.log('admin connected') || window.location.replace('/admin')
-      : alert("Erreur d'authentification")
-  }
+  // const loadAdmin = () => {
+  //   localStorage.getItem('acces_token')
+  //     ? console.log('admin connected') || window.location.replace('/admin')
+  //     : alert("Erreur d'authentification")
+  // }
 
-  const handleSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault()
     axios
-      .post('http://localhost:4000/login', {
+      .post(`${process.env.REACT_APP_URL_API}/login`, {
         email,
         password
       })
       .then(res => {
-        localStorage.setItem('user_token', res.headers['x-access-token'])
+        console.log('res', res)
+        if (res.data.auth) {
+          localStorage.setItem(
+            'acces_token',
+            'Bearer ' + res.headers['x-access-token']
+          )
+          console.log('coucou', res.data.accessToken)
+          axios.defaults.headers.common[
+            'Authorization'
+          ] = `Bearer ${res.data.accessToken}`
+        }
       })
-    props.setisLogged(!props.isLogged)
-    setTimeout(() => loadAdmin(), 1000)
+      .catch(err => alert(err))
+    setTimeout(() => checkAuth(), 1000)
+  }
+
+  const checkAuth = async () => {
+    axios
+      .get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
+      .then(res => {
+        console.log('res auth:', res)
+        if (res.data.auth) {
+          console.log('admin connected')
+          window.location.replace('/admin')
+        }
+      })
+      .catch(error => {
+        console.log('error auth:', error.response)
+      })
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
+    <form onSubmit={onSubmit}>
+      <div className='form-group'>
         <input
-          type='text'
-          name='username'
+          type='email'
+          placeholder='Email'
+          name='email'
           onChange={e => setEmail(e.target.value)}
         />
-        <label>Password</label>
+      </div>
+      <div className='form-group'>
         <input
-          type='text'
+          type='password'
+          placeholder='Password'
           name='password'
           onChange={e => setPassword(e.target.value)}
         />
-        <input type='submit' value='submit' />
-      </form>
-    </div>
+      </div>
+      <div className='form-group'>
+        <input type='submit' value='Login' />
+        <button
+          className='form-btn'
+          onClick={e => {
+            e.stopPropagation()
+            toggleLoginForm()
+          }}
+        >
+          Annuler
+        </button>
+      </div>
+    </form>
   )
 }
 
