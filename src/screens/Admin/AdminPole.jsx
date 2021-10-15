@@ -8,6 +8,7 @@ import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
+import PoleAdmin from './PoleAdmin'
 
 const AdminPole = () => {
   // List of poles NOT from backEnd (test only)
@@ -47,6 +48,7 @@ const AdminPole = () => {
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
+      <PoleAdmin />
       <div className='adminMenuRight flex col'>
         <div className='adminHeader'>
           Bienvenue dans l&apos;espace administration !
