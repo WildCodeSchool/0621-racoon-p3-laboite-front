@@ -8,6 +8,8 @@ const AdminFormTeamUpdate = ({
   deleteMember,
   onChangeHandler,
   resMessage,
+  setAdminInput,
+  setMemberImage,
   updateMember
 }) => {
   return (
@@ -21,6 +23,8 @@ const AdminFormTeamUpdate = ({
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
           resMessage={resMessage}
+          setAdminInput={setAdminInput}
+          setMemberImage={setMemberImage}
         />
       </div>
       <div className='btnContainer flex jcc'>

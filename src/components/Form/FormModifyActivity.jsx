@@ -1,19 +1,18 @@
-import FormTiny from './FormTiny'
+import { updateExpression } from '@babel/types'
+import PutTinyActivity from './PutTinyActivity'
 
-const FormActivity = ({
-  setAdminInput,
-  adminInput,
-  setImage,
-  onChangeHandler,
-  pole,
-  setData,
+const FormModifyActivity = ({
+  setPutImage,
+  setDataPut,
   setConfirmTiny,
-  submitData,
-  confirmTiny
+  modifyData,
+  confirmTiny,
+  activityUpdate,
+  modifyValue
 }) => {
   return (
     <div className='activityContainer'>
-      <h3 className='activityTitleForm'>Nouvelle activité</h3>
+      <h3 className='activityTitleForm'>Modifier l'activité</h3>
       <div className='activityFormWrapper'>
         <div className='activityItems'>
           <div className='activityCross'>
@@ -21,35 +20,17 @@ const FormActivity = ({
             {/* -------------------FORM---------------------  */}
             <form encType='multipart/form-data'>
               <div className='activityForm'>
-                <div className='activityCross'>
-                  <select
-                    placeholder='Les poles'
-                    onChange={e =>
-                      setAdminInput({ ...adminInput, pole: e.target.value })
-                    }
-                    style={{
-                      width: '50%',
-                      margin: '15px',
-                      border: 'solid 1px black',
-                      background: '#CED4DA'
-                    }}
-                  >
-                    {pole.map(pole => (
-                      <option
-                        key={pole.id}
-                        name={pole.pole_title}
-                        value={pole.id}
-                      >
-                        {pole.pole_title}
-                      </option>
-                    ))}
-                  </select>
-                  {/* -----select Pole End-----  */}
-                </div>
+                <label
+                  style={{
+                    color: '#fff'
+                  }}
+                >
+                  Titre de l&apos;activité
+                </label>
                 <input
                   focus
                   type='text'
-                  placeholder={`Titre de l'activité`}
+                  // placeholder={`Titre de l'activité`}
                   key='activity_title'
                   name='activity_title'
                   style={{
@@ -57,10 +38,11 @@ const FormActivity = ({
                     border: 'solid 1px black',
                     background: '#CED4DA'
                   }}
-                  onChange={onChangeHandler}
-                  value={adminInput.activity_title}
+                  value={activityUpdate.activity_title}
+                  onChange={e => modifyValue(e.target.name, e.target.value)}
                 />
                 {/* --------------FILE-------------  */}
+                <input value={activityUpdate.activity_img} />
                 <input
                   type='file'
                   focus
@@ -74,36 +56,23 @@ const FormActivity = ({
                     background: '#CED4DA'
                   }}
                   onChange={e => {
-                    setImage(e.target.files[0])
+                    setPutImage(e.target.files[0])
                   }}
                 />
               </div>
             </form>
-            <FormTiny
-              setData={setData}
+            <PutTinyActivity
+              setDataPut={setDataPut}
+              activityUpdate={activityUpdate}
               setConfirmTiny={setConfirmTiny}
-              syle={{}}
             />
-            {/* <input
-              focus
-              placeholder={`Prix de l'activité`}
-              style={{
-                margin: '10px',
-                border: 'solid 1px black',
-                background: '#CED4DA'
-              }}
-              key='field5'
-              name='field5'
-              onChange={onChangeHandler}
-              value={adminInput.field5}
-            /> */}
             <div className='activityButton'>
               <p style={{ color: 'white' }}>
                 Penser à confirmer avant de publier
               </p>
               {confirmTiny ? (
                 <button
-                  onClick={submitData}
+                  onClick={modifyData}
                   disabled={!confirmTiny}
                   style={{
                     cursor: 'pointer',
@@ -122,4 +91,4 @@ const FormActivity = ({
   )
 }
 
-export default FormActivity
+export default FormModifyActivity

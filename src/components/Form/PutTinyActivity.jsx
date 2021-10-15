@@ -1,13 +1,13 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function PutTinyFunc({ setDataFunc, modifyValue, poleCard }) {
+export default function PutTinyActivity({ setDataPut, setConfirmTiny, activityUpdate }) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
-      setDataFunc(text)
-      // setConfirmTiny(true)
+      setDataPut(text)
+      setConfirmTiny(true)
     }
   }
 
@@ -15,8 +15,7 @@ export default function PutTinyFunc({ setDataFunc, modifyValue, poleCard }) {
     <div>
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={poleCard.pole_func}
-        // onChange={e => modifyValue(event.target.name, event.target.value)}
+        initialValue={activityUpdate.activity_desc}
         init={{
           height: 400,
           width: '100%',
