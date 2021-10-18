@@ -1,16 +1,14 @@
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
+
 import FormTiny from '../../components/Form/FormTiny'
 import FormTinyFunc from '../../components/Form/FormTinyFunc'
 
 import axios from 'axios'
 import { useState } from 'react'
 
-const PoleFormPost = ({ poleData }) => {
+const PoleFormPost = ({ poles, getPoles, closeForm }) => {
   const [confirmTiny, setConfirmTiny] = useState(false)
-  // const [newActivity, setNewActivity] = useState({
-  //   activity_desc: '',
-  //   activity_img: '',
-  //   activity_title: ''
-  // })
   const [poleInfo, setPoleInfo] = useState({
     pole_name: '',
     pole_title: '',
@@ -28,14 +26,17 @@ const PoleFormPost = ({ poleData }) => {
   const [poleImage, setPoleImage] = useState()
   const [poleFunc, setPoleFunc] = useState()
   const [poleMiniature, setPoleMiniature] = useState()
+  const [open, setOpen] = useState(false)
+  const [refresh, setRefresh] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
   }
 
-  // const setData = texte => {
-  //   setAdminInput({ ...adminInput, activity_desc: texte })
-  // }
   const submitPoleData = async event => {
     event.preventDefault()
     const newPost = { ...poleInfo }
@@ -62,11 +63,13 @@ const PoleFormPost = ({ poleData }) => {
         newPost
       )
       console.log(results)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
     } catch (err) {
       console.log(err)
     }
-    poleData()
-    alert('Pole ajouté avec succès')
+    getPoles()
+    setOpen(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -76,15 +79,15 @@ const PoleFormPost = ({ poleData }) => {
   const setDataFunc = text => {
     setPoleInfo({ ...poleInfo, pole_func: text })
   }
-  // console.log('coucou les infos', poleInfo)
-  console.log('stylé les images', poleImage)
-  console.log('stylé les func', poleFunc)
-  console.log('stylé les Miniature', poleMiniature)
+
   return (
     <div>
-      {console.log(poleData)}
-      <div className='form-container'>
-        <form className='new-pole-form' encType='multipart/form-data'>
+      <div className='FormContainer'>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -115,9 +118,15 @@ const PoleFormPost = ({ poleData }) => {
             placeholder={`Pôle picto`}
           />
         </form>
-        {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
-        <form>
+        <div className='tiny'>
+          <label>Pôle description</label>
+          <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+        </div>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
@@ -129,9 +138,16 @@ const PoleFormPost = ({ poleData }) => {
             placeholder={`Photo de Fonctionnement`}
           />
         </form>
-        {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc} />
-        <form>
+
+        <div className='tiny'>
+          <label>Pôle Fonctionnement</label>
+          <FormTinyFunc setDataFunc={setDataFunc} />
+        </div>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -162,6 +178,19 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         <button onClick={submitPoleData}>Publier</button>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Pôle ajouté avec succès
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   )

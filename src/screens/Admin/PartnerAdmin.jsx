@@ -1,5 +1,3 @@
-import React from 'react'
-
 import './form.css'
 
 const PartnerAdmin = ({
@@ -11,8 +9,11 @@ const PartnerAdmin = ({
 }) => {
   return (
     <div className='FormContainer'>
-      <div className='FormList formTeam'>
-        <form encType='multipart/form-data' className='formItems formItemsTeam'>
+      <div className='FormList formPartner'>
+        <form
+          encType='multipart/form-data'
+          className='formItems formItemsPartner'
+        >
           <input
             focus
             placeholder={'Nom du partenaire'}
@@ -37,7 +38,7 @@ const PartnerAdmin = ({
                 }))
             }}
           />
-          {adminInput && adminInput.member_id && (
+          {adminInput && adminInput.partner_id && (
             <input
               focus
               placeholder={'Fichier image'}

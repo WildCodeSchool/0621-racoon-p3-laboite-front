@@ -1,48 +1,84 @@
+import { useState, useContext } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
 
-const Login = props => {
+import { Context } from '../../context/Context'
+
+const Login = ({ toggleLoginForm }) => {
+  // Data des inputs
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const loadAdmin = () => {
-    localStorage.getItem('user_token')
-      ? console.log('admin connected') || window.location.replace('/admin')
-      : alert("Erreur d'authentification")
-  }
+  // Actionne les fonction de Action.js => Reducer.js => Context.js
+  const { dispatch } = useContext(Context)
 
-  const handleSubmit = e => {
+  //----------------------------------------------------------------------------
+
+  // LOGIN
+  const handleSubmit = async e => {
     e.preventDefault()
-    axios
-      .post('http://localhost:4000/login', {
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_URL_API}/login`, {
         email,
         password
       })
-      .then(res => {
-        localStorage.setItem('user_token', res.headers['x-access-token'])
-      })
-    props.setisLogged(!props.isLogged)
-    setTimeout(() => loadAdmin(), 1000)
+      console.log('res', res)
+      if (res.data.auth) {
+        // Set user dans userContext
+        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
+        window.location.replace('/admin')
+      }
+    } catch (error) {
+      dispatch({ type: 'LOGIN_FAILURE' })
+      alert(error)
+    }
   }
 
+  // const checkAuth = async () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
+  //     .then(res => {
+  //       console.log('res auth:', res)
+  //       if (res.data.auth) {
+  //         console.log('Auth Cheked')
+  //         window.location.replace('/admin')
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log('error auth:', error.response)
+  //     })
+  // }
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
+    <form onSubmit={e => handleSubmit(e)}>
+      <div className='form-group'>
         <input
-          type='text'
-          name='username'
+          type='email'
+          placeholder='Email'
+          name='email'
           onChange={e => setEmail(e.target.value)}
         />
-        <label>Password</label>
+      </div>
+      <div className='form-group'>
         <input
-          type='text'
+          type='password'
+          placeholder='Password'
           name='password'
           onChange={e => setPassword(e.target.value)}
         />
-        <input type='submit' value='submit' />
-      </form>
-    </div>
+      </div>
+      <div className='form-group'>
+        <input type='submit' value='Login' />
+        <button
+          className='form-btn'
+          onClick={e => {
+            e.stopPropagation()
+            toggleLoginForm()
+          }}
+        >
+          Annuler
+        </button>
+      </div>
+    </form>
   )
 }
 

@@ -15,18 +15,6 @@ import './Partners.css'
 const Partners = () => {
   // Données front à extraire depuis le back
   const partnersLogo = ['pink', 'purple', 'orange', 'cyan', 'yellow']
-  const partnersName = [
-    'Commune de Bléré, ',
-    'Communauté de Communes Bléré-Val de Cher, ',
-    `Département d'Indre-et-Loire, `,
-    'Région Centre-Val de Loire, ',
-    'CRI (Château Renault Insertion), ',
-    'Association La Main Tendue (Bléré), ',
-    'Pôle Emploi, ',
-    'Chambres consulaires, ',
-    'Rotary club d’Amboise, ',
-    '... '
-  ]
 
   const [partnership, setPartnership] = useState([])
   const [partners, setPartners] = useState([])
@@ -93,8 +81,14 @@ const Partners = () => {
             bénévoles et de partenaires locaux avec lesquels elle garde des
             relations privilégiées:
           </p>
-          <p className='cream paragraph'>{partnersName}</p>
-          <PartnerList partners={partnersLogo} />
+
+          {partners.map(e => (
+            <li key={e.partner_id} className='cream paragraph'>
+              {e.partner_name}
+            </li>
+          ))}
+
+          <PartnerList partners={partners} />
         </div>
         <GreenBoxText
           greenTitle={partnership.partnership_bot_title}

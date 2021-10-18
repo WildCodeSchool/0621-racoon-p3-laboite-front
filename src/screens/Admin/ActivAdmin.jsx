@@ -14,14 +14,16 @@ const ActivAdmin = ({
 }) => {
   return (
     <div className='FormContainer'>
-      <div className='FormList formTeam'>
-        <form encType='multipart/form-data' className='formItems formItemsTeam'>
+      <div className='FormList formActivity'>
+        <form
+          encType='multipart/form-data'
+          className='formItems formItemsActivity'
+        >
           <label>
             Pôle d'affectation
             <select
-              placeholder='Les poles'
-              key='pole_id'
-              name='pole_id'
+              key='pole'
+              name='pole'
               value={adminInput && adminInput.pole_id && adminInput.pole_id}
               onChange={onChangeHandler}
               style={{
@@ -76,6 +78,16 @@ const ActivAdmin = ({
               }
             />
           )}
+          <input
+            focus
+            placeholder={`Description de l'activité`}
+            key='activity_desc'
+            name='activity_desc'
+            onChange={onChangeHandler}
+            value={
+              adminInput && adminInput.activity_desc && adminInput.activity_desc
+            }
+          />
           {/* <FormTinyActivity
             adminInput={adminInput}
             setAdminInput={setAdminInput}

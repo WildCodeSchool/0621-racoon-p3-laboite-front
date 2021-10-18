@@ -1,6 +1,7 @@
+import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { useState, useEffect, useCallback } from 'react'
+import { Context } from '../../context/Context'
 
 import AdminCard from '../../components/Admin/AdminCard'
 import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCreate'
@@ -23,6 +24,11 @@ const AdminActivity = () => {
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
   const [confirmTiny, setConfirmTiny] = useState(false)
+
+  const { user } = useContext(Context)
+
+  // Defini le Bearer JWT dans header pour les requetes de la page.
+  axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
 
   // READ all activities from backEnd
   useEffect(() => {
@@ -64,7 +70,7 @@ const AdminActivity = () => {
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
-    setAdminInput({}) // clear inputs
+    setAdminInput({ pole: '1' }) // clear inputs and choose pole 1 by default
     setCreateForm(true) // open createForm
     setUpdateForm(false) // close updateForm
   }
@@ -90,38 +96,37 @@ const AdminActivity = () => {
 
   // CREATE a new activity
   const postActivity = async e => {
-    !adminInput.pole_id &&
-      setAdminInput(state => ({ ...state, ['pole_id']: 1 }), [])
+    // !adminInput.pole && setActivityPoleUpdate({ pole: '1' })
     console.log('postActivity', adminInput)
-    // e.preventDefault()
-    // const newPost = { ...adminInput }
-    // if (activityImage) {
-    //   const fd = new FormData()
-    //   const filename = Date.now() + activityImage.name
-    //   fd.append('activity_img', activityImage, filename)
-    //   newPost.activity_img = filename
-    //   try {
-    //     await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    // try {
-    //   const res = await axios.post(
-    //     `${process.env.REACT_APP_URL_API}/activities`,
-    //     newPost
-    //   )
-    //   // if (res){
-    //   console.log('res post', res)
-    //   setResMessage(res.data.message)
-    //   setRefresh(!refresh)
-    //   setTimeout(closeForm, 2500)
-    // } catch (err) {
-    //   // if (err) {
-    //   console.log('logErrPost', err.response)
-    //   setResMessage(err.response.data.message)
-    //   // }
-    // }
+    e.preventDefault()
+    const newPost = { ...adminInput }
+    if (activityImage) {
+      const fd = new FormData()
+      const filename = Date.now() + activityImage.name
+      fd.append('activity_img', activityImage, filename)
+      newPost.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_API}/activities`,
+        newPost
+      )
+      // if (res){
+      console.log('res post', res)
+      setResMessage(res.data.message)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
+    } catch (err) {
+      // if (err) {
+      console.log('logErrPost', err.response)
+      setResMessage(err.response.data.message)
+      // }
+    }
   }
 
   // UPDATE a activity
@@ -158,14 +163,14 @@ const AdminActivity = () => {
     // }
   }
 
-  // DELETE aa activity
+  // DELETE an activity
   const deleteActivity = () => {
     axios
       .delete(
         `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
       )
       .then(resToBack => {
-        // console.log('res delete', resToBack)
+        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)

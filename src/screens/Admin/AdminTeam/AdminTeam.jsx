@@ -1,6 +1,7 @@
+import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { useState, useEffect, useCallback } from 'react'
+import { Context } from '../../../context/Context'
 
 import AdminCard from '../../../components/Admin/AdminCard'
 import AdminFormTeamCreate from '../../../components/Admin/AdminFormTeamCreate'
@@ -20,6 +21,11 @@ const AdminTeam = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [memberImage, setMemberImage] = useState()
+
+  const { user } = useContext(Context)
+
+  // Defini le Bearer JWT dans header pour les requetes de la page.
+  axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
 
   // READ all team members from backEnd
   useEffect(() => {
