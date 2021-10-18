@@ -1,5 +1,5 @@
-import { Alert } from '@material-ui/lab';
-import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import { useState } from 'react'
 import axios from 'axios'
@@ -71,7 +71,11 @@ const PoleFormPut = props => {
   return (
     <div>
       <div className='form-container'>
-        <form className='new-pole-form' encType='multipart/form-data'>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -168,16 +172,19 @@ const PoleFormPut = props => {
           pcu={pcu}
           // value={props.pole_func}
         />
-        <button 
-        onClick={submitPoleData}
-        >Publier</button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+        <button onClick={submitPoleData}>Publier</button>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{
             vertical: 'top',
             horizontal: 'center'
-          }} >
-        <Alert onClose={handleClose} severity="success">
-          Pôle modifié avec succès
-        </Alert>
+          }}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Pôle modifié avec succès
+          </Alert>
         </Snackbar>
       </div>
     </div>

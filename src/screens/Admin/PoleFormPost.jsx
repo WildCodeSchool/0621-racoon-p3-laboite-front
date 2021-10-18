@@ -1,5 +1,5 @@
-import { Alert } from '@material-ui/lab';
-import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import FormTiny from '../../components/Form/FormTiny'
 import FormTinyFunc from '../../components/Form/FormTinyFunc'
@@ -82,8 +82,12 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
 
   return (
     <div>
-      <div className='form-container'>
-        <form className='new-pole-form' encType='multipart/form-data'>
+      <div className='FormContainer'>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -116,7 +120,11 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
         </form>
         {/* <label>Pôle description</label> */}
         <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
-        <form>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
@@ -130,7 +138,11 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
         </form>
         {/* <label>Pôle Fonctionnement</label> */}
         <FormTinyFunc setDataFunc={setDataFunc} />
-        <form>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -161,14 +173,19 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
           />
         </form>
         <button onClick={submitPoleData}>Publier</button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{
             vertical: 'top',
             horizontal: 'center'
-          }} >
-        <Alert onClose={handleClose} severity="success">
-          Pôle ajouté avec succès
-        </Alert>
-      </Snackbar>
+          }}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Pôle ajouté avec succès
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   )
