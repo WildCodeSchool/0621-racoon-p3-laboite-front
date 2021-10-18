@@ -35,7 +35,7 @@ const AdminFormActivityUpdate = ({
           onClick={e => {
             if (
               window.confirm(
-                'Etes-vous sûr(e) de vouloir supprimer ce membre ?'
+                'Etes-vous sûr(e) de vouloir supprimer cette activité ?'
               )
             )
               deleteActivity(e)

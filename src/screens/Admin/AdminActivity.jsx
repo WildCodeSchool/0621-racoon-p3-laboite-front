@@ -29,7 +29,7 @@ const AdminActivity = () => {
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
-
+  //----------------------------------------------------------------------------
   // READ all activities from backEnd
   useEffect(() => {
     const getActivities = async () => {
@@ -66,33 +66,6 @@ const AdminActivity = () => {
     }
     getPoles()
   }, [])
-
-  //----------------------------------------------------------------------------
-  // Functions to display forms
-  const showCreateForm = () => {
-    setAdminInput({ pole: '1' }) // clear inputs and choose pole 1 by default
-    setCreateForm(true) // open createForm
-    setUpdateForm(false) // close updateForm
-  }
-  const showUpdateForm = e => {
-    setCreateForm(false) // close createForm
-    setUpdateForm(true) // open updateForm
-    setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
-  }
-  const closeForm = () => {
-    setCreateForm(false) // close createForm
-    setUpdateForm(false) // close updateForm
-    setAdminInput({}) // clear inputs
-    setIdActivityToUpdate('') // clear selected activity
-    setResMessage('') // clear message
-  }
-  //Function to update inputs
-  const onChangeHandler = useCallback(
-    ({ target: { name, value } }) =>
-      console.log('inputChange') ||
-      setAdminInput(state => ({ ...state, [name]: value }), [])
-  )
-  //----------------------------------------------------------------------------
 
   // CREATE a new activity
   const postActivity = async e => {
@@ -183,7 +156,32 @@ const AdminActivity = () => {
       })
   }
   //----------------------------------------------------------------------------
-
+  // Functions to display forms
+  const showCreateForm = () => {
+    setAdminInput({ pole: '1' }) // clear inputs and choose pole 1 by default
+    setCreateForm(true) // open createForm
+    setUpdateForm(false) // close updateForm
+  }
+  const showUpdateForm = e => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(true) // open updateForm
+    setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
+  }
+  const closeForm = () => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(false) // close updateForm
+    setAdminInput({}) // clear inputs
+    setIdActivityToUpdate('') // clear selected activity
+    setActivityImage() // clear image input
+    setResMessage('') // clear message
+  }
+  //Function to update inputs
+  const onChangeHandler = useCallback(
+    ({ target: { name, value } }) =>
+      console.log('inputChange') ||
+      setAdminInput(state => ({ ...state, [name]: value }), [])
+  )
+  //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />

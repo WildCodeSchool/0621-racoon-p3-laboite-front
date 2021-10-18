@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { Context } from '../../context/Context.js'
+import { Context } from '../../../context/Context.js'
 
-import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormPartnerCreate from '../../components/Admin/AdminFormPartnerCreate'
-import AdminFormPartnerUpdate from '../../components/Admin/AdminFormPartnerUpdate'
-import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
-import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import AdminCard from '../../../components/Admin/AdminCard'
+import AdminFormPartnerCreate from '../../../components/Admin/AdminFormPartnerCreate'
+import AdminFormPartnerUpdate from '../../../components/Admin/AdminFormPartnerUpdate'
+import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
+import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
 
-import './Admin.css'
+import '../Admin.css'
 
 const AdminPartner = () => {
   // List of states
@@ -26,7 +26,7 @@ const AdminPartner = () => {
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
-
+  //----------------------------------------------------------------------------
   // READ all partners from backEnd
   useEffect(() => {
     const getPartners = async () => {
@@ -135,7 +135,7 @@ const AdminPartner = () => {
         }
       })
   }
-
+  //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
     setAdminInput({}) // clear inputs
@@ -152,6 +152,7 @@ const AdminPartner = () => {
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
     setIdPartnerToUpdate('') // clear selected partner
+    setPartnerImage() // clear image input
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -160,8 +161,7 @@ const AdminPartner = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
-
-  // console.log(partnerImage)
+  //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />

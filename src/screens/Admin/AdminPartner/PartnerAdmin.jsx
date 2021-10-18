@@ -1,4 +1,4 @@
-import './form.css'
+import '../form.css'
 
 const PartnerAdmin = ({
   adminInput,

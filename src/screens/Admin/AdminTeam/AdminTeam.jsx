@@ -26,7 +26,7 @@ const AdminTeam = () => {
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
-
+  //----------------------------------------------------------------------------
   // READ all team members from backEnd
   useEffect(() => {
     const getTeam = async () => {
@@ -135,7 +135,7 @@ const AdminTeam = () => {
         }
       })
   }
-
+  //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
     setAdminInput({}) // clear inputs
@@ -152,6 +152,7 @@ const AdminTeam = () => {
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
     setIdMemberToUpdate('') // clear selected member
+    setMemberImage() // clear image input
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -160,8 +161,7 @@ const AdminTeam = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
-
-  // console.log(memberImage)
+  //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
