@@ -62,12 +62,12 @@ function App() {
           <Route exact path='/admin/activity'>
             <ActivityAdmin />
           </Route>
-          {/* <Route exact path='/admin/pole'>
-            {user ? <AdminPole /> : <Home />}
-          </Route> */}
           <Route exact path='/admin/poles'>
-            <PoleAdmin />
+            {user ? <AdminPole /> : <Home />}
           </Route>
+          {/* <Route exact path='/admin/poles'>
+            <PoleAdmin />
+          </Route> */}
           <Route exact path='/admin/members'>
             {user ? <AdminTeam /> : <Home />}
           </Route>
