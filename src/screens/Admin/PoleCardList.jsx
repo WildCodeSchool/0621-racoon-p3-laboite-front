@@ -24,7 +24,7 @@ const PoleCardList = () => {
     poleData()
   }, [])
 
-  //--- return cards in cardList, fitlering out the poleCard.id selected ---//
+  //--- return cards in cardList, filtering out the poleCard.id selected ---//
   //--- and delete it---//
   const deleteCard = id => {
     const confirmation = confirm('Voulez-vous supprimer ce pôle ?')

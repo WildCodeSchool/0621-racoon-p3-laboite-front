@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import { useState } from 'react'
 import axios from 'axios'
 import PutTinyDesc from '../../components/Form/PutTinyDesc'
@@ -7,17 +10,22 @@ import './form.css'
 
 const PoleFormPut = props => {
   // props stocks two functions (parameters) from PoleCardList
-  const { modifyValue, poleData ,pcu} = props
+  const { modifyValue, poles, getPoles, pcu } = props
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
-     console.log('------------tolooo 01-------');
+    console.log('------------tolooo 01-------')
     event.preventDefault()
     // newPost retrieve all the pole cards of PoleCardList
-    const newPost = { ...pcu}
+    const newPost = { ...pcu }
     if (putImage && putFunc && putMiniature) {
       const fd = new FormData()
       const filename = Date.now() + putImage.name
@@ -37,7 +45,7 @@ const PoleFormPut = props => {
     }
     try {
       //modify the card with the id stocked in modifyValue
-      console.log('------------tolooo-------',pcu.id,newPost);
+      console.log('------------tolooo-------', pcu.id, newPost)
       const results = await axios.put(
         `${process.env.REACT_APP_URL_API}/poles/${pcu.id}`,
         newPost
@@ -47,8 +55,8 @@ const PoleFormPut = props => {
       console.log(err)
     }
     // upload the modified card in poleCardList
-    poleData()
-    alert('Pole modifié avec succès')
+    getPoles()
+    setOpen(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -59,7 +67,7 @@ const PoleFormPut = props => {
   const setDataFunc = text => {
     modifyValue('pole_func', text)
   }
-
+  console.log(props)
   return (
     <div>
       <div className='form-container'>
@@ -142,13 +150,14 @@ const PoleFormPut = props => {
             value={pcu.pole_catchphrase}
           />
         </form>
-        {/* <PutTinyDesc
+        <PutTinyDesc
           setDataDesc={setDataDesc}
           modifyValue={modifyValue}
           props={props}
+          pcu={pcu}
           name='pole_desc'
           key='pole_desc'
-          value={props.pole_desc}
+          // value={props.pole_desc}
         />
         <PutTinyFunc
           setDataFunc={setDataFunc}
@@ -156,9 +165,20 @@ const PoleFormPut = props => {
           props={props}
           name='pole_func'
           key='pole_func'
+          pcu={pcu}
           // value={props.pole_func}
-        /> */}
-        <button onClick={submitPoleData}>Publier</button>
+        />
+        <button 
+        onClick={submitPoleData}
+        >Publier</button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Pôle modifié avec succès
+        </Alert>
+        </Snackbar>
       </div>
     </div>
   )

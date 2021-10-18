@@ -1,5 +1,3 @@
-import PoleCardList from '../../screens/Admin/PoleCardList'
-
 const AdminTopDiv = ({ elmt, addElement }) => {
   return (
     <div className='topDivTitle'>

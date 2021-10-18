@@ -1,56 +1,97 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
-// import PoleAdmin from './PoleAdmin'
-import AdminCard from '../../components/Admin/AdminCard'
-import AdminForm from '../../components/Admin/AdminForm'
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
+
+import AdminCardPole from '../../components/Admin/AdminCardPole'
+import PoleFormPost from './PoleFormPost'
+import PoleFormPut from './PoleFormPut'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
+import './form.css'
+// import PoleAdmin from './PoleAdmin'
+// import AdminForm from '../../components/Admin/AdminForm'
+
 //-------------------------------------
 // import PoleFormPost from ''
-import PoleFormPost from './PoleFormPost'
-import PoleFormPut from './PoleFormPut'
+// import PoleFormPost from './PoleFormPost'
+// import PoleFormPut from './PoleFormPut'
 //--------------------------------------
 
-import './Admin.css'
-import PoleAdmin from './PoleAdmin'
+// import './Admin.css'
+// import PoleAdmin from './PoleAdmin'
 
 const AdminPole = () => {
-  const [poleCards, setPoleCards] = useState([])
-  const [showFormPost, setShowFormPost] = useState(false)
-  const [showFormPut, setShowFormPut] = useState(false)
-  const [poleCardUpdate, setPoleCardUpdate] = useState({})
-  // List of poles NOT from backEnd (test only)
-  // let notbackpole = ['Conciergerie', 'Végétal', 'Recyclerie']
-  // const [poles, setPoles] = useState(notbackpole)
-
-  // List of poles from backEnd
+  const [refresh, setRefresh] = useState(false)
+  const [createForm, setCreateForm] = useState(false)
+  const [updateForm, setUpdateForm] = useState(false)
   const [poles, setPoles] = useState([])
+  // const [poleCards, setPoleCards] = useState([])
+  const [poleCardUpdate, setPoleCardUpdate] = useState({})
+  const [idPoleToUpdate, setIdPoleToUpdate] = useState('')
+  const [adminInput, setAdminInput] = useState({})
+  const [resMessage, setResMessage] = useState('')
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  // READ all team poles from backEnd
+  const getPoles = async () => {
+    const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
+    setPoles(results.data)
+  }
   useEffect(() => {
-    const getPoles = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      // console.log(results.data)
-      setPoles(results.data)
-    }
     getPoles()
   }, [])
 
-  //-------------------------------------------------------
+  // READ a pole data from idPoleToUpdate
+  useEffect(() => {
+    setAdminInput('')
+    setResMessage('')
+    const getPole = () => {
+      axios
+        .get(`${process.env.REACT_APP_URL_API}/poles/${idPoleToUpdate}`)
+        .then(results => setAdminInput(results.data))
+    }
+    getPole()
+  }, [idPoleToUpdate])
 
-  const showFormOnClick = () => {
-    setShowFormPost(true)
+  // Functions to display forms
+  const showCreateForm = () => {
+    setAdminInput({}) // clear inputs
+    setCreateForm(true) // open createForm
+    setUpdateForm(false) // close updateForm
   }
+  const showUpdateForm = e => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(true) // open updateForm
+    setIdPoleToUpdate(e.target.id) // auto-trigger getPole
+  }
+  const closeForm = () => {
+    setCreateForm(false) // close createForm
+    setUpdateForm(false) // close updateForm
+    setAdminInput({}) // clear inputs
+    setIdPoleToUpdate('') // clear selected Pole
+    setResMessage('') // clear message
+  }
+
+  // const showFormOnClick = () => {
+  //   setShowFormPost(true)
+  // }
 
   //--- get API data in cardList  and stock in poleCards ---//
-  const poleData = async () => {
-    const results = await axios.get(`http://localhost:4000/poles`)
-    setPoleCards(results.data)
-  }
-  useEffect(() => {
-    // pole data retrieve all the pole cards
-    poleData()
-  }, [])
+  // const poleData = async () => {
+  //   const results = await axios.get(`http://localhost:4000/poles`)
+  //   setPoleCards(results.data)
+  // }
+  // useEffect(() => {
+  //   // pole data retrieve all the pole cards
+  //   poleData()
+  // }, [])
 
   const modifyValue = (name, value) => {
     setPoleCardUpdate({
@@ -60,30 +101,34 @@ const AdminPole = () => {
   }
   //--- and delete it---//
   const deleteCard = id => {
+    // e.stopPropagation()
+
     const confirmation = confirm('Voulez-vous supprimer ce pôle ?')
     if (confirmation) {
       const DeleteData = async () => {
         await axios.delete(`http://localhost:4000/poles/${id}`)
-        setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
+        setPoles(poles.filter(poleCard => poleCard.id != id))
       }
       DeleteData()
+      setOpen(true)
     }
   }
 
   //--- function that get the card you want to modify ---//
   //---  and stock it in poleCardUpdate ---//
-  const modifyCard = id => {
+  const modifyCardPole = id => {
     const modifyData = async () => {
       const results = await axios.get(`http://localhost:4000/poles/admin/${id}`)
       setPoleCardUpdate(results.data[0])
-      setShowFormPut(true)
+      setUpdateForm(true)
+      setUpdateForm(!updateForm)
     }
     modifyData()
   }
   //-----------------------------------------------
 
   // Variable to check if form is open
-  const [isOpenForm, setIsOpenForm] = useState(false)
+  // const [isOpenForm, setIsOpenForm] = useState(false)
   // Function to add a new element to list
   const addElement = () => {
     setPoles(poles.concat('Nouveau'))
@@ -93,13 +138,12 @@ const AdminPole = () => {
     setPoles(poles.pop())
   }
   // Function to display form
-  const displayForm = e => {
-    let myClass = e.target.className
-    console.log('class', myClass)
-    setIsOpenForm(true)
-    localStorage.setItem('IsOpenForm', true)
-    // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
-  }
+  // const displayForm = e => {
+  //   let myClass = e.target.className
+  //   console.log('class', myClass)
+  //   setIsOpenForm(true)
+  // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
+  // }
 
   return (
     <div className='adminContainer flex row'>
@@ -109,45 +153,61 @@ const AdminPole = () => {
         <div className='adminHeader'>
           Bienvenue dans l&apos;espace administration !
         </div>
+
         <div className='topDiv'>
-          <AdminTopDiv elmt={'pôles'} addElement={showFormOnClick} />
+          <AdminTopDiv elmt={'pôles'} addElement={showCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {poleCards.length === 0 ? (
+              {poles.length === 0 ? (
                 <div className='noCard'>
                   Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
                   créer un nouvel élément !
                 </div>
               ) : (
-                poleCards.map((elmt, index) => (
-                  <AdminCard
+                poles.map((elmt, index) => (
+                  <AdminCardPole
                     key={index}
                     id={elmt.id}
                     name={elmt.pole_name}
                     img={elmt.pole_miniature_img}
-                    displayForm={displayForm}
                     removeElement={removeElement}
-                    deleteCard={deleteCard} //POULET 01-------------
-                    modifyCard={modifyCard} //POULET 02------------
+                    deleteCard={deleteCard}
+                    modifyCardPole={modifyCardPole}
+                    setCreateForm={setCreateForm}
+                    setUpdateForm={setUpdateForm}
+                    updateForm={updateForm}
                   />
                 ))
               )}
             </div>
           </div>
         </div>
+
         <div className='bottomDiv flex col jcc aic'>
-          {/* {isOpenForm && (
-            <> */}
-          {showFormPost ? <PoleFormPost poleData={poleData} /> : null}
-          {showFormPut
-            ? console.log('----poluet-------', poleCardUpdate) || (
-                <PoleFormPut
-                  pcu={{...poleCardUpdate}}
-                  modifyValue={modifyValue}
-                  poleData={poleData}
-                />
-              )
-            : null}
+          {createForm ? (
+            <PoleFormPost poles={poles} getPoles={getPoles} closeForm={closeForm} />
+          ) : null}
+          {updateForm ? (
+            <PoleFormPut
+              pcu={{ ...poleCardUpdate }}
+              modifyValue={modifyValue}
+              poles={poles}
+              getPoles={getPoles}
+            />
+          ) : null}
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert onClose={handleClose} severity='success'>
+              Pôle supprimé avec succès
+            </Alert>
+          </Snackbar>
           {/* <AdminForm displayForm={displayForm} />
               <div>PoleAdmin</div> */}
           {/* </> */}
