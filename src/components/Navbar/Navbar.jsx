@@ -1,5 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+
+import { Context } from '../../context/Context'
 
 import Login from '../../screens/Login/Login'
 import Modal from '../Modal/Modal'
@@ -13,6 +16,8 @@ const Navbar = () => {
   const [poles, setPoles] = useState()
   const [fixNav, setFixNav] = useState(false)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
+
+  const { user, dispatch } = useContext(Context)
 
   useEffect(() => {
     axios
@@ -33,9 +38,15 @@ const Navbar = () => {
     }
   }
 
-  const logout = () => {
+  const handleLogout = () => {
     localStorage.removeItem('access_token')
+    delete axios.defaults.headers.common['Authorization']
+    dispatch({ type: 'LOGOUT' })
     window.location.replace('/')
+  }
+
+  const handleAdminPage = () => {
+    window.location.replace('/admin')
   }
 
   return (
@@ -65,9 +76,12 @@ const Navbar = () => {
         hide={toggleLoginForm}
         title={`Connexion Administrateur :`}
       >
-        {localStorage.getItem('access_token') ? (
-          <div>
-            <button className='form-btn' onClick={logout}>
+        {user ? (
+          <div className='form-logout'>
+            <button className='form-btn' onClick={handleAdminPage}>
+              Espace administrateur
+            </button>
+            <button className='form-btn btn-logout' onClick={handleLogout}>
               Se déconnecter
             </button>
           </div>

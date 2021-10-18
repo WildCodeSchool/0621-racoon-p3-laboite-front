@@ -1,57 +1,55 @@
+import { useState, useContext } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+
+import { Context } from '../../context/Context'
 
 const Login = ({ toggleLoginForm }) => {
+  // Data des inputs
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
-  // const loadAdmin = () => {
-  //   localStorage.getItem('acces_token')
-  //     ? console.log('admin connected') || window.location.replace('/admin')
-  //     : alert("Erreur d'authentification")
-  // }
+  // Actionne les fonction de Action.js => Reducer.js => Context.js
+  const { dispatch } = useContext(Context)
 
-  const onSubmit = e => {
+  //----------------------------------------------------------------------------
+
+  // LOGIN
+  const handleSubmit = async e => {
     e.preventDefault()
-    axios
-      .post(`${process.env.REACT_APP_URL_API}/login`, {
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_URL_API}/login`, {
         email,
         password
       })
-      .then(res => {
-        console.log('res', res)
-        if (res.data.auth) {
-          localStorage.setItem(
-            'acces_token',
-            'Bearer ' + res.headers['x-access-token']
-          )
-          console.log('coucou', res.data.accessToken)
-          axios.defaults.headers.common[
-            'Authorization'
-          ] = `Bearer ${res.data.accessToken}`
-        }
-      })
-      .catch(err => alert(err))
-    setTimeout(() => checkAuth(), 1000)
+      console.log('res', res)
+      if (res.data.auth) {
+        // Set user dans userContext
+        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
+        window.location.replace('/admin')
+      }
+    } catch (error) {
+      dispatch({ type: 'LOGIN_FAILURE' })
+      alert(error)
+    }
   }
 
-  const checkAuth = async () => {
-    axios
-      .get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
-      .then(res => {
-        console.log('res auth:', res)
-        if (res.data.auth) {
-          console.log('admin connected')
-          window.location.replace('/admin')
-        }
-      })
-      .catch(error => {
-        console.log('error auth:', error.response)
-      })
-  }
+  // const checkAuth = async () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
+  //     .then(res => {
+  //       console.log('res auth:', res)
+  //       if (res.data.auth) {
+  //         console.log('Auth Cheked')
+  //         window.location.replace('/admin')
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log('error auth:', error.response)
+  //     })
+  // }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={e => handleSubmit(e)}>
       <div className='form-group'>
         <input
           type='email'

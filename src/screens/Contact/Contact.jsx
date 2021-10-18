@@ -16,6 +16,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({})
   const [message, setMessage] = useState('')
 
+  //------------------------------------------------------------------------------
+
   // Recupere les infos contact du back et bdd
   useEffect(() => {
     const getInfo = () => {
@@ -30,6 +32,9 @@ const Contact = () => {
     getInfo()
   }, [])
 
+  //-----------------------------------------------------------------
+
+  // Envoi les données du formulaire de contact a nodemailer
   const sendMail = () => {
     console.log('formData', formData)
     axios
@@ -37,6 +42,9 @@ const Contact = () => {
       .then(response => setMessage(response.data))
   }
 
+  //----------------------------------------------------------------------------------------
+
+  // Add les données des input dans FormData
   const onChangeHandler = useCallback(({ target: { name, value } }) =>
     setFormData(state => ({ ...state, [name]: value }), [])
   )
