@@ -7,6 +7,7 @@ const AdminFormActivityUpdate = ({
   closeForm,
   deleteActivity,
   onChangeHandler,
+  poles,
   resMessage,
   setAdminInput,
   setActivityImage,
@@ -22,6 +23,7 @@ const AdminFormActivityUpdate = ({
         <ActivAdmin
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
+          poles={poles}
           resMessage={resMessage}
           setAdminInput={setAdminInput}
           setActivityImage={setActivityImage}
