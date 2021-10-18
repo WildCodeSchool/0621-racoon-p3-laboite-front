@@ -7,13 +7,8 @@ import FormTinyFunc from '../../components/Form/FormTinyFunc'
 import axios from 'axios'
 import { useState } from 'react'
 
-const PoleFormPost = ({ poleData }) => {
+const PoleFormPost = ({ poles, getPoles, closeForm }) => {
   const [confirmTiny, setConfirmTiny] = useState(false)
-  // const [newActivity, setNewActivity] = useState({
-  //   activity_desc: '',
-  //   activity_img: '',
-  //   activity_title: ''
-  // })
   const [poleInfo, setPoleInfo] = useState({
     pole_name: '',
     pole_title: '',
@@ -32,6 +27,7 @@ const PoleFormPost = ({ poleData }) => {
   const [poleFunc, setPoleFunc] = useState()
   const [poleMiniature, setPoleMiniature] = useState()
   const [open, setOpen] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
   const handleClose = () => {
     setOpen(false)
@@ -41,9 +37,6 @@ const PoleFormPost = ({ poleData }) => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
   }
 
-  // const setData = texte => {
-  //   setAdminInput({ ...adminInput, activity_desc: texte })
-  // }
   const submitPoleData = async event => {
     event.preventDefault()
     const newPost = { ...poleInfo }
@@ -70,10 +63,12 @@ const PoleFormPost = ({ poleData }) => {
         newPost
       )
       console.log(results)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
     } catch (err) {
       console.log(err)
     }
-    poleData()
+    getPoles()
     setOpen(true)
   }
 
@@ -87,9 +82,12 @@ const PoleFormPost = ({ poleData }) => {
 
   return (
     <div>
-      {console.log(poleData)}
-      <div className='form-container'>
-        <form className='new-pole-form' encType='multipart/form-data'>
+      <div className='FormContainer'>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -120,9 +118,15 @@ const PoleFormPost = ({ poleData }) => {
             placeholder={`Pôle picto`}
           />
         </form>
-        {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny}/>
-        <form>
+        <div className='tiny'>
+          <label>Pôle description</label>
+          <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+        </div>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
@@ -134,9 +138,16 @@ const PoleFormPost = ({ poleData }) => {
             placeholder={`Photo de Fonctionnement`}
           />
         </form>
-        {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc}/>
-        <form>
+
+        <div className='tiny'>
+          <label>Pôle Fonctionnement</label>
+          <FormTinyFunc setDataFunc={setDataFunc} />
+        </div>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -167,14 +178,19 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         <button onClick={submitPoleData}>Publier</button>
-         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{
             vertical: 'top',
             horizontal: 'center'
-          }} >
-        <Alert onClose={handleClose} severity="success">
-          Pôle ajouté avec succès
-        </Alert>
-      </Snackbar>
+          }}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Pôle ajouté avec succès
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   )

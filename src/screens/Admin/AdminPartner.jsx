@@ -1,79 +1,65 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { Context } from '../../context/Context'
+import { Context } from '../../context/Context.js'
 
 import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCreate'
-import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
+import AdminFormPartnerCreate from '../../components/Admin/AdminFormPartnerCreate'
+import AdminFormPartnerUpdate from '../../components/Admin/AdminFormPartnerUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './Admin.css'
 
-const AdminActivity = () => {
+const AdminPartner = () => {
   // List of states
   const [refresh, setRefresh] = useState(false)
   const [createForm, setCreateForm] = useState(false)
   const [updateForm, setUpdateForm] = useState(false)
-  const [activities, setActivities] = useState([])
-  const [poles, setPoles] = useState([])
-  const [idActivityToUpdate, setIdActivityToUpdate] = useState('')
+  const [partners, setPartners] = useState([])
+  const [idPartnerToUpdate, setIdPartnerToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
-  const [activityImage, setActivityImage] = useState()
+  const [partnerImage, setPartnerImage] = useState()
 
   const { user } = useContext(Context)
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
 
-  // READ all activities from backEnd
+  // READ all partners from backEnd
   useEffect(() => {
-    const getActivities = async () => {
+    const getPartners = async () => {
       const results = await axios.get(
-        `${process.env.REACT_APP_URL_API}/activities`
+        `${process.env.REACT_APP_URL_API}/partners`
       )
-      setActivities(results.data)
-      // setLoading(false)
+      setPartners(results.data)
     }
-    getActivities()
+    getPartners()
   }, [refresh])
 
+  // READ a partner data from idPartnerToUpdate
   useEffect(() => {
-    const getPoles = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      setPoles(results.data)
-      // setLoading(false)
-    }
-    getPoles()
-  }, [])
-
-  //----------------------------------------------------------------------------
-  // READ an activity data from idActivityToUpdate
-  useEffect(() => {
-    console.log('update_activity', idActivityToUpdate)
+    console.log('update_partner', idPartnerToUpdate)
     setAdminInput('')
     setResMessage('')
-    const getActivity = () => {
+    const getPartner = () => {
       axios
-        .get(
-          `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
-        )
+        .get(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
         .then(results => setAdminInput(results.data))
     }
-    getActivity()
-  }, [idActivityToUpdate])
+    getPartner()
+  }, [idPartnerToUpdate])
 
-  // CREATE a new activity
-  const postActivity = async e => {
+  // CREATE a new partner
+  const postPartner = async e => {
     e.preventDefault()
     const newPost = { ...adminInput }
-    if (activityImage) {
+    if (partnerImage) {
       const fd = new FormData()
-      const filename = Date.now() + activityImage.name
-      fd.append('activity_img', activityImage, filename)
-      newPost.activity_img = filename
+      const filename = Date.now() + partnerImage.name
+      fd.append('partner_img', partnerImage, filename)
+      newPost.partner_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -82,7 +68,7 @@ const AdminActivity = () => {
     }
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_URL_API}/activitys`,
+        `${process.env.REACT_APP_URL_API}/partners`,
         newPost
       )
       // if (res){
@@ -98,16 +84,16 @@ const AdminActivity = () => {
     }
   }
 
-  // UPDATE a activity
-  const updateActivity = async e => {
-    // console.log(idActivityToUpdate, adminInput)
+  // UPDATE a partner
+  const updatePartner = async e => {
+    // console.log(idPartnerToUpdate, adminInput)
     e.preventDefault()
-    const newPut = { ...adminInput }
-    if (activityImage) {
+    const newPartnerPut = { ...adminInput }
+    if (partnerImage) {
       const fd = new FormData()
-      const filename = Date.now() + activityImage.name
-      fd.append('activity_img', activityImage, filename)
-      newPut.activity_img = filename
+      const filename = Date.now() + partnerImage.name
+      fd.append('partner_img', partnerImage, filename)
+      newPartnerPut.partner_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -116,8 +102,8 @@ const AdminActivity = () => {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
-        newPut
+        `${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`,
+        newPartnerPut
       )
       // if (res){
       console.log('res update', res)
@@ -132,12 +118,10 @@ const AdminActivity = () => {
     }
   }
 
-  // DELETE aa activity
-  const deleteActivity = () => {
+  // DELETE a partner
+  const deletePartner = () => {
     axios
-      .delete(
-        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
-      )
+      .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
       .then(resToBack => {
         // console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
@@ -151,7 +135,6 @@ const AdminActivity = () => {
         }
       })
   }
-  //----------------------------------------------------------------------------
 
   // Functions to display forms
   const showCreateForm = () => {
@@ -162,13 +145,13 @@ const AdminActivity = () => {
   const showUpdateForm = e => {
     setCreateForm(false) // close createForm
     setUpdateForm(true) // open updateForm
-    setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
+    setIdPartnerToUpdate(e.target.id) // auto-trigger getPartner
   }
   const closeForm = () => {
     setCreateForm(false) // close createForm
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
-    setIdActivityToUpdate('') // clear selected activity
+    setIdPartnerToUpdate('') // clear selected partner
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -178,6 +161,7 @@ const AdminActivity = () => {
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
 
+  // console.log(partnerImage)
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
@@ -186,23 +170,20 @@ const AdminActivity = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'activités'} addElement={showCreateForm} />
+          <AdminTopDiv elmt={'partenaires'} addElement={showCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {activities.length === 0 ? (
+              {partners.length === 0 ? (
                 <div className='noCard'>
                   Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
                   créer un nouvel élément !
                 </div>
               ) : (
-                activities.map(elmt => (
+                partners.map(elmt => (
                   <AdminCard
-                    // key={elmt.activity_id}
-                    // id={elmt.activity_id}
-                    // name={elmt.activity_name}
-                    key={elmt.id}
-                    id={elmt.id}
-                    name={elmt.activity_title}
+                    key={elmt.partner_id}
+                    id={elmt.partner_id}
+                    name={elmt.partner_name}
                     updateElement={showUpdateForm}
                   />
                 ))
@@ -213,27 +194,27 @@ const AdminActivity = () => {
         <div className='bottomDiv flex col jcc aic'>
           {createForm && (
             <>
-              <AdminFormActivityCreate
+              <AdminFormPartnerCreate
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
-                postActivity={postActivity}
+                postPartner={postPartner}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setActivityImage={setActivityImage}
+                setPartnerImage={setPartnerImage}
               />
             </>
           )}
           {updateForm && (
             <>
-              <AdminFormActivityUpdate
+              <AdminFormPartnerUpdate
                 adminInput={adminInput}
                 closeForm={closeForm}
-                deleteActivity={deleteActivity}
+                deletePartner={deletePartner}
                 onChangeHandler={onChangeHandler}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setActivityImage={setActivityImage}
-                updateActivity={updateActivity}
+                setPartnerImage={setPartnerImage}
+                updatePartner={updatePartner}
               />
             </>
           )}
@@ -243,4 +224,4 @@ const AdminActivity = () => {
   )
 }
 
-export default AdminActivity
+export default AdminPartner

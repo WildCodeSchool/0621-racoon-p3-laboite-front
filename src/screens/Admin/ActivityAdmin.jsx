@@ -5,7 +5,9 @@ import * as Icons from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import FormActivity from './../../components/Form/FormActivity'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
+
+import { Context } from '../../context/Context'
 
 import './ActivityAdmin.css'
 import FormModifyActivity from '../../components/Form/FormModifyActivity'
@@ -18,7 +20,7 @@ library.add(...iconList)
 
 const ActivityAdmin = () => {
   const [activities, setActivities] = useState([])
-  const [pole, setPole] = useState([])
+  const [poles, setPoles] = useState([])
   const [adminInput, setAdminInput] = useState({ pole: '1' })
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
@@ -36,6 +38,11 @@ const ActivityAdmin = () => {
     setOpen(false)
   }
 
+  const { user } = useContext(Context)
+
+  // Defini le Bearer JWT dans header pour les requetes de la page.
+  axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
+
   const recupData = async () => {
     const results = await axios.get(
       `${process.env.REACT_APP_URL_API}/activities`
@@ -49,12 +56,12 @@ const ActivityAdmin = () => {
   }, [])
 
   useEffect(() => {
-    const getPole = async () => {
+    const getPoles = async () => {
       const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      setPole(results.data)
+      setPoles(results.data)
       // setLoading(false)
     }
-    getPole()
+    getPoles()
   }, [])
 
   const submitData = async e => {
@@ -219,7 +226,7 @@ const ActivityAdmin = () => {
           onChangeHandler={onChangeHandler}
           setImage={setImage}
           image={image}
-          pole={pole}
+          poles={poles}
           setData={setData}
           setConfirmTiny={setConfirmTiny}
           confirmTiny={confirmTiny}

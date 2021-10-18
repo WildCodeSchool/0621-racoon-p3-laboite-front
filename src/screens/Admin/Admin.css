@@ -27,6 +27,7 @@
 	width : 15%;
 	/* height: 100vh; */
 	background-color: #313131;
+	padding-bottom: 10px;
 }
 .dashboard{
 	padding: 10px;
@@ -40,7 +41,7 @@
 }
 .adminLinkButton{
 	background-color: #414141;
-	padding: 20px;
+	padding: 15px;
 	margin: 10px;
 	border-radius: 5px;
 }
@@ -124,11 +125,31 @@
 	cursor: pointer;
 }
 .cardContent{
+	display: flex;
 	position: relative;
 	width:100%;
 	height:100%;
 	pointer-events: none;
+  align-items: flex-end;
 }
+
+.cardName{
+  z-index: 0;
+	position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+
+}
+
+.cardName .title {
+  background-color: #313131;
+  width: 100%;
+  z-index: 0;
+  padding: 5px 0px;
+}
+
 /* .cardContent img{
 	position: absolute;
 	min-height: 200px;
@@ -145,7 +166,8 @@
 	margin-left:15px;
 	background-color: snow;
 	border-radius: 5px;
-	color: var(--main-font-color)
+	color: var(--main-font-color);
+  z-index:400;
 }
 
 /*----- Bottom Div -----*/
@@ -186,7 +208,7 @@
 	background-color: #616161;
 	color: white;
 }
-.teamFormContainer{
+.teamFormContainer, .partnerFormContainer, .activityFormContainer{
 	background-color: aqua;
 	width: 90%;
 	margin: auto;

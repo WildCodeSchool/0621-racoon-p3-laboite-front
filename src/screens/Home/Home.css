@@ -5,7 +5,6 @@
   justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
-  
 }
 
 .descContainer {
@@ -15,10 +14,6 @@
 .ebeDesc {
   font-weight: bold;
 }
-
-/* .contactElements {
-  width: 12%;
-} */
 
 /* CONCEPT */
 
@@ -220,6 +215,10 @@ color: var(--title-color);
 
     /* CONCEPT */
     
+
+  .descContainer {
+    margin: 0 15px;
+  }
   .conceptContainer {
     background: #52908B;
     width: 100%;

@@ -1,10 +1,10 @@
 import './form.css'
 
-const TeamAdmin = ({
+const ActivAdmin = ({
   adminInput,
   onChangeHandler,
   resMessage,
-  setMemberImage,
+  setActivityImage,
   setAdminInput
 }) => {
   return (
@@ -13,47 +13,40 @@ const TeamAdmin = ({
         <form encType='multipart/form-data' className='formItems formItemsTeam'>
           <input
             focus
-            placeholder={'Nom du membre'}
-            key='member_name'
-            name='member_name'
+            placeholder={`Nom de l'activité`}
+            key='activity_name'
+            name='activity_name'
             onChange={onChangeHandler}
             value={
-              adminInput && adminInput.member_name && adminInput.member_name
+              adminInput &&
+              adminInput.activity_title &&
+              adminInput.activity_title
             }
           />
           <input
             type='file'
             focus
             placeholder={'Uploader une photo'}
-            key='member_img'
-            name='member_img'
+            key='activity_img'
+            name='activity_img'
             onChange={e => {
-              setMemberImage(e.target.files[0]) ||
+              setActivityImage(e.target.files[0]) ||
                 setAdminInput(state => ({
                   ...state,
-                  ['member_img']: e.target.files[0].name
+                  ['activity_img']: e.target.files[0].title
                 }))
             }}
           />
           <input
             focus
             placeholder={'Fichier image'}
-            key='member_img'
-            name='member_img'
+            key='activity_img'
+            name='activity_img'
             onChange={onChangeHandler} // removed to prevent manual modification
-            value={adminInput && adminInput.member_img && adminInput.member_img}
-          />
-          <textarea
-            focus
-            placeholder={'Role du membre'}
-            key='member_role'
-            name='member_role'
-            rows='4'
-            onChange={onChangeHandler}
             value={
-              adminInput && adminInput.member_role && adminInput.member_role
+              adminInput && adminInput.activity_img && adminInput.activity_img
             }
-          ></textarea>
+          />
           <span className='formError'>{resMessage && resMessage}</span>
         </form>
       </div>
@@ -61,4 +54,4 @@ const TeamAdmin = ({
   )
 }
 
-export default TeamAdmin
+export default ActivAdmin
