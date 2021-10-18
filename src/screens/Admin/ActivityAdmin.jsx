@@ -15,7 +15,7 @@ library.add(...iconList)
 
 const ActivityAdmin = () => {
   const [activities, setActivities] = useState([])
-  const [pole, setPole] = useState([])
+  const [poles, setPoles] = useState([])
   const [adminInput, setAdminInput] = useState({ pole: '1' })
   const [confirmTiny, setConfirmTiny] = useState(false)
   const [selectActivity, setSelectActivity] = useState('1')
@@ -39,12 +39,12 @@ const ActivityAdmin = () => {
   }, [])
 
   useEffect(() => {
-    const getPole = async () => {
+    const getPoles = async () => {
       const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      setPole(results.data)
+      setPoles(results.data)
       // setLoading(false)
     }
-    getPole()
+    getPoles()
   }, [])
 
   const submitData = async e => {
@@ -208,7 +208,7 @@ const ActivityAdmin = () => {
           onChangeHandler={onChangeHandler}
           setImage={setImage}
           image={image}
-          pole={pole}
+          poles={poles}
           setData={setData}
           setConfirmTiny={setConfirmTiny}
           confirmTiny={confirmTiny}

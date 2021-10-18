@@ -16,7 +16,7 @@ const AdminFormPartnerCreate = ({
       <div className='closeBtn flex jcc aic' onClick={closeForm}>
         x
       </div>
-      <div className='bottomDivTitle'>Nouveau membre</div>
+      <div className='bottomDivTitle'>Nouveau partenaire</div>
       <div className='partnerFormContainer'>
         <PartnerAdmin
           adminInput={adminInput}
