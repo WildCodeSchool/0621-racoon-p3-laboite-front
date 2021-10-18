@@ -38,7 +38,6 @@ const Navbar = () => {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('access_token')
     delete axios.defaults.headers.common['Authorization']
     dispatch({ type: 'LOGOUT' })
     window.location.replace('/')
