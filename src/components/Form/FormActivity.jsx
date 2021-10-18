@@ -3,17 +3,17 @@ import FormTiny from './FormTiny'
 const FormActivity = ({
   setAdminInput,
   adminInput,
-  setImage,
+  setActivityImage,
   onChangeHandler,
-  pole,
-  setData,
+  poles,
+  // setData,
   setConfirmTiny,
   submitData,
   confirmTiny
 }) => {
   return (
     <div className='activityContainer'>
-      <h3 className='activityTitleForm'>Nouvelle activité</h3>
+      {/* <h3 className='activityTitleForm'>Nouvelle activité</h3> */}
       <div className='activityFormWrapper'>
         <div className='activityItems'>
           <div className='activityCross'>
@@ -22,7 +22,7 @@ const FormActivity = ({
             <form encType='multipart/form-data'>
               <div className='activityForm'>
                 <div className='activityCross'>
-                  <select
+                  {/* <select
                     placeholder='Les poles'
                     onChange={e =>
                       setAdminInput({ ...adminInput, pole: e.target.value })
@@ -34,7 +34,8 @@ const FormActivity = ({
                       background: '#CED4DA'
                     }}
                   >
-                    {pole.map(pole => (
+                    {console.log('adminInput', adminInput)}
+                    {poles.map(pole => (
                       <option
                         key={pole.id}
                         name={pole.pole_title}
@@ -43,10 +44,10 @@ const FormActivity = ({
                         {pole.pole_title}
                       </option>
                     ))}
-                  </select>
+                  </select> */}
                   {/* -----select Pole End-----  */}
                 </div>
-                <input
+                {/* <input
                   focus
                   type='text'
                   placeholder={`Titre de l'activité`}
@@ -59,14 +60,14 @@ const FormActivity = ({
                   }}
                   onChange={onChangeHandler}
                   value={adminInput.activity_title}
-                />
+                /> */}
                 {/* --------------FILE-------------  */}
-                <input
+                {/* <input
                   type='file'
                   focus
                   placeholder={`URL de l'image`}
-                  key='activity_img'
-                  name='activity_img'
+                  key='activity_img1'
+                  name='activity_img1'
                   accept='jpg'
                   style={{
                     margin: '10px',
@@ -74,13 +75,19 @@ const FormActivity = ({
                     background: '#CED4DA'
                   }}
                   onChange={e => {
-                    setImage(e.target.files[0])
+                    setActivityImage(e.target.files[0])
+                    setAdminInput({
+                      ...adminInput,
+                      activity_img: e.target.value
+                    })
                   }}
-                />
+                /> */}
               </div>
             </form>
             <FormTiny
-              setData={setData}
+              adminInput={adminInput}
+              setAdminInput={setAdminInput}
+              confirmTiny={confirmTiny}
               setConfirmTiny={setConfirmTiny}
               syle={{}}
             />
@@ -103,7 +110,8 @@ const FormActivity = ({
               </p>
               {confirmTiny ? (
                 <button
-                  onClick={submitData}
+                  // onClick={submitData}
+                  onClick={console.log('submit')}
                   disabled={!confirmTiny}
                   style={{
                     cursor: 'pointer',

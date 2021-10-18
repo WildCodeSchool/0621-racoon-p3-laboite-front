@@ -7,6 +7,7 @@ import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCre
 import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import FormActivity from '../../components/Form/FormActivity'
 
 import './Admin.css'
 
@@ -21,6 +22,7 @@ const AdminActivity = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
+  const [confirmTiny, setConfirmTiny] = useState(false)
 
   // READ all activities from backEnd
   useEffect(() => {
@@ -34,16 +36,6 @@ const AdminActivity = () => {
     getActivities()
   }, [refresh])
 
-  useEffect(() => {
-    const getPoles = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      setPoles(results.data)
-      // setLoading(false)
-    }
-    getPoles()
-  }, [])
-
-  //----------------------------------------------------------------------------
   // READ an activity data from idActivityToUpdate
   useEffect(() => {
     console.log('update_activity', idActivityToUpdate)
@@ -59,94 +51,17 @@ const AdminActivity = () => {
     getActivity()
   }, [idActivityToUpdate])
 
-  // CREATE a new activity
-  const postActivity = async e => {
-    e.preventDefault()
-    const newPost = { ...adminInput }
-    if (activityImage) {
-      const fd = new FormData()
-      const filename = Date.now() + activityImage.name
-      fd.append('activity_img', activityImage, filename)
-      newPost.activity_img = filename
-      try {
-        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
-      } catch (err) {
-        console.log(err)
-      }
+  // READ all poles from backEnd
+  useEffect(() => {
+    const getPoles = async () => {
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
+      setPoles(results.data)
+      // setLoading(false)
     }
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_URL_API}/activitys`,
-        newPost
-      )
-      // if (res){
-      console.log('res post', res)
-      setResMessage(res.data.message)
-      setRefresh(!refresh)
-      setTimeout(closeForm, 2500)
-    } catch (err) {
-      // if (err) {
-      console.log('logErrPost', err.response)
-      setResMessage(err.response.data.message)
-      // }
-    }
-  }
+    getPoles()
+  }, [])
 
-  // UPDATE a activity
-  const updateActivity = async e => {
-    // console.log(idActivityToUpdate, adminInput)
-    e.preventDefault()
-    const newPut = { ...adminInput }
-    if (activityImage) {
-      const fd = new FormData()
-      const filename = Date.now() + activityImage.name
-      fd.append('activity_img', activityImage, filename)
-      newPut.activity_img = filename
-      try {
-        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
-        newPut
-      )
-      // if (res){
-      console.log('res update', res)
-      setResMessage(res.data.message)
-      setRefresh(!refresh)
-      setTimeout(closeForm, 2500)
-    } catch (error) {
-      // if(error) {
-      console.log('logErrUpdate', error.response)
-      setResMessage(error.response.data.message)
-      // }
-    }
-  }
-
-  // DELETE aa activity
-  const deleteActivity = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
-      )
-      .then(resToBack => {
-        // console.log('res delete', resToBack)
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-        setTimeout(closeForm, 2500)
-      })
-      .catch(error => {
-        if (error) {
-          // console.log('logErrDelete', error.response)
-          setResMessage(error.response.data.message)
-        }
-      })
-  }
   //----------------------------------------------------------------------------
-
   // Functions to display forms
   const showCreateForm = () => {
     setAdminInput({}) // clear inputs
@@ -171,6 +86,98 @@ const AdminActivity = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
+  //----------------------------------------------------------------------------
+
+  // CREATE a new activity
+  const postActivity = async e => {
+    !adminInput.pole_id &&
+      setAdminInput(state => ({ ...state, ['pole_id']: 1 }), [])
+    console.log('postActivity', adminInput)
+    // e.preventDefault()
+    // const newPost = { ...adminInput }
+    // if (activityImage) {
+    //   const fd = new FormData()
+    //   const filename = Date.now() + activityImage.name
+    //   fd.append('activity_img', activityImage, filename)
+    //   newPost.activity_img = filename
+    //   try {
+    //     await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+    // try {
+    //   const res = await axios.post(
+    //     `${process.env.REACT_APP_URL_API}/activities`,
+    //     newPost
+    //   )
+    //   // if (res){
+    //   console.log('res post', res)
+    //   setResMessage(res.data.message)
+    //   setRefresh(!refresh)
+    //   setTimeout(closeForm, 2500)
+    // } catch (err) {
+    //   // if (err) {
+    //   console.log('logErrPost', err.response)
+    //   setResMessage(err.response.data.message)
+    //   // }
+    // }
+  }
+
+  // UPDATE a activity
+  const updateActivity = async e => {
+    console.log(idActivityToUpdate, adminInput)
+    // e.preventDefault()
+    // const newPut = { ...adminInput }
+    // if (activityImage) {
+    //   const fd = new FormData()
+    //   const filename = Date.now() + activityImage.name
+    //   fd.append('activity_img', activityImage, filename)
+    //   newPut.activity_img = filename
+    //   try {
+    //     await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+    // try {
+    //   const res = await axios.put(
+    //     `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
+    //     newPut
+    //   )
+    //   // if (res){
+    //   console.log('res update', res)
+    //   setResMessage(res.data.message)
+    //   setRefresh(!refresh)
+    //   setTimeout(closeForm, 2500)
+    // } catch (error) {
+    //   // if(error) {
+    //   console.log('logErrUpdate', error.response)
+    //   setResMessage(error.response.data.message)
+    //   // }
+    // }
+  }
+
+  // DELETE aa activity
+  const deleteActivity = () => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
+      )
+      .then(resToBack => {
+        // console.log('res delete', resToBack)
+        setResMessage(resToBack.data.message)
+        setRefresh(!refresh)
+        setTimeout(closeForm, 2500)
+      })
+      .catch(error => {
+        if (error) {
+          // console.log('logErrDelete', error.response)
+          setResMessage(error.response.data.message)
+        }
+      })
+  }
+  //----------------------------------------------------------------------------
 
   return (
     <div className='adminContainer flex row'>
@@ -210,11 +217,25 @@ const AdminActivity = () => {
               <AdminFormActivityCreate
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
+                poles={poles}
                 postActivity={postActivity}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
                 setActivityImage={setActivityImage}
+                confirmTiny={confirmTiny}
+                setConfirmTiny={setConfirmTiny}
               />
+              {/* <FormActivity
+                adminInput={adminInput}
+                setAdminInput={setAdminInput}
+                onChangeHandler={onChangeHandler}
+                setActivityImage={setActivityImage}
+                poles={poles}
+                postActivity={postActivity}
+                // setData={setData}
+                confirmTiny={confirmTiny}
+                setConfirmTiny={setConfirmTiny}
+              /> */}
             </>
           )}
           {updateForm && (
@@ -224,10 +245,13 @@ const AdminActivity = () => {
                 closeForm={closeForm}
                 deleteActivity={deleteActivity}
                 onChangeHandler={onChangeHandler}
+                poles={poles}
                 resMessage={resMessage}
-                setAdminInput={setAdminInput}
                 setActivityImage={setActivityImage}
+                setAdminInput={setAdminInput}
                 updateActivity={updateActivity}
+                confirmTiny={confirmTiny}
+                setConfirmTiny={setConfirmTiny}
               />
             </>
           )}
