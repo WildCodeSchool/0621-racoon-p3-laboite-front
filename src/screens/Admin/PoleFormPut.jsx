@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
+
 import { useState } from 'react'
 import axios from 'axios'
 import PutTinyDesc from '../../components/Form/PutTinyDesc'
@@ -5,16 +8,24 @@ import PutTinyFunc from '../../components/Form/PutTinyFunc'
 
 import './form.css'
 
-const PoleFormPut = poleCard => {
-  const { modifyValue, poleData } = poleCard
+const PoleFormPut = props => {
+  // props stocks two functions (parameters) from PoleCardList
+  const { modifyValue, poles, getPoles, pcu, closeForm } = props
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
+  const [open, setOpen] = useState(false)
+  const [refresh, setRefresh] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
     event.preventDefault()
-    const newPost = { ...poleData }
+    // newPost retrieve all the pole cards of PoleCardList
+    const newPost = { ...pcu }
     if (putImage && putFunc && putMiniature) {
       const fd = new FormData()
       const filename = Date.now() + putImage.name
@@ -33,16 +44,19 @@ const PoleFormPut = poleCard => {
       }
     }
     try {
+      //modify the card with the id stocked in modifyValue
       const results = await axios.put(
-        `${process.env.REACT_APP_URL_API}/poles/${poleCard.id}`,
+        `${process.env.REACT_APP_URL_API}/poles/${pcu.id}`,
         newPost
       )
-      console.log('results :', results)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
     } catch (err) {
       console.log(err)
     }
-    poleData()
-    alert('Pole modifié avec succès')
+    // upload the modified card in poleCardList
+    getPoles()
+    setOpen(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -56,19 +70,22 @@ const PoleFormPut = poleCard => {
 
   return (
     <div>
-      poulet
       <div className='form-container'>
-        <form className='new-pole-form' encType='multipart/form-data'>
+        <form
+          className='FormList'
+          encType='multipart/form-data'
+          className='formItems'
+        >
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_name}
+            value={pcu.pole_name}
           />
           <label>Bannière</label>
-          <input value={poleCard.pole_banner} />
+          <input value={pcu.pole_banner} />
           <input
             type='file'
             name='pole_banner'
@@ -82,7 +99,7 @@ const PoleFormPut = poleCard => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_title}
+            value={pcu.pole_title}
           />
           <label>Pôle picto</label>
           <input
@@ -90,11 +107,21 @@ const PoleFormPut = poleCard => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_picto}
+            value={pcu.pole_picto}
           />
-          <label>Pôle description</label>
-          <label>Photo de Fonctionnement</label>
-          <input value={poleCard.pole_func_img} />
+          <div className='tiny'>
+            <label>Pôle description</label>
+            <PutTinyDesc
+              setDataDesc={setDataDesc}
+              modifyValue={modifyValue}
+              props={props}
+              pcu={pcu}
+              name='pole_desc'
+              key='pole_desc'
+              // value={props.pole_desc}
+            />
+          </div>
+          <input value={pcu.pole_func_img} />
           <input
             type='file'
             name='pole_func_img'
@@ -102,14 +129,25 @@ const PoleFormPut = poleCard => {
               setPutFunc(e.target.files[0])
             }}
           />
-          <label>Pôle fonctionnement</label>
+          <div className='tiny'>
+            <label>Pôle Fonctionnement</label>
+            <PutTinyFunc
+              setDataFunc={setDataFunc}
+              modifyValue={modifyValue}
+              props={props}
+              name='pole_func'
+              key='pole_func'
+              pcu={pcu}
+              // value={props.pole_func}
+            />
+          </div>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_num}
+            value={pcu.pole_num}
           />
           <label>E-mail</label>
           <input
@@ -117,10 +155,10 @@ const PoleFormPut = poleCard => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_email}
+            value={pcu.pole_email}
           />
           <label>Vignette</label>
-          <input value={poleCard.pole_miniature_img} />
+          <input value={pcu.pole_miniature_img} />
           <input
             type='file'
             name='pole_miniature_img'
@@ -134,25 +172,24 @@ const PoleFormPut = poleCard => {
             onChange={event =>
               modifyValue(event.target.name, event.target.value)
             }
-            value={poleCard.pole_catchphrase}
+            value={pcu.pole_catchphrase}
           />
         </form>
-        <PutTinyDesc
-          setDataDesc={setDataDesc}
-          modifyValue={modifyValue}
-          poleCard={poleCard}
-          name='pole_desc'
-          key='pole_desc'
-          value={poleCard.pole_desc}
-        />
-        <PutTinyFunc
-          setDataFunc={setDataFunc}
-          modifyValue={modifyValue}
-          poleCard={poleCard}
-          name='pole_func'
-          key='pole_func'
-        />
+
         <button onClick={submitPoleData}>Publier</button>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert onClose={handleClose} severity='success'>
+            Pôle modifié avec succès
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   )

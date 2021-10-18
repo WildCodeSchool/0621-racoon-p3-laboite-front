@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function PutTinyDesc({ setDataDesc, modifyValue, poleCard }) {
+export default function PutTinyDesc({ setDataDesc, modifyValue, props, poles, pcu }) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
@@ -15,7 +15,7 @@ export default function PutTinyDesc({ setDataDesc, modifyValue, poleCard }) {
     <div>
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={poleCard.pole_desc}
+        initialValue={pcu.pole_desc}
         // onChange={e => modifyValue(event.target.name, event.target.value)}
         init={{
           height: 400,
