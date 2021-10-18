@@ -24,15 +24,21 @@ const MobileNavBar = () => {
     <div className='mobile-navbar'>
       {isOpen && (
         <div className='mobile-menu'>
-          <NavLink to='/'>Concept</NavLink>
+          <NavLink onClick={handleClick} to='/'>
+            Concept
+          </NavLink>
           {data &&
             data.map(e => (
-              <NavLink key={e.id} to={`/poles/${e.id}`}>
+              <NavLink onClick={handleClick} key={e.id} to={`/poles/${e.id}`}>
                 {e.pole_name}
               </NavLink>
             ))}
-          <NavLink to='/partenaires'>Partenaires</NavLink>
-          <NavLink to='/contact'>Contact</NavLink>
+          <NavLink onClick={handleClick} to='/partenaires'>
+            Partenaires
+          </NavLink>
+          <NavLink onClick={handleClick} to='/contact'>
+            Contact
+          </NavLink>
         </div>
       )}
 
