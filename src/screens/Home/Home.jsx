@@ -38,7 +38,6 @@ const Home = () => {
     }
     getPole()
   }, [])
-  console.log(concept)
   return (
     <>
       <img

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import { Context } from './context/Context'
@@ -27,10 +27,10 @@ import './App.css'
 import './Normalize.css'
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
   const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
-  const { user } = useContext(Context)
-  console.log('userContext: ' + user)
+  const { user, isAuth } = useContext(Context)
+  console.log('userContext: ' + user, isAuth)
+
   return (
     <Router>
       <ScrollToTop />
@@ -54,27 +54,35 @@ function App() {
             <Partners />
           </Route>
           <Route exact path='/login'>
-            <Login isLogged={isLogged} setIsLogged={setIsLogged} />
+            <Login />
           </Route>
-          <Route exact path='/admin/activities'>
-            {user ? <AdminActivity /> : <Home />}
-          </Route>
-          <Route exact path='/admin/activity'>
-            <ActivityAdmin />
-          </Route>
-          {/* <Route exact path='/admin/pole'>
-            {user ? <AdminPole /> : <Home />}
+          {user ? (
+            <>
+              <Route exact path='/admin'>
+                <AdminHome />
+              </Route>
+              <Route exact path='/admin/activities'>
+                <AdminActivity />
+              </Route>
+              <Route exact path='/admin/activity'>
+                <ActivityAdmin />
+              </Route>
+              {/* <Route exact path='/admin/pole'>
+            <AdminPole />
           </Route> */}
-          <Route exact path='/admin/poles'>
-            <PoleAdmin />
-          </Route>
-          <Route exact path='/admin/members'>
-            {user ? <AdminTeam /> : <Home />}
-          </Route>
-          <Route exact path='/admin/partners'>
-            {user ? <AdminPartner /> : <Home />}
-          </Route>
-          <Route path='/admin'>{user ? <AdminHome /> : <Home />}</Route>
+              <Route exact path='/admin/poles'>
+                <PoleAdmin />
+              </Route>
+              <Route exact path='/admin/members'>
+                <AdminTeam />
+              </Route>
+              <Route exact path='/admin/partners'>
+                <AdminPartner />
+              </Route>
+            </>
+          ) : (
+            <Home />
+          )}
         </Switch>
         {!user && <Footer />}
         {!isDesktop && <MobileNavBar />}
