@@ -15,7 +15,7 @@
 	align-items: center;
 }
 .adminContainer{
-	/* height: 100vh; */
+	/* min-height: 80vh; */
 	color: white
 }
 .blacktxt{

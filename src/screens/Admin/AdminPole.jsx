@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 // import PoleAdmin from './PoleAdmin'
 import AdminCard from '../../components/Admin/AdminCard'
 import AdminForm from '../../components/Admin/AdminForm'
+import PoleAdmin from './PoleAdmin'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
@@ -61,16 +62,18 @@ const AdminPole = () => {
                   créer un nouvel élément !
                 </div>
               ) : (
-                poles.map((elmt, index) => (
-                  <AdminCard
-                    key={index}
-                    id={elmt.id}
-                    name={elmt.pole_name}
-                    img={elmt.pole_miniature_img}
-                    displayForm={displayForm}
-                    removeElement={removeElement}
-                  />
-                ))
+                <PoleAdmin />
+
+                // 	poles.map((elmt, index) => (
+                //   <AdminCard
+                //     key={index}
+                //     id={elmt.id}
+                //     name={elmt.pole_name}
+                //     img={elmt.pole_miniature_img}
+                //     displayForm={displayForm}
+                //     removeElement={removeElement}
+                //   />
+                // ))
               )}
             </div>
           </div>
@@ -78,7 +81,8 @@ const AdminPole = () => {
         <div className='bottomDiv flex col jcc aic'>
           {isOpenForm && (
             <>
-              <AdminForm displayForm={displayForm} />
+              {/* <AdminForm displayForm={displayForm} /> */}
+
               <div>PoleAdmin</div>
             </>
           )}
