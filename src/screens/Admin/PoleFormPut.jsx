@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import { useState } from 'react'
 import axios from 'axios'
 import PutTinyDesc from '../../components/Form/PutTinyDesc'
@@ -10,11 +13,16 @@ const PoleFormPut =  ( poleCard )   => {
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
     event.preventDefault()
-    const newPost = { ...poleData }
+    const newPost = { ...poleCard, ...poleData }
     if (putImage && putFunc && putMiniature) {
       const fd = new FormData()
       const filename = Date.now() + putImage.name
@@ -42,7 +50,7 @@ const PoleFormPut =  ( poleCard )   => {
     console.log(err)
   }
   poleData()
-  alert('Pole modifié avec succès')
+  setOpen(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -157,6 +165,14 @@ const PoleFormPut =  ( poleCard )   => {
           key='pole_func'
         />
         <button onClick={submitPoleData}>Publier</button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Pôle modifié avec succès
+        </Alert>
+        </Snackbar>
       </div>
     </div>
   )

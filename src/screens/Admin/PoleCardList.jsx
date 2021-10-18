@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import PoleCardAdmin from './PoleCardAdmin'
@@ -9,7 +12,12 @@ const PoleCardList = () => {
   const [showFormPost, setShowFormPost] = useState(false)
   const [showFormPut, setShowFormPut] = useState(false)
   const [poleCardUpdate, setPoleCardUpdate] = useState({})
+  const [open, setOpen] = useState(false)
 
+
+  const handleClose = () => {
+    setOpen(false)
+  }
   const showFormOnClick = () => {
     setShowFormPost(true)
   }
@@ -32,6 +40,7 @@ const PoleCardList = () => {
       setPoleCards(poleCards.filter(poleCard => poleCard.id != id))
     }
     DeleteData()
+    setOpen(true)
   }
 }
 
@@ -73,6 +82,14 @@ const PoleCardList = () => {
           poleData={poleData}
         />
       ) : null}
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Pôle supprimé avec succès
+        </Alert>
+        </Snackbar>
     </>
   )
 }

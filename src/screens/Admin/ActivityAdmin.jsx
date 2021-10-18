@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import FormActivity from './../../components/Form/FormActivity'
@@ -25,6 +28,13 @@ const ActivityAdmin = () => {
 
   const [showFormActivity, setShowFormActivity] = useState(false)
   const [showFormModifyActivity, setShowFormModifyActivity] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [openAdd, setOpenAdd] = useState(false)
+  const [openUpdate, setOpenUpdate] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const recupData = async () => {
     const results = await axios.get(
@@ -66,7 +76,7 @@ const ActivityAdmin = () => {
         `${process.env.REACT_APP_URL_API}/activities`,
         newPost
       )
-      alert('Activité ajoutée avec succès')
+      setOpenAdd(true)
     } catch (err) {
       console.log(err)
     }
@@ -101,7 +111,7 @@ const ActivityAdmin = () => {
         `${process.env.REACT_APP_URL_API}/activities/${selectActivity}`,
         newPost
       )
-      alert('Activité modifiée avec succès')
+     setOpenUpdate(true)
     } catch (err) {
       console.log(err)
     }
@@ -124,6 +134,7 @@ const ActivityAdmin = () => {
         .delete(`${process.env.REACT_APP_URL_API}/activities/${id}`)
         .then(resToBack => {
           recupData()
+          setOpen(true)
           console.log('res delete', resToBack)
         })
         .catch(error => {
@@ -213,6 +224,7 @@ const ActivityAdmin = () => {
           setConfirmTiny={setConfirmTiny}
           confirmTiny={confirmTiny}
           submitData={submitData}
+          openAdd={openAdd}
         />
       )}
       {showFormModifyActivity && (
@@ -224,8 +236,17 @@ const ActivityAdmin = () => {
           modifyData={modifyData}
           activityUpdate={activityUpdate}
           modifyValue={modifyValue}
+          openUpdate={openUpdate}
         />
       )}
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Activité supprimée avec succès
+        </Alert>
+        </Snackbar>
     </>
   )
 }

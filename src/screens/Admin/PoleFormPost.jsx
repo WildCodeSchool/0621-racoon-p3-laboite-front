@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import FormTiny from '../../components/Form/FormTiny'
 import FormTinyFunc from '../../components/Form/FormTinyFunc'
 
@@ -28,6 +31,11 @@ const PoleFormPost = ({ poleData }) => {
   const [poleImage, setPoleImage] = useState()
   const [poleFunc, setPoleFunc] = useState()
   const [poleMiniature, setPoleMiniature] = useState()
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
@@ -66,7 +74,7 @@ const PoleFormPost = ({ poleData }) => {
       console.log(err)
     }
     poleData()
-    alert('Pole ajouté avec succès')
+    setOpen(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -76,10 +84,7 @@ const PoleFormPost = ({ poleData }) => {
   const setDataFunc = text => {
     setPoleInfo({ ...poleInfo, pole_func: text })
   }
-  // console.log('coucou les infos', poleInfo)
-  console.log('stylé les images', poleImage)
-  console.log('stylé les func', poleFunc)
-  console.log('stylé les Miniature', poleMiniature)
+
   return (
     <div>
       {console.log(poleData)}
@@ -162,6 +167,14 @@ const PoleFormPost = ({ poleData }) => {
           />
         </form>
         <button onClick={submitPoleData}>Publier</button>
+         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Pôle ajouté avec succès
+        </Alert>
+      </Snackbar>
       </div>
     </div>
   )

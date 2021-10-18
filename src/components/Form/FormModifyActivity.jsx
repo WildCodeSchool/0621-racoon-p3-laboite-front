@@ -1,4 +1,6 @@
-import { updateExpression } from '@babel/types'
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import PutTinyActivity from './PutTinyActivity'
 
 const FormModifyActivity = ({
@@ -8,7 +10,8 @@ const FormModifyActivity = ({
   modifyData,
   confirmTiny,
   activityUpdate,
-  modifyValue
+  modifyValue,
+  openUpdate, handleClose
 }) => {
   return (
     <div className='activityContainer'>
@@ -83,6 +86,14 @@ const FormModifyActivity = ({
                   Publier
                 </button>
               ) : null}
+              <Snackbar open={openUpdate} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Activité modifiée avec succès
+        </Alert>
+        </Snackbar>
             </div>
           </div>
         </div>

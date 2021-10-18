@@ -1,3 +1,6 @@
+import { Alert } from '@material-ui/lab';
+import { Snackbar } from '@material-ui/core';
+
 import FormTiny from './FormTiny'
 
 const FormActivity = ({
@@ -9,7 +12,7 @@ const FormActivity = ({
   setData,
   setConfirmTiny,
   submitData,
-  confirmTiny
+  confirmTiny, openAdd, handleClose
 }) => {
   return (
     <div className='activityContainer'>
@@ -114,6 +117,14 @@ const FormActivity = ({
                   Publier
                 </button>
               ) : null}
+              <Snackbar open={openAdd} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }} >
+        <Alert onClose={handleClose} severity="success">
+          Activité ajoutée avec succès
+        </Alert>
+        </Snackbar>
             </div>
           </div>
         </div>
