@@ -27,8 +27,8 @@ const PartnerAdmin = ({
             type='file'
             focus
             placeholder={'Uploader une photo'}
-            key='partner_img'
-            name='partner_img'
+            key='partner_img_upload'
+            name='partner_img_upload'
             onChange={e => {
               setPartnerImage(e.target.files[0]) ||
                 setAdminInput(state => ({
@@ -37,16 +37,18 @@ const PartnerAdmin = ({
                 }))
             }}
           />
-          <input
-            focus
-            placeholder={'Fichier image'}
-            key='partner_img'
-            name='partner_img'
-            onChange={onChangeHandler} // removed to prevent manual modification
-            value={
-              adminInput && adminInput.partner_img && adminInput.partner_img
-            }
-          />
+          {adminInput && adminInput.member_id && (
+            <input
+              focus
+              placeholder={'Fichier image'}
+              key='partner_img'
+              name='partner_img'
+              onChange={onChangeHandler} // removed to prevent manual modification
+              value={
+                adminInput && adminInput.partner_img && adminInput.partner_img
+              }
+            />
+          )}
           <span className='formError'>{resMessage && resMessage}</span>
         </form>
       </div>

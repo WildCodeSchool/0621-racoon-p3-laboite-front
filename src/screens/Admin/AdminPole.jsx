@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 // import PoleAdmin from './PoleAdmin'
 import AdminCard from '../../components/Admin/AdminCard'
-import AdminForm from '../../components/Admin/AdminForm'
+
 import PoleAdmin from './PoleAdmin'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
