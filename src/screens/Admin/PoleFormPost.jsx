@@ -118,8 +118,10 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
             placeholder={`Pôle picto`}
           />
         </form>
-        {/* <label>Pôle description</label> */}
-        <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+        <div className='tiny'>
+          <label>Pôle description</label>
+          <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+        </div>
         <form
           className='FormList'
           encType='multipart/form-data'
@@ -136,8 +138,11 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
             placeholder={`Photo de Fonctionnement`}
           />
         </form>
-        {/* <label>Pôle Fonctionnement</label> */}
-        <FormTinyFunc setDataFunc={setDataFunc} />
+
+        <div className='tiny'>
+          <label>Pôle Fonctionnement</label>
+          <FormTinyFunc setDataFunc={setDataFunc} />
+        </div>
         <form
           className='FormList'
           encType='multipart/form-data'
