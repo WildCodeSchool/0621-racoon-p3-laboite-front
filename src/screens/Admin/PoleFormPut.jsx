@@ -10,11 +10,12 @@ import './form.css'
 
 const PoleFormPut = props => {
   // props stocks two functions (parameters) from PoleCardList
-  const { modifyValue, poles, getPoles, pcu } = props
+  const { modifyValue, poles, getPoles, pcu, closeForm } = props
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
   const [open, setOpen] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
   const handleClose = () => {
     setOpen(false)
@@ -22,7 +23,6 @@ const PoleFormPut = props => {
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
-    console.log('------------tolooo 01-------')
     event.preventDefault()
     // newPost retrieve all the pole cards of PoleCardList
     const newPost = { ...pcu }
@@ -45,12 +45,12 @@ const PoleFormPut = props => {
     }
     try {
       //modify the card with the id stocked in modifyValue
-      console.log('------------tolooo-------', pcu.id, newPost)
       const results = await axios.put(
         `${process.env.REACT_APP_URL_API}/poles/${pcu.id}`,
         newPost
       )
-      console.log('results :', results)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
     } catch (err) {
       console.log(err)
     }
@@ -67,7 +67,7 @@ const PoleFormPut = props => {
   const setDataFunc = text => {
     modifyValue('pole_func', text)
   }
-  console.log(props)
+
   return (
     <div>
       <div className='form-container'>
@@ -109,8 +109,18 @@ const PoleFormPut = props => {
             }
             value={pcu.pole_picto}
           />
-          <label>Pôle description</label>
-          <label>Photo de Fonctionnement</label>
+          <div className='tiny'>
+            <label>Pôle description</label>
+            <PutTinyDesc
+              setDataDesc={setDataDesc}
+              modifyValue={modifyValue}
+              props={props}
+              pcu={pcu}
+              name='pole_desc'
+              key='pole_desc'
+              // value={props.pole_desc}
+            />
+          </div>
           <input value={pcu.pole_func_img} />
           <input
             type='file'
@@ -119,7 +129,18 @@ const PoleFormPut = props => {
               setPutFunc(e.target.files[0])
             }}
           />
-          <label>Pôle fonctionnement</label>
+          <div className='tiny'>
+            <label>Pôle Fonctionnement</label>
+            <PutTinyFunc
+              setDataFunc={setDataFunc}
+              modifyValue={modifyValue}
+              props={props}
+              name='pole_func'
+              key='pole_func'
+              pcu={pcu}
+              // value={props.pole_func}
+            />
+          </div>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -154,24 +175,7 @@ const PoleFormPut = props => {
             value={pcu.pole_catchphrase}
           />
         </form>
-        <PutTinyDesc
-          setDataDesc={setDataDesc}
-          modifyValue={modifyValue}
-          props={props}
-          pcu={pcu}
-          name='pole_desc'
-          key='pole_desc'
-          // value={props.pole_desc}
-        />
-        <PutTinyFunc
-          setDataFunc={setDataFunc}
-          modifyValue={modifyValue}
-          props={props}
-          name='pole_func'
-          key='pole_func'
-          pcu={pcu}
-          // value={props.pole_func}
-        />
+
         <button onClick={submitPoleData}>Publier</button>
         <Snackbar
           open={open}

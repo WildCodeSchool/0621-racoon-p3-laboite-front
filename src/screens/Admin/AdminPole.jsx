@@ -120,7 +120,6 @@ const AdminPole = () => {
     const modifyData = async () => {
       const results = await axios.get(`http://localhost:4000/poles/admin/${id}`)
       setPoleCardUpdate(results.data[0])
-      setUpdateForm(true)
       setUpdateForm(!updateForm)
     }
     modifyData()
@@ -193,6 +192,7 @@ const AdminPole = () => {
               modifyValue={modifyValue}
               poles={poles}
               getPoles={getPoles}
+              closeForm={closeForm}
             />
           ) : null}
           <Snackbar

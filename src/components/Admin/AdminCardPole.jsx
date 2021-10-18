@@ -1,13 +1,4 @@
-const AdminCardPole = ({
-  id,
-  name,
-  deleteCard,
-  modifyCardPole,
-  img,
-  setCreateForm,
-  updateForm,
-  setUpdateForm
-}) => {
+const AdminCardPole = ({ id, name, deleteCard, modifyCardPole, img }) => {
   return (
     <div
       className={`card flex jcc aic colorme`}
@@ -21,7 +12,6 @@ const AdminCardPole = ({
     >
       <button
         className='btnDeleteCard flex jcc aic'
-        // onClick={() => deleteCard(id)}
         onClick={e => {
           e.stopPropagation()
           deleteCard(id)
