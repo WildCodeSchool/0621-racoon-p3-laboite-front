@@ -127,28 +127,31 @@ const AdminPartner = () => {
   }
 
   // DELETE a partner
-  const deletePartner = (idPartnerToUpdate) => {
+  const deletePartner = idPartnerToUpdate => {
     const confirmation = confirm('Voulez-vous supprimer ce partenaire ?')
     if (confirmation) {
       const DeleteData = async () => {
-  await axios
-      .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
-      .then(resToBack => {
-        console.log('res delete', resToBack)
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-        setTimeout(closeForm, 2500)
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrDelete', error.response)
-          setResMessage(error.response.data.message)
-        }
-      })
+        await axios
+          .delete(
+            `${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`
+          )
+          .then(resToBack => {
+            console.log('res delete', resToBack)
+            setResMessage(resToBack.data.message)
+            setRefresh(!refresh)
+            setTimeout(closeForm, 2500)
+          })
+          .catch(error => {
+            if (error) {
+              console.log('logErrDelete', error.response)
+              setResMessage(error.response.data.message)
+            }
+          })
+      }
+      DeleteData()
+      setDeleteAlert(true)
+    }
   }
-  DeleteData()
-  setDeleteAlert(true)
-}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -231,7 +234,7 @@ const AdminPartner = () => {
                 setAdminInput={setAdminInput}
                 setPartnerImage={setPartnerImage}
                 updatePartner={updatePartner}
-               updateAlert={updateAlert}
+                updateAlert={updateAlert}
               />
             </>
           )}
@@ -244,9 +247,7 @@ const AdminPartner = () => {
               horizontal: 'center'
             }}
           >
-            <Alert severity='success'>
-              Partenaire supprimé avec succès
-            </Alert>
+            <Alert severity='success'>Partenaire supprimé avec succès</Alert>
           </Snackbar>
         </div>
       </div>

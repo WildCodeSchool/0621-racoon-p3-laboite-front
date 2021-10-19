@@ -124,28 +124,31 @@ const AdminTeam = () => {
   }
 
   // DELETE a member
-  const deleteMember = (idMemberToUpdate) => {
-    const confirmation = confirm("Voulez-vous supprimer ce membre ?")
-    if (confirmation){
+  const deleteMember = idMemberToUpdate => {
+    const confirmation = confirm('Voulez-vous supprimer ce membre ?')
+    if (confirmation) {
       const DeleteData = async () => {
-    await axios
-      .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
-      .then(resToBack => {
-        console.log('res delete', resToBack)
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-        setTimeout(closeForm, 2500)
-        setDeleteAlert(true)
-      })
-      .catch(error => {
-        if (error) {
-          console.log('logErrDelete', error.response)
-          setResMessage(error.response.data.message)
-        }
-      })
+        await axios
+          .delete(
+            `${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`
+          )
+          .then(resToBack => {
+            console.log('res delete', resToBack)
+            setResMessage(resToBack.data.message)
+            setRefresh(!refresh)
+            setTimeout(closeForm, 2500)
+            setDeleteAlert(true)
+          })
+          .catch(error => {
+            if (error) {
+              console.log('logErrDelete', error.response)
+              setResMessage(error.response.data.message)
+            }
+          })
+      }
+      DeleteData()
+    }
   }
-DeleteData()
-}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -241,9 +244,7 @@ DeleteData()
               horizontal: 'center'
             }}
           >
-            <Alert severity='success'>
-              Membre supprimé avec succès
-            </Alert>
+            <Alert severity='success'>Membre supprimé avec succès</Alert>
           </Snackbar>
         </div>
       </div>

@@ -204,9 +204,7 @@ const AdminPole = () => {
               horizontal: 'center'
             }}
           >
-            <Alert severity='success'>
-              Pôle supprimé avec succès
-            </Alert>
+            <Alert severity='success'>Pôle supprimé avec succès</Alert>
           </Snackbar>
           {/* <AdminForm displayForm={displayForm} />
               <div>PoleAdmin</div> */}

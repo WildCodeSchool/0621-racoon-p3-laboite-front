@@ -1,5 +1,5 @@
-import { Alert } from '@material-ui/lab';
-import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import { useState } from 'react'
 import axios from 'axios'
@@ -181,9 +181,7 @@ const PoleFormPut = props => {
             horizontal: 'center'
           }}
         >
-          <Alert severity='success'>
-            Pôle modifié avec succès
-          </Alert>
+          <Alert severity='success'>Pôle modifié avec succès</Alert>
         </Snackbar>
       </div>
     </div>
