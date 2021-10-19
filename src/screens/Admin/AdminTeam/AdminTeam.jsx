@@ -118,8 +118,11 @@ const AdminTeam = () => {
   }
 
   // DELETE a member
-  const deleteMember = () => {
-    axios
+  const deleteMember = (idMemberToUpdate) => {
+    const confirmation = confirm("Voulez-vous supprimer ce membre ?")
+    if (confirmation){
+      const DeleteData = async () => {
+    await axios
       .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
       .then(resToBack => {
         console.log('res delete', resToBack)
@@ -134,6 +137,8 @@ const AdminTeam = () => {
         }
       })
   }
+DeleteData()
+}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -184,6 +189,7 @@ const AdminTeam = () => {
                     id={elmt.member_id}
                     name={elmt.member_name}
                     updateElement={showUpdateForm}
+                    deleteCard={deleteMember}
                   />
                 ))
               )}
