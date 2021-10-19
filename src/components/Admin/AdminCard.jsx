@@ -5,7 +5,13 @@ const AdminCard = ({ id, name, updateElement, deleteCard }) => {
       id={id}
       onClick={updateElement}
     >
-      <div className='btnDeleteCard flex jcc aic' id={id} onClick={deleteCard}>
+      <div
+        className='btnDeleteCard flex jcc aic'
+        id={id}
+        onClick={e => {
+          e.stopPropagation(), deleteCard(id)
+        }}
+      >
         x
       </div>
       <div className={`cardContent flex jcc aic`}>

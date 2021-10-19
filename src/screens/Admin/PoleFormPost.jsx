@@ -26,12 +26,8 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
   const [poleImage, setPoleImage] = useState()
   const [poleFunc, setPoleFunc] = useState()
   const [poleMiniature, setPoleMiniature] = useState()
-  const [open, setOpen] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
   const [refresh, setRefresh] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
@@ -69,7 +65,7 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
       console.log(err)
     }
     getPoles()
-    setOpen(true)
+    setAddAlert(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -179,17 +175,14 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
         </form>
         <button onClick={submitPoleData}>Publier</button>
         <Snackbar
-          open={open}
+          open={addAlert}
           autoHideDuration={6000}
-          onClose={handleClose}
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'center'
           }}
         >
-          <Alert onClose={handleClose} severity='success'>
-            Pôle ajouté avec succès
-          </Alert>
+          <Alert severity='success'>Pôle ajouté avec succès</Alert>
         </Snackbar>
       </div>
     </div>

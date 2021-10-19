@@ -1,4 +1,6 @@
 import React from 'react'
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import PartnerAdmin from '../../screens/Admin/AdminPartner/PartnerAdmin'
 
@@ -9,7 +11,8 @@ const AdminFormPartnerCreate = ({
   postPartner,
   resMessage,
   setAdminInput,
-  setPartnerImage
+  setPartnerImage,
+  addAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -30,6 +33,16 @@ const AdminFormPartnerCreate = ({
         <div className='btnForm' onClick={postPartner}>
           Publier
         </div>
+        <Snackbar
+          open={addAlert}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert severity='success'>Partenaire ajouté avec succès</Alert>
+        </Snackbar>
       </div>
     </div>
   )

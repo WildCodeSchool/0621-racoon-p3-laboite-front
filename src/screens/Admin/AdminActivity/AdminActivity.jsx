@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import AdminCard from '../../../components/Admin/AdminCard'
 import AdminFormActivityCreate from '../../../components/Admin/AdminFormActivityCreate'
@@ -21,6 +23,9 @@ const AdminActivity = () => {
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
   const [confirmTiny, setConfirmTiny] = useState(false)
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   //----------------------------------------------------------------------------
   // READ all activities from backEnd
@@ -86,6 +91,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -120,6 +126,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -129,23 +136,29 @@ const AdminActivity = () => {
   }
 
   // DELETE an activity
-  const deleteActivity = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
-      )
-      .then(resToBack => {
-        console.log('res delete', resToBack)
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-        setTimeout(closeForm, 2500)
-      })
-      .catch(error => {
-        if (error) {
-          // console.log('logErrDelete', error.response)
-          setResMessage(error.response.data.message)
-        }
-      })
+  const deleteActivity = idActivityToUpdate => {
+    const confirmation = confirm('Voulez-vous supprimer cette activité ?')
+    if (confirmation) {
+      const DeleteData = async () => {
+        await axios
+          .delete(
+            `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
+          )
+          .then(resToBack => {
+            setResMessage(resToBack.data.message)
+            setRefresh(!refresh)
+            setTimeout(closeForm, 2500)
+            setDeleteAlert(true)
+          })
+          .catch(error => {
+            if (error) {
+              // console.log('logErrDelete', error.response)
+              setResMessage(error.response.data.message)
+            }
+          })
+      }
+      DeleteData()
+    }
   }
   //----------------------------------------------------------------------------
   // Functions to display forms
@@ -174,6 +187,7 @@ const AdminActivity = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
+
   //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
@@ -201,6 +215,7 @@ const AdminActivity = () => {
                     id={elmt.id}
                     name={elmt.activity_title}
                     updateElement={showUpdateForm}
+                    deleteCard={deleteActivity}
                   />
                 ))
               )}
@@ -220,6 +235,7 @@ const AdminActivity = () => {
                 setActivityImage={setActivityImage}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -237,9 +253,21 @@ const AdminActivity = () => {
                 updateActivity={updateActivity}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                updateAlert={updateAlert}
               />
             </>
           )}
+          <Snackbar
+            open={deleteAlert}
+            onClose={() => setDeleteAlert(false)}
+            autoHideDuration={4000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>Activité supprimée avec succès</Alert>
+          </Snackbar>
         </div>
       </div>
     </div>

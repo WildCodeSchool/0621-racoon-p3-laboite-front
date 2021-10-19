@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import ActivAdmin from '../../screens/Admin/AdminActivity/ActivAdmin'
 
 const AdminFormActivityUpdate = ({
@@ -13,7 +14,8 @@ const AdminFormActivityUpdate = ({
   setActivityImage,
   updateActivity,
   confirmTiny,
-  setConfirmTiny
+  setConfirmTiny,
+  updateAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -50,6 +52,16 @@ const AdminFormActivityUpdate = ({
         <div className='btnForm blue' onClick={updateActivity}>
           Publier
         </div>
+        <Snackbar
+          open={updateAlert}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert severity='success'>Activité modifiée avec succès</Alert>
+        </Snackbar>
       </div>
     </div>
   )
