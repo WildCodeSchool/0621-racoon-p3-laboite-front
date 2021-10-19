@@ -141,29 +141,30 @@ const AdminActivity = () => {
   }
 
   // DELETE an activity
-  const deleteActivity = (idActivityToUpdate) => {
+  const deleteActivity = idActivityToUpdate => {
     const confirmation = confirm('Voulez-vous supprimer cette activité ?')
     if (confirmation) {
       const DeleteData = async () => {
-    await axios
-      .delete(
-        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
-      )
-      .then(resToBack => {
-        setResMessage(resToBack.data.message)
-        setRefresh(!refresh)
-        setTimeout(closeForm, 2500)
-        setDeleteAlert(true)
-      })
-      .catch(error => {
-        if (error) {
-          // console.log('logErrDelete', error.response)
-          setResMessage(error.response.data.message)
-        }
-      })
+        await axios
+          .delete(
+            `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
+          )
+          .then(resToBack => {
+            setResMessage(resToBack.data.message)
+            setRefresh(!refresh)
+            setTimeout(closeForm, 2500)
+            setDeleteAlert(true)
+          })
+          .catch(error => {
+            if (error) {
+              // console.log('logErrDelete', error.response)
+              setResMessage(error.response.data.message)
+            }
+          })
+      }
+      DeleteData()
+    }
   }
-DeleteData()
-}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -191,7 +192,7 @@ DeleteData()
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
-    
+
   //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
@@ -270,9 +271,7 @@ DeleteData()
               horizontal: 'center'
             }}
           >
-            <Alert severity='success'>
-              Activité supprimée avec succès
-            </Alert>
+            <Alert severity='success'>Activité supprimée avec succès</Alert>
           </Snackbar>
         </div>
       </div>

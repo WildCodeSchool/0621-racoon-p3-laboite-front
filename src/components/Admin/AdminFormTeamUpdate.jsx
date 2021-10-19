@@ -47,17 +47,15 @@ const AdminFormTeamUpdate = ({
           Publier
         </div>
         <Snackbar
-            open={updateAlert}
-            autoHideDuration={6000}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center'
-            }}
-          >
-            <Alert severity='success'>
-              Membre modifié avec succès
-            </Alert>
-          </Snackbar>
+          open={updateAlert}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert severity='success'>Membre modifié avec succès</Alert>
+        </Snackbar>
       </div>
     </div>
   )

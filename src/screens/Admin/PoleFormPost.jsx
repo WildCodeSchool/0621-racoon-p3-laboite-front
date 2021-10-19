@@ -1,5 +1,5 @@
-import { Alert } from '@material-ui/lab';
-import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import FormTiny from '../../components/Form/FormTiny'
 import FormTinyFunc from '../../components/Form/FormTinyFunc'
@@ -182,9 +182,7 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
             horizontal: 'center'
           }}
         >
-          <Alert severity='success'>
-            Pôle ajouté avec succès
-          </Alert>
+          <Alert severity='success'>Pôle ajouté avec succès</Alert>
         </Snackbar>
       </div>
     </div>

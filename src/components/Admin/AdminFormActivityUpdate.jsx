@@ -53,17 +53,15 @@ const AdminFormActivityUpdate = ({
           Publier
         </div>
         <Snackbar
-            open={updateAlert}
-            autoHideDuration={6000}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center'
-            }}
-          >
-            <Alert severity='success'>
-              Activité modifiée avec succès
-            </Alert>
-          </Snackbar>
+          open={updateAlert}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+        >
+          <Alert severity='success'>Activité modifiée avec succès</Alert>
+        </Snackbar>
       </div>
     </div>
   )
