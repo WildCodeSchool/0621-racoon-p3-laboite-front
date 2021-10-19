@@ -247,6 +247,7 @@ cursor: pointer;
 	height:20px;
 	border-radius: 50%;
 	border: 1px solid black;
+	margin-left: 10px;
 }
 
 .tinyYes{
@@ -255,6 +256,7 @@ cursor: pointer;
 	height:20px;
 	border-radius: 50%;
 	border: 1px solid black;
+	margin-left: 10px;
 }
 
 

@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { Context } from '../../context/Context'
+import { Context } from '../../../context/Context'
 
-import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCreate'
-import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
-import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
-import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import AdminCard from '../../../components/Admin/AdminCard'
+import AdminFormActivityCreate from '../../../components/Admin/AdminFormActivityCreate'
+import AdminFormActivityUpdate from '../../../components/Admin/AdminFormActivityUpdate'
+import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
+import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
 
-import './Admin.css'
+import '../Admin.css'
 
 const AdminActivity = () => {
   // List of states

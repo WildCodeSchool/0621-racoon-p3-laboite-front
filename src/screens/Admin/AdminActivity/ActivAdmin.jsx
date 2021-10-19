@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-// import FormTinyActivity from '../../components/Form/FormTinyActivity'
+import '../form.css'
 
-import './form.css'
+import { Context } from '../../../context/Context'
 
 const ActivAdmin = ({
   adminInput,
@@ -25,6 +25,13 @@ const ActivAdmin = ({
       setConfirmTiny(true)
     }
   }
+
+  // function checkIfDirty() {
+  //   if (editorRef.current.isDirty()) {
+  //     setConfirmTiny(false)
+  //   }
+  // }
+  // setInterval(checkIfDirty, 2000) // check every 2 seconds.
 
   return (
     <div className='FormContainer'>
@@ -102,7 +109,7 @@ const ActivAdmin = ({
               )
             }
             init={{
-              height: 400,
+              height: 200,
               width: '100%',
               menubar: false,
               margin: 10,

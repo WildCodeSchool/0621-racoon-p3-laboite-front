@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ActivAdmin from '../../screens/Admin/ActivAdmin'
+import ActivAdmin from '../../screens/Admin/AdminActivity/ActivAdmin'
 
 const AdminFormActivityUpdate = ({
   adminInput,
