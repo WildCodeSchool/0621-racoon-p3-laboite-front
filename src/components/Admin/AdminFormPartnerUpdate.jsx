@@ -13,8 +13,7 @@ const AdminFormPartnerUpdate = ({
   setAdminInput,
   setPartnerImage,
   updatePartner,
-  openUpdate,
-  handleClose
+  updateAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -49,15 +48,14 @@ const AdminFormPartnerUpdate = ({
           Publier
         </div>
         <Snackbar
-            open={openUpdate}
+            open={updateAlert}
             autoHideDuration={6000}
-            onClose={handleClose}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'center'
             }}
           >
-            <Alert onClose={handleClose} severity='success'>
+            <Alert severity='success'>
               Partenaire modifié avec succès
             </Alert>
           </Snackbar>

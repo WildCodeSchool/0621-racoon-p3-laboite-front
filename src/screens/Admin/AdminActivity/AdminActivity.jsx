@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import { Context } from '../../../context/Context'
 
 import AdminCard from '../../../components/Admin/AdminCard'
@@ -23,6 +24,9 @@ const AdminActivity = () => {
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
   const [confirmTiny, setConfirmTiny] = useState(false)
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   const { user } = useContext(Context)
 
@@ -92,6 +96,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -126,6 +131,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -147,6 +153,7 @@ const AdminActivity = () => {
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
+        setDeleteAlert(true)
       })
       .catch(error => {
         if (error) {
@@ -232,6 +239,7 @@ DeleteData()
                 setActivityImage={setActivityImage}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -249,9 +257,22 @@ DeleteData()
                 updateActivity={updateActivity}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                updateAlert={updateAlert}
               />
             </>
           )}
+          <Snackbar
+            open={deleteAlert}
+            autoHideDuration={6000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Activité supprimée avec succès
+            </Alert>
+          </Snackbar>
         </div>
       </div>
     </div>

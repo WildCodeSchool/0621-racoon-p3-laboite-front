@@ -24,13 +24,9 @@ const AdminPartner = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [partnerImage, setPartnerImage] = useState()
-  const [open, setOpen] = useState(false)
-  const [openAdd, setOpenAdd] = useState(false)
-  const [openUpdate, setOpenUpdate] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   const { user } = useContext(Context)
 
@@ -86,7 +82,7 @@ const AdminPartner = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
-      setOpenAdd(true)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -121,7 +117,7 @@ const AdminPartner = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
-      setOpenUpdate(true)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -151,7 +147,7 @@ const AdminPartner = () => {
       })
   }
   DeleteData()
-  setOpen(true)
+  setDeleteAlert(true)
 }}
   //----------------------------------------------------------------------------
   // Functions to display forms
@@ -220,7 +216,7 @@ const AdminPartner = () => {
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
                 setPartnerImage={setPartnerImage}
-                openAdd={openAdd}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -235,20 +231,19 @@ const AdminPartner = () => {
                 setAdminInput={setAdminInput}
                 setPartnerImage={setPartnerImage}
                 updatePartner={updatePartner}
-                openUpdate={openUpdate}
+               updateAlert={updateAlert}
               />
             </>
           )}
           <Snackbar
-            open={open}
+            open={deleteAlert}
             autoHideDuration={6000}
-            onClose={handleClose}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'center'
             }}
           >
-            <Alert onClose={handleClose} severity='success'>
+            <Alert severity='success'>
               Partenaire supprimé avec succès
             </Alert>
           </Snackbar>

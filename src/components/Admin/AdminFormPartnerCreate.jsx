@@ -12,8 +12,7 @@ const AdminFormPartnerCreate = ({
   resMessage,
   setAdminInput,
   setPartnerImage,
-  openAdd,
-  handleClose
+  addAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -35,15 +34,14 @@ const AdminFormPartnerCreate = ({
           Publier
         </div>
         <Snackbar
-            open={openAdd}
+            open={addAlert}
             autoHideDuration={6000}
-            onClose={handleClose}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'center'
             }}
           >
-            <Alert onClose={handleClose} severity='success'>
+            <Alert severity='success'>
               Partenaire ajouté avec succès
             </Alert>
           </Snackbar>
