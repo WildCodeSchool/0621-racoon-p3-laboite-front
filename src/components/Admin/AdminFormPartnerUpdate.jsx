@@ -1,4 +1,6 @@
 import React from 'react'
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 
 import PartnerAdmin from '../../screens/Admin/AdminPartner/PartnerAdmin'
 
@@ -10,7 +12,9 @@ const AdminFormPartnerUpdate = ({
   resMessage,
   setAdminInput,
   setPartnerImage,
-  updatePartner
+  updatePartner,
+  openUpdate,
+  handleClose
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -44,6 +48,19 @@ const AdminFormPartnerUpdate = ({
         <div className='btnForm blue' onClick={updatePartner}>
           Publier
         </div>
+        <Snackbar
+            open={openUpdate}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert onClose={handleClose} severity='success'>
+              Partenaire modifié avec succès
+            </Alert>
+          </Snackbar>
       </div>
     </div>
   )
