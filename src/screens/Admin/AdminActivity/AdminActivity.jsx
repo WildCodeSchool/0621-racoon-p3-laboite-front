@@ -22,7 +22,7 @@ const AdminActivity = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
-  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [confirmTiny, setConfirmTiny] = useState(true)
 
   const { user } = useContext(Context)
 
