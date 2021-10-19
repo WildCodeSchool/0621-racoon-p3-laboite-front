@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import { Context } from './context/Context'
+import { PrivateRoute } from './use/useSecureRoute'
 
 import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
@@ -27,8 +28,7 @@ import './Normalize.css'
 
 function App() {
   const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
-  const { user, isAuth } = useContext(Context)
-  console.log('userContext: ' + user, isAuth)
+  const { user } = useContext(Context)
 
   return (
     <Router>
@@ -55,30 +55,24 @@ function App() {
           <Route exact path='/login'>
             <Login />
           </Route>
-          {user ? (
-            <>
-              <Route exact path='/admin'>
-                <AdminHome />
-              </Route>
-              <Route exact path='/admin/activities'>
-                <AdminActivity />
-              </Route>
-              <Route exact path='/admin/poles'>
-                <AdminPole />
-              </Route>
-              {/* <Route exact path='/admin/poles'>
+          <PrivateRoute exact path='/admin'>
+            <AdminHome />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/activities'>
+            <AdminActivity />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/poles'>
+            <AdminPole />
+          </PrivateRoute>
+          {/* <PrivateRoute exact path='/admin/poles'>
                 <PoleAdmin />
-              </Route> */}
-              <Route exact path='/admin/members'>
-                <AdminTeam />
-              </Route>
-              <Route exact path='/admin/partners'>
-                <AdminPartner />
-              </Route>
-            </>
-          ) : (
-            <Home />
-          )}
+              </PrivateRoute> */}
+          <PrivateRoute exact path='/admin/members'>
+            <AdminTeam />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/partners'>
+            <AdminPartner />
+          </PrivateRoute>
         </Switch>
         {!user && <Footer />}
         {!isDesktop && <MobileNavBar />}

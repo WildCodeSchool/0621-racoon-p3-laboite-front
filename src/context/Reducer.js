@@ -3,19 +3,16 @@ const Reducer = (state, action) => {
     case 'LOGIN_SUCCESS':
       return {
         user: action.payload,
-        isAuth: true,
         error: null
       }
     case 'LOGIN_FAILURE':
       return {
         user: null,
-        isAuth: false,
         error: true
       }
     case 'LOGOUT':
       return {
         user: null,
-        isAuth: false,
         error: false
       }
     default:
