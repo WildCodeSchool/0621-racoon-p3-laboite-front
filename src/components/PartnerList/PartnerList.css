@@ -25,6 +25,10 @@
     height: calc(19vw - 20px);
     margin: 10px 0;
 }
+.partnerbox img{
+    width: 100%;
+    height: auto;
+}
 
 @media only screen and (min-width: 1024px) {
   .partnerbox{

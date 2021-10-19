@@ -1,16 +1,19 @@
 import React from 'react'
 
-import ActivAdmin from '../../screens/Admin/ActivAdmin'
+import ActivAdmin from '../../screens/Admin/AdminActivity/ActivAdmin'
 
 const AdminFormActivityUpdate = ({
   adminInput,
   closeForm,
   deleteActivity,
   onChangeHandler,
+  poles,
   resMessage,
   setAdminInput,
   setActivityImage,
-  updateActivity
+  updateActivity,
+  confirmTiny,
+  setConfirmTiny
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -22,9 +25,12 @@ const AdminFormActivityUpdate = ({
         <ActivAdmin
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
+          poles={poles}
           resMessage={resMessage}
           setAdminInput={setAdminInput}
           setActivityImage={setActivityImage}
+          confirmTiny={confirmTiny}
+          setConfirmTiny={setConfirmTiny}
         />
       </div>
       <div className='btnContainer flex jcc'>
@@ -33,7 +39,7 @@ const AdminFormActivityUpdate = ({
           onClick={e => {
             if (
               window.confirm(
-                'Etes-vous sûr(e) de vouloir supprimer ce membre ?'
+                'Etes-vous sûr(e) de vouloir supprimer cette activité ?'
               )
             )
               deleteActivity(e)

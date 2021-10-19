@@ -1,4 +1,4 @@
-import logoBac from '../../../assets/logo-bac-blanc-no-bg.png'
+import logoBac from '../../assets/logo-bac-blanc-no-bg.png'
 import './RubanConcept.css'
 
 const RubanConcept = () => {

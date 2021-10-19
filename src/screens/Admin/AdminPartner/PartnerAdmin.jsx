@@ -1,6 +1,4 @@
-import React from 'react'
-
-import './form.css'
+import '../form.css'
 
 const PartnerAdmin = ({
   adminInput,
@@ -11,8 +9,11 @@ const PartnerAdmin = ({
 }) => {
   return (
     <div className='FormContainer'>
-      <div className='FormList formTeam'>
-        <form encType='multipart/form-data' className='formItems formItemsTeam'>
+      <div className='FormList formPartner'>
+        <form
+          encType='multipart/form-data'
+          className='formItems formItemsPartner'
+        >
           <input
             focus
             placeholder={'Nom du partenaire'}
@@ -27,8 +28,8 @@ const PartnerAdmin = ({
             type='file'
             focus
             placeholder={'Uploader une photo'}
-            key='partner_img'
-            name='partner_img'
+            key='partner_img_upload'
+            name='partner_img_upload'
             onChange={e => {
               setPartnerImage(e.target.files[0]) ||
                 setAdminInput(state => ({
@@ -37,16 +38,18 @@ const PartnerAdmin = ({
                 }))
             }}
           />
-          <input
-            focus
-            placeholder={'Fichier image'}
-            key='partner_img'
-            name='partner_img'
-            onChange={onChangeHandler} // removed to prevent manual modification
-            value={
-              adminInput && adminInput.partner_img && adminInput.partner_img
-            }
-          />
+          {adminInput && adminInput.partner_id && (
+            <input
+              focus
+              placeholder={'Fichier image'}
+              key='partner_img'
+              name='partner_img'
+              onChange={onChangeHandler} // remove to prevent manual modification
+              value={
+                adminInput && adminInput.partner_img && adminInput.partner_img
+              }
+            />
+          )}
           <span className='formError'>{resMessage && resMessage}</span>
         </form>
       </div>

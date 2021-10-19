@@ -1,65 +1,65 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { Context } from '../../context/Context.js'
+import { Context } from '../../../context/Context'
 
-import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormPartnerCreate from '../../components/Admin/AdminFormPartnerCreate'
-import AdminFormPartnerUpdate from '../../components/Admin/AdminFormPartnerUpdate'
-import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
-import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import AdminCard from '../../../components/Admin/AdminCard'
+import AdminFormTeamCreate from '../../../components/Admin/AdminFormTeamCreate'
+import AdminFormTeamUpdate from '../../../components/Admin/AdminFormTeamUpdate'
+import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
+import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
 
-import './Admin.css'
+import '../Admin.css'
 
-const AdminPartner = () => {
+const AdminTeam = () => {
   // List of states
   const [refresh, setRefresh] = useState(false)
   const [createForm, setCreateForm] = useState(false)
   const [updateForm, setUpdateForm] = useState(false)
-  const [partners, setPartners] = useState([])
-  const [idPartnerToUpdate, setIdPartnerToUpdate] = useState('')
+  const [team, setTeam] = useState([])
+  const [idMemberToUpdate, setIdMemberToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
-  const [partnerImage, setPartnerImage] = useState()
+  const [memberImage, setMemberImage] = useState()
 
   const { user } = useContext(Context)
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
-
-  // READ all partners from backEnd
+  //----------------------------------------------------------------------------
+  // READ all team members from backEnd
   useEffect(() => {
-    const getPartners = async () => {
+    const getTeam = async () => {
       const results = await axios.get(
-        `${process.env.REACT_APP_URL_API}/partners`
+        `${process.env.REACT_APP_URL_API}/members`
       )
-      setPartners(results.data)
+      setTeam(results.data)
     }
-    getPartners()
+    getTeam()
   }, [refresh])
 
-  // READ a partner data from idPartnerToUpdate
+  // READ a member data from idMemberToUpdate
   useEffect(() => {
-    console.log('update_partner', idPartnerToUpdate)
+    console.log('update_member', idMemberToUpdate)
     setAdminInput('')
     setResMessage('')
-    const getPartner = () => {
+    const getMember = () => {
       axios
-        .get(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
+        .get(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
         .then(results => setAdminInput(results.data))
     }
-    getPartner()
-  }, [idPartnerToUpdate])
+    getMember()
+  }, [idMemberToUpdate])
 
-  // CREATE a new partner
-  const postPartner = async e => {
+  // CREATE a new member
+  const postMember = async e => {
     e.preventDefault()
     const newPost = { ...adminInput }
-    if (partnerImage) {
+    if (memberImage) {
       const fd = new FormData()
-      const filename = Date.now() + partnerImage.name
-      fd.append('partner_img', partnerImage, filename)
-      newPost.partner_img = filename
+      const filename = Date.now() + memberImage.name
+      fd.append('member_img', memberImage, filename)
+      newPost.member_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -68,7 +68,7 @@ const AdminPartner = () => {
     }
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_URL_API}/partners`,
+        `${process.env.REACT_APP_URL_API}/members`,
         newPost
       )
       // if (res){
@@ -84,16 +84,15 @@ const AdminPartner = () => {
     }
   }
 
-  // UPDATE a partner
-  const updatePartner = async e => {
-    // console.log(idPartnerToUpdate, adminInput)
+  // UPDATE a member
+  const updateMember = async e => {
     e.preventDefault()
-    const newPartnerPut = { ...adminInput }
-    if (partnerImage) {
+    const newPut = { ...adminInput }
+    if (memberImage) {
       const fd = new FormData()
-      const filename = Date.now() + partnerImage.name
-      fd.append('partner_img', partnerImage, filename)
-      newPartnerPut.partner_img = filename
+      const filename = Date.now() + memberImage.name
+      fd.append('member_img', memberImage, filename)
+      newPut.member_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -102,8 +101,8 @@ const AdminPartner = () => {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`,
-        newPartnerPut
+        `${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`,
+        newPut
       )
       // if (res){
       console.log('res update', res)
@@ -118,24 +117,24 @@ const AdminPartner = () => {
     }
   }
 
-  // DELETE a partner
-  const deletePartner = () => {
+  // DELETE a member
+  const deleteMember = () => {
     axios
-      .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
+      .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
       .then(resToBack => {
-        // console.log('res delete', resToBack)
+        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
       })
       .catch(error => {
         if (error) {
-          // console.log('logErrDelete', error.response)
+          console.log('logErrDelete', error.response)
           setResMessage(error.response.data.message)
         }
       })
   }
-
+  //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
     setAdminInput({}) // clear inputs
@@ -145,13 +144,14 @@ const AdminPartner = () => {
   const showUpdateForm = e => {
     setCreateForm(false) // close createForm
     setUpdateForm(true) // open updateForm
-    setIdPartnerToUpdate(e.target.id) // auto-trigger getPartner
+    setIdMemberToUpdate(e.target.id) // auto-trigger getMember
   }
   const closeForm = () => {
     setCreateForm(false) // close createForm
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
-    setIdPartnerToUpdate('') // clear selected partner
+    setIdMemberToUpdate('') // clear selected member
+    setMemberImage() // clear image input
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -160,8 +160,7 @@ const AdminPartner = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
-
-  // console.log(partnerImage)
+  //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
@@ -170,20 +169,20 @@ const AdminPartner = () => {
           Bienvenue dans l&apos;espace administration !
         </div>
         <div className='topDiv'>
-          <AdminTopDiv elmt={'partenaires'} addElement={showCreateForm} />
+          <AdminTopDiv elmt={'membres'} addElement={showCreateForm} />
           <div className='bg'>
             <div className='cardContainer flex row aic'>
-              {partners.length === 0 ? (
+              {team.length === 0 ? (
                 <div className='noCard'>
                   Il n&apos;y a pas encore d&apos;élement à afficher ! Merci de
                   créer un nouvel élément !
                 </div>
               ) : (
-                partners.map(elmt => (
+                team.map(elmt => (
                   <AdminCard
-                    key={elmt.partner_id}
-                    id={elmt.partner_id}
-                    name={elmt.partner_name}
+                    key={elmt.member_id}
+                    id={elmt.member_id}
+                    name={elmt.member_name}
                     updateElement={showUpdateForm}
                   />
                 ))
@@ -194,27 +193,27 @@ const AdminPartner = () => {
         <div className='bottomDiv flex col jcc aic'>
           {createForm && (
             <>
-              <AdminFormPartnerCreate
+              <AdminFormTeamCreate
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
-                postPartner={postPartner}
+                postMember={postMember}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setPartnerImage={setPartnerImage}
+                setMemberImage={setMemberImage}
               />
             </>
           )}
           {updateForm && (
             <>
-              <AdminFormPartnerUpdate
+              <AdminFormTeamUpdate
                 adminInput={adminInput}
                 closeForm={closeForm}
-                deletePartner={deletePartner}
+                deleteMember={deleteMember}
                 onChangeHandler={onChangeHandler}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
-                setPartnerImage={setPartnerImage}
-                updatePartner={updatePartner}
+                setMemberImage={setMemberImage}
+                updateMember={updateMember}
               />
             </>
           )}
@@ -224,4 +223,4 @@ const AdminPartner = () => {
   )
 }
 
-export default AdminPartner
+export default AdminTeam
