@@ -19,7 +19,6 @@ import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
-import ActivityAdmin from './screens/Admin/ActivityAdmin'
 import PoleAdmin from './screens/Admin/PoleAdmin'
 import MobileNavBar from './components/Navbar/MobileNavBar'
 
@@ -58,9 +57,6 @@ function App() {
           </Route>
           <Route exact path='/admin/activities'>
             {user ? <AdminActivity /> : <Home />}
-          </Route>
-          <Route exact path='/admin/activity'>
-            <ActivityAdmin />
           </Route>
           <Route exact path='/admin/poles'>
             {user ? <AdminPole /> : <Home />}
