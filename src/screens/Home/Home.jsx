@@ -38,13 +38,12 @@ const Home = () => {
     }
     getPole()
   }, [])
-  console.log(concept)
   return (
     <>
       <img
         className='banner'
         src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_banner}`}
-        alt='blere-beach'
+        alt='Photo de Bléré'
       />
       <div className='centerContainer'>
         <RubanConcept />

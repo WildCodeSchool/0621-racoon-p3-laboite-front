@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import { Context } from './context/Context'
+import { PrivateRoute } from './use/useSecureRoute'
 
 import Concept from './components/Concept/Concept'
 import Footer from './components/Footer/Footer'
@@ -26,15 +27,14 @@ import './App.css'
 import './Normalize.css'
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
   const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
-  const { user } = useContext(Context)
-  console.log('userContext: ' + user)
+  const { access_token } = useContext(Context)
+
   return (
     <Router>
       <ScrollToTop />
       <div className='mainContainer'>
-        {!user && <Header />}
+        {!access_token && <Header />}
         {isDesktop && <Navbar />}
         <Switch>
           <Route exact path='/'>
@@ -53,26 +53,28 @@ function App() {
             <Partners />
           </Route>
           <Route exact path='/login'>
-            <Login isLogged={isLogged} setIsLogged={setIsLogged} />
+            <Login />
           </Route>
-          <Route exact path='/admin/activities'>
-            {user ? <AdminActivity /> : <Home />}
-          </Route>
-          <Route exact path='/admin/poles'>
-            {user ? <AdminPole /> : <Home />}
-          </Route>
-          {/* <Route exact path='/admin/poles'>
-            <PoleAdmin />
-          </Route> */}
-          <Route exact path='/admin/members'>
-            {user ? <AdminTeam /> : <Home />}
-          </Route>
-          <Route exact path='/admin/partners'>
-            {user ? <AdminPartner /> : <Home />}
-          </Route>
-          <Route path='/admin'>{user ? <AdminHome /> : <Home />}</Route>
+          <PrivateRoute exact path='/admin'>
+            <AdminHome />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/activities'>
+            <AdminActivity />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/poles'>
+            <AdminPole />
+          </PrivateRoute>
+          {/* <PrivateRoute exact path='/admin/poles'>
+                <PoleAdmin />
+              </PrivateRoute> */}
+          <PrivateRoute exact path='/admin/members'>
+            <AdminTeam />
+          </PrivateRoute>
+          <PrivateRoute exact path='/admin/partners'>
+            <AdminPartner />
+          </PrivateRoute>
         </Switch>
-        {!user && <Footer />}
+        {!access_token && <Footer />}
         {!isDesktop && <MobileNavBar />}
       </div>
     </Router>

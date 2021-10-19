@@ -16,7 +16,7 @@ const Navbar = () => {
   const [fixNav, setFixNav] = useState(false)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
 
-  const { user, dispatch } = useContext(Context)
+  const { access_token, dispatch } = useContext(Context)
 
   useEffect(() => {
     axios
@@ -74,7 +74,7 @@ const Navbar = () => {
         hide={toggleLoginForm}
         title={`Connexion Administrateur :`}
       >
-        {user ? (
+        {access_token ? (
           <div className='form-logout'>
             <button className='form-btn' onClick={handleAdminPage}>
               Espace administrateur

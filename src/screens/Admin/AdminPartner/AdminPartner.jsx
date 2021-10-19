@@ -1,10 +1,8 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
-
-import { Context } from '../../../context/Context.js'
 
 import AdminCard from '../../../components/Admin/AdminCard'
 import AdminFormPartnerCreate from '../../../components/Admin/AdminFormPartnerCreate'
@@ -28,10 +26,6 @@ const AdminPartner = () => {
   const [addAlert, setAddAlert] = useState(false)
   const [updateAlert, setUpdateAlert] = useState(false)
 
-  const { user } = useContext(Context)
-
-  // Defini le Bearer JWT dans header pour les requetes de la page.
-  axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
   //----------------------------------------------------------------------------
   // READ all partners from backEnd
   useEffect(() => {

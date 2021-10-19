@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 import { Context } from '../../context/Context'
@@ -10,43 +11,35 @@ const Login = ({ toggleLoginForm }) => {
 
   // Actionne les fonction de Action.js => Reducer.js => Context.js
   const { dispatch } = useContext(Context)
+  let history = useHistory()
+  // let location = useLocation()
+
+  // let { from } = location.state || { from: { pathname: '/' } }
 
   //----------------------------------------------------------------------------
 
   // LOGIN
   const handleSubmit = async e => {
     e.preventDefault()
+
     try {
       const res = await axios.post(`${process.env.REACT_APP_URL_API}/login`, {
         email,
         password
       })
-      console.log('res', res)
       if (res.data.auth) {
         // Set user dans userContext
-        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
-        window.location.replace('/admin')
+        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.accessToken })
+        {
+          history.push('/admin')
+          // history.replace(from)
+        }
       }
     } catch (error) {
       dispatch({ type: 'LOGIN_FAILURE' })
       alert(error)
     }
   }
-
-  // const checkAuth = async () => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
-  //     .then(res => {
-  //       console.log('res auth:', res)
-  //       if (res.data.auth) {
-  //         console.log('Auth Cheked')
-  //         window.location.replace('/admin')
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log('error auth:', error.response)
-  //     })
-  // }
 
   return (
     <form onSubmit={e => handleSubmit(e)}>
