@@ -41,7 +41,7 @@ const TeamAdmin = ({
               placeholder={'Fichier image'}
               key='member_img'
               name='member_img'
-              onChange={onChangeHandler} // removed to prevent manual modification
+              onChange={onChangeHandler} // remove to prevent manual modification
               value={
                 adminInput && adminInput.member_img && adminInput.member_img
               }

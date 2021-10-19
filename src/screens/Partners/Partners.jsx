@@ -13,9 +13,6 @@ import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import './Partners.css'
 
 const Partners = () => {
-  // Données front à extraire depuis le back
-  const partnersLogo = ['pink', 'purple', 'orange', 'cyan', 'yellow']
-
   const [partnership, setPartnership] = useState([])
   const [partners, setPartners] = useState([])
 

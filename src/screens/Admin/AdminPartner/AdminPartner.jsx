@@ -54,12 +54,12 @@ const AdminPartner = () => {
   // CREATE a new partner
   const postPartner = async e => {
     e.preventDefault()
-    const newPost = { ...adminInput }
+    const newPartnerPost = { ...adminInput }
     if (partnerImage) {
       const fd = new FormData()
       const filename = Date.now() + partnerImage.name
       fd.append('partner_img', partnerImage, filename)
-      newPost.partner_img = filename
+      newPartnerPost.partner_img = filename
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -69,7 +69,7 @@ const AdminPartner = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_URL_API}/partners`,
-        newPost
+        newPartnerPost
       )
       // if (res){
       console.log('res post', res)
@@ -86,7 +86,7 @@ const AdminPartner = () => {
 
   // UPDATE a partner
   const updatePartner = async e => {
-    // console.log(idPartnerToUpdate, adminInput)
+    console.log(idPartnerToUpdate, adminInput)
     e.preventDefault()
     const newPartnerPut = { ...adminInput }
     if (partnerImage) {
@@ -123,14 +123,14 @@ const AdminPartner = () => {
     axios
       .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
       .then(resToBack => {
-        // console.log('res delete', resToBack)
+        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
       })
       .catch(error => {
         if (error) {
-          // console.log('logErrDelete', error.response)
+          console.log('logErrDelete', error.response)
           setResMessage(error.response.data.message)
         }
       })

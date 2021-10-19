@@ -11,7 +11,9 @@ const AdminFormActivityUpdate = ({
   resMessage,
   setAdminInput,
   setActivityImage,
-  updateActivity
+  updateActivity,
+  confirmTiny,
+  setConfirmTiny
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -27,6 +29,8 @@ const AdminFormActivityUpdate = ({
           resMessage={resMessage}
           setAdminInput={setAdminInput}
           setActivityImage={setActivityImage}
+          confirmTiny={confirmTiny}
+          setConfirmTiny={setConfirmTiny}
         />
       </div>
       <div className='btnContainer flex jcc'>

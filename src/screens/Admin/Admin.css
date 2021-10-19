@@ -132,6 +132,10 @@
 	pointer-events: none;
 }
 
+.blue{
+	background-color: dodgerblue;
+}
+
 .cardName{
   z-index: 0;
 	position: absolute;
@@ -236,3 +240,21 @@ cursor: pointer;
 		background-color: lightgray;
 	border-radius: 0px 0px 20px 20px;
 }
+
+.tinyNo{
+	background-color: red;
+	width: 20px;
+	height:20px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+.tinyYes{
+	background-color: green;
+	width: 20px;
+	height:20px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+

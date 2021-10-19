@@ -86,7 +86,6 @@ const AdminTeam = () => {
 
   // UPDATE a member
   const updateMember = async e => {
-    // console.log(idMemberToUpdate, adminInput)
     e.preventDefault()
     const newPut = { ...adminInput }
     if (memberImage) {
@@ -123,14 +122,14 @@ const AdminTeam = () => {
     axios
       .delete(`${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`)
       .then(resToBack => {
-        // console.log('res delete', resToBack)
+        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
       })
       .catch(error => {
         if (error) {
-          // console.log('logErrDelete', error.response)
+          console.log('logErrDelete', error.response)
           setResMessage(error.response.data.message)
         }
       })

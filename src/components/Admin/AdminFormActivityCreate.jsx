@@ -10,7 +10,9 @@ const AdminFormActivityCreate = ({
   postActivity,
   resMessage,
   setAdminInput,
-  setActivityImage
+  setActivityImage,
+  confirmTiny,
+  setConfirmTiny
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -26,6 +28,8 @@ const AdminFormActivityCreate = ({
           resMessage={resMessage}
           setAdminInput={setAdminInput}
           setActivityImage={setActivityImage}
+          confirmTiny={confirmTiny}
+          setConfirmTiny={setConfirmTiny}
         />
       </div>
       <div className='btnContainer flex jcc'>

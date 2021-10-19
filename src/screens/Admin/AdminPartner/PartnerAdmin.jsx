@@ -44,7 +44,7 @@ const PartnerAdmin = ({
               placeholder={'Fichier image'}
               key='partner_img'
               name='partner_img'
-              onChange={onChangeHandler} // removed to prevent manual modification
+              onChange={onChangeHandler} // remove to prevent manual modification
               value={
                 adminInput && adminInput.partner_img && adminInput.partner_img
               }

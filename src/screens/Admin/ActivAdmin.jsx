@@ -1,3 +1,6 @@
+import React, { useRef } from 'react'
+import { Editor } from '@tinymce/tinymce-react'
+
 // import FormTinyActivity from '../../components/Form/FormTinyActivity'
 
 import './form.css'
@@ -8,10 +11,21 @@ const ActivAdmin = ({
   poles,
   resMessage,
   setActivityImage,
-  setAdminInput
-  // confirmTiny,
-  // setConfirmTiny
+  setAdminInput,
+  confirmTiny,
+  setConfirmTiny
 }) => {
+  const editorRef = useRef(null)
+  const log = e => {
+    e.preventDefault()
+    if (editorRef.current) {
+      const text = editorRef.current.getContent()
+      console.log('text', text)
+      setAdminInput(state => ({ ...state, ['activity_desc']: text }), [])
+      setConfirmTiny(true)
+    }
+  }
+
   return (
     <div className='FormContainer'>
       <div className='FormList formActivity'>
@@ -20,10 +34,10 @@ const ActivAdmin = ({
           className='formItems formItemsActivity'
         >
           <label>
-            Pôle d'affectation
+            Pôle d&apos;affectation
             <select
-              key='pole'
-              name='pole'
+              key='pole_id'
+              name='pole_id'
               value={adminInput && adminInput.pole_id && adminInput.pole_id}
               onChange={onChangeHandler}
               style={{
@@ -72,29 +86,54 @@ const ActivAdmin = ({
               placeholder={'Fichier image'}
               key='activity_img'
               name='activity_img'
-              onChange={onChangeHandler} // removed to prevent manual modification
+              onChange={onChangeHandler} // remove to prevent manual modification
               value={
                 adminInput && adminInput.activity_img && adminInput.activity_img
               }
             />
           )}
-          <input
-            focus
-            placeholder={`Description de l'activité`}
-            key='activity_desc'
-            name='activity_desc'
-            onChange={onChangeHandler}
-            value={
-              adminInput && adminInput.activity_desc && adminInput.activity_desc
+          <Editor
+            onInit={(evt, editor) => (editorRef.current = editor)}
+            initialValue={
+              adminInput && adminInput.activity_desc ? (
+                adminInput.activity_desc
+              ) : (
+                <p>This is the initial content of the editor.</p>
+              )
             }
+            init={{
+              height: 400,
+              width: '100%',
+              menubar: false,
+              margin: 10,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+              content_style:
+                'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            }}
           />
-          {/* <FormTinyActivity
-            adminInput={adminInput}
-            setAdminInput={setAdminInput}
-            confirmTiny={confirmTiny}
-            setConfirmTiny={setConfirmTiny}
-            syle={{}}
-          /> */}
+          <div className={'flex row jcc aic'}>
+            <button
+              style={{
+                cursor: 'pointer',
+                marginTop: '20px',
+                background: '#868E96',
+                border: '1px solid black'
+              }}
+              onClick={e => log(e)}
+            >
+              Cliquer ici pour confirmer la description avant publication
+            </button>
+            <div className={confirmTiny ? 'tinyYes' : 'tinyNo'}></div>
+          </div>
           <span className='formError'>{resMessage && resMessage}</span>
         </form>
       </div>

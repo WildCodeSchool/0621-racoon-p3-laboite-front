@@ -8,7 +8,6 @@ import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCre
 import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
-import FormActivity from '../../components/Form/FormActivity'
 
 import './Admin.css'
 
@@ -69,7 +68,6 @@ const AdminActivity = () => {
 
   // CREATE a new activity
   const postActivity = async e => {
-    // !adminInput.pole && setActivityPoleUpdate({ pole: '1' })
     console.log('postActivity', adminInput)
     e.preventDefault()
     const newPost = { ...adminInput }
@@ -104,36 +102,36 @@ const AdminActivity = () => {
 
   // UPDATE a activity
   const updateActivity = async e => {
-    console.log(idActivityToUpdate, adminInput)
-    // e.preventDefault()
-    // const newPut = { ...adminInput }
-    // if (activityImage) {
-    //   const fd = new FormData()
-    //   const filename = Date.now() + activityImage.name
-    //   fd.append('activity_img', activityImage, filename)
-    //   newPut.activity_img = filename
-    //   try {
-    //     await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    // try {
-    //   const res = await axios.put(
-    //     `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
-    //     newPut
-    //   )
-    //   // if (res){
-    //   console.log('res update', res)
-    //   setResMessage(res.data.message)
-    //   setRefresh(!refresh)
-    //   setTimeout(closeForm, 2500)
-    // } catch (error) {
-    //   // if(error) {
-    //   console.log('logErrUpdate', error.response)
-    //   setResMessage(error.response.data.message)
-    //   // }
-    // }
+    // console.log('putActivity', idActivityToUpdate, adminInput)
+    e.preventDefault()
+    const newPut = { ...adminInput }
+    if (activityImage) {
+      const fd = new FormData()
+      const filename = Date.now() + activityImage.name
+      fd.append('activity_img', activityImage, filename)
+      newPut.activity_img = filename
+      try {
+        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`,
+        newPut
+      )
+      // if (res){
+      console.log('res update', res)
+      setResMessage(res.data.message)
+      setRefresh(!refresh)
+      setTimeout(closeForm, 2500)
+    } catch (error) {
+      // if(error) {
+      console.log('logErrUpdate', error.response)
+      setResMessage(error.response.data.message)
+      // }
+    }
   }
 
   // DELETE an activity
@@ -158,7 +156,7 @@ const AdminActivity = () => {
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
-    setAdminInput({ pole: '1' }) // clear inputs and choose pole 1 by default
+    setAdminInput({ pole_id: '1' }) // clear inputs and choose pole 1 by default
     setCreateForm(true) // open createForm
     setUpdateForm(false) // close updateForm
   }
@@ -173,6 +171,7 @@ const AdminActivity = () => {
     setAdminInput({}) // clear inputs
     setIdActivityToUpdate('') // clear selected activity
     setActivityImage() // clear image input
+    setConfirmTiny(false) // clear confirmTiny
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -228,17 +227,6 @@ const AdminActivity = () => {
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
               />
-              {/* <FormActivity
-                adminInput={adminInput}
-                setAdminInput={setAdminInput}
-                onChangeHandler={onChangeHandler}
-                setActivityImage={setActivityImage}
-                poles={poles}
-                postActivity={postActivity}
-                // setData={setData}
-                confirmTiny={confirmTiny}
-                setConfirmTiny={setConfirmTiny}
-              /> */}
             </>
           )}
           {updateForm && (
