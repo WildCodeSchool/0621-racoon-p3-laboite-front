@@ -1,4 +1,4 @@
-import './form.css'
+import '../form.css'
 
 const TeamAdmin = ({
   adminInput,
@@ -25,8 +25,8 @@ const TeamAdmin = ({
             type='file'
             focus
             placeholder={'Uploader une photo'}
-            key='member_img'
-            name='member_img'
+            key='member_img_upload'
+            name='member_img_upload'
             onChange={e => {
               setMemberImage(e.target.files[0]) ||
                 setAdminInput(state => ({
@@ -35,14 +35,18 @@ const TeamAdmin = ({
                 }))
             }}
           />
-          <input
-            focus
-            placeholder={'Fichier image'}
-            key='member_img'
-            name='member_img'
-            onChange={onChangeHandler} // removed to prevent manual modification
-            value={adminInput && adminInput.member_img && adminInput.member_img}
-          />
+          {adminInput && adminInput.member_id && (
+            <input
+              focus
+              placeholder={'Fichier image'}
+              key='member_img'
+              name='member_img'
+              onChange={onChangeHandler} // remove to prevent manual modification
+              value={
+                adminInput && adminInput.member_img && adminInput.member_img
+              }
+            />
+          )}
           <textarea
             focus
             placeholder={'Role du membre'}

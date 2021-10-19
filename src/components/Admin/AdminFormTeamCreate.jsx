@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TeamAdmin from '../../screens/Admin/TeamAdmin'
+import TeamAdmin from '../../screens/Admin/AdminTeam/TeamAdmin'
 
 const AdminFormTeamCreate = ({
   adminInput,

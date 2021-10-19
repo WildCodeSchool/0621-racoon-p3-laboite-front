@@ -184,7 +184,11 @@ const AdminPole = () => {
 
         <div className='bottomDiv flex col jcc aic'>
           {createForm ? (
-            <PoleFormPost poles={poles} getPoles={getPoles} closeForm={closeForm} />
+            <PoleFormPost
+              poles={poles}
+              getPoles={getPoles}
+              closeForm={closeForm}
+            />
           ) : null}
           {updateForm ? (
             <PoleFormPut
