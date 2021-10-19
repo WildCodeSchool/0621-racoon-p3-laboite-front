@@ -26,12 +26,10 @@ const ActivAdmin = ({
     }
   }
 
-  function checkIfDirty() {
-    if (editorRef.current.isDirty()) {
-      setConfirmTiny(false)
-    }
+  // function to check is text has been modified (green/red LED)
+  const handleEditorChange = () => {
+    setConfirmTiny(false)
   }
-  // setInterval(checkIfDirty, 2000) // check every 2 seconds.
 
   return (
     <div className='FormContainer'>
@@ -126,6 +124,7 @@ const ActivAdmin = ({
               content_style:
                 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
+            onChange={handleEditorChange}
           />
           <div className={'flex row jcc aic'}>
             <button
