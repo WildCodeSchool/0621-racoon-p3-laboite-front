@@ -9,17 +9,16 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import AdminHome from './screens/Admin/AdminHome'
-import AdminActivity from './screens/Admin/AdminActivity'
+import AdminActivity from './screens/Admin/AdminActivity/AdminActivity'
 import AdminPole from './screens/Admin/AdminPole'
-import AdminPartner from './screens/Admin/AdminPartner'
-import AdminTeam from './screens/Admin/AdminTeam'
+import AdminPartner from './screens/Admin/AdminPartner/AdminPartner'
+import AdminTeam from './screens/Admin/AdminTeam/AdminTeam'
 import Contact from './screens/Contact/Contact'
 import Home from './screens/Home/Home'
 import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
-import ActivityAdmin from './screens/Admin/ActivityAdmin'
 import PoleAdmin from './screens/Admin/PoleAdmin'
 import MobileNavBar from './components/Navbar/MobileNavBar'
 
@@ -58,9 +57,6 @@ function App() {
           </Route>
           <Route exact path='/admin/activities'>
             {user ? <AdminActivity /> : <Home />}
-          </Route>
-          <Route exact path='/admin/activity'>
-            <ActivityAdmin />
           </Route>
           <Route exact path='/admin/poles'>
             {user ? <AdminPole /> : <Home />}

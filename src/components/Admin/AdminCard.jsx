@@ -3,10 +3,11 @@ const AdminCard = ({ id, name, updateElement, deleteCard }) => {
     <div
       className={`card flex jcc aic colorme`}
       id={id}
-      // onClick={() => modifyCard(id)}
       onClick={updateElement}
     >
-      <div className='btnDeleteCard flex jcc aic' id={id} onClick={deleteCard} >x</div>
+      <div className='btnDeleteCard flex jcc aic' id={id} onClick={deleteCard}>
+        x
+      </div>
       <div className={`cardContent flex jcc aic`}>
         {/* {img && <img src={img} />} */}
         <div className='cardName'>{name}</div>

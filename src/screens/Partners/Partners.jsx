@@ -13,9 +13,6 @@ import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
 import './Partners.css'
 
 const Partners = () => {
-  // Données front à extraire depuis le back
-  const partnersLogo = ['pink', 'purple', 'orange', 'cyan', 'yellow']
-
   const [partnership, setPartnership] = useState([])
   const [partners, setPartners] = useState([])
 
@@ -83,7 +80,9 @@ const Partners = () => {
           </p>
 
           {partners.map(e => (
-            <li key={e.partner_id} className='cream paragraph'>{e.partner_name}</li>
+            <li key={e.partner_id} className='cream paragraph'>
+              {e.partner_name}
+            </li>
           ))}
 
           <PartnerList partners={partners} />

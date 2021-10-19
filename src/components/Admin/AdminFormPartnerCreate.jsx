@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PartnerAdmin from '../../screens/Admin/PartnerAdmin'
+import PartnerAdmin from '../../screens/Admin/AdminPartner/PartnerAdmin'
 
 const AdminFormPartnerCreate = ({
   adminInput,

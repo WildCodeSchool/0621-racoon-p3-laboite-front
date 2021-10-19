@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
-import { Context } from '../../context/Context'
+import { Context } from '../../../context/Context'
 
-import AdminCard from '../../components/Admin/AdminCard'
-import AdminFormActivityCreate from '../../components/Admin/AdminFormActivityCreate'
-import AdminFormActivityUpdate from '../../components/Admin/AdminFormActivityUpdate'
-import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
-import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import AdminCard from '../../../components/Admin/AdminCard'
+import AdminFormActivityCreate from '../../../components/Admin/AdminFormActivityCreate'
+import AdminFormActivityUpdate from '../../../components/Admin/AdminFormActivityUpdate'
+import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
+import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
 
-import './Admin.css'
+import '../Admin.css'
 
 const AdminActivity = () => {
   // List of states
@@ -22,12 +22,13 @@ const AdminActivity = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
+  const [confirmTiny, setConfirmTiny] = useState(false)
 
   const { user } = useContext(Context)
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
   axios.defaults.headers.common['Authorization'] = `Bearer ${user.accessToken}`
-
+  //----------------------------------------------------------------------------
   // READ all activities from backEnd
   useEffect(() => {
     const getActivities = async () => {
@@ -40,16 +41,6 @@ const AdminActivity = () => {
     getActivities()
   }, [refresh])
 
-  useEffect(() => {
-    const getPoles = async () => {
-      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
-      setPoles(results.data)
-      // setLoading(false)
-    }
-    getPoles()
-  }, [])
-
-  //----------------------------------------------------------------------------
   // READ an activity data from idActivityToUpdate
   useEffect(() => {
     console.log('update_activity', idActivityToUpdate)
@@ -65,8 +56,19 @@ const AdminActivity = () => {
     getActivity()
   }, [idActivityToUpdate])
 
+  // READ all poles from backEnd
+  useEffect(() => {
+    const getPoles = async () => {
+      const results = await axios.get(`${process.env.REACT_APP_URL_API}/poles`)
+      setPoles(results.data)
+      // setLoading(false)
+    }
+    getPoles()
+  }, [])
+
   // CREATE a new activity
   const postActivity = async e => {
+    console.log('postActivity', adminInput)
     e.preventDefault()
     const newPost = { ...adminInput }
     if (activityImage) {
@@ -82,7 +84,7 @@ const AdminActivity = () => {
     }
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_URL_API}/activitys`,
+        `${process.env.REACT_APP_URL_API}/activities`,
         newPost
       )
       // if (res){
@@ -100,7 +102,7 @@ const AdminActivity = () => {
 
   // UPDATE a activity
   const updateActivity = async e => {
-    // console.log(idActivityToUpdate, adminInput)
+    // console.log('putActivity', idActivityToUpdate, adminInput)
     e.preventDefault()
     const newPut = { ...adminInput }
     if (activityImage) {
@@ -116,7 +118,7 @@ const AdminActivity = () => {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL_API}/activitys/${idActivityToUpdate}`,
+        `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`,
         newPut
       )
       // if (res){
@@ -132,14 +134,14 @@ const AdminActivity = () => {
     }
   }
 
-  // DELETE aa activity
+  // DELETE an activity
   const deleteActivity = () => {
     axios
       .delete(
         `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
       )
       .then(resToBack => {
-        // console.log('res delete', resToBack)
+        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
@@ -152,10 +154,9 @@ const AdminActivity = () => {
       })
   }
   //----------------------------------------------------------------------------
-
   // Functions to display forms
   const showCreateForm = () => {
-    setAdminInput({}) // clear inputs
+    setAdminInput({ pole_id: '1' }) // clear inputs and choose pole 1 by default
     setCreateForm(true) // open createForm
     setUpdateForm(false) // close updateForm
   }
@@ -169,6 +170,8 @@ const AdminActivity = () => {
     setUpdateForm(false) // close updateForm
     setAdminInput({}) // clear inputs
     setIdActivityToUpdate('') // clear selected activity
+    setActivityImage() // clear image input
+    setConfirmTiny(false) // clear confirmTiny
     setResMessage('') // clear message
   }
   //Function to update inputs
@@ -177,7 +180,7 @@ const AdminActivity = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
-
+  //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
@@ -216,10 +219,13 @@ const AdminActivity = () => {
               <AdminFormActivityCreate
                 closeForm={closeForm}
                 onChangeHandler={onChangeHandler}
+                poles={poles}
                 postActivity={postActivity}
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
                 setActivityImage={setActivityImage}
+                confirmTiny={confirmTiny}
+                setConfirmTiny={setConfirmTiny}
               />
             </>
           )}
@@ -230,10 +236,13 @@ const AdminActivity = () => {
                 closeForm={closeForm}
                 deleteActivity={deleteActivity}
                 onChangeHandler={onChangeHandler}
+                poles={poles}
                 resMessage={resMessage}
-                setAdminInput={setAdminInput}
                 setActivityImage={setActivityImage}
+                setAdminInput={setAdminInput}
                 updateActivity={updateActivity}
+                confirmTiny={confirmTiny}
+                setConfirmTiny={setConfirmTiny}
               />
             </>
           )}
