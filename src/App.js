@@ -28,13 +28,13 @@ import './Normalize.css'
 
 function App() {
   const isDesktop = useMediaQuery({ query: '(min-width: 788px)' })
-  const { user } = useContext(Context)
+  const { access_token } = useContext(Context)
 
   return (
     <Router>
       <ScrollToTop />
       <div className='mainContainer'>
-        {!user && <Header />}
+        {!access_token && <Header />}
         {isDesktop && <Navbar />}
         <Switch>
           <Route exact path='/'>
@@ -74,7 +74,7 @@ function App() {
             <AdminPartner />
           </PrivateRoute>
         </Switch>
-        {!user && <Footer />}
+        {!access_token && <Footer />}
         {!isDesktop && <MobileNavBar />}
       </div>
     </Router>

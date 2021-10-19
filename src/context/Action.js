@@ -1,6 +1,6 @@
-export const loginSuccess = user => ({
+export const loginSuccess = access_token => ({
   type: 'LOGIN_SUCCESS',
-  payload: user
+  payload: access_token
 })
 
 export const loginFailure = () => ({

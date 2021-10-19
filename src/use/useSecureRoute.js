@@ -6,17 +6,17 @@ import { Context } from '../context/Context'
 
 export const PrivateRoute = ({ children, ...rest }) => {
   const { dispatch } = useContext(Context)
-  const userStorage = localStorage.getItem('user')
+  const access_token = localStorage.getItem('access_token')
 
   // Defini le Bearer JWT dans header pour les requetes de la page.
-  axios.defaults.headers.common['Authorization'] = `Bearer ${userStorage}`
+  axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
 
   const testAuth = async () => {
     try {
       await axios.get(`${process.env.REACT_APP_URL_API}/login/isUserAuth`)
     } catch (error) {
       dispatch({ type: 'LOGIN_FAILURE' })
-      localStorage.removeItem('user')
+      localStorage.removeItem('access_token')
     }
   }
   testAuth()
@@ -25,7 +25,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        userStorage ? (
+        access_token ? (
           children
         ) : (
           <Redirect

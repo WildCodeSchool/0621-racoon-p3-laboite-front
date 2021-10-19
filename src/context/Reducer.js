@@ -2,17 +2,17 @@ const Reducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
       return {
-        user: action.payload,
+        access_token: action.payload,
         error: null
       }
     case 'LOGIN_FAILURE':
       return {
-        user: null,
+        access_token: null,
         error: true
       }
     case 'LOGOUT':
       return {
-        user: null,
+        access_token: null,
         error: false
       }
     default:

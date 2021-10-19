@@ -2,7 +2,7 @@ import { createContext, useEffect, useReducer } from 'react'
 import Reducer from './Reducer'
 
 const INITIAL_STATE = {
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  access_token: JSON.parse(localStorage.getItem('user')) || null,
   error: null
 }
 
@@ -12,13 +12,13 @@ export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(state.user))
-  }, [state.user])
+    localStorage.setItem('access_token', JSON.stringify(state.access_token))
+  }, [state.access_token])
 
   return (
     <Context.Provider
       value={{
-        user: state.user,
+        access_token: state.access_token,
         error: state.error,
         dispatch
       }}
