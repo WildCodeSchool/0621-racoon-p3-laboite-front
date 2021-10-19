@@ -263,7 +263,8 @@ DeleteData()
           )}
           <Snackbar
             open={deleteAlert}
-            autoHideDuration={6000}
+            onClose={() => setDeleteAlert(false)}
+            autoHideDuration={4000}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'center'

@@ -14,12 +14,8 @@ const PoleFormPut = props => {
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
-  const [open, setOpen] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
   const [refresh, setRefresh] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
@@ -56,7 +52,7 @@ const PoleFormPut = props => {
     }
     // upload the modified card in poleCardList
     getPoles()
-    setOpen(true)
+    setUpdateAlert(true)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -178,15 +174,14 @@ const PoleFormPut = props => {
 
         <button onClick={submitPoleData}>Publier</button>
         <Snackbar
-          open={open}
+          open={updateAlert}
           autoHideDuration={6000}
-          onClose={handleClose}
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'center'
           }}
         >
-          <Alert onClose={handleClose} severity='success'>
+          <Alert severity='success'>
             Pôle modifié avec succès
           </Alert>
         </Snackbar>
