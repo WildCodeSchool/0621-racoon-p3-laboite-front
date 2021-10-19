@@ -135,13 +135,15 @@ const AdminActivity = () => {
   }
 
   // DELETE an activity
-  const deleteActivity = () => {
-    axios
+  const deleteActivity = (idActivityToUpdate) => {
+    const confirmation = confirm('Voulez-vous supprimer cette activité ?')
+    if (confirmation) {
+      const DeleteData = async () => {
+    await axios
       .delete(
         `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
       )
       .then(resToBack => {
-        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
@@ -153,6 +155,8 @@ const AdminActivity = () => {
         }
       })
   }
+DeleteData()
+}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -180,6 +184,7 @@ const AdminActivity = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
+    
   //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
@@ -207,6 +212,7 @@ const AdminActivity = () => {
                     id={elmt.id}
                     name={elmt.activity_title}
                     updateElement={showUpdateForm}
+                    deleteCard={deleteActivity}
                   />
                 ))
               )}
