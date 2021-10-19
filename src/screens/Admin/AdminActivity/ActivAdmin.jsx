@@ -26,11 +26,11 @@ const ActivAdmin = ({
     }
   }
 
-  // function checkIfDirty() {
-  //   if (editorRef.current.isDirty()) {
-  //     setConfirmTiny(false)
-  //   }
-  // }
+  function checkIfDirty() {
+    if (editorRef.current.isDirty()) {
+      setConfirmTiny(false)
+    }
+  }
   // setInterval(checkIfDirty, 2000) // check every 2 seconds.
 
   return (
