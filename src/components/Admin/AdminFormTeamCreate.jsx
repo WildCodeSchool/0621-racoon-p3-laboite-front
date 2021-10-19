@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import TeamAdmin from '../../screens/Admin/AdminTeam/TeamAdmin'
 
 const AdminFormTeamCreate = ({
@@ -9,7 +10,8 @@ const AdminFormTeamCreate = ({
   postMember,
   resMessage,
   setAdminInput,
-  setMemberImage
+  setMemberImage,
+  addAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -30,6 +32,18 @@ const AdminFormTeamCreate = ({
         <div className='btnForm' onClick={postMember}>
           Publier
         </div>
+        <Snackbar
+            open={addAlert}
+            autoHideDuration={6000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Membre ajouté avec succès
+            </Alert>
+          </Snackbar>
       </div>
     </div>
   )

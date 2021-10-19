@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import { Context } from '../../../context/Context'
 
 import AdminCard from '../../../components/Admin/AdminCard'
@@ -21,6 +22,9 @@ const AdminTeam = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [memberImage, setMemberImage] = useState()
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   const { user } = useContext(Context)
 
@@ -76,6 +80,7 @@ const AdminTeam = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -109,6 +114,7 @@ const AdminTeam = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -129,6 +135,7 @@ const AdminTeam = () => {
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
+        setDeleteAlert(true)
       })
       .catch(error => {
         if (error) {
@@ -206,6 +213,7 @@ DeleteData()
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
                 setMemberImage={setMemberImage}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -220,9 +228,22 @@ DeleteData()
                 setAdminInput={setAdminInput}
                 setMemberImage={setMemberImage}
                 updateMember={updateMember}
+                updateAlert={updateAlert}
               />
             </>
           )}
+          <Snackbar
+            open={deleteAlert}
+            autoHideDuration={6000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Membre supprimé avec succès
+            </Alert>
+          </Snackbar>
         </div>
       </div>
     </div>

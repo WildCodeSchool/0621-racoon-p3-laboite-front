@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import TeamAdmin from '../../screens/Admin/AdminTeam/TeamAdmin'
 
 const AdminFormTeamUpdate = ({
@@ -10,7 +11,8 @@ const AdminFormTeamUpdate = ({
   resMessage,
   setAdminInput,
   setMemberImage,
-  updateMember
+  updateMember,
+  updateAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -44,6 +46,18 @@ const AdminFormTeamUpdate = ({
         <div className='btnForm blue' onClick={updateMember}>
           Publier
         </div>
+        <Snackbar
+            open={updateAlert}
+            autoHideDuration={6000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Membre modifié avec succès
+            </Alert>
+          </Snackbar>
       </div>
     </div>
   )
