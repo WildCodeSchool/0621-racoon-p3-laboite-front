@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
 
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
+
 import { Context } from '../../../context/Context.js'
 
 import AdminCard from '../../../components/Admin/AdminCard'
@@ -21,6 +24,9 @@ const AdminPartner = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [partnerImage, setPartnerImage] = useState()
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   const { user } = useContext(Context)
 
@@ -76,6 +82,7 @@ const AdminPartner = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -110,6 +117,7 @@ const AdminPartner = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -119,8 +127,11 @@ const AdminPartner = () => {
   }
 
   // DELETE a partner
-  const deletePartner = () => {
-    axios
+  const deletePartner = (idPartnerToUpdate) => {
+    const confirmation = confirm('Voulez-vous supprimer ce partenaire ?')
+    if (confirmation) {
+      const DeleteData = async () => {
+  await axios
       .delete(`${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`)
       .then(resToBack => {
         console.log('res delete', resToBack)
@@ -135,6 +146,9 @@ const AdminPartner = () => {
         }
       })
   }
+  DeleteData()
+  setDeleteAlert(true)
+}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -185,6 +199,7 @@ const AdminPartner = () => {
                     id={elmt.partner_id}
                     name={elmt.partner_name}
                     updateElement={showUpdateForm}
+                    deleteCard={deletePartner}
                   />
                 ))
               )}
@@ -201,6 +216,7 @@ const AdminPartner = () => {
                 resMessage={resMessage}
                 setAdminInput={setAdminInput}
                 setPartnerImage={setPartnerImage}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -215,9 +231,23 @@ const AdminPartner = () => {
                 setAdminInput={setAdminInput}
                 setPartnerImage={setPartnerImage}
                 updatePartner={updatePartner}
+               updateAlert={updateAlert}
               />
             </>
           )}
+          <Snackbar
+            open={deleteAlert}
+            autoHideDuration={4000}
+            onClose={() => setDeleteAlert(false)}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Partenaire supprimé avec succès
+            </Alert>
+          </Snackbar>
         </div>
       </div>
     </div>

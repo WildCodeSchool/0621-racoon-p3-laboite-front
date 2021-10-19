@@ -33,11 +33,7 @@ const AdminPole = () => {
   const [idPoleToUpdate, setIdPoleToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
-  const [open, setOpen] = useState(false)
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [deleteAlert, setDeleteAlert] = useState(false)
 
   // READ all team poles from backEnd
   const getPoles = async () => {
@@ -110,7 +106,7 @@ const AdminPole = () => {
         setPoles(poles.filter(poleCard => poleCard.id != id))
       }
       DeleteData()
-      setOpen(true)
+      setDeleteAlert(true)
     }
   }
 
@@ -200,15 +196,15 @@ const AdminPole = () => {
             />
           ) : null}
           <Snackbar
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleClose}
+            open={deleteAlert}
+            onClose={() => setDeleteAlert(false)}
+            autoHideDuration={4000}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'center'
             }}
           >
-            <Alert onClose={handleClose} severity='success'>
+            <Alert severity='success'>
               Pôle supprimé avec succès
             </Alert>
           </Snackbar>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import axios from 'axios'
-
+import { Alert } from '@material-ui/lab'
+import { Snackbar } from '@material-ui/core'
 import { Context } from '../../../context/Context'
 
 import AdminCard from '../../../components/Admin/AdminCard'
@@ -22,7 +23,10 @@ const AdminActivity = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
-  const [confirmTiny, setConfirmTiny] = useState(true)
+  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [deleteAlert, setDeleteAlert] = useState(false)
+  const [addAlert, setAddAlert] = useState(false)
+  const [updateAlert, setUpdateAlert] = useState(false)
 
   const { user } = useContext(Context)
 
@@ -92,6 +96,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setAddAlert(true)
     } catch (err) {
       // if (err) {
       console.log('logErrPost', err.response)
@@ -126,6 +131,7 @@ const AdminActivity = () => {
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
+      setUpdateAlert(true)
     } catch (error) {
       // if(error) {
       console.log('logErrUpdate', error.response)
@@ -135,16 +141,19 @@ const AdminActivity = () => {
   }
 
   // DELETE an activity
-  const deleteActivity = () => {
-    axios
+  const deleteActivity = (idActivityToUpdate) => {
+    const confirmation = confirm('Voulez-vous supprimer cette activité ?')
+    if (confirmation) {
+      const DeleteData = async () => {
+    await axios
       .delete(
         `${process.env.REACT_APP_URL_API}/activities/${idActivityToUpdate}`
       )
       .then(resToBack => {
-        console.log('res delete', resToBack)
         setResMessage(resToBack.data.message)
         setRefresh(!refresh)
         setTimeout(closeForm, 2500)
+        setDeleteAlert(true)
       })
       .catch(error => {
         if (error) {
@@ -153,6 +162,8 @@ const AdminActivity = () => {
         }
       })
   }
+DeleteData()
+}}
   //----------------------------------------------------------------------------
   // Functions to display forms
   const showCreateForm = () => {
@@ -180,6 +191,7 @@ const AdminActivity = () => {
       console.log('inputChange') ||
       setAdminInput(state => ({ ...state, [name]: value }), [])
   )
+    
   //----------------------------------------------------------------------------
   return (
     <div className='adminContainer flex row'>
@@ -207,6 +219,7 @@ const AdminActivity = () => {
                     id={elmt.id}
                     name={elmt.activity_title}
                     updateElement={showUpdateForm}
+                    deleteCard={deleteActivity}
                   />
                 ))
               )}
@@ -226,6 +239,7 @@ const AdminActivity = () => {
                 setActivityImage={setActivityImage}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                addAlert={addAlert}
               />
             </>
           )}
@@ -243,9 +257,23 @@ const AdminActivity = () => {
                 updateActivity={updateActivity}
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
+                updateAlert={updateAlert}
               />
             </>
           )}
+          <Snackbar
+            open={deleteAlert}
+            onClose={() => setDeleteAlert(false)}
+            autoHideDuration={4000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
+          >
+            <Alert severity='success'>
+              Activité supprimée avec succès
+            </Alert>
+          </Snackbar>
         </div>
       </div>
     </div>
