@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { Context } from '../../context/Context'
@@ -17,6 +18,8 @@ const Navbar = () => {
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
 
   const { access_token, dispatch } = useContext(Context)
+
+  let history = useHistory()
 
   useEffect(() => {
     axios
@@ -40,11 +43,15 @@ const Navbar = () => {
   const handleLogout = () => {
     delete axios.defaults.headers.common['Authorization']
     dispatch({ type: 'LOGOUT' })
-    window.location.replace('/')
+    {
+      history.push('/')
+    }
   }
 
   const handleAdminPage = () => {
-    window.location.replace('/admin')
+    {
+      history.push('/admin')
+    }
   }
 
   return (
@@ -76,7 +83,13 @@ const Navbar = () => {
       >
         {access_token ? (
           <div className='form-logout'>
-            <button className='form-btn' onClick={handleAdminPage}>
+            <button
+              className='form-btn'
+              onClick={() => {
+                handleAdminPage()
+                toggleLoginForm()
+              }}
+            >
               Espace administrateur
             </button>
             <button className='form-btn btn-logout' onClick={handleLogout}>
