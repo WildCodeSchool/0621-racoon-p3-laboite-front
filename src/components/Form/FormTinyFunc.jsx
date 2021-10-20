@@ -1,7 +1,12 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function FormTinyFunc({ setDataFunc , confirmTiny1, setConfirmTiny1, handleEditorChange1}) {
+export default function FormTinyFunc({
+  setDataFunc,
+  confirmTiny1,
+  setConfirmTiny1,
+  handleEditorChange1
+}) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
@@ -36,18 +41,20 @@ export default function FormTinyFunc({ setDataFunc , confirmTiny1, setConfirmTin
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button
-        style={{
-          cursor: 'pointer',
-          marginTop: '20px',
-          background: '#868E96',
-          border: '1px solid black'
-        }}
-        onClick={log}
-      >
-        Cliquer ici pour confirmer la description avant publication
-      </button>
-      <div className={confirmTiny1 ? 'tinyYes' : 'tinyNo'}></div>
+      <div className={'flex row jcc aic'}>
+        <button
+          style={{
+            cursor: 'pointer',
+            marginTop: '20px',
+            background: '#868E96',
+            border: '1px solid black'
+          }}
+          onClick={log}
+        >
+          Cliquer ici pour confirmer la description avant publication
+        </button>
+        <div className={confirmTiny1 ? 'tinyYes' : 'tinyNo'}></div>
+      </div>
     </div>
   )
 }
