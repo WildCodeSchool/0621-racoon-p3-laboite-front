@@ -1,11 +1,9 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
 import '../form.css'
 
-import { Context } from '../../../context/Context'
-
-const ActivAdmin = ({
+const ActivityAdmin = ({
   adminInput,
   onChangeHandler,
   poles,
@@ -147,4 +145,4 @@ const ActivAdmin = ({
   )
 }
 
-export default ActivAdmin
+export default ActivityAdmin

@@ -22,7 +22,7 @@ const AdminActivity = () => {
   const [adminInput, setAdminInput] = useState({})
   const [resMessage, setResMessage] = useState('')
   const [activityImage, setActivityImage] = useState()
-  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [confirmTiny, setConfirmTiny] = useState(true)
   const [deleteAlert, setDeleteAlert] = useState(false)
   const [addAlert, setAddAlert] = useState(false)
   const [updateAlert, setUpdateAlert] = useState(false)
@@ -166,11 +166,13 @@ const AdminActivity = () => {
     setAdminInput({ pole_id: '1' }) // clear inputs and choose pole 1 by default
     setCreateForm(true) // open createForm
     setUpdateForm(false) // close updateForm
+    setConfirmTiny(true)
   }
   const showUpdateForm = e => {
     setCreateForm(false) // close createForm
     setUpdateForm(true) // open updateForm
     setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
+    setConfirmTiny(true)
   }
   const closeForm = () => {
     setCreateForm(false) // close createForm
