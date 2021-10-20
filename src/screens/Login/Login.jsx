@@ -30,6 +30,7 @@ const Login = ({ toggleLoginForm }) => {
       if (res.data.auth) {
         // Set user dans userContext
         dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.accessToken })
+        toggleLoginForm()
         {
           history.push('/admin')
           // history.replace(from)
@@ -60,7 +61,7 @@ const Login = ({ toggleLoginForm }) => {
         />
       </div>
       <div className='form-group'>
-        <input type='submit' value='Login' />
+        <input type='submit' value='Login' className='btn-log' />
         <button
           className='form-btn'
           onClick={e => {

@@ -48,9 +48,12 @@
   border: none;
   background: transparent;
   float: right;
-  transform: translate(30%,-40%)
+  transform: translate(30%,-40%);
+  box-shadow: none;
 }
 
 .modal-close-button:hover {
   color: red;
+  box-shadow: none;
+  
 }

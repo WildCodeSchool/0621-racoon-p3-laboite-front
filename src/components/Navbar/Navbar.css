@@ -104,6 +104,15 @@ margin-bottom: 10px;
   width: 300px;
 }
 
+.btn-log {
+  font-weight: 600;
+  box-shadow: 0 0 2px rgb(0 0 0 / 50%);
+}
+
+.btn-log:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
 @media screen and (max-width: 400px){
   button.modal-toggle,input[type="submit"],.form-btn {
     font-size: 80%;
