@@ -1,13 +1,18 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function FormTinyFunc({ setDataFunc }) {
+export default function FormTinyFunc({
+  setDataFunc,
+  confirmTiny1,
+  setConfirmTiny1,
+  handleEditorChange1
+}) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
       setDataFunc(text)
-      // setConfirmTiny(true)
+      setConfirmTiny1(true)
     }
   }
 
@@ -16,6 +21,7 @@ export default function FormTinyFunc({ setDataFunc }) {
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue='<p>This is the initial content of the editor.</p>'
+        onChange={handleEditorChange1}
         init={{
           height: 400,
           width: '100%',
@@ -35,17 +41,20 @@ export default function FormTinyFunc({ setDataFunc }) {
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button
-        style={{
-          cursor: 'pointer',
-          marginTop: '20px',
-          background: '#868E96',
-          border: '1px solid black'
-        }}
-        onClick={log}
-      >
-        Confirmer
-      </button>
+      <div className={'flex row jcc aic'}>
+        <button
+          style={{
+            cursor: 'pointer',
+            marginTop: '20px',
+            background: '#868E96',
+            border: '1px solid black'
+          }}
+          onClick={log}
+        >
+          Cliquer ici pour confirmer la description avant publication
+        </button>
+        <div className={confirmTiny1 ? 'tinyYes' : 'tinyNo'}></div>
+      </div>
     </div>
   )
 }

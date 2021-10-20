@@ -8,7 +8,6 @@ import axios from 'axios'
 import { useState } from 'react'
 
 const PoleFormPost = ({ poles, getPoles, closeForm }) => {
-  const [confirmTiny, setConfirmTiny] = useState(false)
   const [poleInfo, setPoleInfo] = useState({
     pole_name: '',
     pole_title: '',
@@ -28,6 +27,8 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
   const [poleMiniature, setPoleMiniature] = useState()
   const [addAlert, setAddAlert] = useState(false)
   const [refresh, setRefresh] = useState(false)
+  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [confirmTiny1, setConfirmTiny1] = useState(false)
 
   const handlePoleChange = event => {
     setPoleInfo({ ...poleInfo, [event.target.name]: event.target.value })
@@ -76,14 +77,18 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
     setPoleInfo({ ...poleInfo, pole_func: text })
   }
 
+  const handleEditorChange = () => {
+    setConfirmTiny(false)
+    setConfirmTiny1(false)
+  }
+  const handleEditorChange1 = () => {
+    setConfirmTiny1(false)
+  }
+
   return (
     <div>
       <div className='FormContainer'>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -116,13 +121,14 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
         </form>
         <div className='tiny'>
           <label>Pôle description</label>
-          <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
+          <FormTiny
+            setData={setData}
+            confirmTiny={confirmTiny}
+            setConfirmTiny={setConfirmTiny}
+            handleEditorChange={handleEditorChange}
+          />
         </div>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
@@ -137,13 +143,14 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
 
         <div className='tiny'>
           <label>Pôle Fonctionnement</label>
-          <FormTinyFunc setDataFunc={setDataFunc} />
+          <FormTinyFunc
+            setDataFunc={setDataFunc}
+            confirmTiny1={confirmTiny1}
+            setConfirmTiny1={setConfirmTiny1}
+            handleEditorChange={handleEditorChange}
+          />
         </div>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
