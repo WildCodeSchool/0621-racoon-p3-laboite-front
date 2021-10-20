@@ -13,7 +13,8 @@ const AdminFormPartnerUpdate = ({
   setAdminInput,
   setPartnerImage,
   updatePartner,
-  updateAlert
+  updateAlert,
+  idPartnerToUpdate
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -33,13 +34,8 @@ const AdminFormPartnerUpdate = ({
       <div className='btnContainer flex jcc'>
         <div
           className='btnForm'
-          onClick={e => {
-            if (
-              window.confirm(
-                'Etes-vous sûr(e) de vouloir supprimer ce partenaire ?'
-              )
-            )
-              deletePartner(e)
+          onClick={() => {
+            deletePartner(idPartnerToUpdate)
           }}
         >
           Supprimer

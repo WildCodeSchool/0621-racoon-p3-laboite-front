@@ -12,7 +12,8 @@ const AdminFormTeamUpdate = ({
   setAdminInput,
   setMemberImage,
   updateMember,
-  updateAlert
+  updateAlert,
+  idMemberToUpdate
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -32,13 +33,8 @@ const AdminFormTeamUpdate = ({
       <div className='btnContainer flex jcc'>
         <div
           className='btnForm'
-          onClick={e => {
-            if (
-              window.confirm(
-                'Etes-vous sûr(e) de vouloir supprimer ce membre ?'
-              )
-            )
-              deleteMember(e)
+          onClick={() => {
+            deleteMember(idMemberToUpdate)
           }}
         >
           Supprimer
