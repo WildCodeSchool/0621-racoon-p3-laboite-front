@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
-import ActivAdmin from '../../screens/Admin/AdminActivity/ActivAdmin'
+import ActivityAdmin from '../../screens/Admin/AdminActivity/ActivityAdmin'
 
 const AdminFormActivityCreate = ({
   adminInput,
@@ -23,7 +23,7 @@ const AdminFormActivityCreate = ({
       </div>
       <div className='bottomDivTitle'>Nouvelle activité</div>
       <div className='teamFormContainer'>
-        <ActivAdmin
+        <ActivityAdmin
           adminInput={adminInput}
           onChangeHandler={onChangeHandler}
           poles={poles}
