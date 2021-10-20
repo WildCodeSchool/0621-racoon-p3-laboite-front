@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
@@ -67,7 +68,6 @@ const AdminActivity = () => {
 
   // CREATE a new activity
   const postActivity = async e => {
-    console.log('postActivity', adminInput)
     e.preventDefault()
     const newPost = { ...adminInput }
     if (activityImage) {
@@ -102,7 +102,6 @@ const AdminActivity = () => {
 
   // UPDATE a activity
   const updateActivity = async e => {
-    // console.log('putActivity', idActivityToUpdate, adminInput)
     e.preventDefault()
     const newPut = { ...adminInput }
     if (activityImage) {
@@ -152,7 +151,7 @@ const AdminActivity = () => {
           })
           .catch(error => {
             if (error) {
-              // console.log('logErrDelete', error.response)
+              console.log('logErrDelete', error.response)
               setResMessage(error.response.data.message)
             }
           })
@@ -180,8 +179,11 @@ const AdminActivity = () => {
     setAdminInput({}) // clear inputs
     setIdActivityToUpdate('') // clear selected activity
     setActivityImage() // clear image input
-    setConfirmTiny(false) // clear confirmTiny
     setResMessage('') // clear message
+    setAddAlert(false) // reset addAlert
+    setDeleteAlert(false) // reset deleteAlert
+    setUpdateAlert(false) // reset updateAlert
+    setConfirmTiny(false) // clear confirmTiny
   }
   //Function to update inputs
   const onChangeHandler = useCallback(
@@ -210,9 +212,6 @@ const AdminActivity = () => {
               ) : (
                 activities.map(elmt => (
                   <AdminCard
-                    // key={elmt.activity_id}
-                    // id={elmt.activity_id}
-                    // name={elmt.activity_name}
                     key={elmt.id}
                     id={elmt.id}
                     name={elmt.activity_title}
@@ -256,6 +255,7 @@ const AdminActivity = () => {
                 confirmTiny={confirmTiny}
                 setConfirmTiny={setConfirmTiny}
                 updateAlert={updateAlert}
+                idActivityToUpdate={idActivityToUpdate}
               />
             </>
           )}
