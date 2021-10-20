@@ -17,7 +17,8 @@ const Navbar = () => {
   const [fixNav, setFixNav] = useState(false)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
 
-  const { access_token, dispatch } = useContext(Context)
+  const { dispatch } = useContext(Context)
+  const access_token = localStorage.getItem('access_token')
 
   let history = useHistory()
 
