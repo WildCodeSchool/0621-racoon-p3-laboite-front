@@ -12,8 +12,10 @@ export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)
 
   useEffect(() => {
-    localStorage.setItem('access_token', JSON.stringify(state.access_token))
-  }, [state.access_token])
+    if (state.access_token) {
+      localStorage.setItem('access_token', JSON.stringify(state.access_token))
+    }
+  }, [state])
 
   return (
     <Context.Provider
