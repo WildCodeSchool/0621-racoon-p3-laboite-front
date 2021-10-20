@@ -67,11 +67,7 @@ const PoleFormPut = props => {
   return (
     <div>
       <div className='form-container'>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -105,18 +101,19 @@ const PoleFormPut = props => {
             }
             value={pcu.pole_picto}
           />
-          <div className='tiny'>
-            <label>Pôle description</label>
-            <PutTinyDesc
-              setDataDesc={setDataDesc}
-              modifyValue={modifyValue}
-              props={props}
-              pcu={pcu}
-              name='pole_desc'
-              key='pole_desc'
-              // value={props.pole_desc}
-            />
-          </div>
+        </form>
+        <div className='tiny'>
+          <label>Pôle description</label>
+          <PutTinyDesc
+            setDataDesc={setDataDesc}
+            modifyValue={modifyValue}
+            props={props}
+            pcu={pcu}
+            name='pole_desc'
+            key='pole_desc'
+          />
+        </div>
+        <form className='FormItems' encType='multipart/form-data'>
           <input value={pcu.pole_func_img} />
           <input
             type='file'
@@ -125,18 +122,19 @@ const PoleFormPut = props => {
               setPutFunc(e.target.files[0])
             }}
           />
-          <div className='tiny'>
-            <label>Pôle Fonctionnement</label>
-            <PutTinyFunc
-              setDataFunc={setDataFunc}
-              modifyValue={modifyValue}
-              props={props}
-              name='pole_func'
-              key='pole_func'
-              pcu={pcu}
-              // value={props.pole_func}
-            />
-          </div>
+        </form>
+        <div className='tiny'>
+          <label>Pôle Fonctionnement</label>
+          <PutTinyFunc
+            setDataFunc={setDataFunc}
+            modifyValue={modifyValue}
+            props={props}
+            name='pole_func'
+            key='pole_func'
+            pcu={pcu}
+          />
+        </div>
+        <form className='FormItems' encType='multipart/form-data'>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
@@ -171,7 +169,6 @@ const PoleFormPut = props => {
             value={pcu.pole_catchphrase}
           />
         </form>
-
         <button onClick={submitPoleData}>Publier</button>
         <Snackbar
           open={updateAlert}

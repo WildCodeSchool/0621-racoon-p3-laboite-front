@@ -79,11 +79,7 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
   return (
     <div>
       <div className='FormContainer'>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
           <input
             name='pole_name'
@@ -118,11 +114,7 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
           <label>Pôle description</label>
           <FormTiny setData={setData} setConfirmTiny={setConfirmTiny} />
         </div>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Photo de Fonctionnement</label>
           <input
             type='file'
@@ -139,11 +131,7 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
           <label>Pôle Fonctionnement</label>
           <FormTinyFunc setDataFunc={setDataFunc} />
         </div>
-        <form
-          className='FormList'
-          encType='multipart/form-data'
-          className='formItems'
-        >
+        <form encType='multipart/form-data' className='formItems'>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
