@@ -98,11 +98,9 @@ const ActivityAdmin = ({
           <Editor
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue={
-              adminInput && adminInput.activity_desc ? (
-                adminInput.activity_desc
-              ) : (
-                <p>This is the initial content of the editor.</p>
-              )
+              adminInput && adminInput.activity_desc
+                ? adminInput.activity_desc
+                : "Description de l'activité"
             }
             init={{
               height: 200,
