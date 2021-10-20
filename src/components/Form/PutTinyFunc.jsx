@@ -1,13 +1,21 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export default function PutTinyFunc({ setDataFunc, modifyValue, props, pcu }) {
+export default function PutTinyFunc({
+  setDataFunc,
+  modifyValue,
+  props,
+  pcu,
+  confirmTiny1,
+  setConfirmTiny1,
+  handleEditorChange1
+}) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
       setDataFunc(text)
-      // setConfirmTiny(true)
+      setConfirmTiny1(true)
     }
   }
 
@@ -16,7 +24,7 @@ export default function PutTinyFunc({ setDataFunc, modifyValue, props, pcu }) {
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue={pcu.pole_func}
-        // onChange={e => modifyValue(event.target.name, event.target.value)}
+        onChange={handleEditorChange1}
         init={{
           height: 400,
           width: '100%',
@@ -45,8 +53,9 @@ export default function PutTinyFunc({ setDataFunc, modifyValue, props, pcu }) {
         }}
         onClick={log}
       >
-        Confirmer
+        Cliquer ici pour confirmer la description avant publication
       </button>
+      <div className={confirmTiny1 ? 'tinyYes' : 'tinyNo'}></div>
     </div>
   )
 }

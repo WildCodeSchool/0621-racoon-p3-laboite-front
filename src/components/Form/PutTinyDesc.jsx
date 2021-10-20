@@ -1,13 +1,23 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
+import { faLastfmSquare } from '@fortawesome/free-brands-svg-icons'
 
-export default function PutTinyDesc({ setDataDesc, modifyValue, props, poles, pcu }) {
+export default function PutTinyDesc({
+  setDataDesc,
+  modifyValue,
+  props,
+  poles,
+  pcu,
+  confirmTiny,
+  setConfirmTiny,
+  handleEditorChange
+}) {
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
       const text = editorRef.current.getContent()
       setDataDesc(text)
-      // setConfirmTiny(true)
+      setConfirmTiny(true)
     }
   }
 
@@ -16,7 +26,7 @@ export default function PutTinyDesc({ setDataDesc, modifyValue, props, poles, pc
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue={pcu.pole_desc}
-        // onChange={e => modifyValue(event.target.name, event.target.value)}
+        onChange={handleEditorChange}
         init={{
           height: 400,
           width: '100%',
@@ -45,8 +55,9 @@ export default function PutTinyDesc({ setDataDesc, modifyValue, props, poles, pc
         }}
         onClick={log}
       >
-        Confirmer
+        Cliquer ici pour confirmer la description avant publication
       </button>
+      <div className={confirmTiny ? 'tinyYes' : 'tinyNo'}></div>
     </div>
   )
 }

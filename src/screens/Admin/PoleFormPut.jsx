@@ -16,6 +16,8 @@ const PoleFormPut = props => {
   const [putMiniature, setPutMiniature] = useState()
   const [updateAlert, setUpdateAlert] = useState(false)
   const [refresh, setRefresh] = useState(false)
+  const [confirmTiny, setConfirmTiny] = useState(false)
+  const [confirmTiny1, setConfirmTiny1] = useState(false)
 
   //--- modify API data in cardList ---//
   const submitPoleData = async event => {
@@ -64,9 +66,17 @@ const PoleFormPut = props => {
     modifyValue('pole_func', text)
   }
 
+  const handleEditorChange = () => {
+    setConfirmTiny(false)
+    setConfirmTiny1(false)
+  }
+  const handleEditorChange1 = () => {
+    setConfirmTiny1(false)
+  }
+
   return (
     <div>
-      <div className='form-container'>
+      <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
           <input
@@ -111,9 +121,13 @@ const PoleFormPut = props => {
             pcu={pcu}
             name='pole_desc'
             key='pole_desc'
+            confirmTiny={confirmTiny}
+            setConfirmTiny={setConfirmTiny}
+            handleEditorChange={handleEditorChange}
           />
         </div>
-        <form className='FormItems' encType='multipart/form-data'>
+        <form className='formItems' encType='multipart/form-data'>
+          <label>Photo de Fonctionnement</label>
           <input value={pcu.pole_func_img} />
           <input
             type='file'
@@ -132,9 +146,12 @@ const PoleFormPut = props => {
             name='pole_func'
             key='pole_func'
             pcu={pcu}
+            confirmTiny1={confirmTiny1}
+            setConfirmTiny1={setConfirmTiny1}
+            handleEditorChange1={handleEditorChange1}
           />
         </div>
-        <form className='FormItems' encType='multipart/form-data'>
+        <form className='formItems' encType='multipart/form-data'>
           <label>Numéro de téléphone</label>
           <input
             name='pole_num'
