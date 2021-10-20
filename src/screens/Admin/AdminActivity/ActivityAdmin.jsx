@@ -1,11 +1,9 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
 import '../form.css'
 
-import { Context } from '../../../context/Context'
-
-const ActivAdmin = ({
+const ActivityAdmin = ({
   adminInput,
   onChangeHandler,
   poles,
@@ -100,11 +98,9 @@ const ActivAdmin = ({
           <Editor
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue={
-              adminInput && adminInput.activity_desc ? (
-                adminInput.activity_desc
-              ) : (
-                <p>This is the initial content of the editor.</p>
-              )
+              adminInput && adminInput.activity_desc
+                ? adminInput.activity_desc
+                : "Description de l'activité"
             }
             init={{
               height: 200,
@@ -147,4 +143,4 @@ const ActivAdmin = ({
   )
 }
 
-export default ActivAdmin
+export default ActivityAdmin
