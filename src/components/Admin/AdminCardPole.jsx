@@ -5,7 +5,7 @@ const AdminCardPole = ({ id, name, deleteCard, modifyCardPole, img }) => {
       id={id}
       onClick={() => modifyCardPole(id)}
       style={{
-        backgroundImage: `url(http://localhost:4000/static/images/${img})`,
+        backgroundImage: `url(${process.env.REACT_APP_URL_API}/static/images/${img})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }}

@@ -7,10 +7,11 @@ import { Snackbar } from '@material-ui/core'
 import AdminCardPole from '../../../components/Admin/AdminCardPole'
 import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
-import PoleFormPost from '../../../components/Admin/PoleFormPut'
-import PoleFormPut from '../../../components/Admin/PoleFormPut'
+import PoleFormPost from './PoleFormPost'
+import PoleFormPut from './PoleFormPut'
 
 import '../Admin.css'
+import '../form.css'
 
 const AdminPole = () => {
   const [createForm, setCreateForm] = useState(false)
@@ -77,11 +78,14 @@ const AdminPole = () => {
     const confirmation = confirm('Voulez-vous supprimer ce pôle ?')
     if (confirmation) {
       const DeleteData = async () => {
-        await axios.delete(`http://localhost:4000/poles/${id}`)
+        await axios.delete(`${process.env.REACT_APP_URL_API}/poles/${id}`)
         setPoles(poles.filter(poleCard => poleCard.id != id))
       }
       DeleteData()
       setOpen(true)
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     }
   }
 
@@ -89,24 +93,15 @@ const AdminPole = () => {
   //---  and stock it in poleCardUpdate ---//
   const modifyCardPole = id => {
     const modifyData = async () => {
-      const results = await axios.get(`http://localhost:4000/poles/admin/${id}`)
+      const results = await axios.get(
+        `${process.env.REACT_APP_URL_API}/poles/admin/${id}`
+      )
       setPoleCardUpdate(results.data[0])
       setUpdateForm(!updateForm)
     }
     modifyData()
   }
   //-----------------------------------------------
-
-  // Variable to check if form is open
-  // const [isOpenForm, setIsOpenForm] = useState(false)
-  // Function to add a new element to list
-  const addElement = () => {
-    setPoles(poles.concat('Nouveau'))
-  }
-  // Function to remove an element from list
-  const removeElement = () => {
-    setPoles(poles.pop())
-  }
 
   return (
     <div className='adminContainer flex row'>
@@ -132,7 +127,6 @@ const AdminPole = () => {
                     id={elmt.id}
                     name={elmt.pole_name}
                     img={elmt.pole_miniature_img}
-                    removeElement={removeElement}
                     deleteCard={deleteCard}
                     modifyCardPole={modifyCardPole}
                     setCreateForm={setCreateForm}

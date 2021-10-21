@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import PartnerList from '../../components/PartnerList/PartnerList'
 import BottomCenter from '../../components/BottomCenter/BottomCenter'
 import CreamBox from '../../components/CreamBox/CreamBox'
 import GreenBox from '../../components/GreenBox/GreenBox'
 import GreenBoxText from '../../components/GreenBox/GreenBoxText'
+import PartnerList from '../../components/PartnerList/PartnerList'
 import RibbonTitle from '../../components/RibbonTitle/RibbonTitle'
-
-// import homebanner from '../../assets/blere-beach.png'
 
 import './Partners.css'
 
@@ -78,13 +76,11 @@ const Partners = () => {
             bénévoles et de partenaires locaux avec lesquels elle garde des
             relations privilégiées:
           </p>
-
           {partners.map(e => (
             <li key={e.partner_id} className='cream paragraph'>
               {e.partner_name}
             </li>
           ))}
-
           <PartnerList partners={partners} />
         </div>
         <GreenBoxText

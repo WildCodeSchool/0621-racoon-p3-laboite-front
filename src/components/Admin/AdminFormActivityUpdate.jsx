@@ -6,17 +6,17 @@ import ActivityAdmin from '../../screens/Admin/AdminActivity/ActivityAdmin'
 const AdminFormActivityUpdate = ({
   adminInput,
   closeForm,
+  confirmTiny,
   deleteActivity,
+  idActivityToUpdate,
   onChangeHandler,
   poles,
   resMessage,
-  setAdminInput,
   setActivityImage,
-  updateActivity,
-  confirmTiny,
+  setAdminInput,
   setConfirmTiny,
-  updateAlert,
-  idActivityToUpdate
+  updateActivity,
+  updateAlert
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -26,14 +26,14 @@ const AdminFormActivityUpdate = ({
       <div className='bottomDivTitle'>Mettre à jour l&apos;activité</div>
       <div className='activityFormContainer'>
         <ActivityAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          poles={poles}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
-          setActivityImage={setActivityImage}
           confirmTiny={confirmTiny}
           setConfirmTiny={setConfirmTiny}
+          poles={poles}
+          resMessage={resMessage}
+          setActivityImage={setActivityImage}
         />
       </div>
       <div className='btnContainer flex jcc'>

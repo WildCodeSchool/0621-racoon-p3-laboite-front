@@ -5,14 +5,14 @@ import { Snackbar } from '@material-ui/core'
 import PartnerAdmin from '../../screens/Admin/AdminPartner/PartnerAdmin'
 
 const AdminFormPartnerCreate = ({
+  addAlert,
   adminInput,
   closeForm,
   onChangeHandler,
   postPartner,
   resMessage,
   setAdminInput,
-  setPartnerImage,
-  addAlert
+  setPartnerImage
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -22,10 +22,10 @@ const AdminFormPartnerCreate = ({
       <div className='bottomDivTitle'>Nouveau partenaire</div>
       <div className='partnerFormContainer'>
         <PartnerAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
+          resMessage={resMessage}
           setPartnerImage={setPartnerImage}
         />
       </div>

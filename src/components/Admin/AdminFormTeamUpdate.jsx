@@ -7,13 +7,13 @@ const AdminFormTeamUpdate = ({
   adminInput,
   closeForm,
   deleteMember,
+  idMemberToUpdate,
   onChangeHandler,
   resMessage,
   setAdminInput,
   setMemberImage,
-  updateMember,
   updateAlert,
-  idMemberToUpdate
+  updateMember
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -23,10 +23,10 @@ const AdminFormTeamUpdate = ({
       <div className='bottomDivTitle'>Mettre à jour le membre</div>
       <div className='teamFormContainer'>
         <TeamAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
+          resMessage={resMessage}
           setMemberImage={setMemberImage}
         />
       </div>

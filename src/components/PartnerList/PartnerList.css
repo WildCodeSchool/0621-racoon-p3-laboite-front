@@ -4,22 +4,6 @@
     justify-content: space-evenly;
     align-items: stretch;
 }
-.pink{
-    background-color: pink;
-}
-.purple{
-    background-color: purple;
-}
-.orange{
-    background-color: orange;
-}
-.cyan{
-    background-color: cyan;
-}
-.yellow{
-    background-color: yellow;
-}
-
 .partnerbox{
     width: calc(19vw - 10px);
     height: calc(19vw - 20px);

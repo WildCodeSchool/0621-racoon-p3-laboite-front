@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
-import FormTiny from '../../components/Form/FormTiny'
-import FormTinyFunc from '../../components/Form/FormTinyFunc'
+import FormTiny from '../../../components/Form/FormTiny'
+import FormTinyFunc from '../../../components/Form/FormTinyFunc'
 
 const PoleFormPost = ({ getPoles, closeForm }) => {
   const [poleInfo, setPoleInfo] = useState({
@@ -38,15 +38,15 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
     const newPost = { ...poleInfo }
     if (poleImage && poleFunc && poleMiniature) {
       const fd = new FormData()
-      const filename = Date.now() + poleImage.name
-      fd.append('pole_banner', poleImage, filename)
-      newPost.pole_banner = filename
-      const filen = Date.now() + poleFunc.name
-      fd.append('pole_func_img', poleFunc, filen)
-      newPost.pole_func_img = filen
-      const filena = Date.now() + poleMiniature.name
-      fd.append('pole_miniature_img', poleMiniature, filena)
-      newPost.pole_miniature_img = filena
+      const filename1 = Date.now() + poleImage.name
+      fd.append('pole_banner', poleImage, filename1)
+      newPost.pole_banner = filename1
+      const filename2 = Date.now() + poleFunc.name
+      fd.append('pole_func_img', poleFunc, filename2)
+      newPost.pole_func_img = filename2
+      const filename3 = Date.now() + poleMiniature.name
+      fd.append('pole_miniature_img', poleMiniature, filename3)
+      newPost.pole_miniature_img = filename3
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
@@ -66,6 +66,9 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
     }
     getPoles()
     setAddAlert(true)
+    setTimeout(() => {
+      window.location.reload()
+    }, 2000)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -86,6 +89,10 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
 
   return (
     <div className='form flex col jcc aic'>
+      <div className='closeBtn flex jcc aic' onClick={closeForm}>
+        x
+      </div>
+      <div className='bottomDivTitle'>Nouveau pôle</div>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
@@ -99,7 +106,6 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
             type='file'
             name='pole_banner'
             key='pole_banner'
-            onChange={handlePoleChange}
             placeholder={`Bannière`}
             onChange={e => {
               setPoleImage(e.target.files[0])
@@ -179,7 +185,9 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
             placeholder={`Sous-titre`}
           />
         </form>
-        <button onClick={submitPoleData}>Publier</button>
+        <button className='btnForm' onClick={submitPoleData}>
+          Publier
+        </button>
         <Snackbar
           open={addAlert}
           autoHideDuration={6000}

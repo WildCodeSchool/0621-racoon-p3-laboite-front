@@ -1,11 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import AdminLinkBtn from './AdminLinkBtn'
-
+import * as Icons from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import AdminLinkBtn from './AdminLinkBtn'
+
 const AdminLeftMenu = () => {
+  //import all required fontAwesome icons in library
+  const iconList = Object.keys(Icons)
+    .filter(key => key !== 'fas' && key !== 'prefix')
+    .map(icon => Icons[icon])
+  library.add(...iconList)
+
   const adminFieldList = [
     { id: 1, name: 'Pôles', picto: 'building', route: 'poles' },
     { id: 2, name: 'Activités', picto: 'network-wired', route: 'activities' },

@@ -4,14 +4,14 @@ import { Snackbar } from '@material-ui/core'
 import TeamAdmin from '../../screens/Admin/AdminTeam/TeamAdmin'
 
 const AdminFormTeamCreate = ({
+  addAlert,
   adminInput,
   closeForm,
   onChangeHandler,
   postMember,
   resMessage,
   setAdminInput,
-  setMemberImage,
-  addAlert
+  setMemberImage
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -21,10 +21,10 @@ const AdminFormTeamCreate = ({
       <div className='bottomDivTitle'>Nouveau membre</div>
       <div className='teamFormContainer'>
         <TeamAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
+          resMessage={resMessage}
           setMemberImage={setMemberImage}
         />
       </div>

@@ -31,8 +31,8 @@
   padding: 20px;
 }
 .creamRightBlock p{
-  border-left: 6px solid var(--red-background-color: #EB5160);
-  color: var(--main-font-color: #EB5160);
+  border-left: 6px solid var(--red-background-color);
+  color: var(--main-font-color);
   padding-left: 20px;
 }
 
