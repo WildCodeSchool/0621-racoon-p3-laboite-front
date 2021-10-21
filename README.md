@@ -1,5 +1,3 @@
-In the project directory, you can run:
-
 ### `Dans bash`
 Ouvrir le dossier “0621-racoon-p3-laboite-front”
 
