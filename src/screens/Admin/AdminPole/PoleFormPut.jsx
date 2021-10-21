@@ -21,22 +21,27 @@ const PoleFormPut = props => {
     event.preventDefault()
     // newPost retrieve all the pole cards of PoleCardList
     const newPost = { ...pcu }
-    if (putImage && putFunc && putMiniature) {
-      const fd = new FormData()
+    const fd = new FormData()
+
+    if (putImage) {
       const filename1 = Date.now() + putImage.name
       fd.append('pole_banner', putImage, filename1)
       newPost.pole_banner = filename1
+    }
+    if (putFunc) {
       const filename2 = Date.now() + putFunc.name
       fd.append('pole_func_img', putFunc, filename2)
       newPost.pole_func_img = filename2
+    }
+    if (putMiniature) {
       const filename3 = Date.now() + putMiniature.name
       fd.append('pole_miniature_img', putMiniature, filename3)
       newPost.pole_miniature_img = filename3
-      try {
-        await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
-      } catch (err) {
-        console.log(err)
-      }
+    }
+    try {
+      await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
+    } catch (err) {
+      console.log(err)
     }
     try {
       //modify the card with the id stocked in modifyValue
