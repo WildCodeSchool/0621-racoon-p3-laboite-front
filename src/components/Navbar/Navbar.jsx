@@ -17,8 +17,7 @@ const Navbar = () => {
   const [fixNav, setFixNav] = useState(false)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal()
 
-  const { dispatch } = useContext(Context)
-  const access_token = localStorage.getItem('access_token')
+  const { dispatch, access_token } = useContext(Context)
 
   let history = useHistory()
 
@@ -44,6 +43,7 @@ const Navbar = () => {
   const handleLogout = () => {
     delete axios.defaults.headers.common['Authorization']
     dispatch({ type: 'LOGOUT' })
+    toggleLoginForm()
     {
       history.push('/')
     }
