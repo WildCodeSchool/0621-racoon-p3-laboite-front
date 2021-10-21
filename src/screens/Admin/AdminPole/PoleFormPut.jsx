@@ -3,11 +3,8 @@ import axios from 'axios'
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
-import PutTinyDesc from '../../components/Form/PutTinyDesc'
-import PutTinyFunc from '../../components/Form/PutTinyFunc'
-
-import './Admin.css'
-import './form.css'
+import PutTinyDesc from '../../../components/Form/PutTinyDesc'
+import PutTinyFunc from '../../../components/Form/PutTinyFunc'
 
 const PoleFormPut = props => {
   const { modifyValue, getPoles, pcu, closeForm } = props
@@ -26,15 +23,15 @@ const PoleFormPut = props => {
     const newPost = { ...pcu }
     if (putImage && putFunc && putMiniature) {
       const fd = new FormData()
-      const filename = Date.now() + putImage.name
-      fd.append('pole_banner', putImage, filename)
-      newPost.pole_banner = filename
-      const filen = Date.now() + putFunc.name
-      fd.append('pole_func_img', putFunc, filen)
-      newPost.pole_func_img = filen
-      const filena = Date.now() + putMiniature.name
-      fd.append('pole_miniature_img', putMiniature, filena)
-      newPost.pole_miniature_img = filena
+      const filename1 = Date.now() + putImage.name
+      fd.append('pole_banner', putImage, filename1)
+      newPost.pole_banner = filename1
+      const filename2 = Date.now() + putFunc.name
+      fd.append('pole_func_img', putFunc, filename2)
+      newPost.pole_func_img = filename2
+      const filename3 = Date.now() + putMiniature.name
+      fd.append('pole_miniature_img', putMiniature, filename3)
+      newPost.pole_miniature_img = filename3
       try {
         await axios.post(`${process.env.REACT_APP_URL_API}/upload`, fd)
       } catch (err) {
