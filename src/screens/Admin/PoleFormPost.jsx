@@ -1,11 +1,10 @@
+import axios from 'axios'
+import { useState } from 'react'
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
 import FormTiny from '../../components/Form/FormTiny'
 import FormTinyFunc from '../../components/Form/FormTinyFunc'
-
-import axios from 'axios'
-import { useState } from 'react'
 
 const PoleFormPost = ({ getPoles, closeForm }) => {
   const [poleInfo, setPoleInfo] = useState({
@@ -86,7 +85,7 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
   }
 
   return (
-    <div>
+    <div className='form flex col jcc aic'>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>

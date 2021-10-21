@@ -5,19 +5,18 @@ import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
 import AdminCardPole from '../../components/Admin/AdminCardPole'
-import PoleFormPost from './PoleFormPost'
-import PoleFormPut from './PoleFormPut'
 import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
+import PoleFormPost from './PoleFormPost'
+import PoleFormPut from './PoleFormPut'
 
 import './form.css'
 
 const AdminPole = () => {
-  const [refresh, setRefresh] = useState(false)
+  // const [refresh, setRefresh] = useState(false)
   const [createForm, setCreateForm] = useState(false)
   const [updateForm, setUpdateForm] = useState(false)
   const [poles, setPoles] = useState([])
-  // const [poleCards, setPoleCards] = useState([])
   const [poleCardUpdate, setPoleCardUpdate] = useState({})
   const [idPoleToUpdate, setIdPoleToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
@@ -64,20 +63,6 @@ const AdminPole = () => {
     setResMessage('') // clear message
   }
 
-  // const showFormOnClick = () => {
-  //   setShowFormPost(true)
-  // }
-
-  //--- get API data in cardList  and stock in poleCards ---//
-  // const poleData = async () => {
-  //   const results = await axios.get(`http://localhost:4000/poles`)
-  //   setPoleCards(results.data)
-  // }
-  // useEffect(() => {
-  //   // pole data retrieve all the pole cards
-  //   poleData()
-  // }, [])
-
   const modifyValue = (name, value) => {
     setPoleCardUpdate({
       ...poleCardUpdate,
@@ -121,18 +106,10 @@ const AdminPole = () => {
   const removeElement = () => {
     setPoles(poles.pop())
   }
-  // Function to display form
-  // const displayForm = e => {
-  //   let myClass = e.target.className
-  //   console.log('class', myClass)
-  //   setIsOpenForm(true)
-  // console.log(isOpenForm, JSON.parse(localStorage.getItem('isOpenForm')))
-  // }
 
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
-      {/* <PoleAdmin /> */}
       <div className='adminMenuRight flex col'>
         <div className='adminHeader'>
           Bienvenue dans l&apos;espace administration !
@@ -195,10 +172,6 @@ const AdminPole = () => {
           >
             <Alert severity='success'>Pôle supprimé avec succès</Alert>
           </Snackbar>
-          {/* <AdminForm displayForm={displayForm} />
-              <div>PoleAdmin</div> */}
-          {/* </> */}
-          {/* )} */}
         </div>
       </div>
     </div>

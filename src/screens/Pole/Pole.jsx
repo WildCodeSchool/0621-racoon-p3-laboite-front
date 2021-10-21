@@ -11,8 +11,6 @@ import TopCenter from './../../components/TopCenter/TopCenter'
 
 import '../../components/ActivitiesPole/ActivitiesPole.css'
 
-import './Pole.css'
-
 const Pole = () => {
   const [poleData, setPoleData] = useState([])
   const [loading, setLoading] = useState(true)
