@@ -23,7 +23,7 @@ Si la fenêtre d’explorateur ne s’ouvre pas, allez sur “localhost:3000”
 ### `formater les images pour le web`
 Site de compression d’images en ligne :  https://imagecompressor.com/fr/
 -   image de la bannière > résolution 72 DPI, dimensions 2500 x 450 px, jpg
--   image de membre > résolution 72 DPI, dimensions 916 x 836 px rond (voir logiciel), png
+-   image de membre > résolution 72 DPI, dimensions 300 x 300 px, png
 -   image activité > résolution 72 DPI, dimensions 463 x 225 px, jpg
 -   pole vignettes > resolution 72 DPI, dimensions 400 x 350 px, jpg
 -   pole images > resolution 72 DPI, dimensions 674 x 480 px, jpg
