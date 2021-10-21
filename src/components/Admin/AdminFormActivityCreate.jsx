@@ -4,17 +4,17 @@ import { Snackbar } from '@material-ui/core'
 import ActivityAdmin from '../../screens/Admin/AdminActivity/ActivityAdmin'
 
 const AdminFormActivityCreate = ({
+  addAlert,
   adminInput,
   closeForm,
+  confirmTiny,
   onChangeHandler,
   poles,
   postActivity,
   resMessage,
-  setAdminInput,
   setActivityImage,
-  confirmTiny,
-  setConfirmTiny,
-  addAlert
+  setAdminInput,
+  setConfirmTiny
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -24,14 +24,14 @@ const AdminFormActivityCreate = ({
       <div className='bottomDivTitle'>Nouvelle activité</div>
       <div className='teamFormContainer'>
         <ActivityAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          poles={poles}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
-          setActivityImage={setActivityImage}
           confirmTiny={confirmTiny}
           setConfirmTiny={setConfirmTiny}
+          poles={poles}
+          resMessage={resMessage}
+          setActivityImage={setActivityImage}
         />
       </div>
       <div className='btnContainer flex jcc'>

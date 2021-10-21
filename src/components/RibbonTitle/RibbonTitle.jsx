@@ -6,9 +6,8 @@ import * as BrandsIcons from '@fortawesome/free-brands-svg-icons'
 
 import './RibbonTitle.css'
 
-// Component
 const RibbonTitle = ({ title, picto }) => {
-  //const pictoList = [default, leaf, concierge-bell, leaf, box-open, hands-helping, phone-alt] //... cart-arrow-down || cart-shopping (shopping-cart), person-biking (biking), star-half-stroke, triangle-exclamation(exclamation-triangle)
+  //Sometimes the picto contains a hyphen '-' and word order should be reversed or slightly modified in order to work (e.g : cart-shopping -> shopping-cart, person-biking -> biking)
 
   // Import any solid icon from Fontawesome
   const iconListSolid = Object.keys(SolidIcons)

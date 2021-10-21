@@ -1,5 +1,3 @@
-import '../form.css'
-
 const PartnerAdmin = ({
   adminInput,
   onChangeHandler,

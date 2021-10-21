@@ -3,7 +3,6 @@ import axios from 'axios'
 import { NavLink } from 'react-router-dom'
 
 import './MobileNavBar.css'
-import Concept from './../Concept/Concept'
 
 const MobileNavBar = () => {
   //Appel API et states pour afficher les pôles

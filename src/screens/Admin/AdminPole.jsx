@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
@@ -11,17 +11,6 @@ import AdminLeftMenu from '../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../components/Admin/AdminTopDiv'
 
 import './form.css'
-// import PoleAdmin from './PoleAdmin'
-// import AdminForm from '../../components/Admin/AdminForm'
-
-//-------------------------------------
-// import PoleFormPost from ''
-// import PoleFormPost from './PoleFormPost'
-// import PoleFormPut from './PoleFormPut'
-//--------------------------------------
-
-// import './Admin.css'
-// import PoleAdmin from './PoleAdmin'
 
 const AdminPole = () => {
   const [refresh, setRefresh] = useState(false)

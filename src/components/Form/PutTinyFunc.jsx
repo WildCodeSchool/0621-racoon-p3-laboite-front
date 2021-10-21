@@ -3,8 +3,6 @@ import { Editor } from '@tinymce/tinymce-react'
 
 export default function PutTinyFunc({
   setDataFunc,
-  modifyValue,
-  props,
   pcu,
   confirmTiny1,
   setConfirmTiny1,

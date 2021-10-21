@@ -8,13 +8,13 @@ const AdminFormPartnerUpdate = ({
   adminInput,
   closeForm,
   deletePartner,
+  idPartnerToUpdate,
   onChangeHandler,
   resMessage,
   setAdminInput,
   setPartnerImage,
-  updatePartner,
   updateAlert,
-  idPartnerToUpdate
+  updatePartner
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -24,10 +24,10 @@ const AdminFormPartnerUpdate = ({
       <div className='bottomDivTitle'>Mettre à jour le partenaire</div>
       <div className='partnerFormContainer'>
         <PartnerAdmin
-          adminInput={adminInput}
           onChangeHandler={onChangeHandler}
-          resMessage={resMessage}
+          adminInput={adminInput}
           setAdminInput={setAdminInput}
+          resMessage={resMessage}
           setPartnerImage={setPartnerImage}
         />
       </div>

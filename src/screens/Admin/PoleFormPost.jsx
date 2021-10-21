@@ -7,7 +7,7 @@ import FormTinyFunc from '../../components/Form/FormTinyFunc'
 import axios from 'axios'
 import { useState } from 'react'
 
-const PoleFormPost = ({ poles, getPoles, closeForm }) => {
+const PoleFormPost = ({ getPoles, closeForm }) => {
   const [poleInfo, setPoleInfo] = useState({
     pole_name: '',
     pole_title: '',
@@ -100,7 +100,6 @@ const PoleFormPost = ({ poles, getPoles, closeForm }) => {
             type='file'
             name='pole_banner'
             key='pole_banner'
-            onChange={handlePoleChange}
             placeholder={`Bannière`}
             onChange={e => {
               setPoleImage(e.target.files[0])

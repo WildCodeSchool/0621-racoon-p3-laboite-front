@@ -165,13 +165,12 @@ const AdminActivity = () => {
     setAdminInput({ pole_id: '1' }) // clear inputs and choose pole 1 by default
     setCreateForm(true) // open createForm
     setUpdateForm(false) // close updateForm
-    setConfirmTiny(true)
   }
   const showUpdateForm = e => {
     setCreateForm(false) // close createForm
     setUpdateForm(true) // open updateForm
     setIdActivityToUpdate(e.target.id) // auto-trigger getActivity
-    setConfirmTiny(true)
+    setConfirmTiny(true) // toggle confirmTiny when form changes
   }
   const closeForm = () => {
     setCreateForm(false) // close createForm
@@ -183,7 +182,6 @@ const AdminActivity = () => {
     setAddAlert(false) // reset addAlert
     setDeleteAlert(false) // reset deleteAlert
     setUpdateAlert(false) // reset updateAlert
-    setConfirmTiny(false) // clear confirmTiny
   }
   //Function to update inputs
   const onChangeHandler = useCallback(
