@@ -18,6 +18,7 @@ Si la fenêtre d’explorateur ne s’ouvre pas, allez sur “localhost:3000”
 -   Optimisation du format des images lors de la création ou modification d’un élément    pour un meilleur rendu.
 -   Mettre absolument une image par activité
 -   Lors de la suppression d’un pôle, les activités liées sont toujours présentes dans la base de données. Vous pouvez les retirer depuis la section “activités”
+-   Pour voir le site dans sa totalité se déconnecter de la partie administrateur. (entête et bas de page)
 
 ### `formater les images pour le web`
 Site de compression d’images en ligne :  https://imagecompressor.com/fr/
