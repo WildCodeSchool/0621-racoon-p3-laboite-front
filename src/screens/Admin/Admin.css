@@ -74,6 +74,7 @@
 	background-color: #515151;
 	border-bottom: solid 1px #616161;
 }
+
 /*----- Top Div -----*/
 .topDiv{
 	margin: 20px;
@@ -128,11 +129,9 @@
 	height:100%;
 	pointer-events: none;
 }
-
 .blue{
 	background-color: dodgerblue;
 }
-
 .cardName{
   z-index: 0;
 	position: absolute;
@@ -140,16 +139,13 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-
 }
-
 .cardName .title {
   background-color: #313131;
   width: 100%;
   z-index: 0;
   padding: 5px 0px;
 }
-
 .btnDeleteCard{
 	position: absolute;
 	font-size: 16px;
@@ -165,7 +161,6 @@
 }
 
 /*----- Bottom Div -----*/
-
 .bottomDiv{
 	margin: 20px;
 }
@@ -224,13 +219,11 @@ cursor: pointer;
 	background-color: darkseagreen;
 	border-radius: 10px;
 }
-
 .bg{
 	padding: 20px;
 		background-color: lightgray;
 	border-radius: 0px 0px 20px 20px;
 }
-
 .tinyNo{
 	background-color: red;
 	width: 20px;
@@ -239,7 +232,6 @@ cursor: pointer;
 	border: 1px solid black;
 	margin-left: 10px;
 }
-
 .tinyYes{
 	background-color: green;
 	width: 20px;
