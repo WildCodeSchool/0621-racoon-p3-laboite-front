@@ -20,7 +20,6 @@ import Login from './screens/Login/Login'
 import Partners from './screens/Partners/Partners'
 import Pole from './screens/Pole/Pole'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
-import PoleAdmin from './screens/Admin/PoleAdmin'
 import MobileNavBar from './components/Navbar/MobileNavBar'
 
 import './App.css'
@@ -64,9 +63,6 @@ function App() {
           <PrivateRoute exact path='/admin/poles'>
             <AdminPole />
           </PrivateRoute>
-          {/* <PrivateRoute exact path='/admin/poles'>
-                <PoleAdmin />
-              </PrivateRoute> */}
           <PrivateRoute exact path='/admin/members'>
             <AdminTeam />
           </PrivateRoute>

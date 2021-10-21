@@ -15,7 +15,6 @@ const AdminCard = ({ id, name, updateElement, deleteCard }) => {
         x
       </div>
       <div className={`cardContent flex jcc aic`}>
-        {/* {img && <img src={img} />} */}
         <div className='cardName'>{name}</div>
       </div>
     </div>
