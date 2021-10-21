@@ -66,6 +66,9 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
     }
     getPoles()
     setAddAlert(true)
+    setTimeout(() => {
+      window.location.reload()
+    }, 2000)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -86,6 +89,10 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
 
   return (
     <div className='form flex col jcc aic'>
+      <div className='closeBtn flex jcc aic' onClick={closeForm}>
+        x
+      </div>
+      <div className='bottomDivTitle'>Nouveau pôle</div>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
@@ -178,7 +185,9 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
             placeholder={`Sous-titre`}
           />
         </form>
-        <button onClick={submitPoleData}>Publier</button>
+        <button className='btnForm' onClick={submitPoleData}>
+          Publier
+        </button>
         <Snackbar
           open={addAlert}
           autoHideDuration={6000}

@@ -52,6 +52,9 @@ const PoleFormPut = props => {
     // upload the modified card in poleCardList
     getPoles()
     setUpdateAlert(true)
+    setTimeout(() => {
+      window.location.reload()
+    }, 2000)
   }
 
   // setData pertmet de transmettre l'info stockée ds tiny
@@ -73,6 +76,10 @@ const PoleFormPut = props => {
 
   return (
     <div className='form flex col jcc aic'>
+      <div className='closeBtn flex jcc aic' onClick={closeForm}>
+        x
+      </div>
+      <div className='bottomDivTitle'>Mettre à jour le pôle</div>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
@@ -183,7 +190,9 @@ const PoleFormPut = props => {
             value={pcu.pole_catchphrase}
           />
         </form>
-        <button onClick={submitPoleData}>Publier</button>
+        <button className='btnForm' onClick={submitPoleData}>
+          Publier
+        </button>
         <Snackbar
           open={updateAlert}
           autoHideDuration={6000}

@@ -83,6 +83,9 @@ const AdminPole = () => {
       }
       DeleteData()
       setOpen(true)
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     }
   }
 

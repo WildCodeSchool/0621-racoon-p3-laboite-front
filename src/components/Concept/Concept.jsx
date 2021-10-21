@@ -10,11 +10,13 @@ const Concept = ({ concept }) => {
       </div>
       <div className='conceptPart'>
         <div className='part1'>
-          <img
-            className='conceptImage'
-            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img1}`}
-            alt='jardinerie'
-          />
+          <div className='containImg'>
+            <img
+              className='conceptImage'
+              src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img1}`}
+              alt='jardinerie'
+            />
+          </div>
           <div className='conceptP1'>
             <p>{concept.concept_txt1_p1}</p>
             <p style={{ textDecoration: 'underline', fontStyle: 'italic' }}>
@@ -30,11 +32,6 @@ const Concept = ({ concept }) => {
           </div>
         </div>
         <div className='part2'>
-          <img
-            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img2}`}
-            className='imgGhost'
-            alt='champs'
-          />
           <div className='conceptP2'>
             <div className='block-buster'>
               <div className='borderText'></div>
@@ -46,18 +43,22 @@ const Concept = ({ concept }) => {
             </div>
             <p style={{ fontWeight: '600' }}>{concept.concept_txt2_p3}</p>
           </div>
-          <img
-            className='conceptImage conceptImageGhost'
-            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img2}`}
-            alt='vendange'
-          />
+          <div className='containImg'>
+            <img
+              className='conceptImage'
+              src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img2}`}
+              alt='vendange'
+            />
+          </div>
         </div>
         <div className='part3'>
-          <img
-            className='conceptImage'
-            src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img3}`}
-            alt='livraison'
-          />
+          <div className='containImg'>
+            <img
+              className='conceptImage'
+              src={`${process.env.REACT_APP_URL_API}/static/images/${concept.concept_img3}`}
+              alt='livraison'
+            />
+          </div>
           <div className='conceptP3'>
             <p className='borderP'>{concept.concept_txt3_p1}</p>
             <p
