@@ -82,7 +82,7 @@ const Navbar = () => {
         hide={toggleLoginForm}
         title={`Connexion Administrateur :`}
       >
-        {access_token !== null ? (
+        {access_token ? (
           <div className='form-logout'>
             <button
               className='form-btn'
