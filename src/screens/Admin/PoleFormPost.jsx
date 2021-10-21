@@ -86,6 +86,10 @@ const PoleFormPost = ({ getPoles, closeForm }) => {
 
   return (
     <div className='form flex col jcc aic'>
+      <div className='closeBtn flex jcc aic' onClick={closeForm}>
+        x
+      </div>
+      <div className='bottomDivTitle'>Nouveau pôle</div>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>
