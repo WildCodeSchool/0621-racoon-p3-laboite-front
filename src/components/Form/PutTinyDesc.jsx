@@ -1,12 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
-import { faLastfmSquare } from '@fortawesome/free-brands-svg-icons'
 
 export default function PutTinyDesc({
   setDataDesc,
-  modifyValue,
-  props,
-  poles,
   pcu,
   confirmTiny,
   setConfirmTiny,

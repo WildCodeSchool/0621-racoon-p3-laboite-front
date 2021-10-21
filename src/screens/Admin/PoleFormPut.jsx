@@ -1,16 +1,16 @@
+import { useState } from 'react'
+import axios from 'axios'
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
-import { useState } from 'react'
-import axios from 'axios'
 import PutTinyDesc from '../../components/Form/PutTinyDesc'
 import PutTinyFunc from '../../components/Form/PutTinyFunc'
 
+import './Admin.css'
 import './form.css'
 
 const PoleFormPut = props => {
-  // props stocks two functions (parameters) from PoleCardList
-  const { modifyValue, poles, getPoles, pcu, closeForm } = props
+  const { modifyValue, getPoles, pcu, closeForm } = props
   const [putImage, setPutImage] = useState()
   const [putFunc, setPutFunc] = useState()
   const [putMiniature, setPutMiniature] = useState()
@@ -75,7 +75,7 @@ const PoleFormPut = props => {
   }
 
   return (
-    <div>
+    <div className='form flex col jcc aic'>
       <div className='FormContainer'>
         <form encType='multipart/form-data' className='formItems'>
           <label>Nom de l&apos;onglet</label>

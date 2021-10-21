@@ -5,19 +5,17 @@ import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
 import AdminCardPole from '../../../components/Admin/AdminCardPole'
-import PoleFormPost from '../../../components/Admin/PoleFormPut'
-import PoleFormPut from '../../../components/Admin/PoleFormPut'
 import AdminLeftMenu from '../../../components/Admin/AdminLeftMenu'
 import AdminTopDiv from '../../../components/Admin/AdminTopDiv'
+import PoleFormPost from '../../../components/Admin/PoleFormPut'
+import PoleFormPut from '../../../components/Admin/PoleFormPut'
 
 import '../Admin.css'
 
 const AdminPole = () => {
-  // const [refresh, setRefresh] = useState(false)
   const [createForm, setCreateForm] = useState(false)
   const [updateForm, setUpdateForm] = useState(false)
   const [poles, setPoles] = useState([])
-  // const [poleCards, setPoleCards] = useState([])
   const [poleCardUpdate, setPoleCardUpdate] = useState({})
   const [idPoleToUpdate, setIdPoleToUpdate] = useState('')
   const [adminInput, setAdminInput] = useState({})
@@ -113,7 +111,6 @@ const AdminPole = () => {
   return (
     <div className='adminContainer flex row'>
       <AdminLeftMenu />
-      {/* <PoleAdmin /> */}
       <div className='adminMenuRight flex col'>
         <div className='adminHeader'>
           Bienvenue dans l&apos;espace administration !
