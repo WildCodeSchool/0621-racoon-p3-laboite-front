@@ -15,7 +15,8 @@ const AdminFormActivityUpdate = ({
   updateActivity,
   confirmTiny,
   setConfirmTiny,
-  updateAlert
+  updateAlert,
+  idActivityToUpdate
 }) => {
   return (
     <div className='form flex col jcc aic'>
@@ -38,13 +39,8 @@ const AdminFormActivityUpdate = ({
       <div className='btnContainer flex jcc'>
         <div
           className='btnForm'
-          onClick={e => {
-            if (
-              window.confirm(
-                'Etes-vous sûr(e) de vouloir supprimer cette activité ?'
-              )
-            )
-              deleteActivity(e)
+          onClick={() => {
+            deleteActivity(idActivityToUpdate)
           }}
         >
           Supprimer

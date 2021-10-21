@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+
 import { Alert } from '@material-ui/lab'
 import { Snackbar } from '@material-ui/core'
 
@@ -163,6 +164,9 @@ const AdminTeam = () => {
     setIdMemberToUpdate('') // clear selected member
     setMemberImage() // clear image input
     setResMessage('') // clear message
+    setAddAlert(false) // reset addAlert
+    setDeleteAlert(false) // reset deleteAlert
+    setUpdateAlert(false) // reset updateAlert
   }
   //Function to update inputs
   const onChangeHandler = useCallback(
@@ -227,6 +231,7 @@ const AdminTeam = () => {
                 setMemberImage={setMemberImage}
                 updateMember={updateMember}
                 updateAlert={updateAlert}
+                idMemberToUpdate={idMemberToUpdate}
               />
             </>
           )}
