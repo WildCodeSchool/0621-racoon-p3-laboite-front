@@ -23,7 +23,8 @@ Si la fenêtre d’explorateur ne s’ouvre pas, allez sur “localhost:3000”
 -   Ne pas dépasser 250 caractères dans la partie description d'activité.
 
 ### `formater les images pour le web`
-Site pour redimensionner les images en lignes : https://imageresizer.com/.  
+Site pour redimensionner (poids) les images en lignes : https://imageresizer.com/.  
+Site pour redimenssioner (taille en px) les images en ligne : https://resizeimage.net/
 Site de compression d’images en ligne :  https://imagecompressor.com/fr/. les images doivent être en dessous de 500ko
 -   image de la bannière > résolution 72 DPI, dimensions 2500 x 450 px, jpg
 -   image de membre > résolution 72 DPI, dimensions 300 x 300 px, png
