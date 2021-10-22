@@ -12,7 +12,9 @@ const Header = () => {
       </div>
       <div className='flex header-text'>
         <h1 className='top-text'>La boîte d&apos;à côté...</h1>
-        <h1 className='offset-right'>Une entreprise pas comme les autres !</h1>
+        <h1 className='offset-right'>
+          Une entreprise (pas) comme les autres !
+        </h1>
       </div>
     </div>
   )
