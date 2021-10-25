@@ -1,38 +1,203 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script');
+
+:root {
+  --main-background-color: #F7F8F2;
+  --red-background-color: #EB5160;
+  --green-background-color: #52908B;
+  --main-font-color: #EB5160;
+  --title-color: #F7F8F2;
+  --sections-txt-color: #F7F8F2;
+  --nav-list-items-color: #F7F8F2;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--main-background-color);
+  color: var(--main-font-color);
+  font-weight: 600;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mainContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.centerContainer {
+  width: 80%;
+  margin:auto;
+}
+
+h1 {
+  font-family: 'Dancing script', cursive;
+  color: var(--title-color);
+  background-color: var(--red-background-color);
+}
+
+h2 {
+  font-family: 'Dancing script', cursive;
+  color: var(--title-color);
+  align-content: center;
+  position: relative;
+  bottom: 40px;
+  background-color:var(--green-background-color);
+  display:inline-block; 
+  padding: 0px 20px;
+}
+
+h3 {
+  font-family: 'Dancing script', cursive;
+  color: var(--red-background-color);
+}
+
+nav {
+  background-color: var(--red-background-color);
+}
+
+.banner img {
+  width: 100%;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* CONCEPT ~ FONCTIONNEMENT */
+.greenContainer {
+  width: 100%;
+  height: 100%;
+  background: var(--green-background-color);
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 10%;
+}
+
+.titleLigns {
+  width: 100%;
+  height: 60%;
+  border-top:var(--main-background-color)solid 5px;
+}
+.titleLine {
+  width: 100%;
+  height: 60%;
+  border-top:var(--main-background-color)solid 5px;
+  background-color:var(--green-background-color)solid 5px;
+}
+
+.titleRedLine {
+  width: 100%;
+  height: 60%;
+  border-top:var(--red-background-color)solid 5px;
+}
+
+.bothGreenContainer {
+  display: flex;
+  width: 100%;
+}
+
+.leftGreenContainer{
+  width: 50%;  
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.rightGreenContainer{
+  width: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+img.greenSection {
+  width: 100%;
+}
+
+p.creamLeftAlign {
+text-align: left;
+margin: 30px;
+color: var(--title-color);
+align-content: center;
+}
+
+.green {
+  background-color: var(--green-background-color);
+}
+
+
+/* Medias querries */
+
+/* screen above 1024px */
+@media only screen and (min-width: 1024px) {
+  .leftGreenContainer{
+    width: 30%;  
+    display: flex;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .rightGreenContainer{
+    width: 70%;
+  }
+
+}
+
+/* screen under 700px */
+@media only screen and (max-width: 700px) {
+
+  .mainContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .centerContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bothGreenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .leftGreenContainer {
+    width: 100%;
+  }
+
+  .rightGreenContainer {
+    width: 100%;
+  }
+
+  .titleContainer {
+    padding-bottom: 0px;
+    margin-top: 30px;
+  }
+
+  .titleLigns {
+    height: 0px;
   }
 }
+
+
+/* styles de la page concept */
+@media screen and (max-width: 1500px) {
+  .conceptBorder {
+    border-bottom: solid;
+    color: var(--title-color);
+    width: 100%;
+  }
+
+  .conceptTitle {
+    font-size: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
+    }
+}
+

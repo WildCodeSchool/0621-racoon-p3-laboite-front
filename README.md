@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+### `Dans bash`
+Ouvrir le dossier “0621-racoon-p3-laboite-front”
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `Installation`
+installer les dépendances, “npm install” dans le terminal
+Lancement : lancement du site, “npm start” dans le terminal
 
-## Available Scripts
+### `Variable d’environnement`
+REACT_APP_URL_API=adresse du serveur
+Si la fenêtre d’explorateur ne s’ouvre pas, allez sur “localhost:3000”
 
-In the project directory, you can run:
+### `Espace Admin`
+-   Afin de pouvoir accéder à l’interface administrateur, se connecter via le logo de la barre de navigation à droite qui apparait au survol
+-   Interface admin utilisable uniquement depuis un ordinateur (non optimisée pour mobile)
+-   Lors de la création d'un nouveau pôle, renseigner les trois images pour que celles-ci apparaissent bien sur le site (bannière, photo d'illustration pour le fonctionnement et miniature pour la page accueil).
+-   Si aucune photo n'est renseignée à l'ajout d'un membre de l'équipe, un avatar sera affiché par défaut.
+-   Pour un ajout ou une modification d'un pôle ou d'une activité, ne pas oublier de confirmer le contenu de l'éditeur de texte avant de publier.
+-   Optimisation du format des images lors de la création ou modification d’un élément    pour un meilleur rendu.
+-   Mettre absolument une image par activité
+-   Lors de la suppression d’un pôle, les activités liées sont toujours présentes dans la base de données. Vous pouvez les retirer depuis la section “activités”
+-   Pour voir le site dans sa totalité (entête et bas de page) se déconnecter de la partie administrateur.
+-   Ne pas dépasser 335 caractères dans la partie Fonctionnement des pôles.
+-   Ne pas dépasser 250 caractères dans la partie description d'activité.
 
-### `npm start`
+### `formater les images pour le web`
+Site pour redimensionner (poids) les images en lignes : https://imageresizer.com/.  
+Site pour redimenssioner (taille en px) les images en ligne : https://resizeimage.net/
+Site de compression d’images en ligne :  https://imagecompressor.com/fr/. les images doivent être en dessous de 500ko
+-   image de la bannière > résolution 72 DPI, dimensions 2500 x 450 px, jpg
+-   image de membre > résolution 72 DPI, dimensions 300 x 300 px, png
+-   image fonctionnement >  résolution 72 DPI, dimensions 674 × 480 px, jpg
+-   image activité > résolution 72 DPI, dimensions 463 x 225 px, jpg
+-   pole vignettes > resolution 72 DPI, dimensions 400 x 350 px, jpg
+-   pole images > resolution 72 DPI, dimensions 674 x 480 px, jpg
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Insertion des pictos lors de la création ou modification`
+Allez à l’adresse suivante : https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free
+Chercher l'icône de son choix (libre de droits), par exemple “address-book”. C’est ce nom qu’il faudra renseigner dans le champ “picto”.
+Attention, FontAwesome inverse parfois l’ordre dans le nom de ses icônes qui contiennent un trait-d’union. Il faudra tester d’inverser l’ordre des mots si besoin.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `video interface utilisateur`
+https://user-images.githubusercontent.com/75483296/138306996-fdac52da-c959-4094-8420-9f443b6aa08e.mov
 
-### `npm test`
+### `video interface administrateur`
+https://user-images.githubusercontent.com/75483296/138420643-f7157482-3fd9-47c5-b5e9-f87e9622b9be.mov
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

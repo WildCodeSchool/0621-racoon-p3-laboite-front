@@ -1,0 +1,30 @@
+.flex{
+  display: flex;
+}
+.width100{
+  width:100%;
+  min-height: 50vh;
+  height: auto;
+}
+.partners{
+  flex-direction: column;
+  background-color: #F7F8F2;
+	padding: 20px;
+}
+
+.paragraph {
+  color: var(--sections-txt-color);
+  text-align: left;
+}
+
+.function, .give{
+  color: #F7F8F2;
+  background-color: cadetblue;
+  height: 200px;
+}
+
+.contactBlock, .thanks{
+  background-color: #F7F8F2;
+  padding: 20px;
+}
+

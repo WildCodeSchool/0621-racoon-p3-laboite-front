@@ -1,0 +1,29 @@
+.partnersWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+.partnerbox{
+    width: calc(19vw - 10px);
+    height: calc(19vw - 20px);
+    margin: 10px 0;
+}
+.partnerbox img{
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .partnerbox{
+		width: calc(15vw - 20px);
+		height: calc(20vw - 100px);
+	}
+}
+
+@media only screen and (max-width: 700px) {
+  .partnerbox{
+		width: calc(40vw - 20px);
+		height: calc(40vw - 20px);
+	}
+}

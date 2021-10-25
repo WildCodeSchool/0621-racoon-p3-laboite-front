@@ -1,0 +1,266 @@
+/* HEADER */
+
+.homeContactContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.descContainer {
+  padding-bottom: 70px;
+}
+
+.ebeDesc {
+  font-weight: bold;
+}
+
+/* CONCEPT */
+.conceptContainer {
+  background: #52908B;
+  width: 100%;
+  height: 100%;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 90px;
+}
+
+.conceptTitle, .teamTitle {
+font-size: 30px;
+padding-left: 3%;
+padding-right: 3%;
+width: 100%;
+text-align: center;
+border-bottom: 3px solid var(--title-color);
+line-height: 0.1em;
+margin: 10px 0 20px;
+color: var(--title-color);
+}
+
+.conceptTitle span {
+  background: var(--green-background-color);
+  padding: 0 10px;
+}
+
+.conceptPart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.part1, .part2, .part3 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.containImg{
+  width: 50%;
+  min-width: 300px;
+}
+
+.conceptImage {
+  width: 100%;
+}
+
+.conceptP1, .conceptP2, .conceptP3 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+  color: var(--title-color);
+  padding: 0px 25px;
+}
+
+.block-buster {
+  display: flex;
+  align-items: center;
+}
+
+.borderText {
+  border-left: solid #fff 10px;
+  height: 45px;
+  padding-top: 10px;
+}
+
+.borderP {
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+/* POLES */
+.poles {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.poleTitleContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.polesContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+}
+
+.imgPoles {
+  width: 25%;
+  height: 400px;
+}
+
+.poleTitle {
+  color: var(--main-font-color);
+  font-size: 30px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid var(--main-font-color);
+  line-height: 0.1em;
+  margin: 10px 20px 20px;
+  padding-top: 40px;
+  margin-bottom: 50px;
+  font-family: 'Pacifico', cursive;
+}
+
+.poleTitle span {
+  font-family: 'Dancing script', cursive;
+  background: var(--title-color);
+  padding: 0 10px;
+}
+
+/* TEAM */
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background: #52908B;
+}
+
+.teamTitleContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  margin-top: 60px;
+}
+
+.membersContainer {
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+
+
+.teamTitle span {
+  background: var(--green-background-color);
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    /* BANNER */
+
+  .blere-beach {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 50px;
+  }
+
+    /* CONCEPT */
+  
+  .descContainer {
+    margin: 0 15px;
+  }
+  /* .conceptContainer {
+    background: #52908B;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* flex-direction: column; */
+  /* } */ 
+  
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 30px;
+  }
+  
+  .conceptTitle, .teamTitle {
+  font-size: 25px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid var(--title-color);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--title-color);
+  }
+
+  .teamTitle {
+    font-size: 25px;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid var(--title-color);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: var(--title-color);
+    }
+  
+  .conceptTitle span {
+    background: var(--green-background-color);
+    padding: 0 10px;
+  }
+
+  .block-buster {
+    display: flex;
+    align-items: center;
+  }
+  
+  .borderText {
+    border-left: solid #fff 10px;
+    height: 45px;
+    padding-top: 10px;
+  }
+  
+  .borderP {
+    padding-left: 20px;
+    font-weight: 600;
+  }
+  
+  .part1, .part2, .part3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  
+  .containImg{
+    width: 100%;
+    order: -1;
+  }
+  
+  
+  .conceptP1, .conceptP2, .conceptP3 {
+    width: 100%;
+  }
+
+}
+

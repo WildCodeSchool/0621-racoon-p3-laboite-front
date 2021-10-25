@@ -1,0 +1,122 @@
+.flex {
+  display: flex;
+}
+
+.navlist {
+  height: 54px;
+  width: 100%;
+  background-color: var(--red-background-color);
+  border-top: 1px solid var(--nav-list-items-color);
+  border-bottom: 1px solid var(--nav-list-items-color);
+  overflow: hidden;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+}
+
+.navlist div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.8em;
+  border-right: 1px solid var(--nav-list-items-color);
+  transform: skew(-30deg) rotate(0deg);
+}
+  
+.navlist div:not(:first-child,:last-child) {
+  width: 45%;
+}
+
+.navlist div:first-child {
+  width: 6%;
+  color: var(--red-background-color);
+}
+
+.navlist div:last-child {
+  border-right: 0;
+  transform: skew(0deg) rotate(0deg);
+  
+}
+
+.user-icon {
+  height: 75%;
+  margin-left: auto;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: transparent;
+}
+
+.user-icon:hover {
+  filter: grayscale(10%);
+}
+
+a {
+  color: var(--nav-list-items-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+
+/* MODAL */
+
+button.modal-toggle,input[type="submit"],.form-btn {
+  background-color: var(--red-background-color);
+  color: var(--main-background-color);
+  cursor: pointer;
+  width: 100px;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
+  margin: 5px 15px;
+  transition: 0.3s;
+}
+
+.form-group {
+margin-top: 10px;
+}
+
+input[type="password"],
+input[type="email"] {
+box-sizing: border-box;
+width: 70%;
+padding: 0.2rem;
+outline: none;
+border: none;
+border-bottom: 2px solid var(--red-background-color);
+margin-bottom: 10px;
+}
+
+.form-logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-logout button {
+  width: 300px;
+}
+
+.btn-log {
+  font-weight: 600;
+  box-shadow: 0 0 2px rgb(0 0 0 / 50%);
+}
+
+.btn-log:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 400px){
+  button.modal-toggle,input[type="submit"],.form-btn {
+    font-size: 80%;
+    width: 60%;
+  }
+}

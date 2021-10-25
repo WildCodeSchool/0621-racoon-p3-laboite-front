@@ -5,8 +5,8 @@
   "env": { "browser": true, "node": true, "jest": true },
   "rules": {
     "prettier/prettier": "warn",
-       "no-unused-vars": 1,
-        "react/react-in-jsx-scope": 0,
+        "no-unused-vars": 1,
+        "react/react-in-jsx-scope":"off",
         "react/display-name":1,
         "react/jsx-key":1,
         "react/jsx-no-comment-textnodes":1,
@@ -25,7 +25,7 @@
         "react/no-string-refs":1,
         "react/no-unescaped-entities":1,
         "react/no-unknown-property":1,
-        // "react/prop-types":1,
+        "react/prop-types":"off",
         "react/require-render-return":1
   }
 }

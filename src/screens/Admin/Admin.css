@@ -1,0 +1,244 @@
+/*---------- Shortcuts ----------*/
+.flex{
+	display: flex;
+}
+.col{
+	flex-direction: column;
+}
+.row{
+	flex-direction: row;
+}
+.jcc{
+	justify-content: center;
+}
+.aic{
+	align-items: center;
+}
+.adminContainer{
+	min-height: 120vh;
+	color: white
+}
+.blacktxt{
+	background-color: black;
+}
+
+/*---------- Left Menu ----------*/
+.adminMenuLeft{
+	width : 15%;
+	background-color: #313131;
+	padding-bottom: 10px;
+}
+.dashboard{
+	padding: 10px;
+	margin-bottom: 10px;
+	font-size: x-large;
+	border-bottom: solid 1px #616161;
+	background-color: #212121;
+}
+.dashboardTitle{
+	margin-left: 10px;
+}
+.adminLinkButton{
+	background-color: #414141;
+	padding: 15px;
+	margin: 10px;
+	border-radius: 5px;
+}
+.adminLinkButton:hover{
+	cursor: pointer;
+	background-color: #515151;
+}
+.logoContainer{
+	width: 20%;
+}
+.logo{
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	background-color: black;
+}
+.btnName{
+	padding-left: 10px;
+	font-size:large;
+}
+
+/*---------- Right Menu ----------*/
+.adminMenuRight{
+	width: 85%;
+	background-color: #919191;
+}
+.adminHeader{
+	padding: 10px;
+	width: 100%;
+	font-size:x-large;
+	background-color: #515151;
+	border-bottom: solid 1px #616161;
+}
+
+/*----- Top Div -----*/
+.topDiv{
+	margin: 20px;
+}
+.topDivTitle{
+	position: relative;
+	font-size: larger;
+	padding: 10px;
+	background-color: var(--main-font-color);
+	border-radius: 20px 20px 0px 0px;
+}
+.addButton{
+	position: absolute;
+	font-size: 16px;
+	top: calc(50% - 8px);
+	right: 50px;
+}
+.addButton:hover{
+	cursor: pointer;
+}
+.plusBtn{
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	font-size: large;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
+}
+.cardContainer{
+	background-color: lightgray;
+	border-radius: 0px 0px 20px 20px;
+	overflow-x: auto;
+}
+.noCard{
+	color: black;
+	padding: 20px;
+}
+.card{
+	position: relative;
+	min-height: 200px;
+	min-width: 200px;
+	margin: 20px;
+}
+.card:hover{
+	cursor: pointer;
+}
+.cardContent{
+	display: flex;
+	position: relative;
+	width:100%;
+	height:100%;
+	pointer-events: none;
+}
+.blue{
+	background-color: dodgerblue;
+}
+.cardName{
+  z-index: 0;
+	position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+.cardName .title {
+  background-color: #313131;
+  width: 100%;
+  z-index: 0;
+  padding: 5px 0px;
+}
+.btnDeleteCard{
+	position: absolute;
+	font-size: 16px;
+	top: 15px;
+	right: 15px;
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color);
+  z-index:400;
+}
+
+/*----- Bottom Div -----*/
+.bottomDiv{
+	margin: 20px;
+}
+.form{
+	position: relative;
+	width: 80%;
+	padding: 20px;
+	border-radius: 20px;
+	background-color: #313131
+}
+.bottomDivTitle{
+	font-size: larger;
+	padding: 20px;
+}
+.closeBtn{
+	position: absolute;
+	font-size: 16px;
+	top: 25px;
+	right: 25px;
+	height: 20px;
+	width: 20px;
+	margin-left:15px;
+	background-color: snow;
+	border-radius: 5px;
+	color: var(--main-font-color)
+}
+.closeBtn:hover{
+	cursor: pointer;
+}
+.boxInput{
+	width: 80%;
+	height: 30px;
+	margin: 10px;
+	background-color: #616161;
+	color: white;
+}
+.teamFormContainer, .partnerFormContainer, .activityFormContainer{
+	width: 90%;
+	margin: auto;
+}
+.btnContainer{
+	width:100%;
+	padding:20px;
+	justify-content: space-evenly;
+}
+.btnForm{
+	padding: 10px 20px;
+	border-radius: 20px;
+	color: white;
+	background-color: var(--main-font-color);
+}
+.btnForm:hover{
+cursor: pointer;
+}
+.colorme{
+	background-color: darkseagreen;
+	border-radius: 10px;
+}
+.bg{
+	padding: 20px;
+		background-color: lightgray;
+	border-radius: 0px 0px 20px 20px;
+}
+.tinyNo{
+	background-color: red;
+	width: 20px;
+	height:20px;
+	border-radius: 50%;
+	border: 1px solid black;
+	margin-left: 10px;
+}
+.tinyYes{
+	background-color: green;
+	width: 20px;
+	height:20px;
+	border-radius: 50%;
+	border: 1px solid black;
+	margin-left: 10px;
+}
+
+

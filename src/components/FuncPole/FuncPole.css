@@ -1,0 +1,13 @@
+.leftGreenContainer {
+  width: 30 %;
+}
+
+.rightGreenContainer {
+  width: 70%;
+}
+
+@media screen and (max-width: 788px) {
+  .rightGreenContainer {
+    width: 100%;
+  }
+}
