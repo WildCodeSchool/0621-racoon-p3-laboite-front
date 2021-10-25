@@ -36,7 +36,6 @@ const Contact = () => {
 
   // Envoi les données du formulaire de contact a nodemailer
   const sendMail = () => {
-    console.log('formData', formData)
     axios
       .post(`${process.env.REACT_APP_URL_API}/contact/sendmail`, formData)
       .then(response => setMessage(response.data))

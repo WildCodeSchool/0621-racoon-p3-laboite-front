@@ -71,17 +71,14 @@ const AdminPartner = () => {
         `${process.env.REACT_APP_URL_API}/partners`,
         newPartnerPost
       )
-      // if (res){
       console.log('res post', res)
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
       setAddAlert(true)
     } catch (err) {
-      // if (err) {
       console.log('logErrPost', err.response)
       setResMessage(err.response.data.message)
-      // }
     }
   }
 
@@ -106,17 +103,14 @@ const AdminPartner = () => {
         `${process.env.REACT_APP_URL_API}/partners/${idPartnerToUpdate}`,
         newPartnerPut
       )
-      // if (res){
       console.log('res update', res)
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
       setUpdateAlert(true)
     } catch (error) {
-      // if(error) {
       console.log('logErrUpdate', error.response)
       setResMessage(error.response.data.message)
-      // }
     }
   }
 

@@ -40,7 +40,6 @@ const AdminTeam = () => {
 
   // READ a member data from idMemberToUpdate
   useEffect(() => {
-    console.log('update_member', idMemberToUpdate)
     setAdminInput('')
     setResMessage('')
     const getMember = () => {
@@ -71,17 +70,12 @@ const AdminTeam = () => {
         `${process.env.REACT_APP_URL_API}/members`,
         newPost
       )
-      // if (res){
-      console.log('res post', res)
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
       setAddAlert(true)
     } catch (err) {
-      // if (err) {
-      console.log('logErrPost', err.response)
       setResMessage(err.response.data.message)
-      // }
     }
   }
 
@@ -105,17 +99,12 @@ const AdminTeam = () => {
         `${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`,
         newPut
       )
-      // if (res){
-      console.log('res update', res)
       setResMessage(res.data.message)
       setRefresh(!refresh)
       setTimeout(closeForm, 2500)
       setUpdateAlert(true)
     } catch (error) {
-      // if(error) {
-      console.log('logErrUpdate', error.response)
       setResMessage(error.response.data.message)
-      // }
     }
   }
 
@@ -129,7 +118,6 @@ const AdminTeam = () => {
             `${process.env.REACT_APP_URL_API}/members/${idMemberToUpdate}`
           )
           .then(resToBack => {
-            console.log('res delete', resToBack)
             setResMessage(resToBack.data.message)
             setRefresh(!refresh)
             setTimeout(closeForm, 2500)
@@ -137,7 +125,6 @@ const AdminTeam = () => {
           })
           .catch(error => {
             if (error) {
-              console.log('logErrDelete', error.response)
               setResMessage(error.response.data.message)
             }
           })
@@ -169,10 +156,8 @@ const AdminTeam = () => {
     setUpdateAlert(false) // reset updateAlert
   }
   //Function to update inputs
-  const onChangeHandler = useCallback(
-    ({ target: { name, value } }) =>
-      console.log('inputChange') ||
-      setAdminInput(state => ({ ...state, [name]: value }), [])
+  const onChangeHandler = useCallback(({ target: { name, value } }) =>
+    setAdminInput(state => ({ ...state, [name]: value }), [])
   )
   //----------------------------------------------------------------------------
   return (

@@ -1,7 +1,6 @@
 import parse from 'html-react-parser'
 
 import '../../App.css'
-import './TopCenter.css'
 
 const TopCenter = ({ pole_desc }) => {
   return (
